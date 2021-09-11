@@ -38,7 +38,7 @@ jobs:
               # - Copies over README so that the root of the deployed website shows it
               # - Changes 404 page to README so that you don't get lost while clicking links
               # If you remove this step then you should probably remove the enable_jekyll option in the next one
-            - name: Copy additionnal files
+            - name: Copy additional files
               run: |
                   cp README.md .dist/README.md
                   printf -- "---\npermalink: /404.html\n---\n" > .dist/404.md
