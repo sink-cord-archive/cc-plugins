@@ -8,20 +8,25 @@ import ui from "@cumcord/ui";
 // props taken from https://github.com/Cumcord/Cumcord/blob/stable/src/api/ui/settings/components/Plugins.jsx
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
-export default ({ plugin }) => (
-    <div className="ysink_card">
-        <div className="ysink_row">
-            <FormTitle tag="p" className="ysink_title">{plugin.name}</FormTitle>
+export default ({ plugin }) => {
+    let rawPlugins = cumcord.plugins.installed.ghost;
+    let installedPlugins = Object.keys(rawPlugins)
+        .map((key) => [key, rawPlugins[key].enabled])
+        .filter((pair) => typeof pair[1] === "boolean");
+    console.log(installedPlugins);
+
+    function interactButton(pluginId, pluginName) {
+        return installedPlugins.find((p) => p[0] == pluginId) == undefined ? (
             <Button
                 className="ysink_button"
                 color={Button.Colors.BRAND}
                 size={Button.Sizes.SMALL}
                 look={Button.Looks.OUTLINED}
                 onClick={() => {
-                    let promise = plugins.importPlugin("https://" + plugin.url);
+                    let promise = plugins.importPlugin(pluginId);
                     promise.then(() =>
                         ui.toasts.showToast({
-                            title: "Installed plugin " + plugin.name,
+                            title: "Installed plugin " + pluginName,
                             duration: 5000,
                         })
                     );
@@ -29,10 +34,41 @@ export default ({ plugin }) => (
             >
                 Install
             </Button>
-        </div>
+        ) : installedPlugins.find((p) => p[0] == pluginId)[1] ? (
+            <Button
+                className="ysink_button"
+                color={Button.Colors.GREEN}
+                size={Button.Sizes.SMALL}
+                look={Button.Looks.OUTLINED}
+            >
+                Running
+            </Button>
+        ) : (
+            <Button
+                className="ysink_button"
+                color={Button.Colors.GREY}
+                size={Button.Sizes.SMALL}
+                look={Button.Looks.OUTLINED}
+            >
+                Installed
+            </Button>
+        );
+    }
 
-        <FormText>{plugin.description}</FormText>
-        <FormDivider className="ysink_divide" />
-        <FormText className="ysink_author_licence">by {plugin.author} under {plugin.license}</FormText>
-    </div>
-);
+    return (
+        <div className="ysink_card">
+            <div className="ysink_row">
+                <FormTitle tag="p" className="ysink_title">
+                    {plugin.name}
+                </FormTitle>
+                {interactButton("https://" + plugin.url + "/", plugin.name)}
+            </div>
+
+            <FormText>{plugin.description}</FormText>
+            <FormDivider className="ysink_divide" />
+            <FormText className="ysink_author_licence">
+                by {plugin.author} under {plugin.license}
+            </FormText>
+        </div>
+    );
+};
