@@ -1,0 +1,7 @@
+{
+  "name": "The Cum Zone",
+  "description": "An integrated plugin store for Cumcord",
+  "author": "Yellowsink",
+  "file": "index.jsx",
+  "license": "BSD-3"
+}
