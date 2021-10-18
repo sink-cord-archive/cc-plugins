@@ -1,7 +1,7 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import patcher from "@cumcord/patcher";
 import CumZone from "./CumZone.jsx";
-import injectCss from "./styles.css"
+import injectCss from "./styles.css";
 
 const defaultRepos = [
     "https://cumcordplugins.github.io/Condom/plugins-large.json",
