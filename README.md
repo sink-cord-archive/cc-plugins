@@ -4,7 +4,13 @@ This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins.
 
 ## Channel Activity
 A port of @dperolio's plugin [here](https://github.com/vizality-community/channel-members-activity-icons) to CC
+
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/channel-activity">Click to install</a>
+
+## **[WIP]** The Cum Zone
+The Cum Zone is a plugin store accessed from inside your client, in a similar vein to the equivalent feature in [Impregnate](https://github.com/Cumcord/Impregnate).
+
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/cum-zone">Click to install</a>
 
 ---
 
