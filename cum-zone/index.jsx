@@ -1,7 +1,7 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import patcher from "@cumcord/patcher";
-import getPlugins from "./pluginFetcher.js";
 import CumZone from "./CumZone.jsx";
+import injectCss from "./styles.css"
 
 const defaultRepos = [
     "https://cumcordplugins.github.io/Condom/plugins-large.json",
@@ -15,10 +15,13 @@ export default (data) => {
             const store = data.persist.store;
             if (!Array.isArray(store.repos)) store.repos = defaultRepos;
 
+            patches.push(injectCss());
+
             let settingsView =
                 cumcord.modules.webpack.findByDisplayName(
                     "SettingsView"
                 ).prototype;
+
             patches.push(
                 patcher.after(
                     "getPredicateSections",

@@ -1,15 +1,23 @@
 import { findByDisplayName } from "@cumcord/modules/webpack"
 const FormTitle = findByDisplayName("FormTitle");
+const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
+const FormDivider = findByDisplayName("FormDivider");
 const Flex = findByDisplayName("Flex");
+import getPlugins from "./pluginFetcher.js";
+import Ticker from "./CopyPastaTicker.jsx"
 
 export default (({ repos }) =>
-    <div>
-        <h1>Welcome to the Cum Zone</h1>
-        <h2>Only cum inside anime girls</h2>
+    <FormSection>
+        <FormTitle tag="h1">Welcome to the Cum Zone</FormTitle>
+        <Ticker />
 
-        <ul>
-            {repos.map(repo => <li><p>{repo.toString()}</p></li>)}
-        </ul>
-    </div>
+        {repos.map(repo => (
+            <FormSection>
+                <FormTitle tag="h2">{repo}</FormTitle>
+                {getPlugins(repo).map(p => <FormText>{p.name}</FormText>)}
+                <FormDivider />
+            </FormSection>
+        ))}
+    </FormSection>
 );
