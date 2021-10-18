@@ -27,6 +27,9 @@ export default (data) => {
                     "getPredicateSections",
                     settingsView,
                     (_, retVal) => {
+                        // don't inject into server settings!!!
+                        if (retVal[1].section != "My Account")return;
+
                         // add myself underneath cumcord! (find header, +1 to skip header, +1 to skip plugins)
                         let index =
                             retVal.findIndex((val) => val.label == "Cumcord") +
