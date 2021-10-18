@@ -2,6 +2,7 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");
+import plugins from "@cumcord/plugins";
 import ui from "@cumcord/ui";
 
 // props taken from https://github.com/Cumcord/Cumcord/blob/stable/src/api/ui/settings/components/Plugins.jsx
