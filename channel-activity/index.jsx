@@ -53,6 +53,7 @@ export default (data) => {
         },
         onUnload() {
             if (memberListItemUnPatch) memberListItemUnPatch();
+            if (cssUnpatch) cssUnpatch();
         },
     };
 };
