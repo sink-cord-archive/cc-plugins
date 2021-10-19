@@ -1,0 +1,21 @@
+.ysink_hypesquad_container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.ysink_hypesquad_container.ysink_new > button {
+    margin-right: 1rem;
+}
+
+.ysink_hypesquad_container.ysink_new > button:last-child {
+    margin-right: unset;
+}
+
+.ysink_hypesquad_text {
+    margin-top: .5rem;
+    font-style: italic;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+}
