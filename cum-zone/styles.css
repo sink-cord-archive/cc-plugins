@@ -14,6 +14,8 @@
     padding: 1rem;
     border: 1px solid var(--background-modifier-accent);
     border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .ysink_card .ysink_title {
@@ -37,6 +39,13 @@
 .ysink_card button { padding: 0; }
 .ysink_card button > div { padding: 2px 16px; }
 
+.ysink_card button {
+    margin-bottom: .2rem;
+    width: 6rem;
+}
+ 
+.ysink_card .ysink_desc { flex: 1; }
+
 .ysink_header { display: flex; }
 .ysink_header > * { flex: 1; }
 .ysink_header > :last-child { flex: unset; }
@@ -51,6 +60,8 @@
     margin-left: 1rem;
 }
 
+.ysink_divide { margin: 0 0 1rem 0; }
+
 .ysink_modal .ysink_divide { margin: .5rem 0; }
 
 .ysink_splash {
@@ -63,13 +74,14 @@
 
 /* hardcoded values like this aren't ideal, but theres halfway */
 .ysink_modal .ysink_splash { margin-top: 6rem; }
-
 .ysink_splash .ysink_button { margin-top: 1rem; }
 
 .ysink_badge {
     display: inline;
     margin-left: .5rem;
 }
+
+.ysink_ticker { margin-top: .2rem; }
 
 .ysink_ticker_fillscreen {
     position: fixed;
@@ -83,5 +95,5 @@
 
 .ysink_card {
     z-index: 1;
-    background-color: var(--background-accent);
+    background-color: var(--deprecated-card-bg);
 }

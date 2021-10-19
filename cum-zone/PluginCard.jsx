@@ -20,7 +20,7 @@ export default ({ plugin }) => {
             <Button
                 className="ysink_button"
                 color={Button.Colors.BRAND}
-                size={Button.Sizes.SMALL}
+                size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
                 onClick={() => {
                     let promise = plugins.importPlugin(pluginId);
@@ -38,7 +38,7 @@ export default ({ plugin }) => {
             <Button
                 className="ysink_button"
                 color={Button.Colors.GREEN}
-                size={Button.Sizes.SMALL}
+                size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
             >
                 Running
@@ -47,7 +47,7 @@ export default ({ plugin }) => {
             <Button
                 className="ysink_button"
                 color={Button.Colors.GREY}
-                size={Button.Sizes.SMALL}
+                size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
             >
                 Installed
@@ -66,7 +66,8 @@ export default ({ plugin }) => {
                     {interactButton("https://" + plugin.url + "/", plugin.name)}
                 </div>
 
-                <FormText>{plugin.description}</FormText>
+                <FormText className="ysink_desc">{plugin.description}</FormText>
+
                 <FormDivider className="ysink_divide" />
                 <FormText className="ysink_author_licence">
                     by {plugin.author} under {plugin.license}

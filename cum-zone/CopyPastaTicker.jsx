@@ -17,7 +17,7 @@ export default ({ fillscreen }) =>
             ))}
         </FormText>
     ) : (
-        <FormText>
+        <FormText className="ysink_ticker">
             <marquee className="ysink_cuminside" scrolldelay="65">
                 {pasta}
             </marquee>

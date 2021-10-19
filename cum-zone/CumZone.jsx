@@ -9,6 +9,7 @@ import NoReposSplash from "./NoReposSplash.jsx"
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
+const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 const combinePluginLists = (repos) =>
@@ -29,6 +30,8 @@ export default ({ nest }) => {
                     </Button>
                 </div>
                 <Ticker />
+
+                <FormDivider className="ysink_divide" />
 
                 {nest.ghost.repos.length == 0 ? (
                     <NoReposSplash store={nest.store} />
