@@ -7,10 +7,10 @@
 .ysink_card_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: .75rem;
 }
 
 .ysink_card {
-    margin: 0.25rem;
     padding: 1rem;
     border: 1px solid var(--background-modifier-accent);
     border-radius: 0.25rem;
@@ -69,4 +69,19 @@
 .ysink_badge {
     display: inline;
     margin-left: .5rem;
+}
+
+.ysink_ticker_fillscreen {
+    position: fixed;
+    left: 0;
+    top: 1rem;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.ysink_card {
+    z-index: 1;
+    background-color: var(--background-accent);
 }
