@@ -40,3 +40,13 @@
 .ysink_header { display: flex; }
 .ysink_header > * { flex: 1; }
 .ysink_header > :last-child { flex: unset; }
+
+.ysink_splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    flex-flow: column nowrap;
+}
+
+.ysink_splash .ysink_button { margin-top: 1rem; }

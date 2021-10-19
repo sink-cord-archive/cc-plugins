@@ -2,23 +2,15 @@ import { findByDisplayName } from "@cumcord/modules/webpack";
 import patcher from "@cumcord/patcher";
 import CumZone from "./CumZone.jsx";
 import injectCss from "./styles.css";
-
-const defaultRepos = [
-    {
-        url: "https://cumcordplugins.github.io/Condom/plugins-large.json",
-        name: "Condom",
-        enabled: true,
-        official: true,
-    },
-];
+import { resetReposToDefault } from "./NoReposSplash.jsx"
 
 let patches = [];
 
 export default (data) => {
     return {
         async onLoad() {
-            const store = data.persist.store;
-            if (!Array.isArray(store.repos)) store.repos = defaultRepos;
+            const nest = data.persist;
+            if (!Array.isArray(nest.ghost.repos)) resetReposToDefault(nest.store);
 
             patches.push(injectCss());
 
@@ -43,7 +35,7 @@ export default (data) => {
                         retVal.splice(index, 0, {
                             section: "YSINK_CUMZONE",
                             label: "The Cum Zone",
-                            element: () => <CumZone nest={data.persist} />,
+                            element: () => <CumZone nest={nest} />,
                         });
                         return retVal;
                     }

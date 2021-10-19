@@ -5,6 +5,7 @@ import getPlugins from "./pluginFetcher.js";
 import Ticker from "./CopyPastaTicker.jsx";
 import PluginCard from "./PluginCard.jsx";
 import showRepoModal from "./RepoModal.jsx";
+import NoReposSplash from "./NoReposSplash.jsx"
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
@@ -30,7 +31,7 @@ export default ({ nest }) => {
                 <Ticker />
 
                 {nest.ghost.repos.length == 0 ? (
-                    <FormText>No plugin repos!</FormText>
+                    <NoReposSplash store={nest.store} />
                 ) : (
                     <div className="ysink_card_container">
                         {combinePluginLists(nest.ghost.repos).map((p) => (
