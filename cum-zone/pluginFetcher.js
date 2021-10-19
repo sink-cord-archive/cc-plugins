@@ -3,7 +3,13 @@ function getPlugins(repoUrl) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", repoUrl, false);
     xhr.send(null);
-    let parsed = JSON.parse(xhr.responseText);
+    console.log(xhr.responseText)
+    let parsed = [];
+    try {
+        parsed = JSON.parse(xhr.responseText);
+    } catch {
+        return []
+    }
 
     return Object.keys(parsed).map((key) => {
         let plugin = parsed[key];

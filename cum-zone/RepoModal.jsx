@@ -25,6 +25,33 @@ function verifyRepo(repo) {
     }
 }
 
+function addRepo(nest, repo) {
+    if (nest.ghost.repos.find((r) => r.url == repo) !== undefined) {
+        showToast({
+            title: "You already have this repo!",
+            duration: 5000,
+        });
+    } else if (verifyRepo(repo)) {
+        // copy like this to correctly raise events
+        let repos = nest.ghost.repos;
+        repos.push({
+            url: repo,
+            name: "new repo",
+            enabled: true,
+        });
+        nest.store.repos = repos;
+        showToast({
+            title: "Added repo",
+            duration: 5000,
+        });
+    } else {
+        showToast({
+            title: "Repo was invalid",
+            duration: 5000,
+        });
+    }
+}
+
 const RepoModalComponent = ({ nest, e }) => {
     const [input, setInput] = useState("");
 
@@ -65,34 +92,7 @@ const RepoModalComponent = ({ nest, e }) => {
                             <Button
                                 onClick={() => {
                                     setInput("");
-                                    if (
-                                        nest.ghost.repos.find(
-                                            (r) => r.url == input
-                                        ) !== undefined
-                                    ) {
-                                        showToast({
-                                            title: "You already have this repo!",
-                                            duration: 5000,
-                                        });
-                                    } else if (verifyRepo(input)) {
-                                        // copy like this to correctly raise events
-                                        let repos = nest.ghost.repos;
-                                        repos.push({
-                                            url: input,
-                                            name: "new repo",
-                                            enabled: true,
-                                        });
-                                        nest.store.repos = repos;
-                                        showToast({
-                                            title: "Added repo",
-                                            duration: 5000,
-                                        });
-                                    } else {
-                                        showToast({
-                                            title: "Repo was invalid",
-                                            duration: 5000,
-                                        });
-                                    }
+                                    addRepo(nest, input);
                                 }}
                             >
                                 Add
