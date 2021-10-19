@@ -1,4 +1,3 @@
-import ActivityImage from "./ActivityImage";
 import CssInject from "./styles.css"; // cumcord go brr
 
 export default (data) => {
@@ -42,7 +41,7 @@ export default (data) => {
                                 activity.assets?.small_image
                             }.png`;
                             retVal.props.children.push(
-                                <ActivityImage src={activityImgUrl} />
+                                <img src={activityImgUrl} className="ysink_activity_image" />
                             );
                         }
                     }
