@@ -13,7 +13,8 @@ export default ({ repo, nest }) => {
                     <FormTitle tag="p" className="ysink_title">
                         {repo.name}
                         {repo.official ? (
-                            <Badges.TextBadge className="ysink_badge"
+                            <Badges.TextBadge
+                                className="ysink_badge"
                                 text="official repo"
                                 color="var(--info-positive-foreground)"
                             />

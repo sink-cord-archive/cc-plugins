@@ -17,7 +17,8 @@ export default ({ plugin }) => {
         .filter((pair) => typeof pair[1] === "boolean");
 
     function interactButton(pluginId, pluginName) {
-        const findPlugin = (ip, pl) => ip.find((p) => p[0] == pl || p[0] == pl + "/");
+        const findPlugin = (ip, pl) =>
+            ip.find((p) => p[0] == pl || p[0] == pl + "/");
 
         return findPlugin(installedPlugins, pluginId) == undefined ? (
             <Button
