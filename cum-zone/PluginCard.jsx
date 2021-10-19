@@ -10,7 +10,7 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 export default ({ plugin }) => {
-    let rawPlugins = cumcord.plugins.installed.ghost;
+    let rawPlugins = plugins.installed.ghost;
     let installedPlugins = Object.keys(rawPlugins)
         .map((key) => [key, rawPlugins[key].enabled])
         .filter((pair) => typeof pair[1] === "boolean");

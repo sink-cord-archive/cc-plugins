@@ -41,6 +41,18 @@
 .ysink_header > * { flex: 1; }
 .ysink_header > :last-child { flex: unset; }
 
+.ysink_card .ysink_row > * { flex: 1; }
+.ysink_card .ysink_row > :last-child { flex: unset; }
+
+.ysink_modal .ysink_row { display: flex; }
+.ysink_modal .ysink_row > * { flex: 1; }
+.ysink_modal .ysink_row > :last-child {
+    flex: unset;
+    margin-left: 1rem;
+}
+
+.ysink_modal .ysink_divide { margin: .5rem 0; }
+
 .ysink_splash {
     display: flex;
     justify-content: center;
@@ -49,4 +61,12 @@
     flex-flow: column nowrap;
 }
 
+/* hardcoded values like this aren't ideal, but theres halfway */
+.ysink_modal .ysink_splash { margin-top: 6rem; }
+
 .ysink_splash .ysink_button { margin-top: 1rem; }
+
+.ysink_badge {
+    display: inline;
+    margin-left: .5rem;
+}
