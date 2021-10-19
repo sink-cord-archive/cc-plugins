@@ -49,7 +49,12 @@ const RepoModalComponent = ({ nest, e }) => {
 
                 <ModalComponents.ModalContent>
                     <FormSection>
-                        <Flex basis="auto" grow={1} shrink={1} className="ysink_row">
+                        <Flex
+                            basis="auto"
+                            grow={1}
+                            shrink={1}
+                            className="ysink_row"
+                        >
                             <TextInput
                                 className="ysink_input"
                                 placeholder="https://example.com/repo.json"
@@ -60,7 +65,16 @@ const RepoModalComponent = ({ nest, e }) => {
                             <Button
                                 onClick={() => {
                                     setInput("");
-                                    if (verifyRepo(input)) {
+                                    if (
+                                        nest.ghost.repos.find(
+                                            (r) => r.url == input
+                                        ) !== undefined
+                                    ) {
+                                        showToast({
+                                            title: "You already have this repo!",
+                                            duration: 5000,
+                                        });
+                                    } else if (verifyRepo(input)) {
                                         // copy like this to correctly raise events
                                         let repos = nest.ghost.repos;
                                         repos.push({
