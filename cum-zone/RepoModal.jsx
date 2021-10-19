@@ -4,8 +4,8 @@
 import { findByProps, findByDisplayName } from "webpackModules";
 
 const ModalComponents = findByProps("ModalCloseButton");
-const Header = findByDisplayName('Header');
-const Flex = findByDisplayName('Flex');
+const Header = findByDisplayName("Header");
+const Flex = findByDisplayName("Flex");
 const { openModal } = findByProps("openModal");
 
 const FormTitle = findByDisplayName("FormTitle");
@@ -32,7 +32,7 @@ export default (repos_proxy) =>
                 </ModalComponents.ModalHeader>
 
                 <ModalComponents.ModalContent>
-                    {repos_proxy.map(repo => (
+                    {repos_proxy.map((repo) => (
                         <div /> // unfinished
                     ))}
                 </ModalComponents.ModalContent>

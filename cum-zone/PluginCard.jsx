@@ -1,9 +1,10 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
+import plugins from "@cumcord/plugins";
+import { showToast } from "@cumcord/ui/toasts";
+import { useNest } from "@cumcord/utils";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");
-import plugins from "@cumcord/plugins";
-import ui from "@cumcord/ui";
 
 // props taken from https://github.com/Cumcord/Cumcord/blob/stable/src/api/ui/settings/components/Plugins.jsx
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
@@ -13,7 +14,6 @@ export default ({ plugin }) => {
     let installedPlugins = Object.keys(rawPlugins)
         .map((key) => [key, rawPlugins[key].enabled])
         .filter((pair) => typeof pair[1] === "boolean");
-    console.log(installedPlugins);
 
     function interactButton(pluginId, pluginName) {
         return installedPlugins.find((p) => p[0] == pluginId) == undefined ? (
@@ -25,7 +25,7 @@ export default ({ plugin }) => {
                 onClick={() => {
                     let promise = plugins.importPlugin(pluginId);
                     promise.then(() =>
-                        ui.toasts.showToast({
+                        showToast({
                             title: "Installed plugin " + pluginName,
                             duration: 5000,
                         })
@@ -55,20 +55,22 @@ export default ({ plugin }) => {
         );
     }
 
-    return (
-        <div className="ysink_card">
-            <div className="ysink_row">
-                <FormTitle tag="p" className="ysink_title">
-                    {plugin.name}
-                </FormTitle>
-                {interactButton("https://" + plugin.url + "/", plugin.name)}
-            </div>
+    useNest(plugins.installed);
 
-            <FormText>{plugin.description}</FormText>
-            <FormDivider className="ysink_divide" />
-            <FormText className="ysink_author_licence">
-                by {plugin.author} under {plugin.license}
-            </FormText>
-        </div>
+    return (
+            <div className="ysink_card">
+                <div className="ysink_row">
+                    <FormTitle tag="p" className="ysink_title">
+                        {plugin.name}
+                    </FormTitle>
+                    {interactButton("https://" + plugin.url + "/", plugin.name)}
+                </div>
+
+                <FormText>{plugin.description}</FormText>
+                <FormDivider className="ysink_divide" />
+                <FormText className="ysink_author_licence">
+                    by {plugin.author} under {plugin.license}
+                </FormText>
+            </div>
     );
 };
