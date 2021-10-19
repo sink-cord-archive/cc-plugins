@@ -26,6 +26,8 @@ function verifyRepo(repo) {
 }
 
 function addRepo(nest, repo) {
+    if (!repo.endsWith("/")) repo += "/";
+
     if (nest.ghost.repos.find((r) => r.url == repo) !== undefined) {
         showToast({
             title: "You already have this repo!",
@@ -84,7 +86,7 @@ const RepoModalComponent = ({ nest, e }) => {
                         >
                             <TextInput
                                 className="ysink_input"
-                                placeholder="https://example.com/repo.json"
+                                placeholder="https://example.com/repo"
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e)}

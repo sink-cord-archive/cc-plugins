@@ -5,7 +5,7 @@ import getPlugins from "./pluginFetcher.js";
 import Ticker from "./CopyPastaTicker.jsx";
 import PluginCard from "./PluginCard.jsx";
 import showRepoModal from "./RepoModal.jsx";
-import NoReposSplash from "./NoReposSplash.jsx"
+import NoReposSplash from "./NoReposSplash.jsx";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
@@ -13,7 +13,14 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 const combinePluginLists = (repos) =>
-    repos.map((repo) => getPlugins(repo.url)).reduce((c, n) => c.concat(n));
+    repos
+        .map((repo) =>
+            getPlugins(repo.url).map((p) => {
+                p.repo = repo;
+                return p;
+            })
+        )
+        .reduce((c, n) => c.concat(n));
 
 export default ({ nest }) => {
     useNest(nest);
