@@ -6,6 +6,6 @@ const pasta =
 
 export default () => (
     <FormText>
-        <marquee className="ysink_cuminside">{pasta}</marquee>
+        <marquee className="ysink_cuminside" scrolldelay="65">{pasta}</marquee>
     </FormText>
 );
