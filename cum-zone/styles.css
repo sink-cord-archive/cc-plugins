@@ -32,3 +32,11 @@
 
 /* no, it's not a typo, its British English. */
 .ysink_card .ysink_author_licence { font-style: italic; }
+
+/* fix some phat (tall) fonts like Noto having their ass cut off in buttons! */
+.ysink_card button { padding: 0; }
+.ysink_card button > div { padding: 2px 16px; }
+
+.ysink_header { display: flex; }
+.ysink_header > * { flex: 1; }
+.ysink_header > :last-child { flex: unset; }

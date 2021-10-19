@@ -4,7 +4,12 @@ import CumZone from "./CumZone.jsx";
 import injectCss from "./styles.css";
 
 const defaultRepos = [
-    "https://cumcordplugins.github.io/Condom/plugins-large.json",
+    {
+        url: "https://cumcordplugins.github.io/Condom/plugins-large.json",
+        name: "Condom",
+        enabled: true,
+        official: true,
+    },
 ];
 
 let patches = [];
@@ -38,7 +43,7 @@ export default (data) => {
                         retVal.splice(index, 0, {
                             section: "YSINK_CUMZONE",
                             label: "The Cum Zone",
-                            element: () => <CumZone repos={store.repos} />,
+                            element: () => <CumZone nest={data.persist} />,
                         });
                         return retVal;
                     }

@@ -1,20 +1,20 @@
-// most of this is adapted from https://github.com/Cumcord/Cumcord/blob/stable/src/api/ui/settings/pluginSettings.jsx
-// design inspired by the GooseMod repos modal
-
-import { findByProps, findByDisplayName } from "webpackModules";
+import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
+import { ErrorBoundary } from "@cumcord/ui/components";
+import { useNest } from "@cumcord/utils";
+import RepoCard from "./RepoCard.jsx";
 
 const ModalComponents = findByProps("ModalCloseButton");
 const Header = findByDisplayName("Header");
 const Flex = findByDisplayName("Flex");
 const { openModal } = findByProps("openModal");
-
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 
-export default (repos_proxy) =>
-    openModal((e) => {
-        return (
+const RepoModalComponent = ({ nest, e }) => {
+    useNest(nest);
+    return (
+        <ErrorBoundary>
             <ModalComponents.ModalRoot
                 transitionState={e.transitionState}
                 size="large"
@@ -23,7 +23,7 @@ export default (repos_proxy) =>
                 <ModalComponents.ModalHeader separator={false}>
                     <Flex.Child basis="auto" grow={1} shrink={1} wrap={false}>
                         <Header tag="h2" size={Header.Sizes.SIZE_20}>
-                            {pluginName}
+                            Manage Repos
                         </Header>
                     </Flex.Child>
                     <Flex.Child basis="auto" grow={0} shrink={1} wrap={false}>
@@ -32,10 +32,14 @@ export default (repos_proxy) =>
                 </ModalComponents.ModalHeader>
 
                 <ModalComponents.ModalContent>
-                    {repos_proxy.map((repo) => (
-                        <div /> // unfinished
+                    {nest.ghost.repos.map((repo) => (
+                        <RepoCard repo={repo} nest={nest} />
                     ))}
                 </ModalComponents.ModalContent>
             </ModalComponents.ModalRoot>
-        );
-    });
+        </ErrorBoundary>
+    );
+};
+
+export default (nest) =>
+    openModal((e) => <RepoModalComponent nest={nest} e={e} />);
