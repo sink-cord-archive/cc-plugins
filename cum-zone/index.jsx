@@ -1,7 +1,7 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import patcher from "@cumcord/patcher";
 import CumZone from "./CumZone.jsx";
-import injectCss from "./styles.css";
+import injectCss from "./sass_build.css";
 import { resetReposToDefault } from "./NoReposSplash.jsx";
 import { USER_SETTINGS_MY_ACCOUNT } from "@cumcord/modules/common/i18n/Messages";
 

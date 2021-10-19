@@ -90,6 +90,7 @@ const RepoModalComponent = ({ nest, e }) => {
                                 onChange={(e) => setInput(e)}
                             />
                             <Button
+                                className="ysink_button"
                                 onClick={() => {
                                     setInput("");
                                     addRepo(nest, input);
