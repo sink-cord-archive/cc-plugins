@@ -39,7 +39,7 @@
 .ysink_card button { padding: 0; }
 .ysink_card button > div { padding: 2px 16px; }
 
-.ysink_card button {
+.ysink_card_container .ysink_card button {
     margin-bottom: .2rem;
     width: 6rem;
 }
