@@ -1,0 +1,7 @@
+{
+  "name": "Command Palette",
+  "description": "Like vscode's command palette? Well now it's in Discord too!!!",
+  "author": "Yellowsink",
+  "file": "index.js",
+  "license": "BSD-3"
+}

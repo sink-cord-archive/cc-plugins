@@ -1,0 +1,17 @@
+/* ignore this strange class name */
+.ysink_palette_palette {
+    position: absolute;
+    top: 5rem;
+    width: 50rem;
+    background-color: var(--background-secondary);
+    padding: .75rem 0;
+    color: white;
+}
+
+.ysink_palette_item {
+    padding: .25rem;
+}
+
+.ysink_palette_item.ysink_palette_selected {
+    background-color: #00000055;
+}
