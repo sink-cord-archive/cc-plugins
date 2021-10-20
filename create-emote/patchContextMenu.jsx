@@ -1,12 +1,5 @@
 import { findByProps, find } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
-import { showToast } from "@cumcord/ui/toasts";
-import {
-    getGuilds,
-    guildsCanManageEmotes,
-    uploadEmoji,
-} from "./discordTools.js";
-import showCreateModal from "./CreateModal.jsx";
 import ContextMenuInjection from "./ContextMenuInjection.jsx";
 
 const ContextMenu = findByProps("MenuGroup", "default");
@@ -35,7 +28,6 @@ export default () => {
                 isEmote={isEmote}
                 emoteAlt={target.alt}
                 url={target.sourceUrl}
-                guilds={getGuilds()}
             />
         );
 
