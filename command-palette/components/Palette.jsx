@@ -9,6 +9,7 @@ const { openModal } = findByProps("openModal");
 const ModalComponents = findByProps("ModalCloseButton");
 const Flex = findByDisplayName("Flex");
 const Header = findByDisplayName("Header");
+const TextInput = findByDisplayName("TextInput");
 
 const Component = ({ e, nest, defaultEntries }) => {
     useNest(nest);
@@ -23,8 +24,16 @@ const Component = ({ e, nest, defaultEntries }) => {
         state.search
     );
 
-    const setSearch = (s) => setState({ selected: state.selected, search: s });
-    const setIndex = (i) => setState({ selected: i, search: state.seach });
+    console.log(nest.ghost, defaultEntries, entries, state);
+
+    const setSearch = (s) => {
+        let selected = state.selected;
+        setState({ selected, search: s });
+    };
+    const setIndex = (i) => {
+        let search = state.search;
+        setState({ selected: i, search });
+    };
 
     const keyHandler = (k) => {
         switch (k.which) {
@@ -42,18 +51,21 @@ const Component = ({ e, nest, defaultEntries }) => {
             case 13:
                 // close modal
                 e.onClose();
-                // run entry action
-                let entry = entries[state.selected];
-                entry.action();
                 // increment usages count (helps with ranking entries)
+                let entry = entries[state.selected];
                 let usages = nest.ghost.usageCounts;
                 let currentUsage = usages.get(entry.id) ?? 0;
                 usages.set(entry.id, currentUsage + 1);
                 nest.store.usageCounts = usages;
+                // run entry action
+                entry.action();
 
                 break;
 
             default:
+                document
+                    .getElementsByClassName("ysink_palette_input")[0]
+                    .children[0].focus();
                 break;
         }
     };
@@ -64,9 +76,20 @@ const Component = ({ e, nest, defaultEntries }) => {
                 transitionState={e.transitionState}
                 size="small"
                 className="ysink_palette_modal"
-                onKeyUp={keyHandler}
+                onKeyDown={keyHandler}
             >
                 <ModalComponents.ModalContent className="ysink_palette_palette">
+                    <div className="ysink_palette_input_wrapper">
+                        &gt;
+                        <TextInput
+                        className="ysink_palette_input"
+                        placeholder="Search Actions"
+                        type="text"
+                        value={state.search}
+                        onChange={(e) => setSearch(e)}
+                    />
+                    </div>
+
                     {entries.map((entry, index) => (
                         <PaletteItem
                             entry={entry}

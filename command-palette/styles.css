@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     background: none !important;
+    box-shadow: none !important;
 }
 
 .ysink_palette_palette {
@@ -23,4 +24,23 @@
 
 .ysink_palette_item.ysink_palette_selected {
     background-color: #00000055;
+}
+
+.ysink_palette_input_wrapper {
+    margin: 0 .5rem 1rem .5rem;
+    border: #ffffff33 solid 1px;
+    display: flex;
+    align-items: center;
+    padding-left: .5rem;
+}
+
+.ysink_palette_input {
+    flex: 1;
+    margin-left: .5rem;
+}
+
+.ysink_palette_input input {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
 }
