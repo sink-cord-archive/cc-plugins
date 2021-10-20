@@ -1,6 +1,7 @@
 import { findByProps } from "@cumcord/modules/webpack";
 import { showToast } from "@cumcord/ui/toasts";
 import { guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
+import showCreateModal from "./CreateModal.jsx";
 
 const ContextMenu = findByProps("MenuGroup", "default");
 

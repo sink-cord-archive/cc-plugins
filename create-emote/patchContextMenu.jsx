@@ -28,7 +28,7 @@ export default () => {
             ContextMenuInjection({
                 isEmote: isEmote,
                 emoteAlt: target.alt,
-                url: target.sourceUrl,
+                url: target.currentSrc,
             })
         );
 
