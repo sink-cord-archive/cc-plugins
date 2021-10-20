@@ -42,7 +42,7 @@ jobs:
               # If you remove this step then you should probably remove the enable_jekyll option in the next one
             - name: Copy additional files
               run: |
-                  cp -r assets ./dist/
+                  cp -r assets .dist
                   cp README.md .dist/README.md
                   printf -- "---\npermalink: /404.html\n---\n" > .dist/404.md
                   printf -- "> **Note:** You accessed a link that returned a 404, probably by clicking one of the plugin links. You're supposed to copy the link address and add it into Cumcord.\n\n" >> .dist/404.md
@@ -56,8 +56,3 @@ jobs:
                   publish_dir: ./.dist
                   # Makes it so the md files in the previous step get processed by GitHub Pages
                   enable_jekyll: true
-                  # https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
-                  # This creates the CNAME file required to host github pages on a custom domain
-                  # Remove this to use default [username].github.io domain
-                  # Reminder: using a free domain service like freenom *can* result in your users getting hacked
-                  cname: cc.remty.xyz
