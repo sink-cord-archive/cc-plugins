@@ -23,7 +23,7 @@ Allows you to switch your hypesquad house by using some simple buttons. Do not s
 
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/hypesquad-switcher">Install from source</a>
 
-## [HEAVY WIP] Create Emote
+## [WIP] Create Emote
 Port of [emoji-util by A User](https://github.com/A-User-s-Discord-Plugins/emoji-util) to cc.
 
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/create-emote">Install from source</a>
