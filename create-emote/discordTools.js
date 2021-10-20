@@ -5,9 +5,11 @@ const { getGuildPermissions } = findByProps("getGuildPermissions");
 
 const getGuilds = findByProps("getFlattenedGuilds").getFlattenedGuilds;
 
+const MANAGE_EMOTES_PERMISSION = BigInt(1073741824);
+
 const canManageEmotes = (guildId) => {
-    let guildperms = getGuildPermissions(guildId);
-    if (guildperms && (guildperms & BigInt(1073741824)) !== 0) {
+    let guildperms = getGuildPermissions({ id: guildId });
+    if (guildperms && (guildperms & MANAGE_EMOTES_PERMISSION) !== 0) {
         return true;
     } else {
         return false;

@@ -1,6 +1,6 @@
 import { findByProps } from "@cumcord/modules/webpack";
 import { showToast } from "@cumcord/ui/toasts";
-import { getGuilds, uploadEmoji } from "./discordTools.js";
+import { guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
 
 const ContextMenu = findByProps("MenuGroup", "default");
 
@@ -9,7 +9,7 @@ export default ({ isEmote, emoteAlt, url }) => (
         id="ysink_emoji_msgitem"
         label={isEmote ? `Clone Emote ${emoteAlt}` : "Create Emote"}
     >
-        {getGuilds().map((guild) => (
+        {guildsCanManageEmotes().map((guild) => (
             <ContextMenu.MenuItem
                 label={guild.name}
                 id={`ysink_emoji_server_${guild.id}`}
