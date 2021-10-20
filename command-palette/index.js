@@ -8,6 +8,7 @@ export default ({ persist, id }) => {
     return {
         onLoad() {
             if (!Array.isArray(persist.ghost.customEntries)) persist.store.customEntries = [];
+            if(!persist.ghost.usageCounts) persist.store.usageCounts = new Map();
             
             patches.push(injectCss(), keybindPatch(persist, paletteEntries));
         },

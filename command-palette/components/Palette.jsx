@@ -2,6 +2,7 @@ import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
+import search from "../search.js";
 
 const useState = React.useState;
 const { openModal } = findByProps("openModal");
@@ -16,7 +17,11 @@ const Component = ({ e, nest, defaultEntries }) => {
         search: "",
     });
 
-    const entries = defaultEntries.concat(nest.ghost.customEntries)
+    const entries = search(
+        defaultEntries.concat(nest.ghost.customEntries),
+        nest.ghost.usageCounts,
+        state.search
+    );
 
     const setSearch = (s) => setState({ selected: state.selected, search: s });
     const setIndex = (i) => setState({ selected: i, search: state.seach });
@@ -35,8 +40,17 @@ const Component = ({ e, nest, defaultEntries }) => {
                 break;
 
             case 13:
+                // close modal
                 e.onClose();
-                entries[state.selected].action();
+                // run entry action
+                let entry = entries[state.selected];
+                entry.action();
+                // increment usages count (helps with ranking entries)
+                let usages = nest.ghost.usageCounts;
+                let currentUsage = usages.get(entry.id) ?? 0;
+                usages.set(entry.id, currentUsage + 1);
+                nest.store.usageCounts = usages;
+
                 break;
 
             default:
@@ -65,4 +79,7 @@ const Component = ({ e, nest, defaultEntries }) => {
     );
 };
 
-export default (nest, defaultEntries) => openModal((e) => <Component e={e} nest={nest} defaultEntries={defaultEntries} />);
+export default (nest, defaultEntries) =>
+    openModal((e) => (
+        <Component e={e} nest={nest} defaultEntries={defaultEntries} />
+    ));

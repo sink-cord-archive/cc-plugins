@@ -1,7 +1,8 @@
 import { showToast } from "@cumcord/ui/toasts";
 
-export default [
+let entries = [
     {
+        id: "notcum",
         label: "Not cum",
         action: () =>
             showToast({
@@ -10,6 +11,7 @@ export default [
             }),
     },
     {
+        id: "abitcum",
         label: "A bit cum",
         action: () =>
             showToast({
@@ -18,6 +20,7 @@ export default [
             }),
     },
     {
+        id: "cum",
         label: "Cum",
         action: () =>
             showToast({
@@ -26,3 +29,10 @@ export default [
             }),
     },
 ];
+
+export default entries.map((entry) => ({
+    source: "builtin",
+    id: entry.id,
+    label: entry.label,
+    action: entry.action,
+}));
