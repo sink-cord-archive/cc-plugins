@@ -67,6 +67,7 @@ const Component = ({ guildId, emoteUrl, e }) => {
                                         title: `created emote ${input}`,
                                         duration: 3000,
                                     });
+                                    e.onClose();
                                 }}
                             >
                                 Create Emote!

@@ -1,10 +1,15 @@
 // huge credit to A Useer for the vizality original @ https://github.com/A-User-s-Discord-Plugins/emoji-util
 
-import cssInject from "./styles.css";
 import { findByProps, findByDisplayName, find } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
-import { getGuilds, guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
-import showCreateModal from "./CreateModal.jsx"
+import { showToast } from "@cumcord/ui/toasts";
+import {
+    getGuilds,
+    guildsCanManageEmotes,
+    uploadEmoji,
+} from "./discordTools.js";
+import showCreateModal from "./CreateModal.jsx";
+import cssInject from "./styles.css";
 
 const ContextMenu = findByProps("MenuGroup", "default");
 
@@ -50,12 +55,25 @@ export default (data) => {
                                     label={guild.name}
                                     id={`ysink_emoji_server_${guild.id}`}
                                     action={() => {
-                                        let emoteURL = target.currentSrc
-                                        let guildId = guild.id
-                                        let emoteNewName = target?.alt?.substring(1, target.alt.length - 1)
-                                        isEmote
-                                            ? uploadEmoji(guildId, emoteURL, emoteNewName)
-                                            : showCreateModal(guildId, emoteURL)
+                                        let emoteURL = target.currentSrc;
+                                        let guildId = guild.id;
+                                        let emoteNewName =
+                                            target?.alt?.substring(
+                                                1,
+                                                target.alt.length - 1
+                                            );
+                                        if (isEmote) {
+                                            uploadEmoji(
+                                                guildId,
+                                                emoteURL,
+                                                emoteNewName
+                                            );
+                                            showToast({
+                                                title: `cloned emote ${emoteNewName}`,
+                                                duration: 3000,
+                                            });
+                                        } else
+                                            showCreateModal(guildId, emoteURL);
                                     }}
                                 />
                             ))}
