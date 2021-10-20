@@ -24,11 +24,12 @@ export default () => {
             3,
             0,
             <ContextMenu.MenuSeparator />,
-            <ContextMenuInjection
-                isEmote={isEmote}
-                emoteAlt={target.alt}
-                url={target.sourceUrl}
-            />
+            // see patchEmotePicker.jsx line 30
+            ContextMenuInjection({
+                isEmote: isEmote,
+                emoteAlt: target.alt,
+                url: target.sourceUrl,
+            })
         );
 
         return retVal;

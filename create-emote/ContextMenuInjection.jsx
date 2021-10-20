@@ -1,5 +1,5 @@
 import { findByProps } from "@cumcord/modules/webpack";
-import { showToast } from "@cumcord/ui/toasts"
+import { showToast } from "@cumcord/ui/toasts";
 import { getGuilds, uploadEmoji } from "./discordTools.js";
 
 const ContextMenu = findByProps("MenuGroup", "default");

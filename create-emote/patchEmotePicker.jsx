@@ -1,12 +1,5 @@
 import { findByProps, find } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
-import { showToast } from "@cumcord/ui/toasts";
-import {
-    getGuilds,
-    guildsCanManageEmotes,
-    uploadEmoji,
-} from "./discordTools.js";
-import showCreateModal from "./CreateModal.jsx";
 import ContextMenuInjection from "./ContextMenuInjection.jsx";
 
 const ContextMenu = findByProps("MenuGroup", "default");
@@ -34,10 +27,11 @@ export default () => {
                     <ContextMenu.default
                         onClose={contextMenuTools.closeContextMenu}
                     >
-                        {/* due to discord throwing errors if I just pass this as a component,
-                             * i'll call it manually,
-                             * as the root of this component is the allowed ContextMenu.MenuItem
-                             */}
+                        {/*
+                            due to discord throwing errors if I just pass this as a component,
+                            i'll call it manually,
+                            as the root of this component is the allowed ContextMenu.MenuItem
+                         */}
                         {ContextMenuInjection({
                             isEmote: true,
                             emoteAlt: `:${selectedEmoji.name}:`,
