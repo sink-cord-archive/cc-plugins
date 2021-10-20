@@ -27,7 +27,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-# The README and the "Get it on Condom" button are licensed under the Unlicense, as follows:
+# The /assets/ folder is licensed under the Unlicense, as follows:
 
 
 This is free and unencumbered software released into the public domain.
