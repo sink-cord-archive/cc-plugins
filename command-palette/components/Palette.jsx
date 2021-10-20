@@ -1,5 +1,4 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
-import { useNest } from "@cumcord/utils";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
 import search from "../search.js";
@@ -12,19 +11,16 @@ const Header = findByDisplayName("Header");
 const TextInput = findByDisplayName("TextInput");
 
 const Component = ({ e, nest, defaultEntries }) => {
-    useNest(nest);
     let [state, setState] = useState({
         selected: 0,
         search: "",
     });
 
     const entries = search(
-        defaultEntries.concat(nest.ghost.customEntries),
-        nest.ghost.usageCounts,
+        nest ? defaultEntries.concat(nest.ghost.customEntries) : defaultEntries,
+        nest ? nest.ghost.usageCounts : new Map(),
         state.search
     );
-
-    console.log(nest.ghost, defaultEntries, entries, state);
 
     const setSearch = (s) => {
         let selected = state.selected;
@@ -53,10 +49,12 @@ const Component = ({ e, nest, defaultEntries }) => {
                 e.onClose();
                 // increment usages count (helps with ranking entries)
                 let entry = entries[state.selected];
-                let usages = nest.ghost.usageCounts;
-                let currentUsage = usages.get(entry.id) ?? 0;
-                usages.set(entry.id, currentUsage + 1);
-                nest.store.usageCounts = usages;
+                if (nest) {
+                    let usages = nest.ghost.usageCounts;
+                    let currentUsage = usages.get(entry.id) ?? 0;
+                    usages.set(entry.id, currentUsage + 1);
+                    nest.store.usageCounts = usages;
+                }
                 // run entry action
                 entry.action();
 
@@ -82,12 +80,12 @@ const Component = ({ e, nest, defaultEntries }) => {
                     <div className="ysink_palette_input_wrapper">
                         &gt;
                         <TextInput
-                        className="ysink_palette_input"
-                        placeholder="Search Actions"
-                        type="text"
-                        value={state.search}
-                        onChange={(e) => setSearch(e)}
-                    />
+                            className="ysink_palette_input"
+                            placeholder="Search Actions"
+                            type="text"
+                            value={state.search}
+                            onChange={(e) => setSearch(e)}
+                        />
                     </div>
 
                     {entries.map((entry, index) => (

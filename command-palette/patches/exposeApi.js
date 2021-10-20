@@ -1,7 +1,12 @@
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
+import openPalette from "../components/Palette.jsx";
 
 export default (nest) => {
     window.commandPalette = {
+        openPalette: (entries) => {
+            openPalette(null, entries);
+        },
+
         registerEntry(id, source, label, action) {
             // make sure people supply all required items
             if (!id || id == "")
@@ -58,11 +63,11 @@ export default (nest) => {
             nest.ghost.customEntries.find((e) => e.id == id),
     };
 
-    console.log("|| COMMAND PALETTE || Initialised window.commandPalette API")
+    console.log("|| COMMAND PALETTE || Initialised window.commandPalette API");
 
     return () => {
         window.commandPalette = undefined;
         delete window.commandPalette;
-        console.log("|| COMMAND PALETTE || Disposed window.commandPalette API")
+        console.log("|| COMMAND PALETTE || Disposed window.commandPalette API");
     };
 };
