@@ -1,6 +1,8 @@
 import { showToast } from "@cumcord/ui/toasts";
 
-let entries = [
+const source = "Built In";
+
+const entries = [
     {
         id: "notcum",
         label: "Not cum",
@@ -30,9 +32,14 @@ let entries = [
     },
 ];
 
-export default entries.map((entry) => ({
-    source: "builtin",
+// save me writing "Built In" for every single entry
+const entriesWithSource = entries.map((entry) => ({
+    source: source,
     id: entry.id,
     label: entry.label,
     action: entry.action,
 }));
+
+export default entriesWithSource;
+
+export { entriesWithSource as entries, source as builtInSource }
