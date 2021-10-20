@@ -27,6 +27,7 @@ Allows you to switch your hypesquad house by using some simple buttons. Do not s
 ## Create Emote
 Port of [emoji-util by A User](https://github.com/A-User-s-Discord-Plugins/emoji-util) to cc.
 
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/create-emote"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/create-emote"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 
 ---
