@@ -25,13 +25,8 @@ const promisifiedFileReader = (blob) =>
         filereader.readAsDataURL(blob);
     });
 
-const imageUrlToBase64 = async (link) => {
-    let blob = await (await fetch(link)).blob();
-    let raw = await promisifiedFileReader(blob);
-    console.log(raw);
-
-    return `data:${blob.type};base64,${raw.toString("base64")}`;
-};
+const imageUrlToBase64 = async (link) =>
+    await promisifiedFileReader(await (await fetch(link)).blob());
 
 const uploadEmoji = (guildId, imageURL, name) => {
     imageUrlToBase64(imageURL).then((b64) =>
