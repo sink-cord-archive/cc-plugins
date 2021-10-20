@@ -19,8 +19,7 @@
 }
 
 .ysink_palette_item {
-    padding: .3rem;
-    padding-left: 1rem;
+    padding: .3rem 1rem;
 }
 
 .ysink_palette_item.ysink_palette_selected {
@@ -44,4 +43,11 @@
     border: none !important;
     background: none !important;
     padding: 0 !important;
+}
+
+.ysink_palette_source {
+    text-transform: uppercase;
+    font-style: italic;
+    color: #aaa;
+    float: right;
 }

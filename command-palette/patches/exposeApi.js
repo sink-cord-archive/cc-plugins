@@ -52,7 +52,8 @@ export default (nest) => {
                 throw "Unregister failed: An entry with that ID was found, but was not from your source";
 
             let removedEntry = entries[index];
-            nest.ghost.customEntries = entries.splice(index, 1);
+            entries.splice(index, 1);
+            nest.store.customEntries = entries;
             return removedEntry;
         },
         getBuiltInEntries: () => builtInEntries,

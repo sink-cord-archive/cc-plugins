@@ -7,5 +7,6 @@ export default ({ entry, selected }) => (
         }
     >
         {entry.label}
+        <span className="ysink_palette_source">{entry.source}</span>
     </div>
 );
