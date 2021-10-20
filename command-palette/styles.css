@@ -1,11 +1,20 @@
-/* ignore this strange class name */
-.ysink_palette_palette {
+.ysink_palette_modal {
     position: absolute;
     top: 5rem;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background: none !important;
+}
+
+.ysink_palette_palette {
     width: 50rem;
     background-color: var(--background-secondary);
-    padding: .75rem 0;
     color: white;
+    padding: .75rem 0;
+    border-radius: 0;
+    overflow: unset !important;
 }
 
 .ysink_palette_item {

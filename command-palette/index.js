@@ -9,7 +9,6 @@ export default ({ persist, id }) => {
         onLoad() {
             if (!Array.isArray(persist.ghost.entries))
                 persist.store.entries = paletteEntries;
-            persist.store.queued = [];
             
             patches.push(injectCss(), keybindPatch(persist));
         },
