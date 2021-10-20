@@ -11,7 +11,7 @@ const rankResults = (set, usageCounts) => {
     });
 
     // sort by count and remove now useless count
-    working = working.sort((a, b) => a[1] - b[1]).map((n) => n[0]);
+    working = working.sort((a, b) => b[1] - a[1]).map((n) => n[0]);
 
     // add rest of set on the end
     return working.concat(set);

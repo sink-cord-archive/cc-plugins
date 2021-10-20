@@ -19,7 +19,8 @@
 }
 
 .ysink_palette_item {
-    padding: .25rem;
+    padding: .3rem;
+    padding-left: 1rem;
 }
 
 .ysink_palette_item.ysink_palette_selected {
