@@ -7,10 +7,9 @@ export default ({ persist, id }) => {
 
     return {
         onLoad() {
-            if (!Array.isArray(persist.ghost.entries))
-                persist.store.entries = paletteEntries;
+            if (!Array.isArray(persist.ghost.customEntries)) persist.store.customEntries = [];
             
-            patches.push(injectCss(), keybindPatch(persist));
+            patches.push(injectCss(), keybindPatch(persist, paletteEntries));
         },
         onUnload: () => patches.forEach((unpatch) => unpatch()),
     };

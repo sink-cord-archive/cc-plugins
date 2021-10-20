@@ -1,8 +1,8 @@
 import openPalette from "../components/Palette.jsx";
 
-export default (nest) => {
+export default (nest, defaultEntries) => {
     let keyHandler = (e) => {
-        if (e.ctrlKey && e.shiftKey && e.which == 80) openPalette(nest);
+        if (e.ctrlKey && e.shiftKey && e.which == 80) openPalette(nest, defaultEntries);
     };
 
     document.addEventListener("keyup", keyHandler);
