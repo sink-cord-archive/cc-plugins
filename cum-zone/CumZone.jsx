@@ -27,10 +27,10 @@ export default ({ nest }) => {
     return (
         <ErrorBoundary>
             <FormSection>
-                <div className="ysink_header">
+                <div className="ysink_zone_header">
                     <FormTitle tag="h1">Welcome to the Cum Zone</FormTitle>
                     <Button
-                        className="ysink_button"
+                        className="ysink_zone_button"
                         onClick={() => showRepoModal(nest)}
                     >
                         Manage Repos
@@ -38,12 +38,12 @@ export default ({ nest }) => {
                 </div>
                 <Ticker />
 
-                <FormDivider className="ysink_divide" />
+                <FormDivider className="ysink_zone_divide" />
 
                 {nest.ghost.repos.length == 0 ? (
                     <NoReposSplash store={nest.store} />
                 ) : (
-                    <div className="ysink_card_container">
+                    <div className="ysink_zone_card_container">
                         {combinePluginLists(nest.ghost.repos).map((p) => (
                             <PluginCard plugin={p} />
                         ))}

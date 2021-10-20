@@ -22,7 +22,7 @@ export default ({ plugin }) => {
 
         return findPlugin(installedPlugins, pluginId) == undefined ? (
             <Button
-                className="ysink_button"
+                className="ysink_zone_button"
                 color={Button.Colors.BRAND}
                 size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
@@ -40,7 +40,7 @@ export default ({ plugin }) => {
             </Button>
         ) : findPlugin(installedPlugins, pluginId)[1] ? (
             <Button
-                className="ysink_button"
+                className="ysink_zone_button"
                 color={Button.Colors.GREEN}
                 size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
@@ -49,7 +49,7 @@ export default ({ plugin }) => {
             </Button>
         ) : (
             <Button
-                className="ysink_button"
+                className="ysink_zone_button"
                 color={Button.Colors.GREY}
                 size={Button.Sizes.TINY}
                 look={Button.Looks.OUTLINED}
@@ -62,9 +62,9 @@ export default ({ plugin }) => {
     useNest(plugins.installed);
 
     return (
-        <div className="ysink_card">
-            <div className="ysink_row">
-                <FormTitle tag="p" className="ysink_title">
+        <div className="ysink_zone_card">
+            <div className="ysink_zone_row">
+                <FormTitle tag="p" className="ysink_zone_title">
                     {plugin.name}
                 </FormTitle>
                 {interactButton(
@@ -73,10 +73,10 @@ export default ({ plugin }) => {
                 )}
             </div>
 
-            <FormText className="ysink_desc">{plugin.description}</FormText>
+            <FormText className="ysink_zone_desc">{plugin.description}</FormText>
 
-            <FormDivider className="ysink_divide" />
-            <FormText className="ysink_author_licence">
+            <FormDivider className="ysink_zone_divide" />
+            <FormText className="ysink_zone_author_licence">
                 by {plugin.author} under {plugin.license}
             </FormText>
         </div>

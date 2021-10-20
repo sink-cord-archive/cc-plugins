@@ -35,7 +35,7 @@ export default (data) => {
                             2;
 
                         retVal.splice(index, 0, {
-                            section: "YSINK_CUMZONE",
+                            section: "ysink_zone_CUMZONE",
                             label: "The Cum Zone",
                             element: () => <CumZone nest={nest} />,
                         });

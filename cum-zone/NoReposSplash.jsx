@@ -19,11 +19,11 @@ function resetReposToDefault(store) {
 }
 
 const component = ({ store }) => (
-    <FormSection className="ysink_splash">
+    <FormSection className="ysink_zone_splash">
         <FormTitle tag="h2">No Repos!</FormTitle>
         <FormText>You do not have any repos added!</FormText>
         <Button
-            className="ysink_button"
+            className="ysink_zone_button"
             color={Button.Colors.GREEN}
             sizes={Button.Sizes.LARGE}
             onClick={() => resetReposToDefault(store)}

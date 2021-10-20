@@ -1,14 +1,14 @@
-.ysink_cuminside {
+.ysink_zone_cuminside {
   font-size: 1.2rem;
   padding-bottom: 1rem;
   font-style: italic;
 }
 
-.ysink_ticker {
+.ysink_zone_ticker {
   margin-top: 0.2rem;
 }
 
-.ysink_ticker_fillscreen {
+.ysink_zone_ticker_fillscreen {
   position: fixed;
   left: 0;
   top: 1rem;
@@ -18,7 +18,7 @@
   pointer-events: none;
 }
 
-.ysink_card {
+.ysink_zone_card {
   padding: 1rem;
   border: 1px solid var(--background-modifier-accent);
   border-radius: 0.25rem;
@@ -27,92 +27,92 @@
   z-index: 1;
   background-color: var(--deprecated-card-bg);
 }
-.ysink_card .ysink_title {
+.ysink_zone_card .ysink_zone_title {
   font-size: 1rem;
   padding-bottom: 0.25rem;
   display: inline;
   flex: 1;
   margin: 0;
 }
-.ysink_card .ysink_button {
+.ysink_zone_card .ysink_zone_button {
   display: inline;
   padding: 0;
 }
-.ysink_card .ysink_button > div {
+.ysink_zone_card .ysink_zone_button > div {
   padding: 2px 16px;
 }
-.ysink_card .ysink_row {
+.ysink_zone_card .ysink_zone_row {
   display: flex;
 }
-.ysink_card .ysink_row > * {
+.ysink_zone_card .ysink_zone_row > * {
   flex: 1;
 }
-.ysink_card .ysink_row > :last-child {
+.ysink_zone_card .ysink_zone_row > :last-child {
   flex: unset;
 }
-.ysink_card .ysink_author_licence {
+.ysink_zone_card .ysink_zone_author_licence {
   font-style: italic;
 }
-.ysink_card .ysink_desc {
+.ysink_zone_card .ysink_zone_desc {
   flex: 1;
 }
 
-.ysink_modal .ysink_row {
+.ysink_zone_modal .ysink_zone_row {
   display: flex;
 }
-.ysink_modal .ysink_row > * {
+.ysink_zone_modal .ysink_zone_row > * {
   flex: 1;
 }
-.ysink_modal .ysink_row > :last-child {
+.ysink_zone_modal .ysink_zone_row > :last-child {
   flex: unset;
   margin-left: 1rem;
 }
 
-.ysink_divide {
+.ysink_zone_divide {
   margin: 0 0 1rem 0;
 }
-.ysink_modal .ysink_divide {
+.ysink_zone_modal .ysink_zone_divide {
   margin: 0.5rem 0;
 }
-.ysink_card .ysink_divide {
+.ysink_zone_card .ysink_zone_divide {
   margin: 0.2rem 0;
 }
 
-.ysink_header {
+.ysink_zone_header {
   display: flex;
 }
-.ysink_header > * {
+.ysink_zone_header > * {
   flex: 1;
 }
-.ysink_header > :last-child {
+.ysink_zone_header > :last-child {
   flex: unset;
 }
 
-.ysink_splash {
+.ysink_zone_splash {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10rem;
   flex-flow: column nowrap;
 }
-.ysink_splash .ysink_button {
+.ysink_zone_splash .ysink_zone_button {
   margin-top: 1rem;
 }
-.ysink_modal .ysink_splash {
+.ysink_zone_modal .ysink_zone_splash {
   margin-top: 6rem;
 }
 
-.ysink_badge {
+.ysink_zone_badge {
   display: inline;
   margin-left: 0.5rem;
 }
 
-.ysink_card_container {
+.ysink_zone_card_container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
 }
-.ysink_card_container .ysink_card button {
+.ysink_zone_card_container .ysink_zone_card button {
   margin-bottom: 0.2rem;
   width: 6rem;
 }

@@ -9,16 +9,16 @@ for (let i = 0; i < 40; i++) arr.push(0);
 
 export default ({ fillscreen }) =>
     fillscreen ? (
-        <FormText className="ysink_ticker_fillscreen">
+        <FormText className="ysink_zone_ticker_fillscreen">
             {arr.map((_) => (
-                <marquee className="ysink_cuminside" scrolldelay="65">
+                <marquee className="ysink_zone_cuminside" scrolldelay="65">
                     {pasta}
                 </marquee>
             ))}
         </FormText>
     ) : (
-        <FormText className="ysink_ticker">
-            <marquee className="ysink_cuminside" scrolldelay="65">
+        <FormText className="ysink_zone_ticker">
+            <marquee className="ysink_zone_cuminside" scrolldelay="65">
                 {pasta}
             </marquee>
         </FormText>

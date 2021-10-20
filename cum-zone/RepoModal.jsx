@@ -63,7 +63,7 @@ const RepoModalComponent = ({ nest, e }) => {
             <ModalComponents.ModalRoot
                 transitionState={e.transitionState}
                 size="large"
-                className="ysink_modal"
+                className="ysink_zone_modal"
             >
                 <ModalComponents.ModalHeader separator={false}>
                     <Flex.Child basis="auto" grow={1} shrink={1} wrap={false}>
@@ -82,17 +82,17 @@ const RepoModalComponent = ({ nest, e }) => {
                             basis="auto"
                             grow={1}
                             shrink={1}
-                            className="ysink_row"
+                            className="ysink_zone_row"
                         >
                             <TextInput
-                                className="ysink_input"
+                                className="ysink_zone_input"
                                 placeholder="https://example.com/repo"
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e)}
                             />
                             <Button
-                                className="ysink_button"
+                                className="ysink_zone_button"
                                 onClick={() => {
                                     setInput("");
                                     addRepo(nest, input);
@@ -102,7 +102,7 @@ const RepoModalComponent = ({ nest, e }) => {
                             </Button>
                         </Flex>
 
-                        <FormDivider className="ysink_divide" />
+                        <FormDivider className="ysink_zone_divide" />
 
                         {nest.ghost.repos.length == 0 ? (
                             <NoReposSplash store={nest.store} />
