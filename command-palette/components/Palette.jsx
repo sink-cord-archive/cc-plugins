@@ -64,6 +64,8 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                     .children[0].focus();
                 break;
         }
+
+        document.getElementById(`palette_item_${state.selected}`).scrollIntoView(false);
     };
 
     return (
@@ -89,17 +91,19 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                         />
                     </div>
 
-                    {entries
-                        .filter(
-                            // condition wont be called if undefined, as or would short circuit
-                            (entry) => !entry.condition || entry.condition()
-                        )
-                        .map((entry, index) => (
-                            <PaletteItem
-                                entry={entry}
-                                selected={index == state.selected}
-                            />
-                        ))}
+                    <div className="ysink_palette_scrollcontainer">
+                        {entries
+                            .filter(
+                                (entry) => !entry.condition || entry.condition()
+                            )
+                            .map((entry, index) => (
+                                <PaletteItem
+                                    entry={entry}
+                                    id={`palette_item_${index}`}
+                                    selected={index == state.selected}
+                                />
+                            ))}
+                    </div>
                 </ModalComponents.ModalContent>
             </ModalComponents.ModalRoot>
         </ErrorBoundary>

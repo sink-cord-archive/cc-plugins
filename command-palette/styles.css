@@ -56,3 +56,8 @@
     color: #aaa;
     float: right;
 }
+
+.ysink_palette_scrollcontainer {
+    overflow: hidden scroll;
+    max-height: 30rem;
+}
