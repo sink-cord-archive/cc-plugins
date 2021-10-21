@@ -1,3 +1,4 @@
+import { log } from "@cumcord/utils/logger"
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
 import { openPalette, openPalettePromisified } from "../components/Palette.jsx";
 import {
@@ -83,11 +84,11 @@ export default (nest) => {
             nest.ghost.customEntries.find((e) => e.id == id),
     };
 
-    console.log("|| COMMAND PALETTE || Initialised window.commandPalette API");
+    log("|| COMMAND PALETTE || Initialised window.commandPalette API");
 
     return () => {
         window.commandPalette = undefined;
         delete window.commandPalette;
-        console.log("|| COMMAND PALETTE || Disposed window.commandPalette API");
+        log("|| COMMAND PALETTE || Disposed window.commandPalette API");
     };
 };
