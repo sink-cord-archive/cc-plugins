@@ -20,6 +20,8 @@ if (window.commandPalette) {
 ```ts
 type entry = {
     id: string,
+    // this field is optional!
+    icon: string,
     label: string,
     source: string,
     // this field is optional!
@@ -32,6 +34,8 @@ The ID will be used to keep track of entries when working with the API and inter
 
 The Label is the text for the entry to be shown in the palette.
 
+The Icon optionally shows (preferably) a single character as an icon next to your entry.
+
 The Source specifies where the entry came from.
 It is recommended to use your plugin name or something recognisable, as this is shown to the user.
 
@@ -39,11 +43,6 @@ The condition is a function that will be run every time the palette is opened to
 If left undefined or null, then the entry will always render.
 
 The action is a function that will be run whenever your action is picked.
-
-## Note on custom entries
-
-Custom entries, unless unregistered, are persistent between sessions.
-Due to this, I recommend you call `unregisterSource` with your own source _before_ registering all your entries.
 
 ## `openPalette(prompt: string, entries: entry[]): void`
 
@@ -69,7 +68,7 @@ If you are `await`ing the function, make sure to `try {} catch {}` in case the u
 The promise will be resolved once text is entered, or rejected if the textentry is closed.
 If you are `await`ing the function, make sure to `try {} catch {}` in case the user closes the textentry instead of picking.
 
-## `registerEntry(id: string, source: string, label: string, action: () => void): void`
+## `registerEntry(id: string, source: string, label: string, action: () => void, condition: () => bool, icon: string): void`
 
 `registerEntry` registers a custom entry into the default keybound command palette.
 
@@ -78,6 +77,8 @@ The source will be shown to the user,
 and it is highly recommended to use a recognisable name, like the name of your plugin.
 The label is the text to be shown in the action list.
 The action is a function to run if your entry is picked.
+
+Condition and Icon are optional.
 
 ## `unregisterEntry(id: string, source: string): entry`
 

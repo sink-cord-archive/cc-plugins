@@ -18,7 +18,7 @@ export default (nest) => {
             openTextEntry(prompt, finishAction),
         openTextEntryAsync: (prompt) => openTextEntryPromise(prompt),
 
-        registerEntry(id, source, label, action) {
+        registerEntry(id, source, label, action, icon, condition) {
             // make sure people supply all required items
             if (!id || id == "")
                 throw "Register failed: Please supply an ID (string) for your entry";
@@ -43,6 +43,8 @@ export default (nest) => {
                 source,
                 label,
                 action,
+                icon,
+                console
             });
         },
 
