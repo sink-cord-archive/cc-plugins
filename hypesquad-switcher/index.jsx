@@ -2,13 +2,14 @@ import cssInject from "./styles.css";
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import { SwitchButtonArray, SwitchButton } from "./SwitchButtonArray.jsx";
+import commandPalette from "./commandPalette.js";
 
 export default (data) => {
     let patches = [];
 
     return {
         onLoad() {
-            patches.push(cssInject());
+            patches.push(cssInject(), commandPalette());
 
             let currentHouseBanner =
                 findByDisplayName("JoinHypeSquadCTA").prototype;

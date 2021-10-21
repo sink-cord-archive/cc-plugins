@@ -10,7 +10,7 @@ and you can easily test for the existence of Command Palette in your plugin befo
 
 ```js
 // yep, it's that easy
-if (commandPalette) {
+if (window.commandPalette) {
     // register custom entries etc
 }
 ```
