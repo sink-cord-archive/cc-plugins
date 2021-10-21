@@ -89,12 +89,17 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                         />
                     </div>
 
-                    {entries.map((entry, index) => (
-                        <PaletteItem
-                            entry={entry}
-                            selected={index == state.selected}
-                        />
-                    ))}
+                    {entries
+                        .filter(
+                            // condition wont be called if undefined, as or would short circuit
+                            (entry) => !entry.condition || entry.condition()
+                        )
+                        .map((entry, index) => (
+                            <PaletteItem
+                                entry={entry}
+                                selected={index == state.selected}
+                            />
+                        ))}
                 </ModalComponents.ModalContent>
             </ModalComponents.ModalRoot>
         </ErrorBoundary>

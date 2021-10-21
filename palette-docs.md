@@ -22,9 +22,23 @@ type entry = {
     id: string,
     label: string,
     source: string,
+    // this field is optional!
+    condition: () => bool,
     action: () => void,
 };
 ```
+
+The ID will be used to keep track of entries when working with the API and internally to rank results. They are unique.
+
+The Label is the text for the entry to be shown in the palette.
+
+The Source specifies where the entry came from.
+It is recommended to use your plugin name or something recognisable, as this is shown to the user.
+
+The condition is a function that will be run every time the palette is opened to check if the entry should be displayed or not.
+If left undefined or null, then the entry will always render.
+
+The action is a function that will be run whenever your action is picked.
 
 ## Note on custom entries
 
