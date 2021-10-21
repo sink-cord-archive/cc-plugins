@@ -1,11 +1,18 @@
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
 import openPalette from "../components/Palette.jsx";
+import {
+    openTextEntry,
+    openTextEntryPromise,
+} from "../components/TextEntryPalette.jsx";
 
 export default (nest) => {
     window.commandPalette = {
         openPalette: (entries) => {
             openPalette(null, entries);
         },
+
+        openTextEntry,
+        openTextEntryPromise,
 
         registerEntry(id, source, label, action) {
             // make sure people supply all required items

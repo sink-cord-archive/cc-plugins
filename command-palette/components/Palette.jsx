@@ -6,8 +6,6 @@ import search from "../search.js";
 const useState = React.useState;
 const { openModal } = findByProps("openModal");
 const ModalComponents = findByProps("ModalCloseButton");
-const Flex = findByDisplayName("Flex");
-const Header = findByDisplayName("Header");
 const TextInput = findByDisplayName("TextInput");
 
 const Component = ({ e, nest, defaultEntries }) => {
