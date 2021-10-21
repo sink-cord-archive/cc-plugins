@@ -5,19 +5,21 @@ import exposeApiPatch from "./patches/exposeApi.js";
 
 export default ({ persist, id }) => {
     // initialise nest
-    if (!Array.isArray(persist.ghost.customEntries))
-        persist.store.customEntries = [];
+    persist.store.customEntries = [];
     if (!persist.ghost.usageCounts) persist.store.usageCounts = new Map();
 
     // load patches
-    let patches = [];
+    let patches = [
+        injectCss(),
+        keybindPatch(persist, paletteEntries),
+        exposeApiPatch(persist),
+    ];
+
+    // remove patches and reset custom entries
     return {
-        onLoad: () =>
-            patches.push(
-                injectCss(),
-                keybindPatch(persist, paletteEntries),
-                exposeApiPatch(persist)
-            ),
-        onUnload: () => patches.forEach((unpatch) => unpatch()),
+        onUnload: () => {
+            persist.store.customEntries = [];
+            patches.forEach((unpatch) => unpatch());
+        },
     };
 };
