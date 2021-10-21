@@ -18,7 +18,8 @@
     width: 50rem;
     background-color: var(--background-secondary);
     color: white;
-    padding: .75rem 0;
+    padding: 0;
+    padding-top: .75rem;
     border-radius: 0;
     overflow: unset !important;
 }
@@ -60,4 +61,15 @@
 .ysink_palette_scrollcontainer {
     overflow: hidden scroll;
     max-height: 30rem;
+    padding-bottom: .75rem;
+}
+
+.ysink_palette_scrollcontainer::-webkit-scrollbar {
+    width: 1rem;
+    background-color: #00000033;
+}
+
+.ysink_palette_scrollcontainer::-webkit-scrollbar-thumb {
+    background-color: #ffffff33;
+    min-height: 40px;
 }

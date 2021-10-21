@@ -12,7 +12,7 @@ export default [
     {
         source,
         id: "moderation_banuser",
-        label: "[MODERATION] Ban user from current guild",
+        label: "🔧 | Ban user from current guild",
         condition: canBan,
         action: () => {
             openPalette(
@@ -41,7 +41,7 @@ export default [
     {
         source,
         id: "moderation_kickuser",
-        label: "[MODERATION] Kick user from current guild",
+        label: "🔧 | Kick user from current guild",
         condition: canKick,
         action: () => {
             openPalette(
