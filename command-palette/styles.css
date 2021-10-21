@@ -9,6 +9,11 @@
     box-shadow: none !important;
 }
 
+.ysink_palette_modal.ysink_palette_textentrymodal {
+    min-height: 0;
+    height: 4rem;
+}
+
 .ysink_palette_palette {
     width: 50rem;
     background-color: var(--background-secondary);

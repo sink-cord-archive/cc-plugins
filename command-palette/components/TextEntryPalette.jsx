@@ -15,7 +15,7 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
             <ModalComponents.ModalRoot
                 transitionState={e.transitionState}
                 size="small"
-                className="ysink_palette_modal"
+                className="ysink_palette_modal ysink_palette_textentrymodal"
                 onKeyDown={(k) => {
                     if (k.which != 13) return;
                     e.onClose();
