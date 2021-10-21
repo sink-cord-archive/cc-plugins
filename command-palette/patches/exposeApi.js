@@ -67,7 +67,7 @@ export default (nest) => {
             return removedEntry;
         },
 
-        unRegisterSource(source) {
+        unregisterSource(source) {
             let entries = nest.ghost.customEntries;
             let notSourceEntries = entries.filter((e) => e.source != source);
             if (notSourceEntries.length == entries.length)
