@@ -45,6 +45,7 @@ jobs:
               run: |
                   cp -r assets .dist
                   cp README.md .dist/README.md
+                  cp palette-docs.md .dist/palette-docs.md
                   printf -- "---\npermalink: /404.html\n---\n" > .dist/404.md
                   printf -- "> **Note:** You accessed a link that returned a 404, probably by clicking one of the plugin links. You're supposed to copy the link address and add it into Cumcord.\n\n" >> .dist/404.md
                   cat README.md >> .dist/404.md

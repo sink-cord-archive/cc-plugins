@@ -30,6 +30,13 @@ Port of [emoji-util by A User](https://github.com/A-User-s-Discord-Plugins/emoji
 <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/create-emote"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/create-emote"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 
+## Command Palette
+A port of VS Code's command palette feature to Discord. Exports a full API documented [here](https://yellowsink.github.io/cc-plugins/palette-docs).
+
+**HEAVY WIP - CURRENTLY NO WORKING BUILT IN ENTRIES**
+
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/command-palette"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+
 ---
 
 The template was made by @Remty5 so that's cool. Thx! https://github.com/Remty5/cumcord-plugins
