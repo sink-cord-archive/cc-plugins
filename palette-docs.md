@@ -68,7 +68,7 @@ If you are `await`ing the function, make sure to `try {} catch {}` in case the u
 The promise will be resolved once text is entered, or rejected if the textentry is closed.
 If you are `await`ing the function, make sure to `try {} catch {}` in case the user closes the textentry instead of picking.
 
-## `registerEntry(id: string, source: string, label: string, action: () => void, condition: () => bool, icon: string): void`
+## `registerEntry(id: string, source: string, label: string, action: () => void, icon: string, condition: () => bool): void`
 
 `registerEntry` registers a custom entry into the default keybound command palette.
 
