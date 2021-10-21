@@ -11,7 +11,7 @@ export default (nest) => {
             openPalette(null, entries);
         },
 
-        openTextEntry,
+        openTextEntry: (prompt, finishAction) => openTextEntry(prompt, finishAction),
         openTextEntryPromise,
 
         registerEntry(id, source, label, action) {

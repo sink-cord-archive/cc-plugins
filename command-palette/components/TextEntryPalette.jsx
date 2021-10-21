@@ -1,7 +1,6 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
-import { before } from "@cumcord/patcher";
 
 const useState = React.useState;
 const { openModal } = findByProps("openModal");
@@ -11,10 +10,6 @@ const TextInput = findByDisplayName("TextInput");
 const Component = ({ e, prompt, finishAction, closeAction }) => {
     let [input, setInput] = useState("");
 
-    let unpatch = before("onClose", e, () => {
-        if (closeAction) closeAction();
-    });
-
     return (
         <ErrorBoundary>
             <ModalComponents.ModalRoot
@@ -23,7 +18,6 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
                 className="ysink_palette_modal"
                 onKeyDown={(k) => {
                     if (k.which != 13) return;
-                    unpatch();
                     e.onClose();
                     finishAction(input);
                 }}
@@ -37,6 +31,7 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e)}
+                            onBlur={() => closeAction("User closed text box")}
                         />
                     </div>
                 </ModalComponents.ModalContent>
