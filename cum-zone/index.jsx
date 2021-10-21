@@ -4,6 +4,7 @@ import CumZone from "./CumZone.jsx";
 import injectCss from "./sass_build.css";
 import { resetReposToDefault } from "./NoReposSplash.jsx";
 import { USER_SETTINGS_MY_ACCOUNT } from "@cumcord/modules/common/i18n/Messages";
+import commandPalette from "./commandPalette.js"
 
 let patches = [];
 
@@ -14,7 +15,7 @@ export default (data) => {
             if (!Array.isArray(nest.ghost.repos))
                 resetReposToDefault(nest.store);
 
-            patches.push(injectCss());
+            patches.push(injectCss(), commandPalette(nest));
 
             let settingsView =
                 cumcord.modules.webpack.findByDisplayName(

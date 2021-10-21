@@ -1,7 +1,7 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import { useNest } from "@cumcord/utils";
-import getPlugins from "./pluginFetcher.js";
+import {getPlugins, combinePluginLists} from "./pluginFetcher.js";
 import Ticker from "./CopyPastaTicker.jsx";
 import PluginCard from "./PluginCard.jsx";
 import showRepoModal from "./RepoModal.jsx";
@@ -16,18 +16,6 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 
-const combinePluginLists = (repos) => {
-    let repoPluginLists = repos.map((repo) =>
-        getPlugins(repo.url).map((p) => {
-            p.repo = repo;
-            return p;
-        })
-    );
-
-    return repoPluginLists.length == 0
-        ? []
-        : repoPluginLists.reduce((c, n) => c.concat(n));
-};
 
 const fuzzySearchPlugins = (repos, term) =>
     fuzzySearch(combinePluginLists(repos), ["name", "author"], term);

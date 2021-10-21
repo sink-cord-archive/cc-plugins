@@ -22,7 +22,7 @@ export default ({ repo, nest }) => (
                     )}
                 </FormTitle>
 
-                <FormText>{repo.url.href}</FormText>
+                <FormText>{repo.url}</FormText>
             </div>
 
             <Button

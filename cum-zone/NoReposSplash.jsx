@@ -7,7 +7,7 @@ const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 const defaultRepos = [
     {
-        url: new URL("https://cumcordplugins.github.io/Condom/"),
+        url: "https://cumcordplugins.github.io/Condom/",
         name: "Condom",
         enabled: true,
         official: true,

@@ -21,5 +21,18 @@ function getPlugins(repoUrl) {
     });
 }
 
+const combinePluginLists = (repos) => {
+    let repoPluginLists = repos.map((repo) =>
+        getPlugins(repo.url).map((p) => {
+            p.repo = repo;
+            return p;
+        })
+    );
+
+    return repoPluginLists.length == 0
+        ? []
+        : repoPluginLists.reduce((c, n) => c.concat(n));
+};
+
 export default getPlugins;
-export { getPlugins, getPluginUrl };
+export { getPlugins, getPluginUrl, combinePluginLists };
