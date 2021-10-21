@@ -6,12 +6,14 @@ import textEntry from "../components/TextEntryPalette.jsx";
 import openPalette from "../components/Palette.jsx";
 
 const source = "Built In";
+const icon = "💧";
 
 export default [
     {
         source,
+        icon,
         id: "cumcord_installplug",
-        label: "💧 | Install plugin from URL",
+        label: "Install plugin from URL",
         action: async () => {
             try {
                 let url = await textEntry("Enter URL");
@@ -25,8 +27,9 @@ export default [
     },
     {
         source,
+        icon,
         id: "cumcord_removeplug",
-        label: "💧 | Remove plugin",
+        label: "Remove plugin",
         action: () => {
             let plugs = Object.keys(plugins.installed.ghost).map((k) => [
                 k,
@@ -46,8 +49,9 @@ export default [
     },
     {
         source,
+        icon,
         id: "cumcord_toggleplug",
-        label: "💧 | Toggle plugin",
+        label: "Toggle plugin",
         action: () => {
             let plugs = Object.keys(plugins.installed.ghost).map((k) => [
                 k,
@@ -69,8 +73,9 @@ export default [
     },
     {
         source,
+        icon,
         id: "cumcord_uninject",
-        label: "💧 | Uninject Cumcord",
+        label: "Uninject Cumcord",
         action: () =>
             setTimeout(async () => {
                 // i know setTimeout is bad but

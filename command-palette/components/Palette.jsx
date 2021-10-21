@@ -101,6 +101,7 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                                     entry={entry}
                                     id={`palette_item_${index}`}
                                     selected={index == state.selected}
+                                    icon={entry.icon}
                                 />
                             ))}
                     </div>

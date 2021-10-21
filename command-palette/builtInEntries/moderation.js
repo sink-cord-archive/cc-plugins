@@ -7,12 +7,14 @@ const { getUser } = findByProps("getUser");
 const { banUser, kickUser } = findByProps("banUser");
 
 const source = "Built In";
+const icon = "🛠";
 
 export default [
     {
         source,
+        icon,
         id: "moderation_banuser",
-        label: "🔧 | Ban user from current guild",
+        label: "Ban user from current guild",
         condition: canBan,
         action: () => {
             openPalette(
@@ -40,8 +42,9 @@ export default [
     },
     {
         source,
+        icon,
         id: "moderation_kickuser",
-        label: "🔧 | Kick user from current guild",
+        label: "Kick user from current guild",
         condition: canKick,
         action: () => {
             openPalette(

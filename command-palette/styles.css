@@ -25,7 +25,18 @@
 }
 
 .ysink_palette_item {
-    padding: .3rem 1rem;
+    padding: .3rem 1rem .3rem .5rem;
+}
+
+.ysink_palette_icon {
+    width: 1.5rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.ysink_palette_iconseparator {
+    border: solid 1px #ffffff55;
+    margin: 0 .5rem;
 }
 
 .ysink_palette_item.ysink_palette_selected {
