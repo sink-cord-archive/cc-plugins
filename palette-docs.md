@@ -19,10 +19,10 @@ if (commandPalette) {
 
 ```ts
 type entry = {
-    id: string;
-    label: string;
-    source: string;
-    action: () => void;
+    id: string,
+    label: string,
+    source: string,
+    action: () => void,
 };
 ```
 
