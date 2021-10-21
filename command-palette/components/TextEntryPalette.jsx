@@ -52,7 +52,7 @@ const openTextEntry = (prompt, finishAction, closeAction) =>
 
 const openTextEntryPromise = (prompt) =>
     new Promise((resolve, reject) => {
-        openTextEntry(prompt, resolve, () => reject("User closed text box"));
+        openTextEntry(prompt, resolve, () => reject("user closed textentry"));
     });
 
 export default openTextEntryPromise;

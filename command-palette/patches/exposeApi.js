@@ -1,5 +1,5 @@
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
-import openPalette from "../components/Palette.jsx";
+import { openPalette, openPalettePromisified } from "../components/Palette.jsx";
 import {
     openTextEntry,
     openTextEntryPromise,
@@ -7,9 +7,11 @@ import {
 
 export default (nest) => {
     window.commandPalette = {
-        openPalette: (entries) => {
-            openPalette(null, entries);
+        openPalette: (prompt, entries) => {
+            openPalette(prompt, null, entries);
         },
+
+        openPaletteAsync: openPalettePromisified,
 
         openTextEntry: (prompt, finishAction) =>
             openTextEntry(prompt, finishAction),
@@ -64,6 +66,15 @@ export default (nest) => {
             nest.store.customEntries = entries;
             return removedEntry;
         },
+
+        unRegisterSource(source) {
+            let entries = nest.ghost.customEntries;
+            let notSourceEntries = entries.filter((e) => e.source != source);
+            if (notSourceEntries.length == entries.length)
+                throw "Bulk unregister failed: No entries with that source were found";
+            nest.store.customEntries = notSourceEntries;
+        },
+
         getBuiltInEntries: () => builtInEntries,
         getAllCustomEntries: () => nest.ghost.customEntries,
         getCustomEntriesBySouce: (source) =>

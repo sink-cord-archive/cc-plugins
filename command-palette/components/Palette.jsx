@@ -8,7 +8,7 @@ const { openModal } = findByProps("openModal");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 
-const Component = ({ e, nest, defaultEntries }) => {
+const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
     let [state, setState] = useState({
         selected: 0,
         search: "",
@@ -73,13 +73,16 @@ const Component = ({ e, nest, defaultEntries }) => {
                 size="small"
                 className="ysink_palette_modal"
                 onKeyDown={keyHandler}
+                onBlur={() => {
+                    if (closeAction) closeAction();
+                }}
             >
                 <ModalComponents.ModalContent className="ysink_palette_palette">
                     <div className="ysink_palette_input_wrapper">
                         &gt;
                         <TextInput
                             className="ysink_palette_input"
-                            placeholder="Search Actions"
+                            placeholder={prompt ?? "Search Actions"}
                             type="text"
                             value={state.search}
                             onChange={(e) => setSearch(e)}
@@ -98,7 +101,28 @@ const Component = ({ e, nest, defaultEntries }) => {
     );
 };
 
-export default (nest, defaultEntries) =>
+let openPalette = (prompt, nest, defaultEntries, closeAction) =>
     openModal((e) => (
-        <Component e={e} nest={nest} defaultEntries={defaultEntries} />
+        <Component
+            e={e}
+            prompt={prompt}
+            nest={nest}
+            defaultEntries={defaultEntries}
+            closeAction={closeAction}
+        />
     ));
+
+let openPalettePromisified = (prompt, entries) =>
+    new Promise((resolve, reject) => {
+        openPalette(
+            prompt,
+            null,
+            entries.map((entry) => {
+                return { label: entry, action: () => resolve(entry) };
+            }),
+            () => reject("user closed palette")
+        );
+    });
+
+export default openPalette;
+export { openPalette, openPalettePromisified };
