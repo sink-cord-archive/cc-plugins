@@ -31,7 +31,7 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e)}
-                            onBlur={() => closeAction("User closed text box")}
+                            onBlur={() => closeAction()}
                         />
                     </div>
                 </ModalComponents.ModalContent>
@@ -52,7 +52,7 @@ const openTextEntry = (prompt, finishAction, closeAction) =>
 
 const openTextEntryPromise = (prompt) =>
     new Promise((resolve, reject) => {
-        openTextEntry(prompt, resolve, reject);
+        openTextEntry(prompt, resolve, () => reject("User closed text box"));
     });
 
 export default openTextEntryPromise;

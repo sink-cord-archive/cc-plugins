@@ -11,8 +11,9 @@ export default (nest) => {
             openPalette(null, entries);
         },
 
-        openTextEntry: (prompt, finishAction) => openTextEntry(prompt, finishAction),
-        openTextEntryPromise,
+        openTextEntry: (prompt, finishAction) =>
+            openTextEntry(prompt, finishAction),
+        openTextEntryAsync: (prompt) => openTextEntryPromise(prompt),
 
         registerEntry(id, source, label, action) {
             // make sure people supply all required items
