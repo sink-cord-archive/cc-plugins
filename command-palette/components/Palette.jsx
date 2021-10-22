@@ -95,7 +95,7 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
 
                     <div className="ysink_palette_scrollcontainer">
                         {entries
-                            .filter((entry) => entry.condition?.() ?? true)
+                            .filter((entry) => entry?.condition?.() ?? true)
                             .map((entry, index) => (
                                 <PaletteItem
                                     entry={entry}
