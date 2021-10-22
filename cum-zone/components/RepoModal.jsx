@@ -1,12 +1,12 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
-import { ErrorBoundary } from "@cumcord/ui/components";
 import { useNest } from "@cumcord/utils";
+import { showToast } from "@cumcord/ui/toasts";
+import getPlugins from "../pluginFetcher.js";
+const useState = React.useState;
+
 import RepoCard from "./RepoCard.jsx";
 import NoReposSplash from "./NoReposSplash.jsx";
-import getPlugins from "./pluginFetcher.js";
-import { showToast } from "@cumcord/ui/toasts";
-
-const useState = React.useState;
+import { ErrorBoundary } from "@cumcord/ui/components";
 const ModalComponents = findByProps("ModalCloseButton");
 const Header = findByDisplayName("Header");
 const Flex = findByDisplayName("Flex");

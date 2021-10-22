@@ -2,7 +2,8 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import plugins from "@cumcord/plugins";
 import { showToast } from "@cumcord/ui/toasts";
 import { useNest } from "@cumcord/utils";
-import { getPluginUrl } from "./pluginFetcher.js";
+import { getPluginUrl } from "../pluginFetcher.js";
+
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");

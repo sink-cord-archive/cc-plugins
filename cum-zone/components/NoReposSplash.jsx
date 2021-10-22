@@ -1,22 +1,10 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
+import resetReposToDefault from "../defaultRepos.js";
 
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-
-const defaultRepos = [
-    {
-        url: "https://cumcordplugins.github.io/Condom/",
-        name: "Condom",
-        enabled: true,
-        official: true,
-    },
-];
-
-function resetReposToDefault(store) {
-    store.repos = defaultRepos;
-}
 
 const component = ({ store }) => (
     <FormSection className="ysink_zone_splash">
@@ -34,4 +22,3 @@ const component = ({ store }) => (
 );
 
 export default component;
-export { component, resetReposToDefault };

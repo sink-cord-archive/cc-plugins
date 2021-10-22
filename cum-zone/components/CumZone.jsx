@@ -1,21 +1,20 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-import { ErrorBoundary } from "@cumcord/ui/components";
 import { useNest } from "@cumcord/utils";
-import {getPlugins, combinePluginLists} from "./pluginFetcher.js";
-import Ticker from "./CopyPastaTicker.jsx";
+import { getPlugins, combinePluginLists } from "../pluginFetcher.js";
+import fuzzySearch from "../fuzzy.js";
+const useState = React.useState;
+
+import { ErrorBoundary } from "@cumcord/ui/components";
+import Ticker from "./Ticker.jsx";
 import PluginCard from "./PluginCard.jsx";
 import showRepoModal from "./RepoModal.jsx";
 import NoReposSplash from "./NoReposSplash.jsx";
-import fuzzySearch from "./fuzzy.js";
-
-const useState = React.useState;
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
-
 
 const fuzzySearchPlugins = (repos, term) =>
     fuzzySearch(combinePluginLists(repos), ["name", "author"], term);

@@ -1,5 +1,5 @@
-import { combinePluginLists } from "./pluginFetcher.js";
 import { importPlugin, installed } from "@cumcord/plugins";
+import { combinePluginLists } from "../pluginFetcher.js";
 
 export default (nest) => {
     if (!window.commandPalette) return;
@@ -10,8 +10,12 @@ export default (nest) => {
         "Install a plugin",
         () => {
             let repos = nest.ghost.repos;
-            let plugins = combinePluginLists(repos)
-            .filter(plugin => Object.values(installed.ghost).find(p => p.manifest.hash == plugin.hash) == undefined);
+            let plugins = combinePluginLists(repos).filter(
+                (plugin) =>
+                    Object.values(installed.ghost).find(
+                        (p) => p.manifest.hash == plugin.hash
+                    ) == undefined
+            );
 
             commandPalette.openPalette(
                 "Which plugin to install?",
@@ -19,9 +23,8 @@ export default (nest) => {
                     id: entry.url,
                     label: entry.name,
                     source: entry.repo.name,
-                    action: () => {
-                        importPlugin(new URL(entry.url, entry.repo.url).href);
-                    },
+                    action: () =>
+                        importPlugin(new URL(entry.url, entry.repo.url).href),
                 }))
             );
         },
