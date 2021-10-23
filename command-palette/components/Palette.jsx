@@ -67,7 +67,7 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
 
         document
             .getElementById(`palette_item_${state.selected}`)
-            .scrollIntoView(false);
+            ?.scrollIntoView(false);
     };
 
     return (
@@ -95,7 +95,7 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
 
                     <div className="ysink_palette_scrollcontainer">
                         {entries
-                            .filter((entry) => entry?.condition?.() ?? true)
+                            .filter((entry) => entry && (entry.condition?.() ?? true))
                             .map((entry, index) => (
                                 <PaletteItem
                                     entry={entry}
