@@ -6,10 +6,11 @@ const { popoutBannerPremium } = findByProps("popoutBannerPremium");
 
 export default (db_cache) =>
     after("default", UserBanner, ([{ user }], ret) => {
-        let bg_img = db_cache.get(user?.id)?.img;
-        if (!user || !ret || user.banner || !bg_img) return;
+        if (!user || !ret || user.banner) return;
+        let bg_img = db_cache.get(user.id)?.img;
+        if (!bg_img) return;
 
-        ret.props.style = { background: `url(${bg_img})` };
+        ret.props.style = { "background-image": `url("${bg_img}")` };
         ret.props.className += ` ${popoutBannerPremium}`;
 
         return ret;
