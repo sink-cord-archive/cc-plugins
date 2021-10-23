@@ -19,6 +19,7 @@ export default ({ persist, id }) => {
     return {
         onUnload: () => {
             persist.store.customEntries = [];
+            delete persist.store.customEntries;
             patches.forEach((unpatch) => unpatch());
         },
     };
