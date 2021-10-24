@@ -17,7 +17,7 @@ const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 
 const fuzzySearchPlugins = (repos, term) =>
-    fuzzySearch(combinePluginLists(repos), ["name", "author"], term);
+    fuzzySearch(combinePluginLists(repos), term);
 
 export default ({ nest }) => {
     let [search, setSearch] = useState("");
