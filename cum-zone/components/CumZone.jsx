@@ -3,6 +3,7 @@ import { useNest } from "@cumcord/utils";
 import { getPlugins, combinePluginLists } from "../pluginFetcher.js";
 import fuzzySearch from "../fuzzy.js";
 const useState = React.useState;
+const useEffect = React.useEffect;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import Ticker from "./Ticker.jsx";
@@ -16,13 +17,20 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 
-const fuzzySearchPlugins = (repos, term) =>
-    fuzzySearch(combinePluginLists(repos), term);
-
 export default ({ nest }) => {
     let [search, setSearch] = useState("");
+    let [repoPlugins, setRepoPlugins] = useState([]);
 
     useNest(nest);
+
+    useEffect(() => {
+        if (repoPlugins.length == 0) {
+            combinePluginLists(nest.ghost.repos).then((plugins) => {
+                setRepoPlugins(plugins);
+            });
+        }
+    });
+
     return (
         <ErrorBoundary>
             <FormSection>
@@ -51,11 +59,9 @@ export default ({ nest }) => {
                     <NoReposSplash store={nest.store} />
                 ) : (
                     <div className="ysink_zone_card_container">
-                        {fuzzySearchPlugins(nest.ghost.repos, search).map(
-                            (p) => (
-                                <PluginCard plugin={p} />
-                            )
-                        )}
+                        {fuzzySearch(repoPlugins, search).map((p) => (
+                            <PluginCard plugin={p} />
+                        ))}
                     </div>
                 )}
             </FormSection>

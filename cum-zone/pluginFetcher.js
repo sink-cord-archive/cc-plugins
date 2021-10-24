@@ -1,18 +1,9 @@
-const getRepoRoot = (repoUrl) => new URL("plugins-large.json", repoUrl);
+const getRepoRoot = (repoUrl) => new URL("plugins-large.json", repoUrl).href;
 
 const getPluginUrl = (repoUrl, pluginUrl) => new URL(pluginUrl, repoUrl);
 
-function getPlugins(repoUrl) {
-    // non-async http? sue me.
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", getRepoRoot(repoUrl), false);
-    xhr.send(null);
-    let parsed = [];
-    try {
-        parsed = JSON.parse(xhr.responseText);
-    } catch {
-        return [];
-    }
+async function getPlugins(repoUrl) {
+    const parsed = await (await fetch(getRepoRoot(repoUrl))).json();
 
     return Object.keys(parsed).map((key) => {
         let plugin = parsed[key];
@@ -21,13 +12,15 @@ function getPlugins(repoUrl) {
     });
 }
 
-const combinePluginLists = (repos) => {
-    let repoPluginLists = repos.map((repo) =>
-        getPlugins(repo.url).map((p) => {
+const combinePluginLists = async (repos) => {
+    const repoPluginListPromise = repos.map(async (repo) =>
+        (await getPlugins(repo.url)).map((p) => {
             p.repo = repo;
             return p;
         })
     );
+
+    const repoPluginLists = await Promise.all(repoPluginListPromise);
 
     return repoPluginLists.length == 0
         ? []
