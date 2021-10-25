@@ -1,3 +1,5 @@
+import fuzzy from "./fuzzy.js";
+
 const rankResults = (set, usageCounts) => {
     let working = [];
 
@@ -20,11 +22,7 @@ const rankResults = (set, usageCounts) => {
 export default (set, usageCounts, searchTerm) => {
     if (!searchTerm || searchTerm == "") return rankResults(set, usageCounts);
 
-    let matches = set.filter(
-        (entry) =>
-            entry.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            entry.id.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    let matches = fuzzy(set, searchTerm);
 
     return rankResults(matches, usageCounts);
 };
