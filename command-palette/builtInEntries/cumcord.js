@@ -2,6 +2,7 @@ import plugins from "@cumcord/plugins";
 import { showToast } from "@cumcord/ui/toasts";
 import { showConfirmationModal } from "@cumcord/ui/modals";
 import { uninject } from "@cumcord";
+import { toggleDevMode } from "@cumcord/dev";
 import textEntry from "../components/TextEntryPalette.jsx";
 import openPalette from "../components/Palette.jsx";
 
@@ -90,5 +91,13 @@ export default [
 
                 if (confirmed) uninject();
             }, 500),
+    },
+
+    {
+        source,
+        icon,
+        id: "cumcord_toggle_dev",
+        label: "Toggle DevMode",
+        action: toggleDevMode,
     },
 ];
