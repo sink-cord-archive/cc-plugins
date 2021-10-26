@@ -5,7 +5,7 @@ const { updateChannelOverrideSettings } = findByProps(
     "updateChannelOverrideSettings"
 );
 const { getCurrentChannelSettings } = findByProps("getCurrentChannelSettings");
-const { getLastSelectedChannelId } = findByProps("getLastSelectedChannelId");
+const { getChannelId } = findByProps("getChannelId", "getVoiceChannelId");
 
 const source = "Built In";
 
@@ -15,11 +15,9 @@ export default [
         icon: "🔇",
         label: "Toggle current channel mute",
         action: () => {
-            let chan = getLastSelectedChannelId();
-            if (!chan) return;
             let muted = getCurrentChannelSettings().channel_is_muted;
             // i don't know if these last two fields are actually necessary or not, but just to be safe :)
-            updateChannelOverrideSettings(getGuildId(), chan, {
+            updateChannelOverrideSettings(getGuildId(), getChannelId(), {
                 muted: !muted,
                 suppress_everyone: !muted,
                 suppress_roles: !muted,
