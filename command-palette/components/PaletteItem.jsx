@@ -1,4 +1,4 @@
-export default ({ entry, selected, id, icon }) => (
+export default ({ entry, selected, id, icon, finish, hover }) => (
     <div
         className={
             selected
@@ -6,6 +6,8 @@ export default ({ entry, selected, id, icon }) => (
                 : "ysink_palette_item"
         }
         id={id}
+        onClick={finish}
+        onMouseOver={hover}
     >
         <span className="ysink_palette_icon">{icon ?? ""}</span>
         <span className="ysink_palette_iconseparator" />

@@ -26,6 +26,7 @@
 
 .ysink_palette_item {
     padding: .3rem 1rem .3rem .5rem;
+    transition: background-color 150ms;
 }
 
 .ysink_palette_icon {

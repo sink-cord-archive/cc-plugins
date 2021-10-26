@@ -30,6 +30,21 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
         setState({ selected: i, search });
     };
 
+    const finish = () => {
+        // close modal
+        e.onClose();
+        // increment usages count (helps with ranking entries)
+        let entry = entries[state.selected];
+        if (nest) {
+            let usages = nest.ghost.usageCounts;
+            let currentUsage = usages.get(entry.id) ?? 0;
+            usages.set(entry.id, currentUsage + 1);
+            nest.store.usageCounts = usages;
+        }
+        // run entry action
+        entry.action();
+    };
+
     const keyHandler = (k) => {
         switch (k.which) {
             case 38:
@@ -44,19 +59,7 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                 break;
 
             case 13:
-                // close modal
-                e.onClose();
-                // increment usages count (helps with ranking entries)
-                let entry = entries[state.selected];
-                if (nest) {
-                    let usages = nest.ghost.usageCounts;
-                    let currentUsage = usages.get(entry.id) ?? 0;
-                    usages.set(entry.id, currentUsage + 1);
-                    nest.store.usageCounts = usages;
-                }
-                // run entry action
-                entry.action();
-
+                finish();
                 break;
 
             default:
@@ -105,6 +108,8 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                                     id={`palette_item_${index}`}
                                     selected={index == state.selected}
                                     icon={entry.icon}
+                                    hover={() => setIndex(index)}
+                                    finish={finish}
                                 />
                             ))}
                     </div>
