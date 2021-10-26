@@ -15,7 +15,7 @@ export default [
         icon: "🔇",
         label: "Toggle current channel mute",
         action: () => {
-            let muted = getCurrentChannelSettings().channel_is_muted;
+            let muted = getCurrentChannelSettings(getGuildId(), getChannelId()).channel_is_muted;
             // i don't know if these last two fields are actually necessary or not, but just to be safe :)
             updateChannelOverrideSettings(getGuildId(), getChannelId(), {
                 muted: !muted,
