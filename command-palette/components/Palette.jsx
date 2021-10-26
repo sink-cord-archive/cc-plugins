@@ -4,7 +4,7 @@ import PaletteItem from "./PaletteItem.jsx";
 import search from "../search.js";
 
 const useState = React.useState;
-const { openModal } = findByProps("openModal");
+const { openModal } = findByProps("openModal", "openModalLazy");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 
@@ -71,6 +71,8 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
             ?.scrollIntoView(false);
     };
 
+    if (e.transitionState == 3 && closeAction) closeAction();
+
     return (
         <ErrorBoundary>
             <ModalComponents.ModalRoot
@@ -78,9 +80,6 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                 size="small"
                 className="ysink_palette_modal"
                 onKeyDown={keyHandler}
-                onBlur={() => {
-                    if (closeAction) closeAction();
-                }}
             >
                 <ModalComponents.ModalContent className="ysink_palette_palette">
                     <div className="ysink_palette_input_wrapper">
