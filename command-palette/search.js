@@ -1,5 +1,3 @@
-import fuzzy from "./fuzzy.js";
-
 const rankResults = (set, usageCounts) => {
     let working = [];
 
@@ -19,10 +17,27 @@ const rankResults = (set, usageCounts) => {
     return working.concat(set);
 };
 
+const filter = (set, searchTerm) => {
+    let noId = set.filter((entry) => !entry.id);
+    if (noId.length != 0)
+        throw `One or more entry had no ID. If you have custom entries, disable the plugins providing them.
+If you do not, please ping Yellowsink constantly with this:
+
+\`\`\`
+${noId.map((e) => e.label).join("\n")}
+\`\`\``;
+
+    return set.filter(
+        (entry) =>
+            entry.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            entry.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+};
+
 export default (set, usageCounts, searchTerm) => {
     if (!searchTerm || searchTerm == "") return rankResults(set, usageCounts);
 
-    let matches = fuzzy(set, searchTerm);
+    let matches = filter(set, searchTerm);
 
     return rankResults(matches, usageCounts);
 };

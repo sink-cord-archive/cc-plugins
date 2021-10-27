@@ -13,6 +13,7 @@ export default [
     {
         source,
         icon: "🔇",
+        id: "misc_toggle_channel_mute",
         label: "Toggle current channel mute",
         action: () => {
             let muted = getCurrentChannelSettings(getGuildId(), getChannelId()).channel_is_muted;

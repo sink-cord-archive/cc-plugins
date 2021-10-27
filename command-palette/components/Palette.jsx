@@ -3,6 +3,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
 import PaletteMd from "./PaletteMd.jsx";
 import search from "../search.js";
+import showErrorModal from "./ErrorModal.jsx";
 
 const useState = React.useState;
 const { openModal } = findByProps("openModalLazy");
@@ -27,8 +28,6 @@ const Component = ({
         : defaultEntries;
     let usageMap = nest ? nest.ghost.usageCounts : new Map();
 
-    const entries = search(rawEntries, usageMap, state.search);
-
     const setSearch = (s) => {
         let selected = state.selected;
         setState({ selected, search: s });
@@ -38,6 +37,14 @@ const Component = ({
         setState({ selected: i, search });
     };
 
+    let entries = [];
+    try {
+        entries = search(rawEntries, usageMap, state.search);
+    } catch (err) {
+        setSearch("");
+        showErrorModal(err);
+    }
+    
     const finish = () => {
         // close modal
         e.onClose();
