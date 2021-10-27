@@ -4,7 +4,7 @@ import PaletteItem from "./PaletteItem.jsx";
 import search from "../search.js";
 
 const useState = React.useState;
-const { openModal } = findByProps("openModal", "openModalLazy");
+const { openModal } = findByProps("openModalLazy");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 

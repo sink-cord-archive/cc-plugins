@@ -3,7 +3,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 import { showToast } from "@cumcord/ui/toasts";
 import { uploadEmoji } from "./discordTools.js";
 const useState = React.useState;
-const { openModal } = findByProps("openModal", "openModalLazy");
+const { openModal } = findByProps("openModalLazy");
 
 const ModalComponents = findByProps("ModalCloseButton");
 const Flex = findByDisplayName("Flex");
