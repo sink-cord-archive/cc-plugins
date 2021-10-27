@@ -26,12 +26,22 @@
 .ysink_palette_item {
     padding: .3rem 1rem .3rem .5rem;
     transition: background-color 150ms;
+    display: flex;
 }
 
 .ysink_palette_icon {
     width: 1.5rem;
     display: inline-block;
     text-align: center;
+}
+.ysink_palette_icon_container {
+    width: 1.5rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.ysink_palette_icon_container > img {
+    height: 1rem;
 }
 
 .ysink_palette_iconseparator {
