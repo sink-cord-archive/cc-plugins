@@ -20,12 +20,10 @@ if (window.commandPalette) {
 ```ts
 type entry = {
     id: string,
-    // this field is optional!
-    icon: string,
+    icon: ?string,
     label: string,
     source: string,
-    // this field is optional!
-    condition: () => bool,
+    condition: ?(() => bool),
     action: () => void,
 };
 ```
@@ -134,3 +132,10 @@ void
 This is very useful when you unpatch your function, to automatically remove all of your entries.
 
 It returns the list of removed entries, or `undefined` if none.
+
+## `getEntries()`
+```ts
+(): entry[]
+```
+
+Gets all entries.
