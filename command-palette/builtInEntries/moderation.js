@@ -16,27 +16,29 @@ export default [
         id: "moderation_banuser",
         label: "Ban user from current guild",
         condition: canBan,
-        action: () => {
+        action: async () => {
             openPalette(
                 "Which user to ban?",
                 null,
-                getMembers(getGuildId()).map((member) => {
-                    let user = getUser(member.userId);
-                    let nickstr = member.nick ? `[${member.nick}]` : "";
-                    return {
-                        id: member.userId,
-                        label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
-                        action: () =>
-                            openTextEntry("Enter ban reason", (reason) => {
-                                banUser(
-                                    getGuildId(),
-                                    member.userId,
-                                    null,
-                                    reason
-                                );
-                            }),
-                    };
-                })
+                await Promise.all(
+                    getMembers(getGuildId()).map(async (member) => {
+                        let user = await getUser(member.userId);
+                        let nickstr = member.nick ? `[${member.nick}]` : "";
+                        return {
+                            id: member.userId,
+                            label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            action: () =>
+                                openTextEntry("Enter ban reason", (reason) => {
+                                    banUser(
+                                        getGuildId(),
+                                        member.userId,
+                                        null,
+                                        reason
+                                    );
+                                }),
+                        };
+                    })
+                )
             );
         },
     },
@@ -46,22 +48,28 @@ export default [
         id: "moderation_kickuser",
         label: "Kick user from current guild",
         condition: canKick,
-        action: () => {
+        action: async () => {
             openPalette(
                 "Which user to kick?",
                 null,
-                getMembers(getGuildId()).map((member) => {
-                    let user = getUser(member.userId);
-                    let nickstr = member.nick ? `[${member.nick}]` : "";
-                    return {
-                        id: member.userId,
-                        label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
-                        action: () =>
-                            openTextEntry("Enter kick reason", (reason) => {
-                                kickUser(getGuildId(), member.userId, reason);
-                            }),
-                    };
-                })
+                await Promise.all(
+                    getMembers(getGuildId()).map(async (member) => {
+                        let user = await getUser(member.userId);
+                        let nickstr = member.nick ? `[${member.nick}]` : "";
+                        return {
+                            id: member.userId,
+                            label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            action: () =>
+                                openTextEntry("Enter kick reason", (reason) => {
+                                    kickUser(
+                                        getGuildId(),
+                                        member.userId,
+                                        reason
+                                    );
+                                }),
+                        };
+                    })
+                )
             );
         },
     },

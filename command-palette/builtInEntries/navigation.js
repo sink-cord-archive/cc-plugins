@@ -36,26 +36,28 @@ export default [
         icon,
         id: "navigate_user_profile_server",
         label: "Open user profile from current server",
-        action: () => {
+        action: async () => {
             openPalette(
                 "Which profile to open?",
                 null,
-                getMembers(getGuildId()).map((member) => {
-                    let user = getUser(member.userId);
-                    let nickstr = member.nick ? `[${member.nick}]` : "";
-                    return {
-                        id: member.userId,
-                        label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
-                        action: () =>
-                            setTimeout(
-                                () =>
-                                    openUserProfileModal({
-                                        userId: member.userId,
-                                    }),
-                                200
-                            ),
-                    };
-                })
+                await Promise.all(
+                    getMembers(getGuildId()).map(async (member) => {
+                        let user = await getUser(member.userId);
+                        let nickstr = member.nick ? `[${member.nick}]` : "";
+                        return {
+                            id: member.userId,
+                            label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            action: () =>
+                                setTimeout(
+                                    () =>
+                                        openUserProfileModal({
+                                            userId: member.userId,
+                                        }),
+                                    200
+                                ),
+                        };
+                    })
+                )
             );
         },
     },
