@@ -1,4 +1,4 @@
-import injectCss from "./styles.css";
+import injectCss from "./styles.sass";
 import keybindPatch from "./patches/keybind.js";
 import paletteEntries from "./paletteEntries.js";
 import exposeApiPatch from "./patches/exposeApi.js";
