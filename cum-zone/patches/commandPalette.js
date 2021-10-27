@@ -1,16 +1,16 @@
-import { importPlugin, installed } from "@cumcord/plugins";
+import { importPlugin, installed, loaded } from "@cumcord/plugins";
+import { nests } from "@cumcord/modules/internal";
 import { combinePluginLists } from "../pluginFetcher.js";
 
-export default (nest) => {
-    if (!window.commandPalette) return;
-
+const patch = (nest) => {
     commandPalette.registerEntry(
-        "ysink_cumzone_installPlugin",
         "Cum Zone",
+        "ysink_cumzone_installPlugin",
         "Install a plugin",
-        () => {
+        "📦",
+        async () => {
             let repos = nest.ghost.repos;
-            let plugins = combinePluginLists(repos).filter(
+            let plugins = (await combinePluginLists(repos)).filter(
                 (plugin) =>
                     Object.values(installed.ghost).find(
                         (p) => p.manifest.hash == plugin.hash
@@ -27,9 +27,29 @@ export default (nest) => {
                         importPlugin(new URL(entry.url, entry.repo.url).href),
                 }))
             );
-        },
-        "📦"
+        }
     );
 
-    return () => commandPalette.unregisterSource("Cum Zone");
+    return () => window?.commandPalette?.unregisterSource?.("Cum Zone");
+};
+
+const commandPalettePluginIds = [
+    "https://yellowsink.github.io/cc-plugins/command-palette/",
+];
+
+export default (nest) => {
+    let unpatch = null;
+
+    let listener = (eventType, { path }) => {
+        if (!commandPalettePluginIds.includes(path[0])) return;
+        unpatch = patch(nest);
+    };
+
+    if (window.commandPalette) unpatch = patch(nest);
+    else loaded.on(nests.Events.SET, listener);
+
+    return () => {
+        unpatch?.();
+        loaded.listeners.SET.delete(listener);
+    };
 };
