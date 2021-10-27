@@ -46,9 +46,7 @@
 
 .ysink_palette_iconseparator {
     border: solid 1px #ffffff55;
-    margin: 0 .5rem;
-    /* this is the only way i could get the separators to not overlap mkay? */
-    border-radius: 1px;
+    margin: -.3rem .5rem;
 }
 
 .ysink_palette_item.ysink_palette_selected {
@@ -77,8 +75,7 @@
 .ysink_palette_source {
     text-transform: uppercase;
     font-style: italic;
-    color: #aaa;
-    float: right;
+    color: #aaa;;
 }
 
 .ysink_palette_scrollcontainer {

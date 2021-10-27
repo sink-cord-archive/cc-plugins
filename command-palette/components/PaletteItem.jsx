@@ -26,6 +26,9 @@ export default ({ entry, selected, id, icon, finish, hover }) => {
             )}
             <span className="ysink_palette_iconseparator" />
             {entry.label}
+
+            <div style={{flex: 1}} />
+
             <span className="ysink_palette_source">{entry.source}</span>
         </div>
     );
