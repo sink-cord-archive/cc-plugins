@@ -8,7 +8,7 @@ import RepoCard from "./RepoCard.jsx";
 import NoReposSplash from "./NoReposSplash.jsx";
 import { ErrorBoundary } from "@cumcord/ui/components";
 const ModalComponents = findByProps("ModalCloseButton");
-const Header = findByDisplayName("Header");
+const Header = findByProps("Sizes", "Tags");
 const Flex = findByDisplayName("Flex");
 const { openModal } = findByProps("openModalLazy");
 const FormSection = findByDisplayName("FormSection");

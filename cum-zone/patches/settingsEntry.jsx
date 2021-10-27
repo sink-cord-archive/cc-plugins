@@ -22,8 +22,6 @@ export default (nest) =>
                 element: () => <CumZone nest={nest} />,
             });
 
-            console.log(retVal);
-
             return retVal;
         }
     );

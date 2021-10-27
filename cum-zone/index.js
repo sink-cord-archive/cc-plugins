@@ -1,4 +1,4 @@
-import injectCss from "./sass_build.css";
+import injectCss from "./styles.sass";
 import settingsEntryPatch from "./patches/settingsEntry.jsx";
 import resetReposToDefault from "./defaultRepos.js";
 import commandPalette from "./patches/commandPalette.js";
