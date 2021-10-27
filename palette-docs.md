@@ -34,7 +34,8 @@ The ID will be used to keep track of entries when working with the API and inter
 
 The Label is the text for the entry to be shown in the palette.
 
-The Icon optionally shows (preferably) a single character as an icon next to your entry.
+The Icon optionally shows a (preferably) single character as an icon next to your entry,
+or, if the icon is a URL, then uses it as the source for an `<img />`.
 
 The Source specifies where the entry came from.
 It is recommended to use your plugin name or something recognisable, as this is shown to the user.
@@ -47,7 +48,8 @@ The action is a function that will be run whenever your action is picked.
 ## `openPalette()`
 ```ts
 (prompt: string,
-entries: entry[]):
+entries: entry[],
+markdown: ?string):
 void
 ```
 
@@ -55,10 +57,13 @@ void
 
 It takes a prompt that may be null to default to "Search Actions", and a list of possible entries.
 
+It also takes an optional string of markdown which will be shown above the search box for context.
+
 ## `openPaletteAsync()`
 ```ts
 (prompt: string,
-entries: string[]):
+entries: string[],
+markdown: ?string):
 Promise<string>
 ```
 
@@ -70,15 +75,19 @@ If you are `await`ing the function, make sure to `try {} catch {}` in case the u
 ## `openTextEntry()`
 ```ts
 (prompt: string,
-finishAction: (string) => void):
+finishAction: (string) => void,
+markdown: ?string):
 void
 ```
 
 `openTextEntry` opens a text prompt, and if the user submits, will call `finishAction` with the entered text.
 
+It also takes an optional string of markdown which will be shown above the search box for context.
+
 ## `openTextEntryAsync()`
 ```ts
-(prompt: string):
+(prompt: string,
+markdown: ?string):
 Promise<string>
 ```
 
@@ -89,12 +98,12 @@ If you are `await`ing the function, make sure to `try {} catch {}` in case the u
 
 ## `registerEntry()`
 ```ts
-(id: string,
-source: string,
+(source: string,
+id: string,
 label: string,
+icon: ?string,
 action: () => void,
-icon: string,
-condition: () => bool):
+condition: ?(() => bool)):
 void
 ```
 
@@ -106,12 +115,10 @@ and it is highly recommended to use a recognisable name, like the name of your p
 The label is the text to be shown in the action list.
 The action is a function to run if your entry is picked.
 
-Condition and Icon are optional.
-
 ## `unregisterEntry()`
 ```ts
-(id: string,
-source: string):
+(source: string,
+id: string):
 entry
 ```
 
@@ -126,19 +133,4 @@ void
 `unregisterSource` unregisters every entry connected to a given source.
 This is very useful when you unpatch your function, to automatically remove all of your entries.
 
-## `getCustomEntriesBySource()`
-```ts
-(source: string):
-entry[]
-```
-
-Forgot your own entries? Get them again easily!
-`getCustomEntriesBySource` returns every entry connected to a given source.
-
-## `getCustomEntryById(id: string): entry`
-```ts
-(id: string):
-entry
-```
-
-`getCustomEntryById` gets an entry by it's ID.
+It returns the list of removed entries, or `undefined` if none.

@@ -1,4 +1,4 @@
-import { log } from "@cumcord/utils/logger"
+import { log } from "@cumcord/utils/logger";
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
 import { openPalette, openPalettePromisified } from "../components/Palette.jsx";
 import {
@@ -8,17 +8,17 @@ import {
 
 export default (nest) => {
     window.commandPalette = {
-        openPalette: (prompt, entries) => {
-            openPalette(prompt, null, entries);
+        openPalette: (prompt, entries, markdown) => {
+            openPalette(prompt, null, entries, markdown);
         },
 
         openPaletteAsync: openPalettePromisified,
 
-        openTextEntry: (prompt, finishAction) =>
+        openTextEntry: (prompt, finishAction, markdown) =>
             openTextEntry(prompt, finishAction),
-        openTextEntryAsync: (prompt) => openTextEntryPromise(prompt),
+        openTextEntryAsync: openTextEntryPromise,
 
-        registerEntry(id, source, label, action, icon, condition) {
+        registerEntry(source, id, label, icon, action, condition) {
             // make sure people supply all required items
             if (!id || id == "")
                 throw "Register failed: Please supply an ID (string) for your entry";
@@ -44,11 +44,11 @@ export default (nest) => {
                 label,
                 action,
                 icon,
-                console
+                console,
             });
         },
 
-        unregisterEntry(id, source) {
+        unregisterEntry(source, id) {
             // make sure people supply all required items
             if (!id || id == "")
                 throw "Unregister failed: Please supply an ID (string) to deregister";
@@ -73,15 +73,12 @@ export default (nest) => {
         unregisterSource(source) {
             let entries = nest.ghost.customEntries;
             let notSourceEntries = entries.filter((e) => e.source != source);
-            if (notSourceEntries.length == entries.length)
-                throw "Bulk unregister failed: No entries with that source were found";
+            if (notSourceEntries.length == entries.length) return undefined;
             nest.store.customEntries = notSourceEntries;
+            return entries.filter((e) => e.source == source);
         },
 
-        getCustomEntriesBySouce: (source) =>
-            nest.ghost.customEntries.filter((e) => e.source == source),
-        getCustomEntryById: (id) =>
-            nest.ghost.customEntries.find((e) => e.id == id),
+        getEntries: () => builtInEntries.concat(nest.ghost.customEntries),
     };
 
     log("|| COMMAND PALETTE || Initialised window.commandPalette API");

@@ -11,7 +11,6 @@
 
 .ysink_palette_modal.ysink_palette_textentrymodal {
     min-height: 0;
-    height: 4rem;
 }
 
 .ysink_palette_palette {
@@ -87,3 +86,12 @@
     background-color: #ffffff33;
     min-height: 40px;
 }
+
+.ysink_palette_md {
+    margin: 0 .5rem 1rem ;
+    padding: .5rem;
+    background-color: #ffffff11;
+    border: 1px solid #ffffff33;
+}
+
+.ysink_palette_md > * > :last-child { margin-bottom: 0; }

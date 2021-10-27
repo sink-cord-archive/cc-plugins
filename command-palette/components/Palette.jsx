@@ -1,6 +1,7 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
+import PaletteMd from "./PaletteMd.jsx";
 import search from "../search.js";
 
 const useState = React.useState;
@@ -8,7 +9,14 @@ const { openModal } = findByProps("openModalLazy");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 
-const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
+const Component = ({
+    e,
+    prompt,
+    nest,
+    defaultEntries,
+    closeAction,
+    markdown,
+}) => {
     let [state, setState] = useState({
         selected: 0,
         search: "",
@@ -75,7 +83,6 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
     };
 
     if (e.transitionState == 3 && closeAction) closeAction();
-
     return (
         <ErrorBoundary>
             <ModalComponents.ModalRoot
@@ -85,6 +92,8 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
                 onKeyDown={keyHandler}
             >
                 <ModalComponents.ModalContent className="ysink_palette_palette">
+                    {!markdown ? [] : <PaletteMd>{markdown}</PaletteMd>}
+
                     <div className="ysink_palette_input_wrapper">
                         &gt;
                         <TextInput
@@ -119,18 +128,14 @@ const Component = ({ e, prompt, nest, defaultEntries, closeAction }) => {
     );
 };
 
-let openPalette = (prompt, nest, defaultEntries, closeAction) =>
+let openPalette = (prompt, nest, defaultEntries, markdown, closeAction) =>
     openModal((e) => (
         <Component
-            e={e}
-            prompt={prompt}
-            nest={nest}
-            defaultEntries={defaultEntries}
-            closeAction={closeAction}
+            {...{ e, prompt, nest, defaultEntries, closeAction, markdown }}
         />
     ));
 
-let openPalettePromisified = (prompt, entries) =>
+let openPalettePromisified = (prompt, entries, markdown) =>
     new Promise((resolve, reject) => {
         openPalette(
             prompt,
@@ -138,6 +143,7 @@ let openPalettePromisified = (prompt, entries) =>
             entries.map((entry) => {
                 return { label: entry, action: () => resolve(entry) };
             }),
+            markdown,
             () => reject("user closed palette")
         );
     });

@@ -1,13 +1,14 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
+import PaletteMd from "./PaletteMd.jsx";
 
 const useState = React.useState;
 const { openModal } = findByProps("openModalLazy");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 
-const Component = ({ e, prompt, finishAction, closeAction }) => {
+const Component = ({ e, prompt, finishAction, closeAction, markdown }) => {
     let [input, setInput] = useState("");
 
     return (
@@ -23,6 +24,8 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
                 }}
             >
                 <ModalComponents.ModalContent className="ysink_palette_palette">
+                    {!markdown ? [] : <PaletteMd>{markdown}</PaletteMd>}
+
                     <div className="ysink_palette_input_wrapper">
                         &gt;
                         <TextInput
@@ -40,19 +43,16 @@ const Component = ({ e, prompt, finishAction, closeAction }) => {
     );
 };
 
-const openTextEntry = (prompt, finishAction, closeAction) =>
+const openTextEntry = (prompt, finishAction, markdown, closeAction) =>
     openModal((e) => (
-        <Component
-            e={e}
-            prompt={prompt}
-            finishAction={finishAction}
-            closeAction={closeAction}
-        />
+        <Component {...{ e, prompt, finishAction, markdown, closeAction }} />
     ));
 
-const openTextEntryPromise = (prompt) =>
+const openTextEntryPromise = (prompt, markdown) =>
     new Promise((resolve, reject) => {
-        openTextEntry(prompt, resolve, () => reject("user closed textentry"));
+        openTextEntry(prompt, resolve, markdown, () =>
+            reject("user closed textentry")
+        );
     });
 
 export default openTextEntryPromise;
