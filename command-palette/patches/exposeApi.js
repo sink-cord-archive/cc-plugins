@@ -78,8 +78,6 @@ export default (nest) => {
             nest.store.customEntries = notSourceEntries;
         },
 
-        getBuiltInEntries: () => builtInEntries,
-        getAllCustomEntries: () => nest.ghost.customEntries,
         getCustomEntriesBySouce: (source) =>
             nest.ghost.customEntries.filter((e) => e.source == source),
         getCustomEntryById: (id) =>
