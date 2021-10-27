@@ -10,7 +10,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 const ModalComponents = findByProps("ModalCloseButton");
 const Header = findByDisplayName("Header");
 const Flex = findByDisplayName("Flex");
-const { openModal } = findByProps("openModal");
+const { openModal } = findByProps("openModal", "openModalLazy");
 const FormSection = findByDisplayName("FormSection");
 const FormDivider = findByDisplayName("FormDivider");
 const TextInput = findByDisplayName("TextInput");

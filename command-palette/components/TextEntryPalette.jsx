@@ -3,7 +3,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 import PaletteItem from "./PaletteItem.jsx";
 
 const useState = React.useState;
-const { openModal } = findByProps("openModal");
+const { openModal } = findByProps("openModal", "openModalLazy");
 const ModalComponents = findByProps("ModalCloseButton");
 const TextInput = findByDisplayName("TextInput");
 
