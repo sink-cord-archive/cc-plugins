@@ -47,6 +47,7 @@ export default [
                         return {
                             id: member.userId,
                             label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            icon: `https://cdn.discordapp.com/avatars/${member.userId}/${user.avatar}.webp`,
                             action: () =>
                                 setTimeout(
                                     () =>

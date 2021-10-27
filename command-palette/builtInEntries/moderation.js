@@ -27,6 +27,7 @@ export default [
                         return {
                             id: member.userId,
                             label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            icon: `https://cdn.discordapp.com/avatars/${member.userId}/${user.avatar}.webp`,
                             action: () =>
                                 openTextEntry("Enter ban reason", (reason) => {
                                     banUser(
@@ -59,6 +60,7 @@ export default [
                         return {
                             id: member.userId,
                             label: `${user.username}#${user.discriminator} ${nickstr} (${member.userId})`,
+                            icon: `https://cdn.discordapp.com/avatars/${member.userId}/${user.avatar}.webp`,
                             action: () =>
                                 openTextEntry("Enter kick reason", (reason) => {
                                     kickUser(

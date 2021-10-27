@@ -4,7 +4,7 @@ const rankResults = (set, usageCounts) => {
     // add all with usage counts
     usageCounts.forEach((count, id) => {
         let index = set.findIndex((entry) => entry.id == id);
-        if (id == -1) return;
+        if (index == -1) return;
 
         working.push([set[index], count]);
         set.splice(index, 1);
