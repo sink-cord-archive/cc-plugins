@@ -44,31 +44,59 @@ If left undefined or null, then the entry will always render.
 
 The action is a function that will be run whenever your action is picked.
 
-## `openPalette(prompt: string, entries: entry[]): void`
+## `openPalette()`
+```ts
+(prompt: string,
+entries: entry[]):
+void
+```
 
 `openPalette` opens a completely custom palette supporting all features.
 
 It takes a prompt that may be null to default to "Search Actions", and a list of possible entries.
 
-## `openPaletteAsync(prompt: string, entries: string[]): Promise<string>`
+## `openPaletteAsync()`
+```ts
+(prompt: string,
+entries: string[]):
+Promise<string>
+```
 
 `openPaletteAsync` opens a palette that behaves as a searchable picker panel, displaying the custom prompt, and allowing the user to pick a string.
 
 The promise will be resolved once an item is picked, or rejected if the palette is closed.
 If you are `await`ing the function, make sure to `try {} catch {}` in case the user closes the palette instead of picking.
 
-## `openTextEntry(prompt: string, finishAction: (string) => void): void`
+## `openTextEntry()`
+```ts
+(prompt: string,
+finishAction: (string) => void):
+void
+```
 
 `openTextEntry` opens a text prompt, and if the user submits, will call `finishAction` with the entered text.
 
-## `openTextEntryAsync(prompt: string): Promise<string>`
+## `openTextEntryAsync()`
+```ts
+(prompt: string):
+Promise<string>
+```
 
 `openTextEntry` opens a text prompt.
 
 The promise will be resolved once text is entered, or rejected if the textentry is closed.
 If you are `await`ing the function, make sure to `try {} catch {}` in case the user closes the textentry instead of picking.
 
-## `registerEntry(id: string, source: string, label: string, action: () => void, icon: string, condition: () => bool): void`
+## `registerEntry()`
+```ts
+(id: string,
+source: string,
+label: string,
+action: () => void,
+icon: string,
+condition: () => bool):
+void
+```
 
 `registerEntry` registers a custom entry into the default keybound command palette.
 
@@ -80,28 +108,37 @@ The action is a function to run if your entry is picked.
 
 Condition and Icon are optional.
 
-## `unregisterEntry(id: string, source: string): entry`
+## `unregisterEntry()`
+```ts
+(id: string,
+source: string):
+entry
+```
 
 `unregisterEntry` will remove the entry of the specified ID and source, and then return the removed entry.
 
-## `unregisterSource(source: string): void`
+## `unregisterSource()`
+```ts
+(source: string):
+void
+```
 
 `unregisterSource` unregisters every entry connected to a given source.
 This is very useful when you unpatch your function, to automatically remove all of your entries.
 
-## `getBuiltInEntries(): entry[]`
-
-Gets the built in entries. Yeah.
-
-## `getAllCustomEntries(): entry[]`
-
-Wanna spy on what entries other plugins are registering? There you go I guess.
-
-## `getCustomEntriesBySource(source: string): entry[]`
+## `getCustomEntriesBySource()`
+```ts
+(source: string):
+entry[]
+```
 
 Forgot your own entries? Get them again easily!
 `getCustomEntriesBySource` returns every entry connected to a given source.
 
 ## `getCustomEntryById(id: string): entry`
+```ts
+(id: string):
+entry
+```
 
 `getCustomEntryById` gets an entry by it's ID.
