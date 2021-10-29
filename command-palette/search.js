@@ -1,3 +1,37 @@
+import Fuse from "fuse.js";
+
+const errorHandle = (set) => {
+    let noId = set.filter((entry) => !entry.id);
+    let [noIdCustom, noIdBuiltIn] = noId.reduce(
+        (result, element) => {
+            if (element.source != "Built In") result[0].push(element);
+            else result[1].push(element);
+            return result;
+        },
+        [[], []]
+    );
+
+    if (noIdBuiltIn.length != 0)
+        throw `One or more built-in entries had no ID. Please ping Yellowsink constantly with this:
+
+\`\`\`
+${noIdBuiltIn.map((e) => e.label).join("\n")}
+\`\`\``;
+
+    if (noIdCustom.length != 0)
+        throw `One or more custom entries had no ID. Please disable the following entry sources:
+
+\`\`\`
+${noIdCustom.map((e) => e.source).join("\n")}
+\`\`\`
+
+The devs of those sources would likely appreciate this info too:
+
+\`\`\`
+${noIdCustom.map((e) => e.label).join("\n")}
+\`\`\``;
+};
+
 const rankResults = (set, usageCounts) => {
     let working = [];
 
@@ -18,20 +52,17 @@ const rankResults = (set, usageCounts) => {
 };
 
 const filter = (set, searchTerm) => {
-    let noId = set.filter((entry) => !entry.id);
-    if (noId.length != 0)
-        throw `One or more entry had no ID. If you have custom entries, disable the plugins providing them.
-If you do not, please ping Yellowsink constantly with this:
+    errorHandle(set);
 
-\`\`\`
-${noId.map((e) => e.label).join("\n")}
-\`\`\``;
+    const fuseOptions = {
+        threshold: 0.5,
+        useExtendedSearch: true,
+        keys: ["label", "id"],
+    };
 
-    return set.filter(
-        (entry) =>
-            entry.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            entry.label.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return Fuse(set, fuseOptions)
+        .search(searchTerm)
+        .map((searchResult) => searchResult.item);
 };
 
 export default (set, usageCounts, searchTerm) => {
