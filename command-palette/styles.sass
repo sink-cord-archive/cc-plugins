@@ -87,3 +87,31 @@
 
     & > * > :last-child
         margin-bottom: 0
+
+.ysink_palette_settings
+    font-size: 2rem
+
+    display: grid
+    grid-template-columns: auto 1fr
+    gap: .75em 2em
+    align-items: center
+
+    .ysink_palette_slabel
+        grid-column: 1
+        display: inline
+        font-size: .6em !important
+        text-align: right
+    
+    .ysink_palette_sinput
+        grid-column: 2
+        width: 1.3em
+        height: 1.3em
+    
+    .ysink_palette_sbutton
+        width: 6em
+
+
+.ysink_palette_settings_container
+    display: flex
+    justify-content: center
+    margin-top: 5em

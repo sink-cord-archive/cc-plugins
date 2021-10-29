@@ -3,10 +3,10 @@ import openPalette from "../components/Palette.jsx";
 const welcomeMsg =
     "🎉 Welcome to **Command Palette**! 🎉 Start typing to pick an item from the list, or visit the API Docs to start building custom actions at https://yellowsink.github.io/cc-plugins/palette-docs";
 
-export default (nest, defaultEntries) => {
+export default (nest, stateNest, defaultEntries) => {
     let keyHandler = (e) => {
         // plugin settings is busy picking a keybind, so disable global keybinds until its done
-        if (!nest.ghost.pickingBind) return;
+        if (!stateNest.ghost.pickingBind) return;
 
         let bind = nest.ghost.keyBind;
 
