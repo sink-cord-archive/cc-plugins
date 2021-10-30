@@ -10,7 +10,7 @@ export default (nest) =>
         findByDisplayName("SettingsView").prototype,
         (_, retVal) => {
             // don't inject into server settings!!!
-            if (retVal[1].section != "My Account") return;
+            if (retVal[1]?.section != "My Account") return;
 
             // add myself underneath cumcord! (find plugins, +1 to skip past it)
             let index =
