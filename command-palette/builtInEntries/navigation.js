@@ -1,4 +1,4 @@
-import { findByProps } from "@cumcord/modules/webpack";
+import { findByProps, find } from "@cumcord/modules/webpack";
 import { showToast } from "@cumcord/ui/toasts";
 import openPalette from "../components/Palette.jsx";
 import { openTextEntry } from "../components/TextEntryPalette.jsx";
@@ -6,6 +6,8 @@ import { getGuildId } from "../permsHelper.js";
 const { getMembers } = findByProps("getMembers");
 const { getUser } = findByProps("getUser");
 const { openUserProfileModal } = findByProps("openUserProfileModal");
+const openUserSettings = find((m) => m?.default?.open).default.open;
+const { UserSettingsSections } = findByProps("UserSettingsSections");
 
 const source = "Built In";
 const icon = "🚀";
@@ -59,6 +61,23 @@ export default [
                         };
                     })
                 )
+            );
+        },
+    },
+    {
+        source,
+        icon,
+        id: "navigate_user_settings",
+        label: "Open user settings",
+        action: () => {
+            openPalette(
+                "Which section to open?",
+                null,
+                Object.values(UserSettingsSections).map((val) => ({
+                    id: val,
+                    label: val,
+                    action: () => openUserSettings(val),
+                }))
             );
         },
     },

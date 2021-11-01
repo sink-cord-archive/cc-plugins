@@ -6,7 +6,7 @@ const welcomeMsg =
 export default (nest, stateNest, defaultEntries) => {
     let keyHandler = (e) => {
         // plugin settings is busy picking a keybind, so disable global keybinds until its done
-        if (!stateNest.ghost.pickingBind) return;
+        if (stateNest.ghost.pickingBind) return;
 
         let bind = nest.ghost.keyBind;
 

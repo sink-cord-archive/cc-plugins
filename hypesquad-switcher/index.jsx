@@ -16,7 +16,6 @@ export default (data) => {
 
             patches.push(
                 after("render", currentHouseBanner, (_, retVal) => {
-                    console.log(retVal);
                     let inSquadValid = retVal?.props?.children?.props?.children;
                     let notInSquadValid =
                         retVal?.props?.children?.[0]?.props?.children?.[1]

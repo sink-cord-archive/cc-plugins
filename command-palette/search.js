@@ -60,7 +60,7 @@ const filter = (set, searchTerm) => {
         keys: ["label", "id"],
     };
 
-    return Fuse(set, fuseOptions)
+    return new Fuse(set, fuseOptions)
         .search(searchTerm)
         .map((searchResult) => searchResult.item);
 };

@@ -11,7 +11,6 @@ export default () => {
     );
 
     return after("default", emojiPickerListRow, (args, retVal) => {
-        console.log(retVal);
         if (!Array.isArray(retVal?.props?.children)) return retVal;
 
         for (const emoji of retVal.props.children) {
