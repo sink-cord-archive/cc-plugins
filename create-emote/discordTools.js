@@ -3,13 +3,13 @@ import { findByProps } from "@cumcord/modules/webpack";
 const discordEmojiTools = findByProps("uploadEmoji");
 const { getGuildPermissions } = findByProps("getGuildPermissions");
 
-const getGuilds = findByProps("getFlattenedGuilds").getFlattenedGuilds;
+const { getGuilds } = findByProps("getGuilds");
 
 const MANAGE_EMOTES_PERMISSION = BigInt(1073741824);
 
 const canManageEmotes = (guildId) => {
     let guildperms = getGuildPermissions({ id: guildId });
-    if (guildperms && (guildperms & MANAGE_EMOTES_PERMISSION) !== 0) {
+    if (guildperms && (guildperms & MANAGE_EMOTES_PERMISSION) !== 0n) {
         return true;
     } else {
         return false;
@@ -17,7 +17,7 @@ const canManageEmotes = (guildId) => {
 };
 
 const guildsCanManageEmotes = () =>
-    getGuilds().filter((guild) => canManageEmotes(guild.id));
+    Object.values(getGuilds()).filter((guild) => canManageEmotes(guild.id));
 
 // many many many tabs of stackoverflow and MDN, and about 30 mins later
 const promisifiedFileReader = (blob) =>
