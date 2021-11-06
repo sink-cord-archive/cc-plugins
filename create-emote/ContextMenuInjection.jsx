@@ -33,7 +33,7 @@ export default ({ isEmote, emoteAlt, url }) => (
             ))}
         </ContextMenu.MenuItem>
         <ContextMenu.MenuItem
-            label="Copy link"
+            label="Copy URL"
             id="ysink_emoji_copyitem"
             action={() => {
                 let emoteNewName = emoteAlt?.substring(1, emoteAlt.length - 1);
