@@ -16,7 +16,7 @@ export default () => {
             !target ||
             !retVal?.props?.children ||
             (!isEmote && target?.nodeName != "IMG") ||
-            target.alt.length <= 2 // alt is an actual emoji, not a cusom one!
+            (isEmote && target.alt.length <= 2) // alt is an actual emoji, not a cusom one!
         )
             return;
 

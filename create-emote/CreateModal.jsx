@@ -7,7 +7,7 @@ const { openModal } = findByProps("openModalLazy");
 
 const ModalComponents = findByProps("ModalCloseButton");
 const Flex = findByDisplayName("Flex");
-const Header = findByDisplayName("Header");
+const Header = findByProps("Sizes", "Tags");
 const FormSection = findByDisplayName("FormSection");
 const FormText = findByDisplayName("FormText");
 const TextInput = findByDisplayName("TextInput");
