@@ -42,10 +42,10 @@ export default () => {
     let unpatch = null;
 
     let listener = (eventType, { path }) => {
-        if (commandPalettePluginIds.includes(path[0])) unpatch = patch(persist);
+        if (commandPalettePluginIds.includes(path[0])) unpatch = patch();
     };
 
-    if (window.commandPalette) unpatch = patch(persist);
+    if (window.commandPalette) unpatch = patch();
     else loaded.on(nests.Events.SET, listener);
 
     return () => {
