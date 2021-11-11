@@ -4,7 +4,7 @@ import resetReposToDefault from "../defaultRepos.js";
 
 import CumZone from "../components/CumZone.jsx";
 
-export default (nest) =>
+export default () =>
     after(
         "getPredicateSections",
         findByDisplayName("SettingsView").prototype,
@@ -19,7 +19,7 @@ export default (nest) =>
             retVal.splice(index, 0, {
                 section: "ysink_zone_CUMZONE",
                 label: "The Cum Zone",
-                element: () => <CumZone nest={nest} />,
+                element: () => <CumZone />,
             });
 
             return retVal;

@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 
 const FormTitle = findByDisplayName("FormTitle");
@@ -6,7 +7,7 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const Badges = cumcord.modules.webpack.findByProps("BadgeShapes");
 
-export default ({ repo, nest }) => (
+export default ({ repo }) => (
     <div className="ysink_zone_card">
         <div className="ysink_zone_row">
             <div>
@@ -30,7 +31,7 @@ export default ({ repo, nest }) => (
                 color={Button.Colors.RED}
                 className="ysink_zone_button"
                 onClick={() =>
-                    (nest.store.repos = nest.ghost.repos.filter(
+                    (persist.store.repos = persist.ghost.repos.filter(
                         (r) => r.url != repo.url
                     ))
                 }

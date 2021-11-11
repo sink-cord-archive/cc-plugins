@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import { getPlugins, combinePluginLists } from "../pluginFetcher.js";
@@ -17,15 +18,15 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 
-export default ({ nest }) => {
+export default () => {
     let [search, setSearch] = useState("");
     let [repoPlugins, setRepoPlugins] = useState([]);
 
-    useNest(nest);
+    useNest(persist);
 
     useEffect(() => {
         if (repoPlugins.length == 0) {
-            combinePluginLists(nest.ghost.repos).then((plugins) => {
+            combinePluginLists(persist.ghost.repos).then((plugins) => {
                 setRepoPlugins(plugins);
             });
         }
@@ -38,7 +39,7 @@ export default ({ nest }) => {
                     <FormTitle tag="h1">Welcome to the Cum Zone</FormTitle>
                     <Button
                         className="ysink_zone_button"
-                        onClick={() => showRepoModal(nest)}
+                        onClick={() => showRepoModal()}
                     >
                         Manage Repos
                     </Button>
@@ -55,8 +56,8 @@ export default ({ nest }) => {
 
                 <FormDivider className="ysink_zone_divide" />
 
-                {nest.ghost.repos.length == 0 ? (
-                    <NoReposSplash store={nest.store} />
+                {persist.ghost.repos.length == 0 ? (
+                    <NoReposSplash store={persist.store} />
                 ) : (
                     <div className="ysink_zone_card_container">
                         {fuzzySearch(repoPlugins, search).map((p) => (

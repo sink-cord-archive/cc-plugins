@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import { showToast } from "@cumcord/ui/toasts";
@@ -16,16 +17,16 @@ const FormDivider = findByDisplayName("FormDivider");
 const TextInput = findByDisplayName("TextInput");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
-function verifyRepo(repo) {
+async function verifyRepo(repo) {
     try {
-        getPlugins(repo);
+        await getPlugins(repo);
         return true;
     } catch {
         return false;
     }
 }
 
-function addRepo(nest, repo) {
+async function addRepo(nest, repo) {
     if (!repo.endsWith("/")) repo += "/";
 
     if (nest.ghost.repos.find((r) => r.url == repo) !== undefined) {
@@ -33,7 +34,7 @@ function addRepo(nest, repo) {
             title: "You already have this repo!",
             duration: 5000,
         });
-    } else if (verifyRepo(repo)) {
+    } else if (await verifyRepo(repo)) {
         // copy like this to correctly raise events
         let repos = nest.ghost.repos;
         repos.push({
@@ -54,10 +55,10 @@ function addRepo(nest, repo) {
     }
 }
 
-const RepoModalComponent = ({ nest, e }) => {
+const RepoModalComponent = ({ e }) => {
     const [input, setInput] = useState("");
 
-    useNest(nest);
+    useNest(persist);
     return (
         <ErrorBoundary>
             <ModalComponents.ModalRoot
@@ -95,7 +96,7 @@ const RepoModalComponent = ({ nest, e }) => {
                                 className="ysink_zone_button"
                                 onClick={() => {
                                     setInput("");
-                                    addRepo(nest, input);
+                                    addRepo(persist, input);
                                 }}
                             >
                                 Add
@@ -104,11 +105,11 @@ const RepoModalComponent = ({ nest, e }) => {
 
                         <FormDivider className="ysink_zone_divide" />
 
-                        {nest.ghost.repos.length == 0 ? (
-                            <NoReposSplash store={nest.store} />
+                        {persist.ghost.repos.length == 0 ? (
+                            <NoReposSplash store={persist.store} />
                         ) : (
-                            nest.ghost.repos.map((repo) => (
-                                <RepoCard repo={repo} nest={nest} />
+                            persist.ghost.repos.map((repo) => (
+                                <RepoCard repo={repo} />
                             ))
                         )}
                     </FormSection>
@@ -118,5 +119,4 @@ const RepoModalComponent = ({ nest, e }) => {
     );
 };
 
-export default (nest) =>
-    openModal((e) => <RepoModalComponent nest={nest} e={e} />);
+export default () => openModal((e) => <RepoModalComponent e={e} />);
