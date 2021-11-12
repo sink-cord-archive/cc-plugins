@@ -23,8 +23,8 @@ export default ({ persist, id }) => {
     // load patches
     let patches = [
         injectCss(),
-        keybindPatch(persist, stateNest, paletteEntries),
-        exposeApiPatch(persist),
+        keybindPatch(stateNest, paletteEntries),
+        exposeApiPatch(),
     ];
 
     // remove patches and reset custom entries
