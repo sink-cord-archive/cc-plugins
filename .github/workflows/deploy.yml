@@ -16,7 +16,7 @@ jobs:
               with:
                   node-version: "16"
 
-            - run: npm install --global sperm@0.0.24
+            - run: npm install --global sperm
 
               # Magic happens here:
               # - finds every folder in repo (which is why dist dir is hidden)
