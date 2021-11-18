@@ -2,15 +2,8 @@ const getRepoRoot = (repoUrl) => new URL("plugins-large.json", repoUrl).href;
 
 const getPluginUrl = (repoUrl, pluginUrl) => new URL(pluginUrl, repoUrl);
 
-async function getPlugins(repoUrl) {
-    const parsed = await (await fetch(getRepoRoot(repoUrl))).json();
-
-    return Object.keys(parsed).map((key) => {
-        let plugin = parsed[key];
-        plugin.url = key;
-        return plugin;
-    });
-}
+const getPlugins = async (repoUrl) =>
+    await (await fetch(getRepoRoot(repoUrl))).json();
 
 const combinePluginLists = async (repos) => {
     const repoPluginListPromise = repos.map(async (repo) =>

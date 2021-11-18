@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { log } from "@cumcord/utils/logger";
 import { entries as builtInEntries, builtInSource } from "../paletteEntries.js";
 import { openPalette, openPalettePromisified } from "../components/Palette.jsx";
@@ -6,7 +7,7 @@ import {
     openTextEntryPromise,
 } from "../components/TextEntryPalette.jsx";
 
-export default (nest) => {
+export default () => {
     window.commandPalette = {
         openPalette: (prompt, entries, markdown) => {
             openPalette(prompt, null, entries, markdown);
@@ -34,11 +35,11 @@ export default (nest) => {
             // don't let people take existing IDs
             if (builtInEntries.find((e) => e.id == id) != undefined)
                 throw "Register failed: Entry ID taken by a built in entry";
-            let index = nest.ghost.customEntries.findIndex((e) => e.id == id);
+            let index = persist.ghost.customEntries.findIndex((e) => e.id == id);
             if (index != -1)
-                throw `Register failed: Entry ID taken by entry from source ${nest.ghost.customEntries[index].source}`;
+                throw `Register failed: Entry ID taken by entry from source ${persist.ghost.customEntries[index].source}`;
 
-            nest.ghost.customEntries.push({
+            persist.ghost.customEntries.push({
                 id,
                 source,
                 label,
@@ -56,7 +57,7 @@ export default (nest) => {
             if (!source || source == "")
                 throw "Unregister failed: Please identify your source (string)";
 
-            let entries = nest.ghost.customEntries;
+            let entries = persist.ghost.customEntries;
             let index = entries.findIndex((e) => e.id == id);
             if (index == -1)
                 throw "Unregister failed: No entry with that ID could be found";
@@ -66,19 +67,19 @@ export default (nest) => {
 
             let removedEntry = entries[index];
             entries.splice(index, 1);
-            nest.store.customEntries = entries;
+            persist.store.customEntries = entries;
             return removedEntry;
         },
 
         unregisterSource(source) {
-            let entries = nest.ghost.customEntries;
+            let entries = persist.ghost.customEntries;
             let notSourceEntries = entries.filter((e) => e.source != source);
             if (notSourceEntries.length == entries.length) return undefined;
-            nest.store.customEntries = notSourceEntries;
+            persist.store.customEntries = notSourceEntries;
             return entries.filter((e) => e.source == source);
         },
 
-        getEntries: () => builtInEntries.concat(nest.ghost.customEntries),
+        getEntries: () => builtInEntries.concat(persist.ghost.customEntries),
     };
 
     log("|| COMMAND PALETTE || Initialised window.commandPalette API");
