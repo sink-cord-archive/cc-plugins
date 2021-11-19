@@ -1,7 +1,6 @@
 import restoreThemes from "./patches/restoreThemes";
 import prepareState from "./patches/prepareState";
 import fetchRepo from "./repoFetcher";
-import { loadTheme, unloadAll } from "./themeLoadUtil";
 
 export default ({ persist }) => {
     let patches = [];
