@@ -6,7 +6,7 @@ function loadTheme(theme) {
         throw new Error("theme was missing either id or css.");
 
     const unpatch = injectCSS(theme.CSS);
-    data.unpatchCache.store.set(theme.id, unpatch);
+    data.state.ghost.unpatchCache.set(theme.id, unpatch);
 }
 
 function unloadTheme(theme) {
@@ -20,8 +20,8 @@ function unloadTheme(theme) {
 }
 
 function unloadAll() {
-    data.unpatchCache.ghost.forEach((unpatch) => unpatch?.());
-    data.unpatchCache.ghost.clear();
+    data.state.ghost.unpatchCache.forEach((unpatch) => unpatch?.());
+    data.state.ghost.unpatchCache.clear();
 }
 
 export { loadTheme, unloadTheme, unloadAll };
