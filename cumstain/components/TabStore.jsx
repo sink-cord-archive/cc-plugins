@@ -37,10 +37,7 @@ export default () => {
         <ErrorBoundary>
             <div className="ysink_stain_cardcontainer">
                 {(themes ?? []).map((theme) => (
-                    <ThemeCard
-                        theme={theme}
-                        deleteHook={/* () => setThemes(undefined) */ rerender}
-                    />
+                    <ThemeCard theme={theme} deleteHook={rerender} />
                 ))}
             </div>
         </ErrorBoundary>

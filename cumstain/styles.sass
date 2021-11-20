@@ -33,7 +33,7 @@
 .ysink_stain_card
     padding: 1rem
     border: 1px solid var(--background-modifier-accent)
-    border-radius: 0.25rem
+    border-radius: 0.5rem
     display: flex
     flex-direction: column
     z-index: 1
@@ -64,6 +64,22 @@
 
     .ysink_stain_desc
         flex: 1
+
+    .ysink_stain_img
+        height: 13rem
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: center
+        margin: -1rem
+        margin-bottom: 1rem
+        border-radius: 0.5rem 0.5rem 0 0
+
+        div
+            font-size: 1.5rem
+            text-align: center
+            padding-top: calc((13rem / 2) - (1em / 2))
+            text-transform: uppercase
+            opacity: 0.8 // kinda hacky but oh well
 
 .ysink_stain_divide
     margin: 0 0 1rem 0

@@ -44,8 +44,6 @@ function removeTheme(theme) {
 function unloadAll() {
     data.state.ghost.unpatchCache.forEach((unpatch) => unpatch?.());
     data.state.ghost.unpatchCache.clear();
-    // broadcast update event
-    data.state.store.unpatchCache = data.state.ghost.unpatchCache;
 }
 
 export { loadTheme, unloadTheme, removeTheme, unloadAll };

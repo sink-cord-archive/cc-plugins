@@ -27,6 +27,13 @@ export default ({ theme, deleteHook /* react madness */ }) => {
     return (
         <div className="ysink_stain_card">
             <FormSection>
+                <div
+                    className="ysink_stain_img"
+                    style={{ backgroundImage: `url(${theme.media})` }}
+                >
+                    {theme.media ? [] : <FormText>No Image</FormText>}
+                </div>
+
                 <div className="ysink_stain_row">
                     <FormTitle tag="p" className="ysink_stain_title">
                         {theme.name}
