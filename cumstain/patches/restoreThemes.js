@@ -1,5 +1,5 @@
 import { persist } from "@cumcord/pluginData";
-import fetchRepo from "../repoFetcher";
+import fetchRepo from "../fetchRepo";
 import { loadTheme, unloadAll } from "../themeLoadUtil";
 
 export default async () => {
@@ -10,10 +10,11 @@ export default async () => {
         reposToLoad.map(async (repo) => [repo, await fetchRepo(repo)])
     );
 
-    const flatThemes = [];
+    /* const flatThemes = [];
     repos.forEach(([u, r]) => {
         flatThemes.push(...r.themes.map((t) => ({ ...t, repoUrl: u })));
-    });
+    }); */
+    const flatThemes = repos.flatMap(([u, r]) => r.themes.map((t) => ({ ...t, repoUrl: u })));
 
     const toLoad = persist.ghost.themes.filter((t) => t.enabled);
     flatThemes

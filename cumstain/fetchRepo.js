@@ -1,4 +1,4 @@
-import fetchTheme from "./themeFetcher";
+import fetchTheme from "./fetchTheme";
 
 async function getRepoManifest(url) {
     const manifestURL = new URL("repo.json", url).href;

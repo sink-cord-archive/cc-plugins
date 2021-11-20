@@ -1,0 +1,28 @@
+.ysink_stain_tabbar 
+    padding: .5rem 1rem
+    display: grid
+    grid-auto-flow: column
+    grid-auto-columns: 7rem
+
+    .ysink_stain_button *
+        cursor: pointer
+
+    &> *
+        margin-right: 1rem
+        &:last-child
+            margin-right: 0
+        
+        padding: .2rem
+        border-radius: .3rem
+        min-width: 5rem
+        text-align: center
+        
+        .theme-dark &
+            background: #fff2
+            &.ysink_stain_selected
+                background: #fff4
+
+        .theme-light &
+            background: #0001
+            &.ysink_stain_selected
+                background: #0003
