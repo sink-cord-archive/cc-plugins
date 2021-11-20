@@ -14,7 +14,7 @@ export default (db_cache) =>
 
         // a bit hacky but it works - get the user ID from the avatar URL,
         // and only move the avatar downwards if they are present in the database
-        let avatarUrl = wrapper.props?.children?.[0]?.props?.src?.split?.("/");
+        let avatarUrl = wrapper.props?.children?.[0]?.props?.src?.split("/");
         let userId = avatarUrl?.[avatarUrl.length - 2];
         if (!avatarUrl || !db_cache.get(userId)) return;
 

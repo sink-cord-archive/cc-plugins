@@ -1,20 +1,11 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
+import { find, findByProps } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
-const UserBanner = findByDisplayName("UserBanner", false);
-import { persist } from "@cumcord/pluginData";
+const UserBanner = find((m) => m?.default?.displayName == "UserBanner");
 
 const { popoutBannerPremium } = findByProps("popoutBannerPremium");
 
 export default (db_cache) =>
-    after("default", UserBanner, ([{ bannerType, user }], ret) => {
-        if (
-            (persist.ghost.classicPopout === true &&
-                bannerType === UserBanner.UserBannerTypes.POPOUT) ||
-            (persist.ghost.classicProfile === true &&
-                bannerType === UserBanner.UserBannerTypes.PROFILE)
-        )
-            return;
-
+    after("default", UserBanner, ([{ user }], ret) => {
         if (!user || !ret || user.banner) return;
         let bg_img = db_cache.get(user.id)?.img;
         if (!bg_img) return;
