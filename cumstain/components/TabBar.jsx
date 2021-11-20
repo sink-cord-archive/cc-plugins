@@ -8,7 +8,6 @@ const FormDivider = findByDisplayName("FormDivider");
 
 export default ({ items }) => {
     let [selected, setSelected] = useState(0);
-    console.log(items);
 
     return (
         <div className="ysink_stain_tabbar_root">
