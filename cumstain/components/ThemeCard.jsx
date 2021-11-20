@@ -5,15 +5,11 @@ import { persist, state } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../themeLoadUtil";
 
-const useReducer = React.useReducer;
-
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 const FormDivider = findByDisplayName("FormDivider");
-//const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-//const TextInput = findByDisplayName("TextInput");
 const Switch = findByDisplayName("Switch");
 
 const themeIsEnabled = (id) => {
@@ -25,11 +21,8 @@ const themeIsEnabled = (id) => {
 
 const themeIsInstalled = (id) => persist.ghost.themes.some((t) => t.id === id);
 
-export default ({ theme }) => {
-    useNest(persist, false, (type, path) => path?.[0] === "themes");
-
-    // this is pure cancer but if I need React to re-render on toggle, so be it
-    const [, forceUpdate] = useReducer((x) => ~x, 0);
+export default ({ theme, deleteHook /* react madness */ }) => {
+    useNest(persist);
 
     return (
         <div className="ysink_stain_card">
@@ -44,7 +37,7 @@ export default ({ theme }) => {
                             theme={theme}
                             onClick={() => {
                                 removeTheme(theme);
-                                forceUpdate();
+                                deleteHook?.();
                             }}
                         />
                     ) : (
@@ -53,13 +46,11 @@ export default ({ theme }) => {
 
                     <Switch
                         checked={themeIsEnabled(theme.id)}
-                        onChange={() => {
+                        onChange={() =>
                             themeIsEnabled(theme.id)
                                 ? unloadTheme(theme)
-                                : loadTheme(theme);
-
-                            forceUpdate();
-                        }}
+                                : loadTheme(theme)
+                        }
                     />
                 </div>
 

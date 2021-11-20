@@ -2,8 +2,7 @@ import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import fetchRepo from "../fetchRepo";
 
-const useState = React.useState;
-const useEffect = React.useEffect;
+const { useState, useEffect, useReducer } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "./ThemeCard";
@@ -18,7 +17,7 @@ async function getAll() {
 }
 
 export default () => {
-    useNest(persist/* , false, (type, path) => path?.[0] === "repos" */);
+    useNest(persist, false, (type, path) => path?.[0] === "repos");
 
     let [repos, setRepos] = useState(undefined);
     let [themes, setThemes] = useState(undefined);
@@ -30,11 +29,18 @@ export default () => {
             });
     });
 
+    // it's more sensible to use () => setThemes(undefined) as the deleteHook
+    // however that makes all the themes disappear briefly as it refetches unnecessarily
+    const [, rerender] = useReducer((x) => ~x, 0);
+
     return (
         <ErrorBoundary>
             <div className="ysink_stain_cardcontainer">
                 {(themes ?? []).map((theme) => (
-                    <ThemeCard theme={theme} />
+                    <ThemeCard
+                        theme={theme}
+                        deleteHook={/* () => setThemes(undefined) */ rerender}
+                    />
                 ))}
             </div>
         </ErrorBoundary>
