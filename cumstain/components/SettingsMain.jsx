@@ -2,7 +2,8 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import TabBar from "./TabBar";
-import Store from "./Store";
+import TabInstalled from "./TabInstalled";
+import TabStore from "./TabStore";
 const FormTitle = findByDisplayName("FormTitle");
 const FormSection = findByDisplayName("FormSection");
 
@@ -16,11 +17,11 @@ export default () => {
                     items={[
                         {
                             text: "Store",
-                            component: Store,
+                            component: TabStore,
                         },
                         {
                             text: "Installed",
-                            component: () => <div>installed</div>,
+                            component: TabInstalled,
                         },
                     ]}
                 />

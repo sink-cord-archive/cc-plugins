@@ -1,4 +1,4 @@
-.ysink_stain_tabbar 
+.ysink_stain_tabbar
     padding: .5rem 1rem
     display: grid
     grid-auto-flow: column
@@ -9,20 +9,69 @@
 
     &> *
         margin-right: 1rem
-        &:last-child
-            margin-right: 0
-        
         padding: .2rem
         border-radius: .3rem
         min-width: 5rem
         text-align: center
-        
-        .theme-dark &
-            background: #fff2
-            &.ysink_stain_selected
-                background: #fff4
 
-        .theme-light &
-            background: #0001
-            &.ysink_stain_selected
+        background: none
+
+        &.ysink_stain_selected
+            .theme-dark &
+                background: #fff4
+            .theme-light &
                 background: #0003
+
+        &:last-child
+            margin-right: 0
+
+.ysink_stain_cardcontainer
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: .75rem
+
+.ysink_stain_card
+    padding: 1rem
+    border: 1px solid var(--background-modifier-accent)
+    border-radius: 0.25rem
+    display: flex
+    flex-direction: column
+    z-index: 1
+    background-color: var(--deprecated-card-bg)
+
+    .ysink_stain_title
+        font-size: 1rem
+        padding-bottom: 0.25rem
+        display: inline
+        flex: 1
+        margin: 0
+
+    .ysink_stain_button
+        display: inline
+        padding: 0
+        & > div
+            padding: 2px 16px
+
+    .ysink_stain_row
+        display: flex
+        &> :first-child
+            flex: 1
+        &> *
+            flex: unset
+
+    .ysink_stain_author_licence
+        font-style: italic
+
+    .ysink_stain_desc
+        flex: 1
+
+.ysink_stain_divide
+    margin: 0 0 1rem 0
+    //.ysink_zone_modal &
+    //    margin: .5rem 0
+    .ysink_stain_card &
+        margin: .2rem 0
+
+.ysink_stain_delete
+    margin-left: .5rem
+    fill: var(--interactive-normal)

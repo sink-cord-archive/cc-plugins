@@ -1,33 +1,26 @@
 import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
-import fetchRepo from "../fetchRepo";
 
 const useState = React.useState;
 const useEffect = React.useEffect;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "./ThemeCard";
+import fetchRepo from "../fetchRepo";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
-const getThemes = (repos) => repos.flatMap((r) => r.themes);
-
-async function getAll() {
-    let repos = await getRepos();
-    return { repos, themes: getThemes(repos) };
-}
+const getThemes = async () =>
+    (await getRepos())
+        .flatMap((r) => r.themes)
+        .filter((t1) => persist.ghost.themes.some((t2) => t1.id === t2.id));
 
 export default () => {
-    useNest(persist);
+    useNest(persist, false, (type, path) => path?.[0] === "themes");
 
-    let [repos, setRepos] = useState(undefined);
     let [themes, setThemes] = useState(undefined);
     useEffect(() => {
-        if (!repos || !themes)
-            getAll().then(({ repos, themes }) => {
-                setRepos(repos);
-                setThemes(themes);
-            });
+        if (!themes) getThemes().then(setThemes);
     });
 
     return (

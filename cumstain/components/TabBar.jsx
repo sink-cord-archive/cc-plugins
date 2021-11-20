@@ -25,7 +25,7 @@ export default ({ items }) => {
                 ))}
             </div>
 
-            <FormDivider />
+            <FormDivider className="ysink_stain_divide" />
 
             <div className="ysink_stain_tabbar_content">
                 {createElement(items[selected].component)}
