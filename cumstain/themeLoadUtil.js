@@ -13,8 +13,11 @@ function loadTheme(theme) {
     );
     let toPush = { ...theme };
     toPush.enabled = true;
-    if (themeCacheIndex === -1) data.persist.store.themes.push(toPush);
-    else data.persist.store.themes[themeCacheIndex] = toPush;
+    if (themeCacheIndex === -1) data.persist.ghost.themes.push(toPush);
+    else data.persist.ghost.themes[themeCacheIndex] = toPush;
+
+    // trigger set event
+    data.persist.store.themes = data.persist.ghost.themes;
 }
 
 function unloadTheme(theme) {
@@ -30,8 +33,11 @@ function unloadTheme(theme) {
     );
     let toPush = { ...theme };
     toPush.enabled = false;
-    if (themeCacheIndex === -1) data.persist.store.themes.push(toPush);
-    else data.persist.store.themes[themeCacheIndex] = toPush;
+    if (themeCacheIndex === -1) data.persist.ghost.themes.push(toPush);
+    else data.persist.ghost.themes[themeCacheIndex] = toPush;
+    
+    // trigger set event
+    data.persist.store.themes = data.persist.ghost.themes;
 }
 
 function removeTheme(theme) {
@@ -56,7 +62,10 @@ function reloadTheme(theme) {
         (t) => t.id === theme.id
     );
     if (themeCacheIndex === -1) return;
-    else data.persist.store.themes[themeCacheIndex] = toPush;
+    else data.persist.ghost.themes[themeCacheIndex] = toPush;
+    
+    // trigger set event
+    data.persist.store.themes = data.persist.ghost.themes;
 }
 
 function unloadAll() {
