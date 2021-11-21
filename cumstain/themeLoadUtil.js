@@ -8,25 +8,30 @@ function loadTheme(theme) {
     const unpatch = injectCSS(theme.CSS);
     data.state.ghost.unpatchCache.set(theme.id, unpatch);
 
-    data.persist.store.themes = data.persist.ghost.themes.filter(
-        (t) => t.id !== theme.id
+    const themeCacheIndex = data.persist.ghost.themes.findIndex(
+        (t) => t.id === theme.id
     );
-    data.persist.store.themes.push({ ...theme, enabled: true });
+    let toPush = { ...theme };
+    toPush.enabled = true;
+    if (themeCacheIndex === -1) data.persist.store.themes.push(toPush);
+    else data.persist.store.themes[themeCacheIndex] = toPush;
 }
 
 function unloadTheme(theme) {
     if (!theme?.id) throw new Error("theme was missing id.");
 
     const unpatch = data.state.ghost.unpatchCache.get(theme.id);
-    if (!unpatch) throw new Error("theme was not loaded.");
 
-    unpatch();
+    unpatch?.();
     data.state.ghost.unpatchCache.delete(theme.id);
 
-    data.persist.store.themes = data.persist.ghost.themes.filter(
-        (t) => t.id !== theme.id
+    const themeCacheIndex = data.persist.ghost.themes.findIndex(
+        (t) => t.id === theme.id
     );
-    data.persist.store.themes.push({ ...theme, enabled: false });
+    let toPush = { ...theme };
+    toPush.enabled = false;
+    if (themeCacheIndex === -1) data.persist.store.themes.push(toPush);
+    else data.persist.store.themes[themeCacheIndex] = toPush;
 }
 
 function removeTheme(theme) {
@@ -41,9 +46,22 @@ function removeTheme(theme) {
     );
 }
 
+function reloadTheme(theme) {
+    const unpatch = data.state.ghost.unpatchCache.get(theme.id);
+    unpatch?.(theme.CSS);
+
+    let toPush = { ...theme };
+    toPush.enabled = true;
+    const themeCacheIndex = data.persist.ghost.themes.findIndex(
+        (t) => t.id === theme.id
+    );
+    if (themeCacheIndex === -1) return;
+    else data.persist.store.themes[themeCacheIndex] = toPush;
+}
+
 function unloadAll() {
     data.state.ghost.unpatchCache.forEach((unpatch) => unpatch?.());
     data.state.ghost.unpatchCache.clear();
 }
 
-export { loadTheme, unloadTheme, removeTheme, unloadAll };
+export { loadTheme, unloadTheme, reloadTheme, removeTheme, unloadAll };

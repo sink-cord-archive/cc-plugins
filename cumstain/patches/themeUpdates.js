@@ -1,7 +1,12 @@
 import { persist } from "@cumcord/pluginData";
 import { log } from "@cumcord/utils/logger";
 import fetchRepo from "../fetchRepo";
-import { loadTheme, removeTheme, unloadTheme } from "../themeLoadUtil";
+import {
+    loadTheme,
+    reloadTheme,
+    removeTheme,
+    unloadTheme,
+} from "../themeLoadUtil";
 
 const checkAndApplyUpdates = async () => {
     log("|| CUMSTAIN || Started periodic theme update check");
@@ -13,11 +18,9 @@ const checkAndApplyUpdates = async () => {
         const themeInCache = persist.ghost.themes.find(
             (t) => t.id === theme.id
         );
-        if (!themeInCache || themeInCache.CSS == theme.CSS) continue;
+        if (!themeInCache?.enabled || themeInCache.CSS == theme.CSS) continue;
 
-        removeTheme(themeInCache);
-        loadTheme(theme);
-        if (!themeInCache.enabled) unloadTheme(theme);
+        reloadTheme(theme);
         log(`|| CUMSTAIN || Updated theme ${theme.name}`);
     }
 
