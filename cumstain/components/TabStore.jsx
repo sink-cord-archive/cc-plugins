@@ -6,6 +6,8 @@ const { useState, useEffect, useReducer } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "./ThemeCard";
+import SearchBar from "./SearchBar";
+import fuzzy from "../fuzzy";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -18,6 +20,8 @@ async function getAll() {
 
 export default () => {
     useNest(persist, false, (type, path) => path?.[0] === "repos");
+
+    const [search, setSearch] = useState("");
 
     let [repos, setRepos] = useState(undefined);
     let [themes, setThemes] = useState(undefined);
@@ -35,8 +39,10 @@ export default () => {
 
     return (
         <ErrorBoundary>
+            <SearchBar query={search} onChange={setSearch} />
+
             <div className="ysink_stain_cardcontainer">
-                {(themes ?? []).map((theme) => (
+                {fuzzy(themes ?? [], search).map((theme) => (
                     <ThemeCard theme={theme} deleteHook={rerender} />
                 ))}
             </div>
