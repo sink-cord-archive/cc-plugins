@@ -6,6 +6,7 @@ const { useState, useEffect } = React;
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "./ThemeCard";
 import fetchRepo from "../fetchRepo";
+import InstallBar from "./InstallBar";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -24,6 +25,7 @@ export default () => {
 
     return (
         <ErrorBoundary>
+            <InstallBar />
             <div className="ysink_stain_cardcontainer">
                 {(themes ?? []).map((theme) => (
                     <ThemeCard

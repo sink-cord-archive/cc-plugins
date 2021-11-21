@@ -15,14 +15,8 @@ export default () => {
 
                 <TabBar
                     items={[
-                        {
-                            text: "Store",
-                            component: TabStore,
-                        },
-                        {
-                            text: "Installed",
-                            component: TabInstalled,
-                        },
+                        { text: "Installed", component: TabInstalled },
+                        { text: "Store", component: TabStore },
                     ]}
                 />
             </FormSection>

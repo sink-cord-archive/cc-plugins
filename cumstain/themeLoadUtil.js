@@ -11,7 +11,7 @@ function loadTheme(theme) {
     data.persist.store.themes = data.persist.ghost.themes.filter(
         (t) => t.id !== theme.id
     );
-    data.persist.store.themes.push({ id: theme.id, enabled: true });
+    data.persist.store.themes.push({ ...theme, enabled: true });
 }
 
 function unloadTheme(theme) {
@@ -26,7 +26,7 @@ function unloadTheme(theme) {
     data.persist.store.themes = data.persist.ghost.themes.filter(
         (t) => t.id !== theme.id
     );
-    data.persist.store.themes.push({ id: theme.id, enabled: false });
+    data.persist.store.themes.push({ ...theme, enabled: false });
 }
 
 function removeTheme(theme) {
