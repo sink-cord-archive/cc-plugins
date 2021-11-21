@@ -16,7 +16,7 @@ export default () => {
             <div class="ysink_stain_quickcss">
                 <Editor
                     className="ysink_stain_editorroot"
-                    value={persist.ghost.quickCSS}
+                    value={persist.ghost.quickCSS ?? ""}
                     onValueChange={(v) => {
                         persist.store.quickCSS = v;
                         reloadCSS();
