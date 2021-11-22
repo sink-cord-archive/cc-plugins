@@ -60,7 +60,7 @@ export default () => {
                     <NoReposSplash store={persist.store} />
                 ) : (
                     <div className="ysink_zone_card_container">
-                        {fuzzySearch(repoPlugins, search).map((p) => (
+                        {fuzzySearch(repoPlugins, search).reverse().map((p) => (
                             <PluginCard plugin={p} />
                         ))}
                     </div>
