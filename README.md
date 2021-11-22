@@ -65,6 +65,7 @@ A port of @dperolio's plugin [here](https://github.com/vizality-community/channe
 <details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/channel-activity"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
+
 ### [VZ] Create Emote
 
 Port of [emoji-util by A User](https://github.com/A-User-s-Discord-Plugins/emoji-util) to cc.
@@ -73,6 +74,7 @@ Port of [emoji-util by A User](https://github.com/A-User-s-Discord-Plugins/emoji
 <details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/create-emote"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
+
 ### [GM] Emoji Free
 
 Use animated emojis / emojis from other servers without nitro.
