@@ -5,21 +5,31 @@ import "prismjs/components/prism-css";
 import { persist, reloadCSS } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 
+const { useState, useCallback } = React;
+
 import { ErrorBoundary } from "@cumcord/ui/components";
 
 export default () => {
-    // this component is very noisy on nest sets & gets
-    useNest(persist);
+    const [css, setCss] = useState(persist.ghost.quickCSS);
+
+    const saveCss = (v) => {
+        persist.store.quickCSS = v;
+        reloadCSS();
+    };
+    const saveCssThrottle = useCallback(
+        _.throttle(saveCss, 250, { leading: true, trailing: true }),
+        []
+    );
 
     return (
         <ErrorBoundary>
             <div class="ysink_stain_quickcss">
                 <Editor
                     className="ysink_stain_editorroot"
-                    value={persist.ghost.quickCSS ?? ""}
+                    value={css ?? ""}
                     onValueChange={(v) => {
-                        persist.store.quickCSS = v;
-                        reloadCSS();
+                        setCss(v);
+                        saveCssThrottle(v);
                     }}
                     highlight={(code) => highlight(code, languages.css)}
                     padding={10}
