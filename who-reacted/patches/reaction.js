@@ -63,6 +63,9 @@ export default async () => {
         return ret;
     });
 
+    // re-render all reactions so that the first reactions visible as the plugin loads wont be unpatched
+    forceUpdateAllReactions();
+
     return () => {
         unpatch();
         forceUpdateAllReactions();
