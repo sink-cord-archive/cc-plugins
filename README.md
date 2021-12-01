@@ -58,11 +58,11 @@ and such a huge quantity of CSS is hard on performance. To fix this, I implement
 
 <img height="150" src="https://yellowsink.github.io/cc-plugins/assets/english_simplified.png" />
 
-<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
 
-<details><summary>Install from source</summary> -->
+<details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
-<!-- </details> -->
+</details>
 
 ## Plugin Ports
 
