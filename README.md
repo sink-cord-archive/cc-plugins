@@ -64,6 +64,18 @@ and such a huge quantity of CSS is hard on performance. To fix this, I implement
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
 
+### QuickReply
+
+A plugin to use faster, Telegram-style keybinds in Discord.
+
+Originally made by Relative, but he had [no intention of maintaining it](https://github.com/relative/cumcord-quickreply/pull/2) so here's a fork.
+
+<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/cc-quickreply"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+
+<details><summary>Install from source</summary> -->
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/cc-quickreply"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+<!-- </details> -->
+
 ## Plugin Ports
 
 ### [VZ] Channel Activity
