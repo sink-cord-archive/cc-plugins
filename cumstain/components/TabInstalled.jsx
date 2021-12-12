@@ -10,8 +10,9 @@ import InstallBar from "./InstallBar";
 import fuzzy from "../fuzzy";
 import SearchBar from "./SearchBar";
 import CompatFilterDropdown from "./CompatFilterDropdown";
+import NoThemes from "./NoThemes";
 
-export default () => {
+export default ({goTo}) => {
     useNest(persist /* , false, (type, path) => path?.[0] === "themes" */);
 
     const [search, setSearch] = useState("");
@@ -29,18 +30,22 @@ export default () => {
                 <CompatFilterDropdown {...{ filterMode, setFilterMode }} />
             </div>
 
-            <div className="ysink_stain_cardcontainer">
-                {fuzzy(persist.ghost.themes, search)
-                    .filter(
-                        (t) =>
-                            filterMode === 0 ||
-                            (filterMode === 1 && !t.compat) ||
-                            (filterMode === 2 && t.compat)
-                    )
-                    .map((theme) => (
-                        <ThemeCard theme={theme} deleteHook={rerender} />
-                    ))}
-            </div>
+            {persist.ghost.themes.length === 0 ? (
+                <NoThemes goToStore={() => goTo(1)} />
+            ) : (
+                <div className="ysink_stain_cardcontainer">
+                    {fuzzy(persist.ghost.themes, search)
+                        .filter(
+                            (t) =>
+                                filterMode === 0 ||
+                                (filterMode === 1 && !t.compat) ||
+                                (filterMode === 2 && t.compat)
+                        )
+                        .map((theme) => (
+                            <ThemeCard theme={theme} deleteHook={rerender} />
+                        ))}
+                </div>
+            )}
         </ErrorBoundary>
     );
 };
