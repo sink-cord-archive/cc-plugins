@@ -54,6 +54,16 @@ and such a huge quantity of CSS is hard on performance. To fix this, I implement
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/usrbg"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
 
+### English (Simplified)
+
+<img height="150" src="https://yellowsink.github.io/cc-plugins/assets/english_simplified.png" />
+
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+
+<details><summary>Install from source</summary>
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/english-simplified"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+</details>
+
 ### QuickReply
 
 A plugin to use faster, Telegram-style keybinds in Discord.
@@ -96,4 +106,17 @@ A port of [Nitro Spoof for GooseMod](https://github.com/luimu64/nitro-spoof/tree
 
 <details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/emoji-free"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+</details>
+
+### [PC] Who Reacted?
+
+See who reacted to a message with ease!
+A port of [Marmota's Who Reacted? for PC](https://github.com/jaimeadf/who-reacted), credit for a lot of code to them.
+
+Ported with original author's permission.
+
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/who-reacted"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+
+<details><summary>Install from source</summary>
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/who-reacted"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
