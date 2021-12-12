@@ -62,21 +62,39 @@
     .ysink_stain_desc
         flex: 1
 
-    .ysink_stain_img
-        height: 13rem
-        background-repeat: no-repeat
-        background-size: cover
-        background-position: center
-        margin: -1rem
+    .ysink_stain_carousel
+        // carousels have awful css, partly because i cant assign a class to <SmallMediaCarousel />, so sorry about this :\
         margin-bottom: 1rem
-        border-radius: 0.5rem 0.5rem 0 0
 
-        div
-            font-size: 1.5rem
-            text-align: center
-            padding-top: calc((13rem / 2) - (1em / 2))
-            text-transform: uppercase
-            opacity: 0.8 // kinda hacky but oh well
+        &> div:not(.ysink_stain_noimg) > :last-child, .ysink_stain_noimg > div > :last-child
+            height: 2.25rem
+
+        &> div
+            border-radius: .5rem
+        
+        &> :not(.ysink_stain_noimg)
+            .theme-dark &
+                background: #0005
+            .theme-light &
+                background: #000d
+
+        .ysink_stain_noimg
+            display: grid
+            div
+                // the grid layer trick!!!
+                grid-area: 1 / 1
+
+                &:not(.ysink_stain_noimgtxt)
+                    visibility: hidden
+                    z-index: -1
+                
+                &.ysink_stain_noimgtxt
+                    grid-area: 1 / 1
+                    font-size: 1.5rem
+                    text-align: center
+                    padding-top: 35% // close enough ish
+                    text-transform: uppercase
+                    opacity: 0.8 // kinda hacky but oh well
 
 .ysink_stain_divide
     margin: 0 0 1rem 0
