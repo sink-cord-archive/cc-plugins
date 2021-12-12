@@ -8,6 +8,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "./ThemeCard";
 import SearchBar from "./SearchBar";
 import fuzzy from "../fuzzy";
+import CompatFilterDropdown from "./CompatFilterDropdown";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -25,6 +26,7 @@ export default () => {
 
     let [repos, setRepos] = useState(undefined);
     let [themes, setThemes] = useState(undefined);
+    let [filterMode, setFilterMode] = useState(0);
     useEffect(() => {
         if (!repos || !themes)
             getAll().then(({ repos, themes }) => {
@@ -39,12 +41,22 @@ export default () => {
 
     return (
         <ErrorBoundary>
-            <SearchBar query={search} onChange={setSearch} />
+            <div className="ysink_stain_search_row">
+                <SearchBar query={search} onChange={setSearch} />
+                <CompatFilterDropdown {...{ filterMode, setFilterMode }} />
+            </div>
 
             <div className="ysink_stain_cardcontainer">
-                {fuzzy(themes ?? [], search).map((theme) => (
-                    <ThemeCard theme={theme} deleteHook={rerender} />
-                ))}
+                {fuzzy(themes ?? [], search)
+                    .filter(
+                        (t) =>
+                            filterMode === 0 ||
+                            (filterMode === 1 && !t.compat) ||
+                            (filterMode === 2 && t.compat)
+                    )
+                    .map((theme) => (
+                        <ThemeCard theme={theme} deleteHook={rerender} />
+                    ))}
             </div>
         </ErrorBoundary>
     );
