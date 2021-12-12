@@ -41,6 +41,7 @@
 
     .ysink_stain_title
         font-size: 1rem
+        padding-top: .2rem
         padding-bottom: 0.25rem
         display: inline
         flex: 1
@@ -54,10 +55,7 @@
 
     .ysink_stain_row
         display: flex
-        &> :first-child
-            flex: 1
-        &> *
-            flex: unset
+        margin-bottom: .5rem
 
     .ysink_stain_author_licence
         font-style: italic
@@ -89,7 +87,7 @@
         margin: .2rem 0
 
 .ysink_stain_delete
-    margin-left: .5rem
+    margin-right: .5rem
     fill: var(--interactive-normal)
 
 .ysink_stain_installbar
@@ -111,3 +109,18 @@
     font-family: var(--font-code)
     font-size: .9rem
     line-height: 1.1rem
+
+.ysink_stain_badge
+    width: 1.5rem
+    height: 1.5rem
+    margin-right: .5rem
+    border-radius: 50%
+
+    &.ysink_stain_bd
+        padding: .25rem
+        background: #040405
+    
+    &.ysink_stain_cc
+        padding: .1rem
+        background: #f8f8f8
+        background: #7289DA

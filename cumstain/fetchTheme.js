@@ -38,7 +38,6 @@ export default async (url, repoUrl) => {
         try {
             return await getBdTheme(url, repoUrl);
         } catch (e2) {
-            console.log(e1, e2)
             let err = new Error("Failed to fetch theme - both CC and BD either failed to fetch or failed to parse");
             err.e1 = e1;
             err.e2 = e2;

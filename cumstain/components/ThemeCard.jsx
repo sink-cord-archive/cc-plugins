@@ -4,6 +4,8 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist, state } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../themeLoadUtil";
+import BDBadge from "./BDBadge";
+import CCBadge from "./CCBadge";
 
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
 const FormTitle = findByDisplayName("FormTitle");
@@ -35,6 +37,8 @@ export default ({ theme, deleteHook /* react madness */ }) => {
                 </div>
 
                 <div className="ysink_stain_row">
+                    {theme.compat ? <BDBadge /> : <CCBadge />}
+
                     <FormTitle tag="p" className="ysink_stain_title">
                         {theme.name}
                     </FormTitle>
