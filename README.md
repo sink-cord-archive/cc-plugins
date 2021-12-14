@@ -10,6 +10,7 @@ This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins.
 ## CC Exclusives
 
 ### The Cum Zone
+<img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumzone.png" />
 
 The Cum Zone is a plugin store accessed from inside your client, in a similar vein to the equivalent feature in [Impregnate](https://github.com/Cumcord/Impregnate).
 
