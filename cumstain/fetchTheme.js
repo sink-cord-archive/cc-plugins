@@ -21,9 +21,7 @@ async function getCcTheme(url, repoUrl) {
         new URL(url, repoUrl).origin
     );
     
-    const resp = await fetch(manifestUrl.href)
-    if (!resp.ok) throw "fail";
-    const manifest = await (resp).json();
+    const manifest = await (await fetch(manifestUrl.href)).json();
 
     return {
         id: url,
@@ -36,14 +34,14 @@ async function getCcTheme(url, repoUrl) {
 export default async (url, repoUrl) => {
     try {
         return await getCcTheme(url, repoUrl);
-    } catch {}
-
-    try {
-        return await getBdTheme(url, repoUrl);
-    } catch {
-        console.log("caught 2!")
-        throw new Error(
-            "Failed to fetch theme - both CC and BD either failed to fetch or failed to parse"
-        );
+    } catch (e1) {
+        try {
+            return await getBdTheme(url, repoUrl);
+        } catch (e2) {
+            let err = new Error("Failed to fetch theme - both CC and BD either failed to fetch or failed to parse");
+            err.e1 = e1;
+            err.e2 = e2;
+            throw err;
+        }
     }
 };

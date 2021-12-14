@@ -28,7 +28,7 @@ export default ({ items }) => {
             <FormDivider className="ysink_stain_divide" />
 
             <div className="ysink_stain_tabbar_content">
-                {createElement(items[selected].component)}
+                {createElement(items[selected].component, {goTo: setSelected})}
             </div>
         </div>
     );

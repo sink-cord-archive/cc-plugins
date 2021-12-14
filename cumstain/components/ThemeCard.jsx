@@ -4,8 +4,11 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist, state } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../themeLoadUtil";
+import BDBadge from "./BDBadge";
+import CCBadge from "./CCBadge";
 
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
+import MediaCarousel from "./MediaCarousel";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
@@ -27,14 +30,11 @@ export default ({ theme, deleteHook /* react madness */ }) => {
     return (
         <div className="ysink_stain_card">
             <FormSection>
-                <div
-                    className="ysink_stain_img"
-                    style={{ backgroundImage: `url(${theme.media})` }}
-                >
-                    {theme.media ? [] : <FormText>No Image</FormText>}
-                </div>
+                <MediaCarousel media={theme.media} />
 
                 <div className="ysink_stain_row">
+                    {theme.compat ? <BDBadge /> : <CCBadge />}
+
                     <FormTitle tag="p" className="ysink_stain_title">
                         {theme.name}
                     </FormTitle>

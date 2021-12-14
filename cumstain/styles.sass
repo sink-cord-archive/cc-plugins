@@ -41,7 +41,7 @@
 
     .ysink_stain_title
         font-size: 1rem
-        padding-bottom: 0.25rem
+        padding-top: .2rem
         display: inline
         flex: 1
         margin: 0
@@ -54,10 +54,7 @@
 
     .ysink_stain_row
         display: flex
-        &> :first-child
-            flex: 1
-        &> *
-            flex: unset
+        margin-bottom: .5rem
 
     .ysink_stain_author_licence
         font-style: italic
@@ -65,21 +62,39 @@
     .ysink_stain_desc
         flex: 1
 
-    .ysink_stain_img
-        height: 13rem
-        background-repeat: no-repeat
-        background-size: cover
-        background-position: center
-        margin: -1rem
+    .ysink_stain_carousel
+        // carousels have awful css, partly because i cant assign a class to <SmallMediaCarousel />, so sorry about this :\
         margin-bottom: 1rem
-        border-radius: 0.5rem 0.5rem 0 0
 
-        div
-            font-size: 1.5rem
-            text-align: center
-            padding-top: calc((13rem / 2) - (1em / 2))
-            text-transform: uppercase
-            opacity: 0.8 // kinda hacky but oh well
+        &> div:not(.ysink_stain_noimg) > :last-child, .ysink_stain_noimg > div > :last-child
+            height: 2.25rem
+
+        &> div
+            border-radius: .5rem
+        
+        &> :not(.ysink_stain_noimg)
+            .theme-dark &
+                background: #0005
+            .theme-light &
+                background: #000d
+
+        .ysink_stain_noimg
+            display: grid
+            div
+                // the grid layer trick!!!
+                grid-area: 1 / 1
+
+                &:not(.ysink_stain_noimgtxt)
+                    visibility: hidden
+                    z-index: -1
+                
+                &.ysink_stain_noimgtxt
+                    grid-area: 1 / 1
+                    font-size: 1.5rem
+                    text-align: center
+                    padding-top: 35% // close enough ish
+                    text-transform: uppercase
+                    opacity: 0.8 // kinda hacky but oh well
 
 .ysink_stain_divide
     margin: 0 0 1rem 0
@@ -89,7 +104,7 @@
         margin: .2rem 0
 
 .ysink_stain_delete
-    margin-left: .5rem
+    margin-right: .5rem
     fill: var(--interactive-normal)
 
 .ysink_stain_installbar
@@ -104,6 +119,20 @@
 .ysink_stain_searchbar
     margin: .75rem 0
 
+.ysink_stain_search_row
+    display: flex
+    gap: .75rem
+    margin: .75rem 0
+
+    .ysink_stain_dropdown
+        height: 2.25rem
+        flex-basis: 10rem
+        padding-top: .3rem
+
+    .ysink_stain_searchbar
+        margin: unset
+        flex: 1
+
 .ysink_stain_editorroot
     background: tranparent
     color: #c5c8c6
@@ -111,3 +140,33 @@
     font-family: var(--font-code)
     font-size: .9rem
     line-height: 1.1rem
+
+.ysink_stain_badge
+    width: 1.5rem
+    height: 1.5rem
+    margin-right: .5rem
+    border-radius: 50%
+
+    &.ysink_stain_bd
+        padding: .25rem
+        background: #040405
+
+    &.ysink_stain_cc
+        padding: .1rem
+        background: #f8f8f8
+        background: #7289DA
+
+.ysink_stain_titlerow
+    display: flex
+    .ysink_stain_vertxt
+        font-style: italic
+
+.ysink_stain_nothemes
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 15rem
+    gap: .5rem
+
+    &> *
+        flex: 0
