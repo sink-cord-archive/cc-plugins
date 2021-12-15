@@ -107,7 +107,7 @@ const RepoModalComponent = ({ e }) => {
                         <FormDivider className="ysink_zone_divide" />
 
                         {persist.ghost.repos.length == 0 ? (
-                            <NoReposSplash store={persist.store} />
+                            <NoReposSplash />
                         ) : (
                             persist.ghost.repos.map((repo) => (
                                 <RepoCard repo={repo} />

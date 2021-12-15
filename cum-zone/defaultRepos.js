@@ -1,3 +1,5 @@
+import { persist } from "@cumcord/pluginData"
+
 const defaultRepos = [
     {
         url: "https://cumcordplugins.github.io/Condom/",
@@ -8,5 +10,5 @@ const defaultRepos = [
 ];
 
 export default (store) => {
-    store.repos = defaultRepos;
+    persist.store.repos = defaultRepos.slice();
 };
