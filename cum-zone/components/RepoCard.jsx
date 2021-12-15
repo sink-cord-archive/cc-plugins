@@ -8,7 +8,7 @@ const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const Badges = cumcord.modules.webpack.findByProps("BadgeShapes");
 
 export default ({ repo }) => (
-    <div className="ysink_zone_card">
+    <div className="ysink_zone_card ysink_zone_repocard">
         <div className="ysink_zone_row">
             <div>
                 <FormTitle tag="p" className="ysink_zone_title">

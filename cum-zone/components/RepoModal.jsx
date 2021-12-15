@@ -37,9 +37,10 @@ async function addRepo(nest, repo) {
     } else if (await verifyRepo(repo)) {
         // copy like this to correctly raise events
         let repos = nest.ghost.repos;
+        const split = repo.split("/");
         repos.push({
             url: repo,
-            name: "new repo",
+            name: split[split.length - 2],
             enabled: true,
         });
         nest.store.repos = repos;
