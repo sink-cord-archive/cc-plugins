@@ -18,14 +18,29 @@ const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 
+const arrayEquals = (a, b) =>
+    Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index]);
+
 export default () => {
     let [search, setSearch] = useState("");
     let [repoPlugins, setRepoPlugins] = useState([]);
+    let [repos, setRepos] = useState([]);
 
     useNest(persist);
 
     useEffect(() => {
-        if (repoPlugins.length == 0) {
+        // if the repos have changed, cause a re-render
+        if (!arrayEquals(persist.ghost.repos, repos)) {
+            setTimeout(() => {
+                setRepos(persist.ghost.repos);
+                setRepoPlugins([]);
+            });
+        }
+
+        if (repoPlugins.length == 0 && persist.ghost.repos.length !== 0) {
             combinePluginLists(persist.ghost.repos).then((plugins) => {
                 setRepoPlugins(plugins);
             });
@@ -60,9 +75,11 @@ export default () => {
                     <NoReposSplash store={persist.store} />
                 ) : (
                     <div className="ysink_zone_card_container">
-                        {fuzzySearch(repoPlugins, search).reverse().map((p) => (
-                            <PluginCard plugin={p} />
-                        ))}
+                        {fuzzySearch(repoPlugins, search)
+                            .reverse()
+                            .map((p) => (
+                                <PluginCard plugin={p} />
+                            ))}
                     </div>
                 )}
             </FormSection>
