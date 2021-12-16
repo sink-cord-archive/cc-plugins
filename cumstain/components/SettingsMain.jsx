@@ -13,12 +13,7 @@ export default () => {
     return (
         <ErrorBoundary>
             <FormSection>
-                <div class="ysink_stain_titlerow">
-                    <FormTitle tag="h1">Cumstain Settings</FormTitle>
-                    <FormText className="ysink_stain_vertxt">
-                        You are running Cumstain pre0.1
-                    </FormText>
-                </div>
+                <FormTitle tag="h1">Cumstain Settings</FormTitle>
 
                 <TabBar
                     items={[

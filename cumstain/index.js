@@ -4,6 +4,7 @@ import settingsEntry from "./patches/settingsEntry";
 import injectStyles from "./styles.sass";
 import quickCSS from "./patches/quickCSS";
 import themeUpdates from "./patches/themeUpdates";
+import ver from "./patches/ver";
 
 export default ({ persist }) => {
     let patches = [];
@@ -12,6 +13,7 @@ export default ({ persist }) => {
         onLoad: async () => {
             persist.store.repos = ["http://127.0.0.1:8080/"];
             patches.push(
+                ver(),
                 injectStyles(),
                 prepareState(),
                 restoreThemes(),
