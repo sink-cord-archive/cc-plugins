@@ -9,6 +9,7 @@ import ThemeCard from "./ThemeCard";
 import SearchBar from "./SearchBar";
 import fuzzy from "../fuzzy";
 import CompatFilterDropdown from "./CompatFilterDropdown";
+import NoRepos from "./NoRepos";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -46,18 +47,22 @@ export default () => {
                 <CompatFilterDropdown {...{ filterMode, setFilterMode }} />
             </div>
 
-            <div className="ysink_stain_cardcontainer">
-                {fuzzy(themes ?? [], search)
-                    .filter(
-                        (t) =>
-                            filterMode === 0 ||
-                            (filterMode === 1 && !t.compat) ||
-                            (filterMode === 2 && t.compat)
-                    )
-                    .map((theme) => (
-                        <ThemeCard theme={theme} deleteHook={rerender} />
-                    ))}
-            </div>
+            {persist.ghost.repos.length === 0 ? (
+                <NoRepos />
+            ) : (
+                <div className="ysink_stain_cardcontainer">
+                    {fuzzy(themes ?? [], search)
+                        .filter(
+                            (t) =>
+                                filterMode === 0 ||
+                                (filterMode === 1 && !t.compat) ||
+                                (filterMode === 2 && t.compat)
+                        )
+                        .map((theme) => (
+                            <ThemeCard theme={theme} deleteHook={rerender} />
+                        ))}
+                </div>
+            )}
         </ErrorBoundary>
     );
 };

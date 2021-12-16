@@ -9,6 +9,9 @@ import ver from "./patches/ver";
 export default ({ persist }) => {
     let patches = [];
 
+    if (!Array.isArray(persist.ghost.repos))
+        persist.store.repos = [];
+
     return {
         onLoad: async () => {
             persist.store.repos = ["http://127.0.0.1:8080/"];
