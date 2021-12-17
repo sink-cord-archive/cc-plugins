@@ -3,12 +3,12 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist, state } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
-import { loadTheme, removeTheme, unloadTheme } from "../themeLoadUtil";
-import BDBadge from "./BDBadge";
-import CCBadge from "./CCBadge";
+import { loadTheme, removeTheme, unloadTheme } from "../../themeLoadUtil";
+import BDBadge from "../badges/BDBadge";
+import CCBadge from "../badges/CCBadge";
 
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
-import MediaCarousel from "./MediaCarousel";
+import MediaCarousel from "../MediaCarousel";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");

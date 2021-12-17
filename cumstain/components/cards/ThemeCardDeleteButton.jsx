@@ -1,6 +1,6 @@
 // https://github.com/Cumcord/Cumcord/blob/9d869ab5a34eece7ad5d912c29291f2e0785cee3/src/api/ui/settings/components/PluginCard.jsx#L137
 
-import { removeTheme } from "../themeLoadUtil";
+import { removeTheme } from "../../themeLoadUtil";
 
 export default ({ theme, onClick }) => (
     <svg

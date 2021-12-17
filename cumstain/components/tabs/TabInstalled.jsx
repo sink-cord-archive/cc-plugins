@@ -5,12 +5,12 @@ import { useNest } from "@cumcord/utils";
 const { useState, useReducer } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
-import ThemeCard from "./ThemeCard";
-import InstallBar from "./InstallBar";
-import fuzzy from "../fuzzy";
-import SearchBar from "./SearchBar";
-import CompatFilterDropdown from "./CompatFilterDropdown";
-import NoThemes from "./NoThemes";
+import ThemeCard from "../cards/ThemeCard";
+import InstallBar from "../InstallBar";
+import fuzzy from "../../fuzzy";
+import SearchBar from "../SearchBar";
+import CompatFilterDropdown from "../CompatFilterDropdown";
+import NoThemes from "../splashes/NoThemes";
 
 export default ({goTo}) => {
     useNest(persist /* , false, (type, path) => path?.[0] === "themes" */);
