@@ -1,11 +1,6 @@
 # Cumcord plugins
 
-This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins.
-
-***Please Note:** Installing via Condom is strongly recommended for multiple reasons:*
-
--   you don't have to trust me: the plugin is mirrored at the official repo, so it's impossible for me to push malicious code if I (for some reason?) wanted to
--   the Cum Zone has the Condom repo loaded by default, so any plugin that is on Condom but installed by other means will not show as installed in cumzone.
+This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins, for your Discord app.
 
 ## CC Exclusives
 
