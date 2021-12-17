@@ -27,7 +27,7 @@ const arrayEquals = (a, b) =>
     a.every((val, index) => val === b[index]);
 
 export default () => {
-    useNest(persist /* , false, (type, path) => path?.[0] === "repos" */);
+    useNest(persist);
 
     const [search, setSearch] = useState("");
 
