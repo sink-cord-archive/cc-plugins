@@ -14,7 +14,7 @@ export default ({ persist }) => {
 
     return {
         onLoad: async () => {
-            persist.store.repos = ["http://127.0.0.1:8080/"];
+            //persist.store.repos = ["http://127.0.0.1:8080/"];
             patches.push(
                 ver(),
                 injectStyles(),

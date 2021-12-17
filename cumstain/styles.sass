@@ -98,8 +98,8 @@
 
 .ysink_stain_divide
     margin: 0 0 1rem 0
-    //.ysink_zone_modal &
-    //    margin: .5rem 0
+    .ysink_stain_modal &
+        margin: .5rem 0
     .ysink_stain_card &
         margin: .2rem 0
 
@@ -171,3 +171,11 @@
     
     .ysink_stain_button
         margin-top: 2rem
+    
+.ysink_stain_modal .ysink_stain_row
+    display: flex
+    & > *
+        flex: 1
+    & > :last-child
+        flex: unset
+        margin-left: 1rem

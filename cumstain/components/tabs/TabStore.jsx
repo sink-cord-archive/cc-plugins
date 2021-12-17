@@ -20,20 +20,35 @@ async function getAll() {
     return { repos, themes: getThemes(repos) };
 }
 
+const arrayEquals = (a, b) =>
+    Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index]);
+
 export default () => {
-    useNest(persist, false, (type, path) => path?.[0] === "repos");
+    useNest(persist /* , false, (type, path) => path?.[0] === "repos" */);
 
     const [search, setSearch] = useState("");
 
-    let [repos, setRepos] = useState(undefined);
-    let [themes, setThemes] = useState(undefined);
-    let [filterMode, setFilterMode] = useState(0);
+    const [rawRepos, setRawRepos] = useState([]);
+
+    const [repos, setRepos] = useState(undefined);
+    const [themes, setThemes] = useState(undefined);
+    const [filterMode, setFilterMode] = useState(0);
     useEffect(() => {
-        if (!repos || !themes)
+        let update = () =>
             getAll().then(({ repos, themes }) => {
                 setRepos(repos);
                 setThemes(themes);
             });
+
+        if (!arrayEquals(rawRepos, persist.ghost.repos)) {
+            setRawRepos(persist.ghost.repos);
+            update();
+        }
+
+        if (!repos || !themes) update();
     });
 
     // it's more sensible to use () => setThemes(undefined) as the deleteHook

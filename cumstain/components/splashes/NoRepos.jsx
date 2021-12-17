@@ -3,6 +3,7 @@ const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+import openReposModal from "../ReposModal"
 
 export default ({ }) => (
     <FormSection className="ysink_stain_nosplash">
@@ -12,7 +13,7 @@ export default ({ }) => (
             className="ysink_stain_button"
             color={Button.Colors.GREEN}
             sizes={Button.Sizes.LARGE}
-            onClick={() => {}}
+            onClick={openReposModal}
         >
             Open repo manager
         </Button>
