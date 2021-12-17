@@ -3,5 +3,6 @@
   "description": "The user-friendly theme loader for Cumcord to spice up your Discord!",
   "author": "Yellowsink",
   "file": "index.js",
-  "license": "BSD-3"
+  "license": "BSD-3",
+  "media": "https://yellowsink.github.io/cc-plugins/assets/cumstain.png"
 }

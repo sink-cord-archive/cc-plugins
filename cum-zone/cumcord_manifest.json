@@ -3,5 +3,6 @@
   "description": "An integrated plugin store for Cumcord",
   "author": "Yellowsink",
   "file": "index.js",
-  "license": "BSD-3"
+  "license": "BSD-3",
+  "media": "https://yellowsink.github.io/cc-plugins/assets/cumzone.png"
 }
