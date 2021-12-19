@@ -1,21 +1,29 @@
-const { Plugin } = require('powercord/entities');
-const { React, getModule, channels: { getChannelId }, i18n: { Messages } } = require('powercord/webpack');
-const { open } = require('powercord/modal');
+import React from "@cumcord/modules/common/React";
+import { find, findByProps } from "@cumcord/modules/webpack";
+const { getChannelId } = findByProps("getChannelId")
+import { Messages } from "@cumcord/modules/common/i18n";
 
-const SettingsModal = require('./components/SettingsModal.jsx');
-const Settings = require('./components/Settings.jsx');
+import SettingsModal from './components/SettingsModal.jsx';
+import Settings from './components/Settings.jsx';
 
-const { settings } = require('./structures');
-const i18n = require('./i18n');
+import  { settings } from './structures';
+import i18n from './i18n';
 
-const Translator = require('./engines');
-const { Patcher, OutputManager } = require('./utils');
+import Translator from './engines';
+import { Patcher, OutputManager } from './utils';
 
-const { default: Dispatcher } = getModule((m) => m?.default?._subscriptions, false);
+const Dispatcher = findByProps("_subscriptions");
 
-/* eslint-disable object-property-newline */
-// noinspection ES6MissingAwait, JSCheckFunctionSignatures, JSIgnoredPromiseFromCall, JSUnusedGlobalSymbols
-module.exports = class TranslationOption extends Plugin {
+export default () => {
+
+
+    return {
+        onUnload() {},
+        settings: React.createElement(SettingsModal, { Translator: this.Translator })
+    }
+}
+
+/* module.exports =  */class TranslationOption extends Plugin {
   constructor () {
     super();
     this.SettingsModal = this.settings.connectStore(SettingsModal);
