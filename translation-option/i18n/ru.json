@@ -1,0 +1,20 @@
+{
+  "TRANSLATION_OPTION_LANG_TO": "Укажите язык на который нужно перевести",
+  "TRANSLATION_OPTION_SEND_ORIGINAL": "Отправить оригинальное сообщение",
+  "TRANSLATION_OPTION_ERRORS_TRANSLATE": "Возникли ошибки при переводе",
+  "TRANSLATION_OPTION_ENGINE": "Служба перевода",
+  "TRANSLATION_OPTION_RECEIVED_LANGUAGE": "Получаемый язык",
+  "TRANSLATION_OPTION_TARGET_LANGUAGE": "Переводить на язык",
+  "TRANSLATION_OPTION_TRANSLATE_MESSAGES": "Переводить сообщения",
+  "TRANSLATION_OPTION_TRANSLATE_INCOMING_MESSAGES_NOTE": "Переводить автоматически все сообщения в текущем канале",
+  "TRANSLATION_OPTION_TRANSLATE_OUTGOING_MESSAGES_NOTE": "Переводить ваши отправленные сообщения",
+  "TRANSLATION_OPTION_INCOMING": "Входящие",
+  "TRANSLATION_OPTION_OUTGOING": "Исходящие",
+  "TRANSLATION_OPTION_INSTALL": "Установить",
+  "TRANSLATION_OPTION_SETTINGS": "Настройки",
+  "TRANSLATION_OPTION_MODAL_SETTINGS": "Настройки Translation option",
+  "TRANSLATION_OPTION_TRANSLATED": "переведено",
+  "TRANSLATION_OPTION_TRANSLATE_MESSAGE": "Перевести сообщение",
+  "TRANSLATION_OPTION_SHOW_ORIGINAL": "Показать оригинал",
+  "TRANSLATION_OPTION_CHOOSE_ENGINE": "Выберите служу перевода"
+}

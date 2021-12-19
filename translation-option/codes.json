@@ -1,0 +1,1053 @@
+{
+  "@source": {
+    "wikimedia.org": "https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code"
+  },
+  "bo": {
+    "EnglishLanguageName": "Tibetan",
+    "LocalLanguageName": "བོད་ཡིག / Bod skad"
+  },
+  "aa": {
+    "EnglishLanguageName": "Afar",
+    "LocalLanguageName": "Afar"
+  },
+  "ab": {
+    "EnglishLanguageName": "Abkhazian",
+    "LocalLanguageName": "Аҧсуа"
+  },
+  "af": {
+    "EnglishLanguageName": "Afrikaans",
+    "LocalLanguageName": "Afrikaans"
+  },
+  "ak": {
+    "EnglishLanguageName": "Akan",
+    "LocalLanguageName": "Akana"
+  },
+  "als": {
+    "EnglishLanguageName": "Alemannic",
+    "LocalLanguageName": "Alemannisch"
+  },
+  "am": {
+    "EnglishLanguageName": "Amharic",
+    "LocalLanguageName": "አማርኛ"
+  },
+  "an": {
+    "EnglishLanguageName": "Aragonese",
+    "LocalLanguageName": "Aragonés"
+  },
+  "ang": {
+    "EnglishLanguageName": "Anglo-Saxon / Old English",
+    "LocalLanguageName": "Englisc"
+  },
+  "ar": {
+    "EnglishLanguageName": "Arabic",
+    "LocalLanguageName": "العربية"
+  },
+  "arc": {
+    "EnglishLanguageName": "Aramaic",
+    "LocalLanguageName": "ܣܘܪܬ"
+  },
+  "as": {
+    "EnglishLanguageName": "Assamese",
+    "LocalLanguageName": "অসমীয়া"
+  },
+  "ast": {
+    "EnglishLanguageName": "Asturian",
+    "LocalLanguageName": "Asturianu"
+  },
+  "av": {
+    "EnglishLanguageName": "Avar",
+    "LocalLanguageName": "Авар"
+  },
+  "awa": {
+    "EnglishLanguageName": "Awadhi",
+    "LocalLanguageName": "Awadhi"
+  },
+  "ay": {
+    "EnglishLanguageName": "Aymara",
+    "LocalLanguageName": "Aymar"
+  },
+  "az": {
+    "EnglishLanguageName": "Azerbaijani",
+    "LocalLanguageName": "Azərbaycanca / آذربايجان"
+  },
+  "ba": {
+    "EnglishLanguageName": "Bashkir",
+    "LocalLanguageName": "Башҡорт"
+  },
+  "bar": {
+    "EnglishLanguageName": "Bavarian",
+    "LocalLanguageName": "Boarisch"
+  },
+  "bat-smg": {
+    "EnglishLanguageName": "Samogitian",
+    "LocalLanguageName": "Žemaitėška"
+  },
+  "bcl": {
+    "EnglishLanguageName": "Bikol",
+    "LocalLanguageName": "Bikol Central"
+  },
+  "be": {
+    "EnglishLanguageName": "Belarusian",
+    "LocalLanguageName": "Беларуская"
+  },
+  "be-x-old": {
+    "EnglishLanguageName": "Belarusian (Taraškievica)",
+    "LocalLanguageName": "Беларуская (тарашкевіца)"
+  },
+  "bg": {
+    "EnglishLanguageName": "Bulgarian",
+    "LocalLanguageName": "Български"
+  },
+  "bh": {
+    "EnglishLanguageName": "Bihari",
+    "LocalLanguageName": "भोजपुरी"
+  },
+  "bi": {
+    "EnglishLanguageName": "Bislama",
+    "LocalLanguageName": "Bislama"
+  },
+  "bm": {
+    "EnglishLanguageName": "Bambara",
+    "LocalLanguageName": "Bamanankan"
+  },
+  "bn": {
+    "EnglishLanguageName": "Bengali",
+    "LocalLanguageName": "বাংলা"
+  },
+  "bpy": {
+    "EnglishLanguageName": "Bishnupriya Manipuri",
+    "LocalLanguageName": "ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী"
+  },
+  "br": {
+    "EnglishLanguageName": "Breton",
+    "LocalLanguageName": "Brezhoneg"
+  },
+  "bs": {
+    "EnglishLanguageName": "Bosnian",
+    "LocalLanguageName": "Bosanski"
+  },
+  "bug": {
+    "EnglishLanguageName": "Buginese",
+    "LocalLanguageName": "ᨅᨔ ᨕᨘᨁᨗ / Basa Ugi"
+  },
+  "bxr": {
+    "EnglishLanguageName": "Buriat (Russia)",
+    "LocalLanguageName": "Буряад хэлэн"
+  },
+  "ca": {
+    "EnglishLanguageName": "Catalan",
+    "LocalLanguageName": "Català"
+  },
+  "cdo": {
+    "EnglishLanguageName": "Min Dong Chinese",
+    "LocalLanguageName": "Mìng-dĕ̤ng-ngṳ̄ / 閩東語"
+  },
+  "ce": {
+    "EnglishLanguageName": "Chechen",
+    "LocalLanguageName": "Нохчийн"
+  },
+  "ceb": {
+    "EnglishLanguageName": "Cebuano",
+    "LocalLanguageName": "Sinugboanong Binisaya"
+  },
+  "ch": {
+    "EnglishLanguageName": "Chamorro",
+    "LocalLanguageName": "Chamoru"
+  },
+  "cho": {
+    "EnglishLanguageName": "Choctaw",
+    "LocalLanguageName": "Choctaw"
+  },
+  "chr": {
+    "EnglishLanguageName": "Cherokee",
+    "LocalLanguageName": "ᏣᎳᎩ"
+  },
+  "chy": {
+    "EnglishLanguageName": "Cheyenne",
+    "LocalLanguageName": "Tsetsêhestâhese"
+  },
+  "ckb": {
+    "EnglishLanguageName": "Kurdish (Sorani)",
+    "LocalLanguageName": "کوردی"
+  },
+  "co": {
+    "EnglishLanguageName": "Corsican",
+    "LocalLanguageName": "Corsu"
+  },
+  "cr": {
+    "EnglishLanguageName": "Cree",
+    "LocalLanguageName": "Nehiyaw"
+  },
+  "cs": {
+    "EnglishLanguageName": "Czech",
+    "LocalLanguageName": "Česky"
+  },
+  "csb": {
+    "EnglishLanguageName": "Kashubian",
+    "LocalLanguageName": "Kaszëbsczi"
+  },
+  "cu": {
+    "EnglishLanguageName": "Old Church Slavonic / Old Bulgarian",
+    "LocalLanguageName": "словѣньскъ / slověnĭskŭ"
+  },
+  "cv": {
+    "EnglishLanguageName": "Chuvash",
+    "LocalLanguageName": "Чăваш"
+  },
+  "cy": {
+    "EnglishLanguageName": "Welsh",
+    "LocalLanguageName": "Cymraeg"
+  },
+  "da": {
+    "EnglishLanguageName": "Danish",
+    "LocalLanguageName": "Dansk"
+  },
+  "de": {
+    "EnglishLanguageName": "German",
+    "LocalLanguageName": "Deutsch"
+  },
+  "diq": {
+    "EnglishLanguageName": "Dimli",
+    "LocalLanguageName": "Zazaki"
+  },
+  "dsb": {
+    "EnglishLanguageName": "Lower Sorbian",
+    "LocalLanguageName": "Dolnoserbski"
+  },
+  "dv": {
+    "EnglishLanguageName": "Divehi",
+    "LocalLanguageName": "ދިވެހިބަސް"
+  },
+  "dz": {
+    "EnglishLanguageName": "Dzongkha",
+    "LocalLanguageName": "ཇོང་ཁ"
+  },
+  "ee": {
+    "EnglishLanguageName": "Ewe",
+    "LocalLanguageName": "Ɛʋɛ"
+  },
+  "el": {
+    "EnglishLanguageName": "Greek",
+    "LocalLanguageName": "Ελληνικά"
+  },
+  "en": {
+    "EnglishLanguageName": "English",
+    "LocalLanguageName": "English"
+  },
+  "eo": {
+    "EnglishLanguageName": "Esperanto",
+    "LocalLanguageName": "Esperanto"
+  },
+  "es": {
+    "EnglishLanguageName": "Spanish",
+    "LocalLanguageName": "Español"
+  },
+  "et": {
+    "EnglishLanguageName": "Estonian",
+    "LocalLanguageName": "Eesti"
+  },
+  "eu": {
+    "EnglishLanguageName": "Basque",
+    "LocalLanguageName": "Euskara"
+  },
+  "ext": {
+    "EnglishLanguageName": "Extremaduran",
+    "LocalLanguageName": "Estremeñu"
+  },
+  "fa": {
+    "EnglishLanguageName": "Persian",
+    "LocalLanguageName": "فارسی"
+  },
+  "ff": {
+    "EnglishLanguageName": "Peul",
+    "LocalLanguageName": "Fulfulde"
+  },
+  "fi": {
+    "EnglishLanguageName": "Finnish",
+    "LocalLanguageName": "Suomi"
+  },
+  "fiu-vro": {
+    "EnglishLanguageName": "Võro",
+    "LocalLanguageName": "Võro"
+  },
+  "fj": {
+    "EnglishLanguageName": "Fijian",
+    "LocalLanguageName": "Na Vosa Vakaviti"
+  },
+  "fo": {
+    "EnglishLanguageName": "Faroese",
+    "LocalLanguageName": "Føroyskt"
+  },
+  "fr": {
+    "EnglishLanguageName": "French",
+    "LocalLanguageName": "Français"
+  },
+  "frp": {
+    "EnglishLanguageName": "Arpitan / Franco-Provençal",
+    "LocalLanguageName": "Arpitan / francoprovençal"
+  },
+  "fur": {
+    "EnglishLanguageName": "Friulian",
+    "LocalLanguageName": "Furlan"
+  },
+  "fy": {
+    "EnglishLanguageName": "West Frisian",
+    "LocalLanguageName": "Frysk"
+  },
+  "ga": {
+    "EnglishLanguageName": "Irish",
+    "LocalLanguageName": "Gaeilge"
+  },
+  "gan": {
+    "EnglishLanguageName": "Gan Chinese",
+    "LocalLanguageName": "贛語"
+  },
+  "gbm": {
+    "EnglishLanguageName": "Garhwali",
+    "LocalLanguageName": "गढ़वळी"
+  },
+  "gd": {
+    "EnglishLanguageName": "Scottish Gaelic",
+    "LocalLanguageName": "Gàidhlig"
+  },
+  "gil": {
+    "EnglishLanguageName": "Gilbertese",
+    "LocalLanguageName": "Taetae ni kiribati"
+  },
+  "gl": {
+    "EnglishLanguageName": "Galician",
+    "LocalLanguageName": "Galego"
+  },
+  "gn": {
+    "EnglishLanguageName": "Guarani",
+    "LocalLanguageName": "Avañe'ẽ"
+  },
+  "got": {
+    "EnglishLanguageName": "Gothic",
+    "LocalLanguageName": "gutisk"
+  },
+  "gu": {
+    "EnglishLanguageName": "Gujarati",
+    "LocalLanguageName": "ગુજરાતી"
+  },
+  "gv": {
+    "EnglishLanguageName": "Manx",
+    "LocalLanguageName": "Gaelg"
+  },
+  "ha": {
+    "EnglishLanguageName": "Hausa",
+    "LocalLanguageName": "هَوُسَ"
+  },
+  "hak": {
+    "EnglishLanguageName": "Hakka Chinese",
+    "LocalLanguageName": "客家語/Hak-kâ-ngî"
+  },
+  "haw": {
+    "EnglishLanguageName": "Hawaiian",
+    "LocalLanguageName": "Hawai`i"
+  },
+  "he": {
+    "EnglishLanguageName": "Hebrew",
+    "LocalLanguageName": "עברית"
+  },
+  "hi": {
+    "EnglishLanguageName": "Hindi",
+    "LocalLanguageName": "हिन्दी"
+  },
+  "ho": {
+    "EnglishLanguageName": "Hiri Motu",
+    "LocalLanguageName": "Hiri Motu"
+  },
+  "hr": {
+    "EnglishLanguageName": "Croatian",
+    "LocalLanguageName": "Hrvatski"
+  },
+  "ht": {
+    "EnglishLanguageName": "Haitian",
+    "LocalLanguageName": "Krèyol ayisyen"
+  },
+  "hu": {
+    "EnglishLanguageName": "Hungarian",
+    "LocalLanguageName": "Magyar"
+  },
+  "hy": {
+    "EnglishLanguageName": "Armenian",
+    "LocalLanguageName": "Հայերեն"
+  },
+  "hz": {
+    "EnglishLanguageName": "Herero",
+    "LocalLanguageName": "Otsiherero"
+  },
+  "ia": {
+    "EnglishLanguageName": "Interlingua",
+    "LocalLanguageName": "Interlingua"
+  },
+  "id": {
+    "EnglishLanguageName": "Indonesian",
+    "LocalLanguageName": "Bahasa Indonesia"
+  },
+  "ie": {
+    "EnglishLanguageName": "Interlingue",
+    "LocalLanguageName": "Interlingue"
+  },
+  "ig": {
+    "EnglishLanguageName": "Igbo",
+    "LocalLanguageName": "Igbo"
+  },
+  "ii": {
+    "EnglishLanguageName": "Sichuan Yi",
+    "LocalLanguageName": "ꆇꉙ / 四川彝语"
+  },
+  "ik": {
+    "EnglishLanguageName": "Inupiak",
+    "LocalLanguageName": "Iñupiak"
+  },
+  "ilo": {
+    "EnglishLanguageName": "Ilokano",
+    "LocalLanguageName": "Ilokano"
+  },
+  "inh": {
+    "EnglishLanguageName": "Ingush",
+    "LocalLanguageName": "ГӀалгӀай"
+  },
+  "io": {
+    "EnglishLanguageName": "Ido",
+    "LocalLanguageName": "Ido"
+  },
+  "is": {
+    "EnglishLanguageName": "Icelandic",
+    "LocalLanguageName": "Íslenska"
+  },
+  "it": {
+    "EnglishLanguageName": "Italian",
+    "LocalLanguageName": "Italiano"
+  },
+  "iu": {
+    "EnglishLanguageName": "Inuktitut",
+    "LocalLanguageName": "ᐃᓄᒃᑎᑐᑦ"
+  },
+  "ja": {
+    "EnglishLanguageName": "Japanese",
+    "LocalLanguageName": "日本語"
+  },
+  "jbo": {
+    "EnglishLanguageName": "Lojban",
+    "LocalLanguageName": "Lojban"
+  },
+  "jv": {
+    "EnglishLanguageName": "Javanese",
+    "LocalLanguageName": "Basa Jawa"
+  },
+  "jw": {
+    "EnglishLanguageName": "Javanese",
+    "LocalLanguageName": "Basa Jawa"
+  },
+  "kg": {
+    "EnglishLanguageName": "Kongo",
+    "LocalLanguageName": "KiKongo"
+  },
+  "ki": {
+    "EnglishLanguageName": "Kikuyu",
+    "LocalLanguageName": "Gĩkũyũ"
+  },
+  "kj": {
+    "EnglishLanguageName": "Kuanyama",
+    "LocalLanguageName": "Kuanyama"
+  },
+  "kk": {
+    "EnglishLanguageName": "Kazakh",
+    "LocalLanguageName": "Қазақша"
+  },
+  "kl": {
+    "EnglishLanguageName": "Greenlandic",
+    "LocalLanguageName": "Kalaallisut"
+  },
+  "km": {
+    "EnglishLanguageName": "Cambodian",
+    "LocalLanguageName": "ភាសាខ្មែរ"
+  },
+  "kn": {
+    "EnglishLanguageName": "Kannada",
+    "LocalLanguageName": "ಕನ್ನಡ"
+  },
+  "khw": {
+    "EnglishLanguageName": "Khowar",
+    "LocalLanguageName": "کھوار"
+  },
+  "ko": {
+    "EnglishLanguageName": "Korean",
+    "LocalLanguageName": "한국어"
+  },
+  "kr": {
+    "EnglishLanguageName": "Kanuri",
+    "LocalLanguageName": "Kanuri"
+  },
+  "ks": {
+    "EnglishLanguageName": "Kashmiri",
+    "LocalLanguageName": "कश्मीरी / كشميري"
+  },
+  "ksh": {
+    "EnglishLanguageName": "Ripuarian",
+    "LocalLanguageName": "Ripoarisch"
+  },
+  "ku": {
+    "EnglishLanguageName": "Kurdish (Kurmanji)",
+    "LocalLanguageName": "Kurdî"
+  },
+  "kv": {
+    "EnglishLanguageName": "Komi",
+    "LocalLanguageName": "Коми"
+  },
+  "kw": {
+    "EnglishLanguageName": "Cornish",
+    "LocalLanguageName": "Kernewek"
+  },
+  "ky": {
+    "EnglishLanguageName": "Kirghiz",
+    "LocalLanguageName": "Kırgızca / Кыргызча"
+  },
+  "la": {
+    "EnglishLanguageName": "Latin",
+    "LocalLanguageName": "Latina"
+  },
+  "lad": {
+    "EnglishLanguageName": "Ladino / Judeo-Spanish",
+    "LocalLanguageName": "Dzhudezmo / Djudeo-Espanyol"
+  },
+  "lan": {
+    "EnglishLanguageName": "Lango",
+    "LocalLanguageName": "Leb Lango / Luo"
+  },
+  "lb": {
+    "EnglishLanguageName": "Luxembourgish",
+    "LocalLanguageName": "Lëtzebuergesch"
+  },
+  "lg": {
+    "EnglishLanguageName": "Ganda",
+    "LocalLanguageName": "Luganda"
+  },
+  "li": {
+    "EnglishLanguageName": "Limburgian",
+    "LocalLanguageName": "Limburgs"
+  },
+  "lij": {
+    "EnglishLanguageName": "Ligurian",
+    "LocalLanguageName": "Líguru"
+  },
+  "lmo": {
+    "EnglishLanguageName": "Lombard",
+    "LocalLanguageName": "Lumbaart"
+  },
+  "ln": {
+    "EnglishLanguageName": "Lingala",
+    "LocalLanguageName": "Lingála"
+  },
+  "lo": {
+    "EnglishLanguageName": "Laotian",
+    "LocalLanguageName": "ລາວ / Pha xa lao"
+  },
+  "lzz": {
+    "EnglishLanguageName": "Laz",
+    "LocalLanguageName": "Lazuri / ლაზური"
+  },
+  "lt": {
+    "EnglishLanguageName": "Lithuanian",
+    "LocalLanguageName": "Lietuvių"
+  },
+  "lv": {
+    "EnglishLanguageName": "Latvian",
+    "LocalLanguageName": "Latviešu"
+  },
+  "map-bms": {
+    "EnglishLanguageName": "Banyumasan",
+    "LocalLanguageName": "Basa Banyumasan"
+  },
+  "mg": {
+    "EnglishLanguageName": "Malagasy",
+    "LocalLanguageName": "Malagasy"
+  },
+  "man": {
+    "EnglishLanguageName": "Mandarin",
+    "LocalLanguageName": "官話/官话"
+  },
+  "mh": {
+    "EnglishLanguageName": "Marshallese",
+    "LocalLanguageName": "Kajin Majel / Ebon"
+  },
+  "mi": {
+    "EnglishLanguageName": "Maori",
+    "LocalLanguageName": "Māori"
+  },
+  "min": {
+    "EnglishLanguageName": "Minangkabau",
+    "LocalLanguageName": "Minangkabau"
+  },
+  "mk": {
+    "EnglishLanguageName": "Macedonian",
+    "LocalLanguageName": "Македонски"
+  },
+  "ml": {
+    "EnglishLanguageName": "Malayalam",
+    "LocalLanguageName": "മലയാളം"
+  },
+  "mn": {
+    "EnglishLanguageName": "Mongolian",
+    "LocalLanguageName": "Монгол"
+  },
+  "mo": {
+    "EnglishLanguageName": "Moldovan",
+    "LocalLanguageName": "Moldovenească"
+  },
+  "mr": {
+    "EnglishLanguageName": "Marathi",
+    "LocalLanguageName": "मराठी"
+  },
+  "mrh": {
+    "EnglishLanguageName": "Mara",
+    "LocalLanguageName": "Mara"
+  },
+  "ms": {
+    "EnglishLanguageName": "Malay",
+    "LocalLanguageName": "Bahasa Melayu"
+  },
+  "mt": {
+    "EnglishLanguageName": "Maltese",
+    "LocalLanguageName": "bil-Malti"
+  },
+  "mus": {
+    "EnglishLanguageName": "Creek / Muskogee",
+    "LocalLanguageName": "Mvskoke"
+  },
+  "mwl": {
+    "EnglishLanguageName": "Mirandese",
+    "LocalLanguageName": "Mirandés"
+  },
+  "my": {
+    "EnglishLanguageName": "Burmese",
+    "LocalLanguageName": "Myanmasa"
+  },
+  "na": {
+    "EnglishLanguageName": "Nauruan",
+    "LocalLanguageName": "Dorerin Naoero"
+  },
+  "nah": {
+    "EnglishLanguageName": "Nahuatl",
+    "LocalLanguageName": "Nahuatl"
+  },
+  "nap": {
+    "EnglishLanguageName": "Neapolitan",
+    "LocalLanguageName": "Nnapulitano"
+  },
+  "nd": {
+    "EnglishLanguageName": "North Ndebele",
+    "LocalLanguageName": "Sindebele"
+  },
+  "nds": {
+    "EnglishLanguageName": "Low German / Low Saxon",
+    "LocalLanguageName": "Plattdüütsch"
+  },
+  "nds-nl": {
+    "EnglishLanguageName": "Dutch Low Saxon",
+    "LocalLanguageName": "Nedersaksisch"
+  },
+  "ne": {
+    "EnglishLanguageName": "Nepali",
+    "LocalLanguageName": "नेपाली"
+  },
+  "new": {
+    "EnglishLanguageName": "Newar",
+    "LocalLanguageName": "नेपालभाषा / Newah Bhaye"
+  },
+  "ng": {
+    "EnglishLanguageName": "Ndonga",
+    "LocalLanguageName": "Oshiwambo"
+  },
+  "nl": {
+    "EnglishLanguageName": "Dutch",
+    "LocalLanguageName": "Nederlands"
+  },
+  "nn": {
+    "EnglishLanguageName": "Norwegian Nynorsk",
+    "LocalLanguageName": "Norsk (nynorsk)"
+  },
+  "no": {
+    "EnglishLanguageName": "Norwegian",
+    "LocalLanguageName": "Norsk (bokmål / riksmål)"
+  },
+  "nr": {
+    "EnglishLanguageName": "South Ndebele",
+    "LocalLanguageName": "isiNdebele"
+  },
+  "nso": {
+    "EnglishLanguageName": "Northern Sotho",
+    "LocalLanguageName": "Sesotho sa Leboa / Sepedi"
+  },
+  "nrm": {
+    "EnglishLanguageName": "Norman",
+    "LocalLanguageName": "Nouormand / Normaund"
+  },
+  "nv": {
+    "EnglishLanguageName": "Navajo",
+    "LocalLanguageName": "Diné bizaad"
+  },
+  "ny": {
+    "EnglishLanguageName": "Chichewa",
+    "LocalLanguageName": "Chi-Chewa"
+  },
+  "oc": {
+    "EnglishLanguageName": "Occitan",
+    "LocalLanguageName": "Occitan"
+  },
+  "oj": {
+    "EnglishLanguageName": "Ojibwa",
+    "LocalLanguageName": "ᐊᓂᔑᓈᐯᒧᐎᓐ / Anishinaabemowin"
+  },
+  "om": {
+    "EnglishLanguageName": "Oromo",
+    "LocalLanguageName": "Oromoo"
+  },
+  "or": {
+    "EnglishLanguageName": "Oriya",
+    "LocalLanguageName": "ଓଡ଼ିଆ"
+  },
+  "os": {
+    "EnglishLanguageName": "Ossetian / Ossetic",
+    "LocalLanguageName": "Иронау"
+  },
+  "pa": {
+    "EnglishLanguageName": "Panjabi / Punjabi",
+    "LocalLanguageName": "ਪੰਜਾਬੀ / पंजाबी / پنجابي"
+  },
+  "pag": {
+    "EnglishLanguageName": "Pangasinan",
+    "LocalLanguageName": "Pangasinan"
+  },
+  "pam": {
+    "EnglishLanguageName": "Kapampangan",
+    "LocalLanguageName": "Kapampangan"
+  },
+  "pap": {
+    "EnglishLanguageName": "Papiamentu",
+    "LocalLanguageName": "Papiamentu"
+  },
+  "pdc": {
+    "EnglishLanguageName": "Pennsylvania German",
+    "LocalLanguageName": "Deitsch"
+  },
+  "pi": {
+    "EnglishLanguageName": "Pali",
+    "LocalLanguageName": "Pāli / पाऴि"
+  },
+  "pih": {
+    "EnglishLanguageName": "Norfolk",
+    "LocalLanguageName": "Norfuk"
+  },
+  "pl": {
+    "EnglishLanguageName": "Polish",
+    "LocalLanguageName": "Polski"
+  },
+  "pms": {
+    "EnglishLanguageName": "Piedmontese",
+    "LocalLanguageName": "Piemontèis"
+  },
+  "ps": {
+    "EnglishLanguageName": "Pashto",
+    "LocalLanguageName": "پښتو"
+  },
+  "pt": {
+    "EnglishLanguageName": "Portuguese",
+    "LocalLanguageName": "Português"
+  },
+  "qu": {
+    "EnglishLanguageName": "Quechua",
+    "LocalLanguageName": "Runa Simi"
+  },
+  "rm": {
+    "EnglishLanguageName": "Raeto Romance",
+    "LocalLanguageName": "Rumantsch"
+  },
+  "rmy": {
+    "EnglishLanguageName": "Romani",
+    "LocalLanguageName": "Romani / रोमानी"
+  },
+  "rn": {
+    "EnglishLanguageName": "Kirundi",
+    "LocalLanguageName": "Kirundi"
+  },
+  "ro": {
+    "EnglishLanguageName": "Romanian",
+    "LocalLanguageName": "Română"
+  },
+  "roa-rup": {
+    "EnglishLanguageName": "Aromanian",
+    "LocalLanguageName": "Armâneashti"
+  },
+  "ru": {
+    "EnglishLanguageName": "Russian",
+    "LocalLanguageName": "Русский"
+  },
+  "rw": {
+    "EnglishLanguageName": "Rwandi",
+    "LocalLanguageName": "Kinyarwandi"
+  },
+  "sa": {
+    "EnglishLanguageName": "Sanskrit",
+    "LocalLanguageName": "संस्कृतम्"
+  },
+  "sc": {
+    "EnglishLanguageName": "Sardinian",
+    "LocalLanguageName": "Sardu"
+  },
+  "scn": {
+    "EnglishLanguageName": "Sicilian",
+    "LocalLanguageName": "Sicilianu"
+  },
+  "sco": {
+    "EnglishLanguageName": "Scots",
+    "LocalLanguageName": "Scots"
+  },
+  "sd": {
+    "EnglishLanguageName": "Sindhi",
+    "LocalLanguageName": "सिनधि"
+  },
+  "se": {
+    "EnglishLanguageName": "Northern Sami",
+    "LocalLanguageName": "Davvisámegiella"
+  },
+  "sg": {
+    "EnglishLanguageName": "Sango",
+    "LocalLanguageName": "Sängö"
+  },
+  "sh": {
+    "EnglishLanguageName": "Serbo-Croatian",
+    "LocalLanguageName": "Srpskohrvatski / Српскохрватски"
+  },
+  "si": {
+    "EnglishLanguageName": "Sinhalese",
+    "LocalLanguageName": "සිංහල"
+  },
+  "simple": {
+    "EnglishLanguageName": "Simple English",
+    "LocalLanguageName": "Simple English"
+  },
+  "sk": {
+    "EnglishLanguageName": "Slovak",
+    "LocalLanguageName": "Slovenčina"
+  },
+  "sl": {
+    "EnglishLanguageName": "Slovenian",
+    "LocalLanguageName": "Slovenščina"
+  },
+  "sm": {
+    "EnglishLanguageName": "Samoan",
+    "LocalLanguageName": "Gagana Samoa"
+  },
+  "sn": {
+    "EnglishLanguageName": "Shona",
+    "LocalLanguageName": "chiShona"
+  },
+  "so": {
+    "EnglishLanguageName": "Somalia",
+    "LocalLanguageName": "Soomaaliga"
+  },
+  "sq": {
+    "EnglishLanguageName": "Albanian",
+    "LocalLanguageName": "Shqip"
+  },
+  "sr": {
+    "EnglishLanguageName": "Serbian",
+    "LocalLanguageName": "Српски"
+  },
+  "ss": {
+    "EnglishLanguageName": "Swati",
+    "LocalLanguageName": "SiSwati"
+  },
+  "st": {
+    "EnglishLanguageName": "Southern Sotho",
+    "LocalLanguageName": "Sesotho"
+  },
+  "su": {
+    "EnglishLanguageName": "Sundanese",
+    "LocalLanguageName": "Basa Sunda"
+  },
+  "sv": {
+    "EnglishLanguageName": "Swedish",
+    "LocalLanguageName": "Svenska"
+  },
+  "sw": {
+    "EnglishLanguageName": "Swahili",
+    "LocalLanguageName": "Kiswahili"
+  },
+  "ta": {
+    "EnglishLanguageName": "Tamil",
+    "LocalLanguageName": "தமிழ்"
+  },
+  "te": {
+    "EnglishLanguageName": "Telugu",
+    "LocalLanguageName": "తెలుగు"
+  },
+  "tet": {
+    "EnglishLanguageName": "Tetum",
+    "LocalLanguageName": "Tetun"
+  },
+  "tg": {
+    "EnglishLanguageName": "Tajik",
+    "LocalLanguageName": "Тоҷикӣ"
+  },
+  "th": {
+    "EnglishLanguageName": "Thai",
+    "LocalLanguageName": "ไทย / Phasa Thai"
+  },
+  "ti": {
+    "EnglishLanguageName": "Tigrinya",
+    "LocalLanguageName": "ትግርኛ"
+  },
+  "tk": {
+    "EnglishLanguageName": "Turkmen",
+    "LocalLanguageName": "Туркмен / تركمن"
+  },
+  "tl": {
+    "EnglishLanguageName": "Tagalog",
+    "LocalLanguageName": "Tagalog"
+  },
+  "tlh": {
+    "EnglishLanguageName": "Klingon",
+    "LocalLanguageName": "tlhIngan-Hol"
+  },
+  "tn": {
+    "EnglishLanguageName": "Tswana",
+    "LocalLanguageName": "Setswana"
+  },
+  "to": {
+    "EnglishLanguageName": "Tonga",
+    "LocalLanguageName": "Lea Faka-Tonga"
+  },
+  "tpi": {
+    "EnglishLanguageName": "Tok Pisin",
+    "LocalLanguageName": "Tok Pisin"
+  },
+  "tr": {
+    "EnglishLanguageName": "Turkish",
+    "LocalLanguageName": "Türkçe"
+  },
+  "ts": {
+    "EnglishLanguageName": "Tsonga",
+    "LocalLanguageName": "Xitsonga"
+  },
+  "tt": {
+    "EnglishLanguageName": "Tatar",
+    "LocalLanguageName": "Tatarça"
+  },
+  "tum": {
+    "EnglishLanguageName": "Tumbuka",
+    "LocalLanguageName": "chiTumbuka"
+  },
+  "tw": {
+    "EnglishLanguageName": "Twi",
+    "LocalLanguageName": "Twi"
+  },
+  "ty": {
+    "EnglishLanguageName": "Tahitian",
+    "LocalLanguageName": "Reo Mā`ohi"
+  },
+  "udm": {
+    "EnglishLanguageName": "Udmurt",
+    "LocalLanguageName": "Удмурт кыл"
+  },
+  "ug": {
+    "EnglishLanguageName": "Uyghur",
+    "LocalLanguageName": "Uyƣurqə / ئۇيغۇرچە"
+  },
+  "uk": {
+    "EnglishLanguageName": "Ukrainian",
+    "LocalLanguageName": "Українська"
+  },
+  "ur": {
+    "EnglishLanguageName": "Urdu",
+    "LocalLanguageName": "اردو"
+  },
+  "uz": {
+    "EnglishLanguageName": "Uzbek",
+    "LocalLanguageName": "Ўзбек"
+  },
+  "uz_AF": {
+    "EnglishLanguageName": "Uzbeki Afghanistan",
+    "LocalLanguageName": "اوزبیکی"
+  },
+  "ve": {
+    "EnglishLanguageName": "Venda",
+    "LocalLanguageName": "Tshivenḓa"
+  },
+  "vi": {
+    "EnglishLanguageName": "Vietnamese",
+    "LocalLanguageName": "Việtnam"
+  },
+  "vec": {
+    "EnglishLanguageName": "Venetian",
+    "LocalLanguageName": "Vèneto"
+  },
+  "vls": {
+    "EnglishLanguageName": "West Flemish",
+    "LocalLanguageName": "West-Vlaoms"
+  },
+  "vo": {
+    "EnglishLanguageName": "Volapük",
+    "LocalLanguageName": "Volapük"
+  },
+  "wa": {
+    "EnglishLanguageName": "Walloon",
+    "LocalLanguageName": "Walon"
+  },
+  "war": {
+    "EnglishLanguageName": "Waray / Samar-Leyte Visayan",
+    "LocalLanguageName": "Winaray / Binisaya Lineyte-Samarnon"
+  },
+  "wo": {
+    "EnglishLanguageName": "Wolof",
+    "LocalLanguageName": "Wollof"
+  },
+  "xal": {
+    "EnglishLanguageName": "Kalmyk",
+    "LocalLanguageName": "Хальмг"
+  },
+  "xh": {
+    "EnglishLanguageName": "Xhosa",
+    "LocalLanguageName": "isiXhosa"
+  },
+  "xmf": {
+    "EnglishLanguageName": "Megrelian",
+    "LocalLanguageName": "მარგალური"
+  },
+  "yi": {
+    "EnglishLanguageName": "Yiddish",
+    "LocalLanguageName": "ייִדיש"
+  },
+  "yo": {
+    "EnglishLanguageName": "Yoruba",
+    "LocalLanguageName": "Yorùbá"
+  },
+  "za": {
+    "EnglishLanguageName": "Zhuang",
+    "LocalLanguageName": "Cuengh / Tôô / 壮语"
+  },
+  "zh": {
+    "EnglishLanguageName": "Chinese",
+    "LocalLanguageName": "中文"
+  },
+  "zh-classical": {
+    "EnglishLanguageName": "Classical Chinese",
+    "LocalLanguageName": "文言"
+  },
+  "zh-min-nan": {
+    "EnglishLanguageName": "Minnan",
+    "LocalLanguageName": "Bân-lâm-gú"
+  },
+  "zh-yue": {
+    "EnglishLanguageName": "Cantonese",
+    "LocalLanguageName": "粵語 / 粤语"
+  },
+  "zu": {
+    "EnglishLanguageName": "Zulu",
+    "LocalLanguageName": "isiZulu"
+  }
+}

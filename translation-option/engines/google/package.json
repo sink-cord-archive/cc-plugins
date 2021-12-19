@@ -1,0 +1,11 @@
+{
+  "name": "google",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2"
+  }
+}
