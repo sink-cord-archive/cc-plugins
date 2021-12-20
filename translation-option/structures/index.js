@@ -1,7 +1,5 @@
-require('fs')
-  .readdirSync(__dirname)
-  .filter((file) => file !== 'index.js')
-  .forEach((filename) => {
-    const moduleName = filename.split('.')[0];
-    exports[moduleName] = require(`${__dirname}/${filename}`);
-  });
+import settings from "./settings"
+import settingsModal from "./settingsModal"
+
+export { settings, settingsModal }
+export default { settings, settingsModal }
