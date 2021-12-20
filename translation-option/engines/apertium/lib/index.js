@@ -1,27 +1,26 @@
-/* eslint-disable object-property-newline, no-use-before-define */
+const API_ENDPOINT = "https://apertium.org/apy/translate";
 
-const { get } = require('powercord/http');
+export default (text, { from, to }) => {
+    const url = new URL(API_ENDPOINT);
 
-const API_ENDPOINT = 'https://apertium.org/apy/translate';
+    url.searchParams.set("langpair", `${from}|${to}`);
+    url.searchParams.set("q", text);
 
-module.exports = function (text, { from, to }) {
-  const url = new URL(API_ENDPOINT);
+    
+    const res = await fetch(url.href);
+    const body = await res.json();
+    if (!res.ok) {
+        if (body.explanation === "That pair is not installed") {
+            const error = new Error();
+                error.name = "Not supported pair";
+                error.code = "NOT_SUPPORTED_PAIR";
+                throw error;
+        }
+        throw res;
+    }
 
-  url.searchParams.set('langpair', `${from}|${to}`);
-  url.searchParams.set('q', text);
-
-  return get(url.href)
-    .then((res) => ({
-      text: res.body.responseData.translatedText,
-      lang: from
-    }))
-    .catch((res) => {
-      if (res.body.explanation === 'That pair is not installed') {
-        const error = new Error();
-        error.name = 'Not supported pair';
-        error.code = 'NOT_SUPPORTED_PAIR';
-        throw error;
-      }
-      throw res;
-    });
+    return {
+        body.responseData.translatedText,
+        lang: from
+    }
 };
