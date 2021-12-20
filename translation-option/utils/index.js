@@ -1,7 +1,7 @@
-require('fs')
-  .readdirSync(__dirname)
-  .filter((file) => file !== 'index.js')
-  .forEach((filename) => {
-    const moduleName = filename.split('.')[0];
-    exports[moduleName] = require(`${__dirname}/${filename}`);
-  });
+import exceptions from "./exceptions";
+import fixEmbeds from "./fixEmbeds";
+import OutputManager from "./OutputManager";
+import Patcher from "./Patcher";
+
+export { exceptions, fixEmbeds, OutputManager, Patcher };
+export default { exceptions, fixEmbeds, OutputManager, Patcher };
