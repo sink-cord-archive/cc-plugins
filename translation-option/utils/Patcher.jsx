@@ -1,20 +1,21 @@
-const { inject, uninject } = require("powercord/injector");
-const { ContextMenu } = require("powercord/components");
-
-import { findInReactTree } from "@cumcord/utils";
-import React from "@cumcord/modules/common/React";
 import { find, findByProps, findByDisplayName } from "@cumcord/modules/webpack";
+import { after, before } from "@cumcord/patcher";
+import { findInReactTree } from "@cumcord/utils";
 import { Messages } from "@cumcord/modules/common/i18n";
 
-const TranslateButton = require("../components/TranslateButton.jsx");
-const Pointer = require("../components/Pointer.jsx");
+import TranslateButton from "../components/TranslateButton.jsx";
+import Pointer from "../components/Pointer.jsx";
+
+const { MenuItem } = findByProps("MenuGroup", "default");
+const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+const MiniPopover = findByDisplayName("MiniPopover", false);
 
 class Patcher {
     constructor(Translator, OutputManager, props) {
         this.Translator = Translator;
         this.OutputManager = OutputManager;
         this.props = props;
-        this._uninjectIDs = [];
+        this._uninjects = [];
     }
 
     inject() {
@@ -22,20 +23,17 @@ class Patcher {
             .filter((f) => f.startsWith("patch"))
             .forEach((name) => {
                 const { module, method, func, displayName, pre } = this[name];
-                const injectId = `translation-option${(
-                    displayName || name.replace(/^patch/, "")
-                ).replace(/[A-Z]/g, (l) => `-${l.toLowerCase()}`)}`;
 
-                inject(injectId, module, method, func, pre);
-                this._uninjectIDs.push(injectId);
-                if (displayName) {
-                    module[method].displayName = displayName;
-                }
+                // woohoo spaghetti code go brrr
+                let patch = pre ? before : after;
+                this._uninjects.push(patch(method, module, func));
+
+                if (displayName) module[method].displayName = displayName;
             });
     }
 
     uninject() {
-        this._uninjectIDs.forEach(uninject);
+        this._uninjects.forEach((f) => f());
     }
 
     get patchMessageContextMenu() {
@@ -47,16 +45,18 @@ class Patcher {
                 const {
                     props: { children },
                 } = res;
-                const [btn] = ContextMenu.renderRawItems([
-                    {
-                        type: "button",
-                        name: this.Translator.isTranslated(message)
-                            ? Messages.TRANSLATION_OPTION_SHOW_ORIGINAL
-                            : Messages.TRANSLATION_OPTION_TRANSLATE_MESSAGE,
-                        disabled: !message.content && !message.embeds.length,
-                        onClick: () => this.props.translate(message),
-                    },
-                ]);
+                const btn = (
+                    <MenuItem
+                        id="ysink_translation_menuitem"
+                        label={
+                            this.Translator.isTranslated(message)
+                                ? Messages.TRANSLATION_OPTION_SHOW_ORIGINAL
+                                : Messages.TRANSLATION_OPTION_TRANSLATE_MESSAGE
+                        }
+                        disabled={!message.content && !message.embeds.length}
+                        action={() => this.props.translate(message)}
+                    />
+                );
                 children.splice(children.length - 1, 0, btn);
                 return res;
             },
@@ -64,8 +64,6 @@ class Patcher {
     }
 
     get patchMiniPopover() {
-        const MiniPopover = findByDisplayName("MiniPopover", false);
-
         return {
             module: MiniPopover,
             displayName: "MiniPopover",
@@ -74,12 +72,12 @@ class Patcher {
                 const props = findInReactTree(res, ({ message }) => message);
                 if (props) {
                     res.props.children.unshift(
-                        React.createElement(TranslateButton, {
-                            Button: MiniPopover.Button,
-                            onClick: () => this.props.translate(props.message),
-                            name: Messages.TRANSLATION_OPTION_TRANSLATE_MESSAGE,
-                            icon: { width: 22 },
-                        })
+                        <TranslateButton
+                            Button={MiniPopover.Button}
+                            onClick={this.props.translate(props.message)}
+                            name={Messages.TRANSLATION_OPTION_TRANSLATE_MESSAGE}
+                            icon={{ width: 22 }}
+                        />
                     );
                 }
                 return res;
@@ -88,8 +86,6 @@ class Patcher {
     }
 
     get patchChannelTextAreaContainer() {
-        const { Button } = require("powercord/components");
-
         return {
             module: find(
                 (m) =>
@@ -103,12 +99,12 @@ class Patcher {
                 );
                 if (props) {
                     props.children.unshift(
-                        React.createElement(TranslateButton, {
-                            Button,
-                            onClick: this.props.openSettingsModal,
-                            name: Messages.TRANSLATION_OPTION_MODAL_SETTINGS,
-                            icon: { width: 24 },
-                        })
+                        <TranslateButton
+                            Button={Button}
+                            onClick={this.props.openSettingsModal}
+                            name={Messages.TRANSLATION_OPTION_MODAL_SETTINGS}
+                            icon={{ width: 24 }}
+                        />
                     );
                 }
                 return res;
@@ -126,9 +122,7 @@ class Patcher {
                     const { from, to } = this.Translator.messagesStorage.get(
                         `${message.channel_id}-${message.id}`
                     );
-                    res.props.children.push(
-                        React.createElement(Pointer, { from, to })
-                    );
+                    res.props.children.push(<Pointer {...{ from, to }} />);
                 }
                 return res;
             },
@@ -221,6 +215,5 @@ class Patcher {
         };
     }
 }
-
 
 export default Patcher;
