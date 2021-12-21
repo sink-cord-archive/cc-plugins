@@ -1,7 +1,0 @@
-{
-  "name": "Translation Option",
-  "description": "Automatic translation of incoming/outgoing messages by many of translation engines",
-  "author": "userXinos [Port: ysink]",
-  "file": "index.js",
-  "license": "BSD-3"
-}
