@@ -1,5 +1,6 @@
 import { persist } from "@cumcord/pluginData";
 import { nests } from "@cumcord/modules/internal";
+import { log } from "@cumcord/utils/logger";
 
 import {
     loadTheme,
@@ -69,6 +70,8 @@ export default () => {
     persist.on(nests.Events.SET, updateNests);
     persist.on(nests.Events.DELETE, updateNests);
 
+    log("|| CUMSTAIN || Initialised window.cumstain API");
+
     return () => {
         persist.off(nests.Events.UPDATE, updateNests);
         persist.off(nests.Events.SET, updateNests);
@@ -76,5 +79,7 @@ export default () => {
 
         window.cumstain = undefined;
         delete window.cumstain;
+
+        log("|| CUMSTAIN || Disposed window.cumstain API");
     };
 };
