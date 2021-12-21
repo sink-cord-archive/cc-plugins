@@ -5,6 +5,7 @@ import injectStyles from "./styles.sass";
 import quickCSS from "./patches/quickCSS";
 import themeUpdates from "./patches/themeUpdates";
 import ver from "./patches/ver";
+import exposeApi from "./patches/exposeApi";
 
 export default ({ persist }) => {
     let patches = [];
@@ -22,7 +23,8 @@ export default ({ persist }) => {
                 restoreThemes(),
                 quickCSS(),
                 settingsEntry(),
-                themeUpdates()
+                themeUpdates(),
+                exposeApi()
             );
         },
         // iterate in reverse order. This allows patches to depend on previous patches' side effects.
