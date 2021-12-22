@@ -1,7 +1,7 @@
 {
-  "name": "Shiki Codeblocks",
-  "description": "[PC Port] A plugin for rendering codeblocks with shiki, with theming support",
-  "author": "Vap0r1ze [Port: Yellowsink]",
-  "file": "index.js",
-  "license": "BSD-3"
+    "name": "Shiki Codeblocks",
+    "description": "[PC Port] A plugin for rendering codeblocks with shiki, with theming support",
+    "author": "Vap0r1ze [Port: Yellowsink]",
+    "file": "index.jsx",
+    "license": "BSD-3"
 }

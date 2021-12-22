@@ -23,7 +23,7 @@ import { persist } from "@cumcord/pluginData";
 const getSetting = (name, fallback) => persist.ghost[name] ?? fallback;
 const updateSetting = (name, val) => (persist.store[name] = val);
 
-module.exports = class Settings extends React.PureComponent {
+export default class Settings extends React.PureComponent {
     state = {
         themeLoadingCauses: [],
         isCustomThemeValid: true,
