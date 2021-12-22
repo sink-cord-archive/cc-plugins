@@ -1,0 +1,7 @@
+{
+  "name": "Show Username",
+  "description": "Show usernames for users with nicknames",
+  "author": "Yellowsink",
+  "file": "index.js",
+  "license": "BSD-3"
+}
