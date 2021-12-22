@@ -1,7 +1,9 @@
-import color2Rgba from "../color2Rgba.min.js";
-import { Messages } from "@cumcord/modules/common/i18n";
 import { findByProps } from "@cumcord/modules/webpack";
+import { Messages } from "@cumcord/modules/common/i18n";
 import { copyText } from "@cumcord/utils";
+
+import color2Rgba from "../color2Rgba.min.js";
+
 const hljs = findByProps("initHighlighting");
 
 export default class ShikiHighlighter extends React.PureComponent {
