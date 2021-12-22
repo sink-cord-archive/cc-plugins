@@ -187,7 +187,7 @@ export default class ShikiHighlighter extends React.PureComponent {
                         </div>
                     )}
                     <table className="vpc-shiki-table">
-                        {...codeTableRows}
+                        {/* ... */ codeTableRows}
                     </table>
                     <div className="vpc-shiki-btns">
                         <button

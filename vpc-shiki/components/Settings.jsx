@@ -6,6 +6,7 @@ const TextInput = findByDisplayName("TextInput");
 const SwitchItem = findByDisplayName("SwitchItem");
 const Slider = findByDisplayName("Slider");
 const Spinner = findByDisplayName("Spinner");
+const RadioGroup = findByDisplayName("RadioGroup");
 
 import ShikiHighlighter from "./ShikiHighlighter";
 import previewsData from "../previews";
@@ -141,7 +142,7 @@ export default class Settings extends React.PureComponent {
 
         return (
             <div>
-                {...previews}
+                {/* ... */ previews}
                 <SingleSelect
                     onChange={({ value }) => {
                         updateSetting("theme", value);
@@ -279,4 +280,4 @@ export default class Settings extends React.PureComponent {
             </div>
         );
     }
-};
+}

@@ -5,9 +5,9 @@ import { getReactInstance } from "@cumcord/utils";
 import Settings from "./components/Settings";
 import ShikiHighlighter from "./components/ShikiHighlighter";
 
-import shiki from "shiki";
+import shiki from "./shiki";
 const languages = shiki.BUNDLED_LANGUAGES;
-const CDN_PATH = "https://unpkg.com/shiki@0.9.3/";
+const CDN_PATH = "https://unpkg.com/shiki@0.9.15/";
 shiki.setCDN(CDN_PATH);
 
 import styles from "./styles.css";
@@ -15,9 +15,13 @@ import styles from "./styles.css";
 let highlighter = undefined;
 let unpatch = undefined;
 
+// polyfill getSetting
+import { persist } from "@cumcord/pluginData";
+const getSetting = (name, fallback) => persist.ghost[name] ?? fallback;
+
 async function loadHighlighter(theme) {
-    if (!theme) theme = this.settings.get("theme", shiki.BUNDLED_THEMES[0]);
-    const customThemeHref = this.settings.get("custom-theme");
+    if (!theme) theme = getSetting("theme", shiki.BUNDLED_THEMES[0]);
+    const customThemeHref = getSetting("custom-theme");
     if (customThemeHref) {
         try {
             const tempCDN =
@@ -60,21 +64,20 @@ function injectCodeblock(args, res) {
     res.props.render = () => {
         const { lang, content } = args[0];
 
-        return React.createElement(ShikiHighlighter, {
-            lang,
-            content,
-            getHighlighter: this.getHighlighter.bind(this),
-            getLang: this.getLang,
-            tryHLJS: this.settings.get("try-hljs", "never"),
-            useDevIcon: this.settings.get("use-devicon", "false"),
-            bgOpacity: this.settings.get("bg-opacity", 100),
-        });
+        return (
+            <ShikiHighlighter
+                {...{ lang, content, getHighlighter, getLang }}
+                tryHLJS={getSetting("try-hljs", "never")}
+                useDevIcon={getSetting("use-devicon", "false")}
+                bgOpacity={getSetting("bg-opacity", 100)}
+            />
+        );
     };
 }
 
 const getHighlighter = () => highlighter;
 
-const getLang = () =>
+const getLang = (id) =>
     languages.find((lang) => [...(lang.aliases || []), lang.id].includes(id));
 
 const forceUpdate = () =>
@@ -93,11 +96,8 @@ export default () => {
         },
         settings: (
             <Settings
-                shiki={shiki}
-                loadHighlighter={null}
-                getHighlighter={null}
-                getLang={null}
-                refreshCodeblocks={null}
+                {...{ shiki, loadHighlighter, getHighlighter, getLang }}
+                refreshCodeblocks={forceUpdate}
             />
         ),
     };
