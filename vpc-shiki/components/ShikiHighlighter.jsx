@@ -3,16 +3,6 @@ import { Messages } from "@cumcord/modules/common/i18n";
 import { findByProps } from "@cumcord/modules/webpack";
 import { copyText } from "@cumcord/utils";
 const hljs = findByProps("initHighlighting");
-const fs = require("fs");
-const path = require("path");
-const os = require("os");
-
-const tempFileDir = path.join(__dirname, "../tempFiles");
-const getTempFilePath = (fileName) => path.join(tempFileDir, fileName);
-const getVscodeUrl = (filePath) => {
-    if (os.platform() === "win32") return "vscode://file/" + filePath;
-    return new URL(filePath, "vscode://file/").href;
-};
 
 export default class ShikiHighlighter extends React.PureComponent {
     ref = React.createRef();
@@ -36,46 +26,6 @@ export default class ShikiHighlighter extends React.PureComponent {
         }, 1000);
 
         copyText(this.props.content);
-    }
-
-    onVscodeBtnClick() {
-        if (this.state.vscodeCooldown) return;
-
-        let postClickState = {
-            vscodeCooldown: true,
-        };
-
-        if (!fs.existsSync(tempFileDir)) fs.mkdirSync(tempFileDir);
-
-        fs.readdirSync(tempFileDir).map((fileName) => {
-            try {
-                fs.unlinkSync(path.join(tempFileDir, fileName));
-            } catch {}
-        });
-
-        const tempFileName = this.props.lang
-            ? "tempFile." + this.props.lang
-            : "tempFile";
-        const tempFilePath = getTempFilePath(tempFileName);
-
-        try {
-            fs.writeFileSync(tempFilePath, this.props.content);
-            window.open(getVscodeUrl(tempFilePath));
-        } catch (error) {
-            console.error(error);
-            postClickState = {
-                vscodeCooldown: false,
-            };
-        }
-
-        if (postClickState.vscodeCooldown) {
-            this.setState(postClickState);
-            setTimeout(() => {
-                this.setState({
-                    vscodeCooldown: false,
-                });
-            }, 1000);
-        }
     }
 
     componentDidMount() {
@@ -238,21 +188,6 @@ export default class ShikiHighlighter extends React.PureComponent {
                         {...codeTableRows}
                     </table>
                     <div className="vpc-shiki-btns">
-                        <button
-                            className="vpc-shiki-btn"
-                            onClick={this.onVscodeBtnClick.bind(this)}
-                            style={{
-                                backgroundColor: accentBgColor,
-                                color: accentFgColor,
-                                cursor: this.state.vscodeCooldown
-                                    ? "default"
-                                    : null,
-                            }}
-                        >
-                            {this.state.vscodeCooldown
-                                ? "Opened VSCode!"
-                                : "VSCode"}
-                        </button>
                         <button
                             className="vpc-shiki-btn"
                             onClick={this.onCopyBtnClick.bind(this)}
