@@ -1,13 +1,14 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
-const Spinner = findByDisplayName("Spinner");
 import { sleep } from "@cumcord/utils";
-import ShikiHighlighter from "./ShikiHighlighter";
-import previewsData from "../previews";
 
 const { SingleSelect } = findByDisplayName("Select", false);
 const TextInput = findByDisplayName("TextInput");
 const SwitchItem = findByDisplayName("SwitchItem");
 const Slider = findByDisplayName("Slider");
+const Spinner = findByDisplayName("Spinner");
+
+import ShikiHighlighter from "./ShikiHighlighter";
+import previewsData from "../previews";
 
 const ERROR_COLOR = "var(--text-danger)";
 const CUSTOM_THEME_ISSUES = [
@@ -16,6 +17,11 @@ const CUSTOM_THEME_ISSUES = [
     "The theme must be accessed with HTTPS.",
 ];
 const LOAD_PADDING = 250;
+
+// powercord settings polyfill in 3 lines amazing
+import { persist } from "@cumcord/pluginData";
+const getSetting = (name, fallback) => persist.ghost[name] ?? fallback;
+const updateSetting = (name, val) => (persist.store[name] = val);
 
 module.exports = class Settings extends React.PureComponent {
     state = {
@@ -79,9 +85,6 @@ module.exports = class Settings extends React.PureComponent {
 
     render() {
         const {
-            getSetting,
-            updateSetting,
-            toggleSetting,
             shiki,
             loadHighlighter,
             getHighlighter,
