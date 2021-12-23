@@ -2,9 +2,7 @@ import { findByProps } from "@cumcord/modules/webpack";
 import { Messages } from "@cumcord/modules/common/i18n";
 import { copyText } from "@cumcord/utils";
 
-//import color2Rgba from "../color2Rgba.min.js";
-const color2Rgba = require("../color2Rgba.min.js");
-console.log(color2Rgba)
+import color2Rgba from "../color2Rgba";
 
 const hljs = findByProps("initHighlighting");
 
