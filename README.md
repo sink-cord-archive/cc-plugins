@@ -134,3 +134,15 @@ Ported with original author's permission.
 <details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/who-reacted"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
+
+### [PC] Shiki Codeblocks
+
+<img height="250" src="https://yellowsink.github.io/discord-command-palette/assets/shiki-1.png" />
+
+A port of [vpc-shiki]() by Vap0r1ze to Cumcord.
+
+<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/vpc-shiki"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+
+<details><summary>Install from source</summary> -->
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/vpc-shiki"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+<!-- </details> -->
