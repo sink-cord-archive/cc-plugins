@@ -49,7 +49,7 @@ async function loadHighlighter(theme) {
 }
 
 async function patchCodeblocks() {
-    const parser = await getModule(["parse", "parseTopic"]);
+    const parser = findByProps("parse", "parseTopic");
 
     unpatch = after("react", parser.defaultRules.codeBlock, (args, res) => {
         injectCodeblock(args, res);
@@ -87,6 +87,8 @@ const forceUpdate = () =>
 
 export default () => {
     let unpatchstyles = styles();
+
+    patchCodeblocks();
 
     return {
         onUnload() {
