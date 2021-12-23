@@ -29,7 +29,7 @@ export default () =>
 
             if (
                 member?.nick &&
-                ret.props.children.props.children.props.childrenHeader.props
+                ret?.props.children?.props.children?.props.childrenHeader?.props
                     .author
             )
                 ret.props.children.props.children.props.childrenHeader.props.author.nick = `${member.nick} (${user.username})`;
