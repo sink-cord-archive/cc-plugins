@@ -96,3 +96,11 @@
     word-break: break-word;
     width: 100%;
 }
+
+.ysink_shiki_divider {
+    margin: .5rem 0;
+}
+
+.ysink_shiki_settingsroot {
+    margin-bottom: 2rem;
+}

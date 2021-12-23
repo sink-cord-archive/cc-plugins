@@ -1,4 +1,4 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
+import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { sleep, useNest } from "@cumcord/utils";
 
 const { useState } = React;
@@ -9,6 +9,8 @@ const SwitchItem = findByDisplayName("SwitchItem");
 const Slider = findByDisplayName("Slider");
 const Spinner = findByDisplayName("Spinner");
 const RadioGroup = findByDisplayName("RadioGroup");
+const Header = findByProps("Sizes", "Tags");
+const FormDivider = findByDisplayName("FormDivider");
 
 import ShikiHighlighter from "./ShikiHighlighter";
 import previewsData from "../previews";
@@ -42,8 +44,10 @@ const getCustomThemeIssue = (href) => {
     }
     return 0;
 };
+
+// sorry aeth but i think thats an exceptionally dumb idea -- Yellowsink, during porting this to CC
 // https://i.imgur.com/G7Qmfxj.png
-const padPromise = (promise) => Promise.all([promise, sleep(LOAD_PADDING)]);
+const padPromise = (promise) => promise; //Promise.all([promise, sleep(LOAD_PADDING)]);
 
 let debounces = {};
 const debounce = (id, fn, wait) => {
@@ -61,13 +65,6 @@ export default ({
     refreshCodeblocks,
 }) => {
     useNest(persist);
-
-    /* let [state, setState] = useState({
-        themeLoadingCauses: [],
-        isCustomThemeValid: true,
-        customThemeIssue: null,
-        lastEdited: Date.now(),
-    }); */
 
     let [themeLoadingCauses, setThemeLoadingCauses] = useState([]);
     let [isCustomThemeValid, setIsCustomThemeValid] = useState(true);
@@ -142,7 +139,7 @@ export default ({
     }
 
     return (
-        <div>
+        <div className="ysink_shiki_settingsroot">
             {/* ... */ previews}
             <SingleSelect
                 onChange={(value) => {
@@ -163,6 +160,7 @@ export default ({
             >
                 Theme
             </SingleSelect>
+            <FormDivider className="ysink_shiki_divider" />
             <TextInput
                 style={!isCustomThemeValid ? { borderColor: ERROR_COLOR } : {}}
                 onChange={(value) => {
@@ -188,6 +186,8 @@ export default ({
                 value={getSetting("custom-theme")}
                 placeholder={customThemeLabel}
             />
+            <FormDivider className="ysink_shiki_divider" />
+            <Header tag="h3">Use Default Highlighter</Header>
             <RadioGroup
                 value={getSetting("try-hljs", "never")}
                 onChange={({ value }) => {
@@ -220,9 +220,9 @@ export default ({
                         highlighter.
                     </>
                 }
-            >
-                Use Default Highlighter
-            </RadioGroup>
+            ></RadioGroup>
+            <FormDivider className="ysink_shiki_divider" />
+            <Header tag="h3">Icons</Header>
             <RadioGroup
                 value={getSetting("use-devicon", "false")}
                 onChange={({ value }) => {
@@ -243,9 +243,9 @@ export default ({
                         value: "colored",
                     },
                 ]}
-            >
-                Icons
-            </RadioGroup>
+            ></RadioGroup>
+            <FormDivider className="ysink_shiki_divider" />
+            <Header tag="h3">BG Opacity</Header>
             <Slider
                 initialValue={getSetting("bg-opacity", 100)}
                 onValueChange={(value) => {
@@ -265,9 +265,7 @@ export default ({
                 minValue={0}
                 maxValue={100}
                 stickToMarkers={false}
-            >
-                Background Opacity
-            </Slider>
+            ></Slider>
         </div>
     );
 };
