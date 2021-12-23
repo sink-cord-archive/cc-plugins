@@ -137,7 +137,7 @@ Ported with original author's permission.
 
 ### [PC] Shiki Codeblocks
 
-<img height="250" src="https://yellowsink.github.io/discord-command-palette/assets/shiki-1.png" />
+<img height="250" src="https://yellowsink.github.io/cc-plugins/assets/shiki-1.png" />
 
 A port of [vpc-shiki](https://github.com/Vap0r1ze/vpc-shiki) by Vap0r1ze to Cumcord.
 
