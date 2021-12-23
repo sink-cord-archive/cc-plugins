@@ -27,6 +27,8 @@ const LOAD_PADDING = 250;
 import { persist } from "@cumcord/pluginData";
 const getSetting = (name, fallback) => persist.ghost[name] ?? fallback;
 const updateSetting = (name, val) => (persist.store[name] = val);
+
+// aaaaaaa
 const humanizeTheme = (theme) =>
     theme
         .split(/[^a-zA-Z0-9]/)
@@ -66,12 +68,12 @@ export default ({
 }) => {
     useNest(persist);
 
-    let [themeLoadingCauses, setThemeLoadingCauses] = useState([]);
-    let [isCustomThemeValid, setIsCustomThemeValid] = useState(true);
-    let [customThemeIssue, setCustomThemeIssue] = useState(null);
-    let [lastEdited, setLastEdited] = useState(Date.now());
+    const [themeLoadingCauses, setThemeLoadingCauses] = useState([]);
+    const [isCustomThemeValid, setIsCustomThemeValid] = useState(true);
+    const [customThemeIssue, setCustomThemeIssue] = useState(null);
 
     const addLoadingCause = (cause) => {
+        console.log("add", cause, themeLoadingCauses);
         if (themeLoadingCauses.indexOf(cause) === -1) {
             setThemeLoadingCauses([...themeLoadingCauses, cause]);
             return true;
@@ -79,13 +81,13 @@ export default ({
         return false;
     };
     const removeLoadingCause = (cause) => {
+        console.log("remove", cause, themeLoadingCauses);
         const index = themeLoadingCauses.indexOf(cause);
         if (index >= 0) {
-            setThemeLoadingCauses(
-                themeLoadingCauses
-                    .slice(0, index)
-                    .concat(...themeLoadingCauses.slice(index + 1))
-            );
+            setThemeLoadingCauses([
+                ...themeLoadingCauses.filter((_, i) => i !== index),
+            ]);
+
             return true;
         }
         return false;
@@ -173,11 +175,9 @@ export default ({
                             removeLoadingCause(themeCause);
                             refreshCodeblocks();
                         });
-                        setLastEdited(Date.now());
                         setIsCustomThemeValid(true);
                         setCustomThemeIssue(null);
                     } else {
-                        setLastEdited(Date.now());
                         setIsCustomThemeValid(false);
                         setCustomThemeIssue(CUSTOM_THEME_ISSUES[issue - 1]);
                     }
@@ -192,7 +192,6 @@ export default ({
                 value={getSetting("try-hljs", "never")}
                 onChange={({ value }) => {
                     updateSetting("try-hljs", value);
-                    setLastEdited(Date.now());
                 }}
                 options={[
                     {
@@ -227,7 +226,6 @@ export default ({
                 value={getSetting("use-devicon", "false")}
                 onChange={({ value }) => {
                     updateSetting("use-devicon", value);
-                    setLastEdited(Date.now());
                 }}
                 options={[
                     {
@@ -251,13 +249,11 @@ export default ({
                 onValueChange={(value) => {
                     updateSetting("bg-opacity", value);
                     if (addLoadingCause("bgOpacity")) {
-                        setLastEdited(Date.now());
                     }
                     debounce(
                         "bgOpacity",
                         () => {
                             removeLoadingCause("bgOpacity");
-                            setLastEdited(Date.now());
                         },
                         200
                     );
