@@ -6,7 +6,8 @@ import Settings from "./components/Settings";
 import ShikiHighlighter from "./components/ShikiHighlighter";
 
 import shiki from "./shiki";
-const languages = shiki.BUNDLED_LANGUAGES;
+import fixLanguageAliases from "./fixLanguageAliases";
+const languages = fixLanguageAliases(shiki.BUNDLED_LANGUAGES);
 const CDN_PATH = "https://unpkg.com/shiki@0.9.15/";
 shiki.setCDN(CDN_PATH);
 
@@ -88,7 +89,7 @@ const forceUpdate = () =>
 export default () => {
     let unpatchstyles = styles();
 
-    patchCodeblocks();
+    loadHighlighter().then(patchCodeblocks);
 
     return {
         onUnload() {
