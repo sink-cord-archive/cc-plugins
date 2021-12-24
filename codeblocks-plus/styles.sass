@@ -1,6 +1,5 @@
 .ysink_code_wrapper
     font-family: var(--font-code)
-    background: var(--background-secondary)
     border: 1px solid var(--background-tertiary)
     padding: .5rem 1rem
     margin-right: 6rem
@@ -13,4 +12,9 @@
         background: none
         border: none
         font-family: var(--font-code)
-        padding: 0
+        padding: 0 !important
+
+
+.hljs
+    // intended to be overridden by highlight.js
+    background: var(--background-secondary)

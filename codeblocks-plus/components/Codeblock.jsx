@@ -1,5 +1,5 @@
 export default ({ codeHtml, code, lang }) => (
-    <div className="ysink_code_wrapper">
+    <div className="ysink_code_wrapper hljs">
         <div className="ysink_code_lang">{lang}</div>
         <pre>
             {codeHtml ? (
