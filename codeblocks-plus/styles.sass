@@ -3,18 +3,38 @@
     border: 1px solid var(--background-tertiary)
     padding: .5rem 1rem
     margin-right: 6rem
-    border-radius: .3rem
 
     .ysink_code_lang
         text-transform: uppercase
-        
+        display: inline
+
     code
         background: none
         border: none
         font-family: var(--font-code)
         padding: 0 !important
+        border-radius: 0 !important
 
+    button
+        float: right
+        margin-right: -1rem
+        margin-top: -.5rem
+        color: var(--text-normal)
+        background: var(--background-primary)
+        font-size: .9rem
+        padding: .1rem .5rem
+        border-bottom-left-radius: .3rem
+        
+    .ysink_code_row
+        border-bottom: 1px solid var(--text-muted)
+        margin: 0 -.5rem
+        padding: 0 .5rem
 
+// intended to be overridden by highlight.js themes - they will be injected after this stylesheet!
 .hljs
-    // intended to be overridden by highlight.js
     background: var(--background-secondary)
+    border-radius: .3rem
+
+.ysink_code_head
+    margin-top: .5rem
+    margin-bottom: .25rem
