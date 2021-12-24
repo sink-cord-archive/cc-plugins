@@ -89,6 +89,16 @@ Show usernames for users with nicknames.
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/show-username"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 </details>
 
+### Codeblocks plus
+
+Make your codeblocks look cooler and function better:tm:
+
+<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/codeblocks-plus"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
+
+<details><summary>Install from source</summary> -->
+<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/codeblocks-plus"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
+<!-- </details> -->
+
 ## Plugin Ports
 
 ### [VZ] Channel Activity
