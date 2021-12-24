@@ -1,11 +1,8 @@
 .ysink_code_wrapper
-    font-family: var(--font-code)
-    border: 1px solid var(--background-tertiary)
     padding: .5rem 1rem
-    margin-right: 6rem
+    border-radius: 0 !important
 
     .ysink_code_lang
-        text-transform: uppercase
         display: inline
 
     code
@@ -20,20 +17,18 @@
         margin-right: -1rem
         margin-top: -.5rem
         color: var(--text-normal)
-        background: var(--background-primary)
+        background: var(--background-secondary)
         font-size: .9rem
         padding: .1rem .5rem
-        border-bottom-left-radius: .3rem
         
     .ysink_code_row
         border-bottom: 1px solid var(--text-muted)
-        margin: 0 -.5rem
-        padding: 0 .5rem
+        margin: 0 -.5rem .25rem -.5rem
+        padding: 0 .5rem .25rem .5rem
 
 // intended to be overridden by highlight.js themes - they will be injected after this stylesheet!
 .hljs
     background: var(--background-secondary)
-    border-radius: .3rem
 
 .ysink_code_head
     margin-top: .5rem

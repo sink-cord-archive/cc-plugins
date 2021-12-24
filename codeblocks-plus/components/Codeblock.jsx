@@ -1,8 +1,12 @@
 import { copyText } from "@cumcord/utils";
+import { findByProps } from "@cumcord/modules/webpack";
+import { getLanguage } from "@cumcord/modules/common/highlightjs";
 const { useState, useEffect } = React;
 
 const flat = (html) =>
     new DOMParser().parseFromString(html, "text/html").children[0].textContent;
+
+const scrollbarClasses = findByProps("thin").thin;
 
 export default ({ codeHtml, code, lang }) => {
     // >0: need to wait this amount next render
@@ -19,7 +23,7 @@ export default ({ codeHtml, code, lang }) => {
     return (
         <div className="ysink_code_wrapper hljs">
             <div className="ysink_code_row">
-                <div className="ysink_code_lang">{lang}</div>
+                <div className="ysink_code_lang">{getLanguage(lang)?.name}</div>
                 <button
                     className="dark"
                     disabled={cooldown}
@@ -36,11 +40,13 @@ export default ({ codeHtml, code, lang }) => {
             <pre>
                 {codeHtml ? (
                     <code
-                        className={`hljs ${lang}`}
+                        className={`hljs ${lang} ${scrollbarClasses}`}
                         dangerouslySetInnerHTML={{ __html: codeHtml }}
                     />
                 ) : (
-                    <code className={`hljs ${lang}`}>{code}</code>
+                    <code className={`hljs ${lang} ${scrollbarClasses}`}>
+                        {code}
+                    </code>
                 )}
             </pre>
         </div>
