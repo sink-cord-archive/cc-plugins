@@ -1,5 +1,5 @@
 .ysink_code_wrapper
-    padding: .5rem 1rem
+    padding: .5rem
     border-radius: 0 !important
 
     .ysink_code_lang
@@ -13,18 +13,20 @@
         border-radius: 0 !important
 
     button
-        float: right
-        margin-right: -1rem
-        margin-top: -.5rem
         color: var(--text-normal)
         background: var(--background-secondary)
         font-size: .9rem
         padding: .1rem .5rem
-        
+        border-radius: .25rem
+
     .ysink_code_row
         border-bottom: 1px solid var(--text-muted)
-        margin: 0 -.5rem .25rem -.5rem
-        padding: 0 .5rem .25rem .5rem
+        display: flex
+        padding: .25rem 0
+        margin-bottom: .25rem
+
+        &> :first-child
+          flex: 1
 
 // intended to be overridden by highlight.js themes - they will be injected after this stylesheet!
 .hljs
