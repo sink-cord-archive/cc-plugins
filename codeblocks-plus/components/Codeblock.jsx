@@ -9,7 +9,7 @@ const flat = (html) =>
 const scrollbarClasses = findByProps("thin").thin;
 
 export default ({ codeHtml, code, lang }) => {
-    const [renderedCode, setRenderedCode] = React.useState(undefined);
+    const [renderedCode, setRenderedCode] = React.useState();
 
     // >0: need to wait this amount next render
     // 0: no cooldown
@@ -21,11 +21,9 @@ export default ({ codeHtml, code, lang }) => {
             setTimeout(() => setCooldown(0), cooldown);
         }
 
-        if (!renderedCode) {
-            if (getLanguage(lang))
-                setRenderedCode(highlight(lang, code ?? flat(codeHtml)).value);
-            else setRenderedCode(code ?? flat(codeHtml));
-        }
+        if (getLanguage(lang))
+            setRenderedCode(highlight(lang, code ?? flat(codeHtml)).value);
+        else setRenderedCode(code ?? flat(codeHtml));
     });
 
     return (
