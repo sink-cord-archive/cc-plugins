@@ -2,10 +2,25 @@ import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import includedThemes from "./themeProcessor";
+import { highlightjs } from "@cumcord/modules/common"
 
 const { SingleSelect } = findByDisplayName("Select", false);
 const Header = findByProps("Sizes", "Tags");
 const TextInput = findByDisplayName("TextInput");
+import Codeblock from "./components/Codeblock"
+
+const preview = `const btn = document.getElementById("btn");
+let count = 0;
+function render() {
+    btn.innerText = ${"`Count: ${count}`"};
+}
+btn.addEventListener("click", () => {
+    // Count from 1 to 10.
+    if (count < 10) {
+        count += 1;
+        render();
+    }
+});`
 
 export default () => {
     useNest(persist);
@@ -21,6 +36,8 @@ export default () => {
 
     return (
         <>
+            <Codeblock lang="js" code={preview} />
+
             <Header className="ysink_code_head">Select theme</Header>
             <SingleSelect
                 options={themeOptions}
@@ -36,6 +53,7 @@ export default () => {
                     setCustom((persist.store.theme = persist.store.custom = e))
                 }
                 value={custom}
+                className="ysink_code_mbottom"
             />
         </>
     );

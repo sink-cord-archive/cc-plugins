@@ -1,6 +1,6 @@
 import { copyText } from "@cumcord/utils";
 import { findByProps } from "@cumcord/modules/webpack";
-import { getLanguage } from "@cumcord/modules/common/highlightjs";
+import { getLanguage, highlight } from "@cumcord/modules/common/highlightjs";
 const { useState, useEffect } = React;
 
 const flat = (html) =>
@@ -9,6 +9,8 @@ const flat = (html) =>
 const scrollbarClasses = findByProps("thin").thin;
 
 export default ({ codeHtml, code, lang }) => {
+    const [renderedCode, setRenderedCode] = React.useState(undefined);
+
     // >0: need to wait this amount next render
     // 0: no cooldown
     // -1: currently waiting for cooldown
@@ -17,6 +19,12 @@ export default ({ codeHtml, code, lang }) => {
         if (cooldown > 0) {
             setCooldown(-1);
             setTimeout(() => setCooldown(0), cooldown);
+        }
+
+        if (!renderedCode) {
+            if (getLanguage(lang))
+                setRenderedCode(highlight(lang, code ?? flat(codeHtml)).value);
+            else setRenderedCode(code ?? flat(codeHtml));
         }
     });
 
@@ -30,7 +38,7 @@ export default ({ codeHtml, code, lang }) => {
                     onClick={() => {
                         if (cooldown) return;
 
-                        copyText(code ? code : flat(codeHtml));
+                        copyText(code ?? flat(codeHtml));
                         setCooldown(2000);
                     }}
                 >
@@ -38,16 +46,10 @@ export default ({ codeHtml, code, lang }) => {
                 </button>
             </div>
             <pre>
-                {codeHtml ? (
-                    <code
-                        className={`hljs ${lang} ${scrollbarClasses}`}
-                        dangerouslySetInnerHTML={{ __html: codeHtml }}
-                    />
-                ) : (
-                    <code className={`hljs ${lang} ${scrollbarClasses}`}>
-                        {code}
-                    </code>
-                )}
+                <code
+                    className={`hljs ${lang} ${scrollbarClasses}`}
+                    dangerouslySetInnerHTML={{ __html: renderedCode ?? "" }}
+                />
             </pre>
         </div>
     );
