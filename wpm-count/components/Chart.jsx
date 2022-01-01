@@ -23,9 +23,12 @@ Chart.register(
 );
 
 import { v4 as uuidv4 } from "@cumcord/modules/common/uuid";
-import { useEffect } from "react";
 import { persist } from "@cumcord/pluginData";
+import { findByProps } from "@cumcord/modules/webpack";
 import { wpm } from "../dataManager";
+
+const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+const Header = findByProps("Sizes", "Tags");
 
 export default ({ width, height }) => {
     width = width ?? 400;
@@ -36,7 +39,7 @@ export default ({ width, height }) => {
     const [changeScale, setChangeScale] = React.useState(false);
     const id = "ysink_wpm_chart_" + chartId;
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (changeScale && chart) {
             const type = chart.options.scales.y?.type;
             chart.options.scales.y.type =
@@ -86,9 +89,22 @@ export default ({ width, height }) => {
 
     return (
         <>
-            <button onClick={() => setChangeScale(true)}>
-                Toggle log scale
-            </button>
+            <div style={{
+                display: "flex",
+                gap: ".5rem",
+                "align-items": "center",
+            }}>
+                <Header tag="h2">WPM Chart</Header>
+                <Button
+                    size={Button.Sizes.TINY}
+                    color={Button.Colors.BRAND}
+                    look={Button.Looks.OUTLINED}
+                    onClick={() => setChangeScale(true)}
+                >
+                    Toggle log scale
+                </Button>
+            </div>
+
             <canvas {...{ id, width, height }} />
         </>
     );
