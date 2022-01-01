@@ -1,4 +1,5 @@
 import data from "@cumcord/pluginData";
+import Chart from "./components/Chart";
 
 import channelTextArea from "./patches/channelTextArea";
 import styles from "./styles.sass";
@@ -16,5 +17,6 @@ export default () => {
 
     return {
         onUnload: () => _.forEachRight(patches, (p) => p()),
+        settings: Chart
     };
 };
