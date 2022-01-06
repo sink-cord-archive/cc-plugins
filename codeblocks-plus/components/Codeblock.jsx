@@ -1,6 +1,7 @@
 import { copyText } from "@cumcord/utils";
 import { findByProps } from "@cumcord/modules/webpack";
 import { getLanguage } from "@cumcord/modules/common/highlightjs";
+import { error } from "@cumcord/utils/logger";
 const { useState, useEffect } = React;
 
 const flat = (html) =>
@@ -20,10 +21,17 @@ export default ({ codeHtml, code, lang }) => {
         }
     });
 
+    const getLang = (lang) => {
+        if (getLanguage) return getLanguage(lang);
+        error(
+            "|| Codeblocks Plus || highlight.js was not found. Please ensure cumcord.modules.common.highlightjs isnt undefined..."
+        );
+    };
+
     return (
         <div className="ysink_code_wrapper hljs">
             <div className="ysink_code_row">
-                <div className="ysink_code_lang">{getLanguage(lang)?.name}</div>
+                <div className="ysink_code_lang">{getLang(lang)?.name}</div>
                 <button
                     className="dark"
                     disabled={cooldown}
