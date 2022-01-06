@@ -8,7 +8,6 @@ import TabQuickCSS from "./tabs/TabQuickCSS";
 import TabStore from "./tabs/TabStore";
 const FormTitle = findByDisplayName("FormTitle");
 const FormSection = findByDisplayName("FormSection");
-const FormText = findByDisplayName("FormText");
 const Flex = findByDisplayName("Flex");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
