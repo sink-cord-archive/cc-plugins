@@ -1,11 +1,10 @@
-import nitroAnimatedCheck from "./patches/nitroAnimatedCheck";
-import nitroServerCheck from "./patches/nitroServerCheck";
+import nitroChecks from "./patches/nitroChecks";
 import sendMessage from "./patches/sendMessage";
 
 export default () => {
-    let patches = [nitroServerCheck(), nitroAnimatedCheck(), sendMessage()];
+    const patches = [nitroChecks(), sendMessage()];
 
     return {
-        onUnload: () => patches.forEach((unpatch) => unpatch?.()),
+        onUnload: () => _.forEachRight(patches, p => p()),
     };
 };
