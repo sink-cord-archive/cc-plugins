@@ -1,8 +1,8 @@
-# All plugins are licenced under BSD-3, as follows
+# All plugins (exceptions below) are licenced under BSD-3, as follows
 
 BSD 3-Clause License
 
-Copyright (c) 2021 Cain Atkinson <yellowsink@protonmail.com> All rights reserved.
+Copyright (c) 2021-2022 Cain Atkinson <yellowsink@protonmail.com> All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -27,8 +27,12 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-# The /assets/ folder is licensed under the Unlicense, as follows:
+# CC-QuickReply is licensed under GPL-3.0-only
+Not copying full text here as it's massive.
 
+[Full text](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
+# The /assets/ folder is licensed under the Unlicense, as follows:
 
 This is free and unencumbered software released into the public domain.
 
