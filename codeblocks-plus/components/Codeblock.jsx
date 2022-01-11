@@ -1,19 +1,12 @@
 import { copyText } from "@cumcord/utils";
 import { findByProps } from "@cumcord/modules/webpack";
-<<<<<<< HEAD
-import { getLanguage } from "@cumcord/modules/common/highlightjs";
-import { error } from "@cumcord/utils/logger";
-=======
 import { getLanguage, highlight } from "@cumcord/modules/common/highlightjs";
->>>>>>> 321b8cfaaa37b91aa8dbf3acba2241759a87bb93
+import { error } from "@cumcord/utils/logger";
 const { useState, useEffect } = React;
-
-const flat = (html) =>
-    new DOMParser().parseFromString(html, "text/html").children[0].textContent;
 
 const scrollbarClasses = findByProps("thin").thin;
 
-export default ({ codeHtml, code, lang }) => {
+export default ({ codeText, lang }) => {
     const [renderedCode, setRenderedCode] = React.useState();
 
     const getLang = (lang) => {
@@ -33,9 +26,11 @@ export default ({ codeHtml, code, lang }) => {
             setTimeout(() => setCooldown(0), cooldown);
         }
 
-        if (getLang(lang))
-            setRenderedCode(highlight(lang, code ?? flat(codeHtml)).value);
-        else setRenderedCode(code ?? flat(codeHtml));
+        setRenderedCode(
+            getLang(lang) // if the lang isnt recognised by hljs, this is undefined
+                ? highlight(lang, codeText).value
+                : codeText
+        );
     });
 
     return (
@@ -48,7 +43,7 @@ export default ({ codeHtml, code, lang }) => {
                     onClick={() => {
                         if (cooldown) return;
 
-                        copyText(code ?? flat(codeHtml));
+                        copyText(codeText);
                         setCooldown(2000);
                     }}
                 >
