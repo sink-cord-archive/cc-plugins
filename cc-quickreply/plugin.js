@@ -6,7 +6,7 @@ import { FluxDispatcher as Dispatcher } from "@cumcord/modules/common";
 
 const { getChannelId } = findByProps("getChannelId", "getLastSelectedChannelId", "getVoiceChannelId");
 const { getChannel } = findByProps("getChannel", "getDMUserIds");
-const { getMessages } = findByProps("getMessages");
+const { getMessages } = findByProps("getRawMessages");
 
 let messageIndex = -1;
 let activeChannel = getChannelId();
