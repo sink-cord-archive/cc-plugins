@@ -11,7 +11,7 @@ import Codeblock from "./components/Codeblock"
 const preview = `const btn = document.getElementById("btn");
 let count = 0;
 function render() {
-    btn.innerText = ${"`Count: ${count}`"};
+    btn.innerText = \`Count: \${count}\`;
 }
 btn.addEventListener("click", () => {
     // Count from 1 to 10.
