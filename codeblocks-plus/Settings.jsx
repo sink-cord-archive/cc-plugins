@@ -2,7 +2,6 @@ import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import includedThemes from "./themeProcessor";
-import { highlightjs } from "@cumcord/modules/common"
 
 const { SingleSelect } = findByDisplayName("Select", false);
 const Header = findByProps("Sizes", "Tags");
@@ -36,7 +35,7 @@ export default () => {
 
     return (
         <>
-            <Codeblock lang="js" code={preview} />
+            <Codeblock lang="js" codeText={preview} />
 
             <Header className="ysink_code_head">Select theme</Header>
             <SingleSelect
