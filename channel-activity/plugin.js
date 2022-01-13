@@ -1,1 +1,12 @@
-(function(a){"use strict";var n=()=>cumcord.patcher.injectCSS(".ysink_activity_image{height:2rem;border-radius:.3rem}.icon-15YQ1T{display:none}.children-gzQq2t{display:flex}"),p=d=>{let s=null,c=null;return{onLoad(){c=n();let o=cumcord.modules.webpack.findByDisplayName("MemberListItem").prototype;s=cumcord.patcher.after("render",o,(l,t)=>{if(!t.props?.subText?.props)return;const r=t?.props?.subText?.props?.activities;if(!!r?.length){t.props.children=[];for(const e of r){const i=e?.assets?.large_image||e?.assets?.small_image;if(e.application_id&&i){const m=i.startsWith("mp:")?i.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${e.application_id}/${i}.png`;t.props.children.push(a.React.createElement("img",{src:m,className:"ysink_activity_image"}))}}return t}})},onUnload(){s&&s(),c&&c()}}};return p})(cumcord.modules.common);
+(function(s,c,a){"use strict";const{icon:p}=s.findByProps("icon","textRuler"),{children:m}=s.findByProps("nameAndDecorators");var d=()=>c.injectCss(`
+.ysink_activity_image {
+    height: 2rem;
+    border-radius: .3rem;
+}
+
+/* remove redundant rich presence icon */
+.${p} { display: none; }
+
+/* idk why but this looks nicer */
+.${m} { display: flex; }
+`),l=y=>{let r=null,n=null;return{onLoad(){n=d();let u=s.findByDisplayName("MemberListItem").prototype;r=c.after("render",u,(f,e)=>{if(!e.props?.subText?.props)return;const o=e?.props?.subText?.props?.activities;if(!!o?.length){e.props.children=[];for(const t of o){const i=t?.assets?.large_image||t?.assets?.small_image;if(t.application_id&&i){const h=i.startsWith("mp:")?i.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${t.application_id}/${i}.png`;e.props.children.push(a.React.createElement("img",{src:h,className:"ysink_activity_image"}))}}return e}})},onUnload(){r&&r(),n&&n()}}};return l})(cumcord.modules.webpack,cumcord.patcher,cumcord.modules.common);
