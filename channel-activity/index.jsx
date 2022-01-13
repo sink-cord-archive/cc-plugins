@@ -14,7 +14,7 @@ export default (data) => {
                 findByDisplayName(
                     "MemberListItem"
                 ).prototype;
-            memberListItemUnPatch = .after(
+            memberListItemUnPatch = after(
                 "render",
                 memberlistitem,
                 // args are always empty here so ignore them
