@@ -9,6 +9,6 @@ const defaultRepos = [
     },
 ];
 
-export default (store) => {
+export default () => {
     persist.store.repos = defaultRepos.slice();
 };

@@ -3,8 +3,7 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import { getPlugins, combinePluginLists } from "../pluginFetcher.js";
 import fuzzySearch from "../fuzzy.js";
-const useState = React.useState;
-const useEffect = React.useEffect;
+const { useState, useEffect } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import Ticker from "./Ticker.jsx";

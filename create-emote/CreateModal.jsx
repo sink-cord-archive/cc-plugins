@@ -1,8 +1,7 @@
 import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import { showToast } from "@cumcord/ui/toasts";
-import { uploadEmoji } from "./discordTools.js";
-const useState = React.useState;
+import { uploadEmoji } from "./discordTools";
 const { openModal } = findByProps("openModalLazy");
 
 const ModalComponents = findByProps("ModalCloseButton");
@@ -14,7 +13,7 @@ const TextInput = findByDisplayName("TextInput");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 const Component = ({ guildId, emoteUrl, e }) => {
-    const [input, setInput] = useState("");
+    const [input, setInput] = React.useState("");
 
     return (
         <ErrorBoundary>

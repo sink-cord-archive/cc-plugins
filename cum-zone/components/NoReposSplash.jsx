@@ -6,7 +6,7 @@ const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
-const component = () => (
+export default () => (
     <FormSection className="ysink_zone_splash">
         <FormTitle tag="h2">No Repos!</FormTitle>
         <FormText>You do not have any repos added!</FormText>
@@ -20,5 +20,3 @@ const component = () => (
         </Button>
     </FormSection>
 );
-
-export default component;

@@ -1,4 +1,6 @@
-import CssInject from "./styles.css"; // cumcord go brr
+import { findByDisplayName } from "@cumcord/modules/webpack"
+import { after } from "@cumcord/patcher"
+import CssInject from "./styles.js";
 
 export default (data) => {
     let memberListItemUnPatch = null;
@@ -9,10 +11,10 @@ export default (data) => {
             cssUnpatch = CssInject();
 
             let memberlistitem =
-                cumcord.modules.webpack.findByDisplayName(
+                findByDisplayName(
                     "MemberListItem"
                 ).prototype;
-            memberListItemUnPatch = cumcord.patcher.after(
+            memberListItemUnPatch = .after(
                 "render",
                 memberlistitem,
                 // args are always empty here so ignore them

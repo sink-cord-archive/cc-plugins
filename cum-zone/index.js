@@ -9,6 +9,6 @@ export default ({ persist }) => {
     if (!Array.isArray(persist.ghost.repos)) resetReposToDefault(persist.store);
 
     return {
-        onUnload: () => patches.forEach((unpatch) => unpatch?.()),
+        onUnload: () => _.forEachRight(patches, (p) => p()),
     };
 };

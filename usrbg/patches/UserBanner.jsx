@@ -1,6 +1,6 @@
-import { find, findByProps } from "@cumcord/modules/webpack";
+import { find, findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
-const UserBanner = find((m) => m?.default?.displayName == "UserBanner");
+const UserBanner = findByDisplayName("UserBanner", false);
 
 const { popoutBannerPremium } = findByProps("popoutBannerPremium");
 

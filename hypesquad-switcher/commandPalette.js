@@ -1,9 +1,37 @@
-import { findByProps } from "@cumcord/modules/webpack";
+/*=====================================*\
+|  boilerplate, no need to change this  |
+\*=====================================*/
+import { loaded } from "@cumcord/plugins";
+
+const commandPalettePluginIds = [
+    "https://yellowsink.github.io/discord-command-palette/",
+    "https://cumcordplugins.github.io/Condom/yellowsink.github.io/discord-command-palette/",
+];
 
 export default () => {
-    // check if command palette api exists
-    if (!window.commandPalette) return () => {};
+    let unpatch;
 
+    const listener = (eventType, { path }) => {
+        if (commandPalettePluginIds.includes(path[0])) {
+            unpatch?.();
+            unpatch = patch();
+        }
+    };
+
+    if (window.commandPalette) unpatch = patch();
+    else loaded.on("SET", listener);
+
+    return () => {
+        unpatch?.();
+        loaded.off("SET", listener);
+    };
+};
+
+/*==============================================================*\
+|  the command palette API is available to you in this function  |
+\*==============================================================*/
+import { findByProps } from "@cumcord/modules/webpack";
+const patch = () => {
     function setHouse(house) {
         findByProps("joinHypeSquadOnline").joinHypeSquadOnline({
             houseID: "HOUSE_" + house,
@@ -11,12 +39,13 @@ export default () => {
     }
 
     commandPalette.registerEntry(
-        "ysink_hypesquad_switch",
         "HypeSquad Switcher",
+        "ysink_hypesquad_switch",
         "Switch HypeSquad house",
+        "🏠",
         async () => {
             try {
-                let houseChoice = await commandPalette.openPaletteAsync(
+                const houseChoice = await commandPalette.openPaletteAsync(
                     "Choose a house",
                     ["Bravery", "Brilliance", "Balance"]
                 );
@@ -38,9 +67,5 @@ export default () => {
         }
     );
 
-    return () =>
-        commandPalette.unregisterEntry(
-            "ysink_hypesquad_switch",
-            "HypeSquad Switcher"
-        );
+    return () => window.commandPalette?.unregisterSource("HypeSquad Switcher");
 };

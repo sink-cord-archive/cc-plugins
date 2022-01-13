@@ -1,13 +1,43 @@
-import { persist } from "@cumcord/pluginData";
-import { importPlugin, installed, loaded } from "@cumcord/plugins";
-import { nests } from "@cumcord/modules/internal";
-import { combinePluginLists } from "../pluginFetcher.js";
+/*=====================================*\
+|  boilerplate, no need to change this  |
+\*=====================================*/
+import { loaded } from "@cumcord/plugins";
 
+const commandPalettePluginIds = [
+    "https://yellowsink.github.io/discord-command-palette/",
+    "https://cumcordplugins.github.io/Condom/yellowsink.github.io/discord-command-palette/",
+];
+
+export default () => {
+    let unpatch;
+
+    const listener = (eventType, { path }) => {
+        if (commandPalettePluginIds.includes(path[0])) {
+            unpatch?.();
+            unpatch = patch();
+        }
+    };
+
+    if (window.commandPalette) unpatch = patch();
+    else loaded.on("SET", listener);
+
+    return () => {
+        unpatch?.();
+        loaded.off("SET", listener);
+    };
+};
+
+/*==============================================================*\
+|  the command palette API is available to you in this function  |
+\*==============================================================*/
+import { persist } from "@cumcord/pluginData";
+import { importPlugin, installed } from "@cumcord/plugins";
+import { combinePluginLists } from "../pluginFetcher.js";
 const patch = () => {
     commandPalette.registerEntry(
         "Cum Zone",
         "ysink_cumzone_installPlugin",
-        "Install a plugin",
+        "Install a plugin from repo",
         "📦",
         async () => {
             let repos = persist.ghost.repos;
@@ -31,25 +61,5 @@ const patch = () => {
         }
     );
 
-    return () => window?.commandPalette?.unregisterSource?.("Cum Zone");
-};
-
-const commandPalettePluginIds = [
-    "https://yellowsink.github.io/cc-plugins/command-palette/",
-];
-
-export default () => {
-    let unpatch = null;
-
-    let listener = (eventType, { path }) => {
-        if (commandPalettePluginIds.includes(path[0])) unpatch = patch();
-    };
-
-    if (window.commandPalette) unpatch = patch();
-    else loaded.on(nests.Events.SET, listener);
-
-    return () => {
-        unpatch?.();
-        loaded.listeners.SET.delete(listener);
-    };
+    return () => window.commandPalette?.unregisterSource("Cum Zone");
 };

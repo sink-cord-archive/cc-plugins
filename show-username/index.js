@@ -1,9 +1,9 @@
 import patch from "./patch";
 
 export default () => {
-    let patches = [patch()];
+    const unpatch = patch();
 
     return {
-        onUnload: () => patches.reduceRight((_, unpatch) => unpatch?.(), null),
+        onUnload: () => unpatch(),
     };
 };

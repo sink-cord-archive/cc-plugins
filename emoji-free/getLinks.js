@@ -31,20 +31,19 @@ function isInDms() {
         .classList.contains("selected-bZ3Lue");
 }
 
-function getEmojiLinks(size, args) {
+function getEmojiLinks(size, msgArg) {
     //find all emojis from the captured message string and return object with emojiURLS and content
-    const processedData = extractNonUsableEmojis(args[1].content, size);
+    const processedData = extractNonUsableEmojis(msgArg.content, size);
 
-    args[1].content = processedData.content;
-    if (processedData.emojis.length > 0) {
-        args[1].content += "\n" + processedData.emojis.join("\n");
-    }
+    msgArg.content = processedData.content;
+    if (processedData.emojis.length > 0)
+        msgArg.content += "\n" + processedData.emojis.join("\n");
 
     //set invalidEmojis to empty to prevent discord yelling to you about you not having nitro
-    args[1].invalidEmojis = [];
+    msgArg.invalidEmojis = [];
 
     //send modified message
-    return args;
+    return msgArg;
 }
 
 export default getEmojiLinks;

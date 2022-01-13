@@ -10,6 +10,6 @@ export default () => {
 
     return () => {
         serverCheck();
-        animatedCheck(); // THIS ERRORS, table pls fix kthx
+        animatedCheck();
     };
 };

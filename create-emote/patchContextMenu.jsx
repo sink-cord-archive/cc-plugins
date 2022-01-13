@@ -1,13 +1,11 @@
-import { findByProps, find } from "@cumcord/modules/webpack";
+import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import ContextMenuInjection from "./ContextMenuInjection.jsx";
 
 const ContextMenu = findByProps("MenuGroup", "default");
 
 export default () => {
-    const messageContextMenu = find(
-        (m) => m?.default?.displayName == "MessageContextMenu"
-    );
+    const messageContextMenu = findByDisplayName("MessageContextMenu", false);
 
     return after("default", messageContextMenu, (args, retVal) => {
         let target = args[0].target;

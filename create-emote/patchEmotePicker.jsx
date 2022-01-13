@@ -1,10 +1,11 @@
-import { find } from "@cumcord/modules/webpack";
+import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import ContextMenuInjection from "./ContextMenuInjection.jsx";
 
 export default () => {
-    const EmojiContextMenu = find(
-        (m) => m.default?.displayName === "ExpressionPickerContextMenu"
+    const EmojiContextMenu = findByDisplayName(
+        "ExpressionPickerContextMenu",
+        false
     );
 
     return after("default", EmojiContextMenu, ([{ target }], retVal) => {

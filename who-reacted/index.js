@@ -1,6 +1,5 @@
 import injectCss from "./styles.sass";
 
-import { createElement } from "@cumcord/modules/common/React";
 import Settings from "./Settings";
 import reaction from "./patches/reaction";
 
@@ -9,10 +8,9 @@ export default () => {
 
     return {
         onLoad: async () => {
-            patches.push(injectCss());
-            patches.push(await reaction());
+            patches = [injectCss(), await reaction()];
         },
-        onUnload: () => patches.forEach((p) => p?.()),
-        settings: createElement(Settings),
+        onUnload: () => _.forEachRight(patches, (p) => p?.()),
+        settings: Settings,
     };
 };
