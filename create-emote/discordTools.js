@@ -1,6 +1,6 @@
 import { findByProps } from "@cumcord/modules/webpack";
 
-const { uploadEmoji } = findByProps("uploadEmoji");
+const discordEmoteTools = findByProps("uploadEmoji");
 const { getGuildPermissions } = findByProps("getGuildPermissions");
 
 const { getGuilds } = findByProps("getGuilds");
@@ -32,7 +32,7 @@ const imageUrlToBase64 = async (link) =>
 
 const uploadEmoji = (guildId, imageURL, name) => {
     imageUrlToBase64(imageURL).then((b64) =>
-        uploadEmoji(guildId, b64, name)
+        discordEmoteTools.uploadEmoji(guildId, b64, name)
     );
 };
 
