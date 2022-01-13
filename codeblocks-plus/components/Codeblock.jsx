@@ -1,13 +1,16 @@
 import { copyText } from "@cumcord/utils";
 import { findByProps } from "@cumcord/modules/webpack";
-import { getLanguage, highlight } from "@cumcord/modules/common/highlightjs";
+import {
+    getLanguage,
+    highlightBlock,
+} from "@cumcord/modules/common/highlightjs";
 import { error } from "@cumcord/utils/logger";
 const { useState, useEffect } = React;
 
 const scrollbarClasses = findByProps("thin").thin;
 
 export default ({ codeText, lang }) => {
-    const [renderedCode, setRenderedCode] = React.useState();
+    const codeRef = React.useRef();
 
     const getLang = (lang) => {
         if (getLanguage) return getLanguage(lang);
@@ -26,11 +29,7 @@ export default ({ codeText, lang }) => {
             setTimeout(() => setCooldown(0), cooldown);
         }
 
-        setRenderedCode(
-            getLang(lang) // if the lang isnt recognised by hljs, this is undefined
-                ? highlight(lang, codeText).value
-                : codeText
-        );
+        if (getLang(lang)) highlightBlock(codeRef.current);
     });
 
     return (
@@ -52,9 +51,11 @@ export default ({ codeText, lang }) => {
             </div>
             <pre>
                 <code
+                    ref={codeRef}
                     className={`hljs ${lang} ${scrollbarClasses}`}
-                    dangerouslySetInnerHTML={{ __html: renderedCode ?? "" }}
-                />
+                >
+                    {codeText}
+                </code>
             </pre>
         </div>
     );
