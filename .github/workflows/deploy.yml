@@ -17,6 +17,9 @@ jobs:
                   node-version: "16"
 
             - run: npm install --global sperm pnpm
+            
+            - name: Install deps
+              run: pnpm m i
 
               # Magic happens here:
               # - finds every folder in repo (which is why dist dir is hidden)
@@ -31,7 +34,6 @@ jobs:
                   do
                     if [ $plugin != "assets/" ]; then
                       cd "$plugin"
-                      pnpm m i
                       sperm build --outdir "../.dist/$plugin"
                       cd ..
                     fi
