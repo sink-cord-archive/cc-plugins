@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { find, findByProps } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 
@@ -24,6 +25,8 @@ export default () =>
             ],
             ret
         ) => {
+            if (persist.ghost.msg === false) return;
+
             const member = getMember(guildId, authorId);
             const user = getUser(authorId);
 
