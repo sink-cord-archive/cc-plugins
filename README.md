@@ -159,8 +159,6 @@ Ported with original author's permission.
 
 ### [PC] Shiki Codeblocks
 
-<img height="250" src="https://yellowsink.github.io/cc-plugins/assets/shiki-1.png" />
-
 A port of [vpc-shiki](https://github.com/Vap0r1ze/vpc-shiki) by Vap0r1ze to Cumcord.
 
 <!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/vpc-shiki"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/condom_button.png" /></a>
