@@ -12,6 +12,8 @@
         font-family: var(--font-code)
         padding: 0 !important
         border-radius: 0 !important
+        font-size: 0.875rem
+        line-height: 1.125rem
 
     button
         color: var(--text-normal)
@@ -31,6 +33,19 @@
 
         &> :first-child
           flex: 1
+    
+    .ysink_code_linenumbers
+        float: left
+        margin-right: .5rem
+        padding-right: .5rem
+        padding-top: .25rem + .1rem
+        border-right: 1px solid var(--text-muted)
+        height: 100%
+        font-family: var(--font-code)
+        font-size: 0.875rem
+        line-height: 1.125rem
+        text-align: right
+        margin-top: -.25rem
 
 // intended to be overridden by highlight.js themes - they will be injected after this stylesheet!
 .hljs

@@ -6,6 +6,7 @@ import includedThemes from "./themeProcessor";
 const { SingleSelect } = findByDisplayName("Select", false);
 const Header = findByProps("Sizes", "Tags");
 const TextInput = findByDisplayName("TextInput");
+const Switch = findByDisplayName("Switch");
 import Codeblock from "./components/Codeblock"
 
 const preview = `const btn = document.getElementById("btn");
@@ -53,6 +54,12 @@ export default () => {
                 }
                 value={custom}
                 className="ysink_code_mbottom"
+            />
+
+            <Header className="ysink_code_head">Show line numbers</Header>
+            <Switch
+                checked={persist.ghost.nums ?? true}
+                onChange={(e) => (persist.store.nums = e)}
             />
         </>
     );

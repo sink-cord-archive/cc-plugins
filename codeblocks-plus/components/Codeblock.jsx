@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import { copyText } from "@cumcord/utils";
 import { findByProps } from "@cumcord/modules/webpack";
 import {
@@ -8,6 +9,8 @@ import { error } from "@cumcord/utils/logger";
 const { useState, useEffect } = React;
 
 const scrollbarClasses = findByProps("thin").thin;
+
+import LineNumbers from "./LineNumbers";
 
 export default ({ codeText, lang }) => {
     const codeRef = React.useRef();
@@ -49,6 +52,13 @@ export default ({ codeText, lang }) => {
                     {cooldown ? "Copied!" : "Copy"}
                 </button>
             </div>
+            
+            {persist.ghost.nums ?? true ? (
+                <LineNumbers lines={codeText.split("\n").length} />
+            ) : (
+                []
+            )}
+
             <pre>
                 <code
                     ref={codeRef}
