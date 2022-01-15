@@ -13,14 +13,15 @@ const wpm = (datapoints) => {
 };
 
 const flush = () => {
+    const timingPoints = data.live
+        .filter((v) => v[0].key === " " || v[0].key === "Enter")
+        .map((v) => v[1]);
+
     data.liveTimeoutId = null;
 
     // update persist store
     if (data.live.length >= MIN_WORDS)
-        data.persist.ghost.datapoints.set(
-            data.live[data.live.length - 1],
-            data.live
-        );
+        data.persist.ghost.datapoints.set(_.last(data.live)[1], timingPoints);
 
     // broadcast events
     data.persist.store.datapoints = data.persist.ghost.datapoints;
@@ -28,16 +29,15 @@ const flush = () => {
     data.live = [];
 };
 
-const pushToLive = () => {
+const pushToLive = (e) => {
     if (data.liveTimeoutId) clearTimeout(data.liveTimeoutId);
-    data.live.push(Date.now());
+    data.live.push([e, Date.now()]);
     data.liveTimeoutId = setTimeout(flush, SECS_TO_FLUSH * 1000);
 };
 
-const disqualify = () => {
+const pop = () => {
     if (data.liveTimeoutId) clearTimeout(data.liveTimeoutId);
-    // incur a 1 word penalty for backspacing.
     data.live.pop();
 };
 
-export { pushToLive, disqualify, wpm };
+export { pushToLive, pop, wpm };

@@ -17,6 +17,6 @@ export default () => {
 
     return {
         onUnload: () => _.forEachRight(patches, (p) => p()),
-        settings: Chart
+        settings: Chart,
     };
 };

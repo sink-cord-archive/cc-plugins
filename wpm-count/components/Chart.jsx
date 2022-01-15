@@ -34,10 +34,10 @@ export default ({ width, height }) => {
     width = width ?? 400;
     height = height ?? 200;
 
-    const [chartId] = React.useState(uuidv4());
     const [chart, setChart] = React.useState();
     const [changeScale, setChangeScale] = React.useState(false);
-    const id = "ysink_wpm_chart_" + chartId;
+
+    const chartRef = React.useRef();
 
     React.useEffect(() => {
         if (changeScale && chart) {
@@ -51,9 +51,8 @@ export default ({ width, height }) => {
 
         if (chart) return;
 
-        const ctx = document.getElementById(id).getContext("2d");
         setChart(
-            new Chart(ctx, {
+            new Chart(chartRef.current, {
                 type: "line",
                 data: {
                     //labels: Array.from(persist.ghost.datapoints.keys()),
@@ -89,11 +88,13 @@ export default ({ width, height }) => {
 
     return (
         <>
-            <div style={{
-                display: "flex",
-                gap: ".5rem",
-                "align-items": "center",
-            }}>
+            <div
+                style={{
+                    display: "flex",
+                    gap: ".5rem",
+                    "align-items": "center",
+                }}
+            >
                 <Header tag="h2">WPM Chart</Header>
                 <Button
                     size={Button.Sizes.TINY}
@@ -105,7 +106,7 @@ export default ({ width, height }) => {
                 </Button>
             </div>
 
-            <canvas {...{ id, width, height }} />
+            <canvas {...{ width, height }} ref={chartRef} />
         </>
     );
 };
