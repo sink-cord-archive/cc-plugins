@@ -10,17 +10,11 @@ const { useState, useCallback } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 
+const saveCss = (v) => reloadCSS((persist.store.quickCSS = v));
+const saveCssDebounced = _.debounce(saveCss, 250);
+
 export default () => {
     const [css, setCss] = useState(persist.ghost.quickCSS);
-
-    const saveCss = (v) => {
-        persist.store.quickCSS = v;
-        reloadCSS();
-    };
-    const saveCssThrottle = useCallback(
-        _.throttle(saveCss, 250, { leading: true, trailing: true }),
-        []
-    );
 
     return (
         <ErrorBoundary>
@@ -30,7 +24,7 @@ export default () => {
                     value={css ?? ""}
                     onValueChange={(v) => {
                         setCss(v);
-                        saveCssThrottle(v);
+                        saveCssDebounced(v);
                     }}
                     highlight={(code) => highlight(code, languages.css)}
                     padding={10}
