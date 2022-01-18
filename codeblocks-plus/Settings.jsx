@@ -53,13 +53,13 @@ export default () => {
                     setCustom((persist.store.theme = persist.store.custom = e))
                 }
                 value={custom}
-                className="ysink_code_mbottom"
             />
 
             <Header className="ysink_code_head">Show line numbers</Header>
             <Switch
                 checked={persist.ghost.nums ?? true}
                 onChange={(e) => (persist.store.nums = e)}
+                className="ysink_code_mbottom"
             />
         </>
     );
