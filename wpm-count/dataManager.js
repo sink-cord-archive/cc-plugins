@@ -20,7 +20,7 @@ const flush = () => {
     data.liveTimeoutId = null;
 
     // update persist store
-    if (data.live.length >= MIN_WORDS)
+    if (timingPoints.length >= MIN_WORDS)
         data.persist.ghost.datapoints.set(_.last(data.live)[1], timingPoints);
 
     // broadcast events
