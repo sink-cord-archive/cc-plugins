@@ -5,7 +5,8 @@ import extractMeta from "./bdMetaParser";
 async function getBdTheme(url, repoUrl) {
     const actualUrl = new URL(url, repoUrl).href;
 
-    const CSS = await (await fetch(actualUrl)).text();
+    const CSS =
+        themeCSSCache[actualUrl] ?? (await (await fetch(actualUrl)).text());
 
     themeCSSCache[actualUrl] = CSS;
 
@@ -37,8 +38,7 @@ async function getCcTheme(url, repoUrl) {
         ...manifest,
 
         CSS: async () => {
-            if (themeCSSCache[actualUrl])
-                return themeCSSCache[actualUrl];
+            if (themeCSSCache[actualUrl]) return themeCSSCache[actualUrl];
 
             const css = await (await fetch(actualUrl)).text();
             themeCSSCache[actualUrl] = css;

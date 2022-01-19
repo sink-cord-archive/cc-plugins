@@ -28,14 +28,14 @@ const remove = (id) => removeTheme(getTheme(id));
 const toggleTheme = async (id) => {
     if (!getTheme(id)) throw new Error(`Theme with ID ${id} was not installed`);
 
-    themeIsEnabled(id) ? unloadTheme(getTheme(id)) : await loadOrReload(getTheme(id));
+    themeIsEnabled(id)
+        ? unloadTheme(getTheme(id))
+        : await loadOrReload(getTheme(id));
 };
 
 const updateNests = async () => {
-    for (const k in window.cumstain.installed.ghost) {
-        window.cumstain.installed.store[k] = undefined;
-        delete window.cumstain.installed.store[k];
-    }
+    for (const k in window.cumstain.installed.ghost)
+        delete window.cumstain.installed.ghost[k];
 
     for (const theme of persist.ghost.themes)
         window.cumstain.installed.store[theme.id] = {
@@ -46,10 +46,7 @@ const updateNests = async () => {
 
     for (const [k, v] of Object.entries(window.cumstain.installed.ghost)) {
         if (v.enabled) window.cumstain.enabled.store[k] = v;
-        else {
-            window.cumstain.enabled.store[k] = undefined;
-            delete window.cumstain.enabled.store[k];
-        }
+        else delete window.cumstain.enabled.ghost[k];
     }
 };
 
