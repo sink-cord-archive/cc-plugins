@@ -1,6 +1,4 @@
-import { make } from "@cumcord/modules/internal/nests";
-
-const themeCSSCache = make({});
+const themeCSSCache = {};
 
 import extractMeta from "./bdMetaParser";
 
@@ -9,7 +7,7 @@ async function getBdTheme(url, repoUrl) {
 
     const CSS = await (await fetch(actualUrl)).text();
 
-    themeCSSCache.store[actualUrl] = CSS;
+    themeCSSCache[actualUrl] = CSS;
 
     return {
         id: actualUrl,
@@ -39,11 +37,11 @@ async function getCcTheme(url, repoUrl) {
         ...manifest,
 
         CSS: async () => {
-            if (themeCSSCache.ghost[actualUrl])
-                return themeCSSCache.ghost[actualUrl];
+            if (themeCSSCache[actualUrl])
+                return themeCSSCache[actualUrl];
 
             const css = await (await fetch(actualUrl)).text();
-            themeCSSCache.store[actualUrl] = css;
+            themeCSSCache[actualUrl] = css;
             return css;
         },
     };

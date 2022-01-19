@@ -8,25 +8,20 @@ import ver from "./patches/ver";
 import exposeApi from "./patches/exposeApi";
 
 export default ({ persist }) => {
-    let patches = [];
+    let patches = [
+        ver(),
+        injectStyles(),
+        prepareState(),
+        restoreThemes(),
+        quickCSS(),
+        settingsEntry(),
+        exposeApi(),
+    ];
 
-    if (!Array.isArray(persist.ghost.repos))
-        persist.store.repos = [];
+    if (!Array.isArray(persist.ghost.repos)) persist.store.repos = [];
 
     return {
-        onLoad: async () => {
-            //persist.store.repos = ["http://127.0.0.1:8080/"];
-            patches.push(
-                ver(),
-                injectStyles(),
-                prepareState(),
-                restoreThemes(),
-                quickCSS(),
-                settingsEntry(),
-                exposeApi()
-            );
-        },
         // iterate in reverse order. This allows patches to depend on previous patches' side effects.
-        onUnload: () => patches.reduceRight((_, unpatch) => unpatch?.(), null),
+        onUnload: () => _.forEachRight(patches, (p) => p()),
     };
 };
