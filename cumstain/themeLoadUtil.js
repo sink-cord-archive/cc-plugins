@@ -1,11 +1,11 @@
 import data from "@cumcord/pluginData";
 import { injectCSS } from "@cumcord/patcher";
 
-function loadTheme(theme) {
-    if (!theme?.id || !theme.CSS)
+async function loadTheme(theme) {
+    if (!theme?.id || !await theme.CSS())
         throw new Error("theme was missing either id or css.");
 
-    const unpatch = injectCSS(theme.CSS);
+    const unpatch = injectCSS(await theme.CSS());
     data.state.ghost.unpatchCache.set(theme.id, unpatch);
 
     const themeCacheIndex = data.persist.ghost.themes.findIndex(
@@ -52,9 +52,9 @@ function removeTheme(theme) {
     );
 }
 
-function reloadTheme(theme) {
+async function reloadTheme(theme) {
     const unpatch = data.state.ghost.unpatchCache.get(theme.id);
-    unpatch?.(theme.CSS);
+    unpatch?.(await theme.CSS());
 
     let toPush = { ...theme };
     toPush.enabled = true;

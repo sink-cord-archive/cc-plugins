@@ -31,8 +31,8 @@ export default () => {
                     className="ysink_stain_button"
                     onClick={() => {
                         fetchTheme(urlInput).then(
-                            (t) => {
-                                loadTheme(t);
+                            async (t) => {
+                                await loadTheme(t);
                                 showToast({
                                     title: `Loaded theme ${t.name}`,
                                     duration: 5000,

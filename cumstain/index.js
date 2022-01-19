@@ -23,7 +23,6 @@ export default ({ persist }) => {
                 restoreThemes(),
                 quickCSS(),
                 settingsEntry(),
-                themeUpdates(),
                 exposeApi()
             );
         },

@@ -56,7 +56,7 @@ export default ({ theme, deleteHook /* react madness */ }) => {
                         onChange={() =>
                             themeIsEnabled(theme.id)
                                 ? unloadTheme(theme)
-                                : loadTheme(theme)
+                                : loadTheme(theme) // not awaiting but this is async
                         }
                     />
                 </div>

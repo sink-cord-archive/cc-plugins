@@ -1,18 +1,28 @@
+import { make } from "@cumcord/modules/internal/nests";
+
+const themeCSSCache = make({});
+
 import extractMeta from "./bdMetaParser";
 
 async function getBdTheme(url, repoUrl) {
-    const CSS = await (await fetch(new URL(url, repoUrl).href)).text();
+    const actualUrl = new URL(url, repoUrl).href;
+
+    const CSS = await (await fetch(actualUrl)).text();
+
+    themeCSSCache.store[actualUrl] = CSS;
 
     return {
-        id: url,
-        CSS,
+        id: actualUrl,
+        CSS: () => Promise.resolve(CSS),
         compat: true,
         ...extractMeta(CSS),
     };
 }
 
 async function getCcTheme(url, repoUrl) {
-    const CSS = await (await fetch(new URL(url, repoUrl).href)).text();
+    const actualUrl = new URL(url, repoUrl).href;
+
+    //const CSS = await (await fetch(actualUrl)).text();
 
     let splitPath = new URL(url, repoUrl).pathname.split("/");
     splitPath.splice(splitPath.length - 1, 1, "cumcord_theme.json");
@@ -20,14 +30,22 @@ async function getCcTheme(url, repoUrl) {
         splitPath.join("/"),
         new URL(url, repoUrl).origin
     );
-    
+
     const manifest = await (await fetch(manifestUrl.href)).json();
 
     return {
-        id: url,
-        CSS,
+        id: actualUrl,
         compat: false,
         ...manifest,
+
+        CSS: async () => {
+            if (themeCSSCache.ghost[actualUrl])
+                return themeCSSCache.ghost[actualUrl];
+
+            const css = await (await fetch(actualUrl)).text();
+            themeCSSCache.store[actualUrl] = css;
+            return css;
+        },
     };
 }
 
@@ -38,7 +56,9 @@ export default async (url, repoUrl) => {
         try {
             return await getBdTheme(url, repoUrl);
         } catch (e2) {
-            let err = new Error("Failed to fetch theme - both CC and BD either failed to fetch or failed to parse");
+            let err = new Error(
+                "Failed to fetch theme - both CC and BD either failed to fetch or failed to parse"
+            );
             err.e1 = e1;
             err.e2 = e2;
             throw err;
