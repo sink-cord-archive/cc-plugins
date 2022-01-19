@@ -3,7 +3,6 @@ import prepareState from "./patches/prepareState";
 import settingsEntry from "./patches/settingsEntry";
 import injectStyles from "./styles.sass";
 import quickCSS from "./patches/quickCSS";
-import themeUpdates from "./patches/themeUpdates";
 import ver from "./patches/ver";
 import exposeApi from "./patches/exposeApi";
 
