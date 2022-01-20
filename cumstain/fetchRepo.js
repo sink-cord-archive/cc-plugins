@@ -1,6 +1,10 @@
+let repoCache = new Map();
 import fetchTheme from "./fetchTheme";
 
 async function getRepoManifest(url) {
+    if (repoCache.has(url))
+        return repoCache.get(url);
+
     const manifestURL = new URL("repo.json", url).href;
     const manifest = await (await fetch(manifestURL)).json();
 
@@ -8,6 +12,8 @@ async function getRepoManifest(url) {
         throw new Error("No themes found in repo");
     if (!manifest.meta) throw new Error("No repo metadata");
     if (!manifest?.meta.name) throw new Error("Repo did not have a name");
+
+    repoCache.set(url, manifest);
 
     return manifest;
 }

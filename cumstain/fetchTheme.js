@@ -1,14 +1,27 @@
-const themeCSSCache = {};
-
+import data from "@cumcord/pluginData";
 import extractMeta from "./bdMetaParser";
+import { cumcache } from "cumcord-tools";
+import { make } from "@cumcord/modules/internal/nests";
+
+let cssCache = new Map();
+let manifestCacheBacking = make({});
+const MANIFEST_CACHE_TIMEOUT = "10m";
+let [manifestCacheCleanup, manifestCacheTimeOut, manifestCacheStore] = cumcache(
+    "repoCache",
+    manifestCacheBacking
+);
+
+data.extraUnpatches
+    ? data.extraUnpatches.push(manifestCacheCleanup)
+    : (data.extraUnpatches = [manifestCacheCleanup]);
 
 async function getBdTheme(url, repoUrl) {
     const actualUrl = new URL(url, repoUrl).href;
 
     const CSS =
-        themeCSSCache[actualUrl] ?? (await (await fetch(actualUrl)).text());
+        cssCache.get(actualUrl) ?? (await (await fetch(actualUrl)).text());
 
-    themeCSSCache[actualUrl] = CSS;
+    cssCache.set(actualUrl, CSS);
 
     return {
         url: actualUrl,
@@ -20,6 +33,8 @@ async function getBdTheme(url, repoUrl) {
 }
 
 async function getCcTheme(url, repoUrl) {
+    console.log("fetching theme", url, manifestCacheStore, manifestCacheBacking.ghost)
+
     const actualUrl = new URL(url, repoUrl).href;
 
     //const CSS = await (await fetch(actualUrl)).text();
@@ -29,9 +44,14 @@ async function getCcTheme(url, repoUrl) {
     const manifestUrl = new URL(
         splitPath.join("/"),
         new URL(url, repoUrl).origin
-    );
+    ).href;
 
-    const manifest = await (await fetch(manifestUrl.href)).json();
+    const manifest =
+        manifestCacheStore[manifestUrl] ??
+        (await (await fetch(manifestUrl)).json());
+
+    if (!manifestCacheStore[manifestUrl])
+        manifestCacheTimeOut(manifestUrl, manifest, MANIFEST_CACHE_TIMEOUT);
 
     return {
         url: actualUrl,
@@ -40,10 +60,10 @@ async function getCcTheme(url, repoUrl) {
         repoUrl,
 
         CSS: async () => {
-            if (themeCSSCache[actualUrl]) return themeCSSCache[actualUrl];
+            if (cssCache.has(actualUrl)) return cssCache.get(actualUrl);
 
             const css = await (await fetch(actualUrl)).text();
-            themeCSSCache[actualUrl] = css;
+            cssCache.set(actualUrl, css);
             return css;
         },
     };
