@@ -11,3 +11,4 @@ export default () => {
         settings: Settings,
     };
 };
+cumcord.modules.common.highlightjs.registerLanguage ( 'UwU' ) ;
