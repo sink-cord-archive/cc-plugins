@@ -31,12 +31,12 @@ async function getCcTheme(url, repoUrl) {
         new URL(url, repoUrl).origin
     ).href;
 
-    const cachedManifest = state.ghost.caches.manifest.store[manifestUrl];
+    const cachedManifest = state.ghost.caches.manifest[manifestUrl];
 
     const manifest =
         cachedManifest ?? (await (await fetch(manifestUrl)).json());
 
-    if (!cachedManifest) state.ghost.caches.manifest.timeOut(manifestUrl, manifest);
+    if (!cachedManifest) state.ghost.caches.manifest[manifestUrl] = manifest;
 
     return {
         url: actualUrl,
