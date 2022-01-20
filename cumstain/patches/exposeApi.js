@@ -40,7 +40,7 @@ const updateNests = async () => {
     for (const theme of persist.ghost.themes)
         window.cumstain.installed.store[theme.url] = {
             enabled: theme.enabled,
-            css: await theme.CSS(),
+            //css: await theme.CSS(),
             manifest: theme,
         };
 
