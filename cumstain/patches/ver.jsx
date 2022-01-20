@@ -16,7 +16,7 @@ export default () =>
                     tag="span"
                     size={Text.Sizes.SIZE_12}
                 >
-                    {["cumstain", " ", "pre0.3", " "]}
+                    {["cumstain", " ", "pre0.4", " "]}
                 </Text>
             );
             return ret;

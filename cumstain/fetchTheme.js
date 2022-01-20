@@ -33,8 +33,6 @@ async function getBdTheme(url, repoUrl) {
 }
 
 async function getCcTheme(url, repoUrl) {
-    console.log("fetching theme", url, manifestCacheStore, manifestCacheBacking.ghost)
-
     const actualUrl = new URL(url, repoUrl).href;
 
     //const CSS = await (await fetch(actualUrl)).text();
