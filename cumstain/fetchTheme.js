@@ -11,9 +11,10 @@ async function getBdTheme(url, repoUrl) {
     themeCSSCache[actualUrl] = CSS;
 
     return {
-        id: actualUrl,
+        url: actualUrl,
         CSS: () => Promise.resolve(CSS),
         compat: true,
+        repoUrl,
         ...extractMeta(CSS),
     };
 }
@@ -33,9 +34,10 @@ async function getCcTheme(url, repoUrl) {
     const manifest = await (await fetch(manifestUrl.href)).json();
 
     return {
-        id: actualUrl,
+        url: actualUrl,
         compat: false,
         ...manifest,
+        repoUrl,
 
         CSS: async () => {
             if (themeCSSCache[actualUrl]) return themeCSSCache[actualUrl];

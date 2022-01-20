@@ -10,27 +10,27 @@ import {
 } from "../themeLoadUtil";
 import fetchTheme from "../fetchTheme";
 
-const getTheme = (id) => persist.ghost.themes.find((t) => t.id === id);
+const getTheme = (url) => persist.ghost.themes.find((t) => t.url === url);
 
-const themeIsEnabled = (id) => {
-    const theme = getTheme(id);
+const themeIsEnabled = (url) => {
+    const theme = getTheme(url);
     return !!theme?.enabled;
 };
 
 // returns a promise
 const loadOrReload = (theme) =>
-    themeIsEnabled(theme.id) ? reloadTheme(theme) : loadTheme(theme);
+    themeIsEnabled(theme.url) ? reloadTheme(theme) : loadTheme(theme);
 
 const importTheme = async (url) => await loadOrReload(await fetchTheme(url));
 
-const remove = (id) => removeTheme(getTheme(id));
+const remove = (url) => removeTheme(getTheme(url));
 
-const toggleTheme = async (id) => {
-    if (!getTheme(id)) throw new Error(`Theme with ID ${id} was not installed`);
+const toggleTheme = async (url) => {
+    if (!getTheme(url)) throw new Error(`Theme with ID ${url} was not installed`);
 
-    themeIsEnabled(id)
-        ? unloadTheme(getTheme(id))
-        : await loadOrReload(getTheme(id));
+    themeIsEnabled(url)
+        ? unloadTheme(getTheme(url))
+        : await loadOrReload(getTheme(url));
 };
 
 const updateNests = async () => {
@@ -38,7 +38,7 @@ const updateNests = async () => {
         delete window.cumstain.installed.ghost[k];
 
     for (const theme of persist.ghost.themes)
-        window.cumstain.installed.store[theme.id] = {
+        window.cumstain.installed.store[theme.url] = {
             enabled: theme.enabled,
             css: await theme.CSS(),
             manifest: theme,

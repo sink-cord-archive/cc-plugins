@@ -15,14 +15,14 @@ const FormSection = findByDisplayName("FormSection");
 const FormDivider = findByDisplayName("FormDivider");
 const Switch = findByDisplayName("Switch");
 
-const themeIsEnabled = (id) => {
+const themeIsEnabled = (url) => {
     for (const theme of persist.ghost.themes)
-        if (theme.id === id && theme.enabled) return true;
+        if (theme.url === url && theme.enabled) return true;
 
     return false;
 };
 
-const themeIsInstalled = (id) => persist.ghost.themes.some((t) => t.id === id);
+const themeIsInstalled = (url) => persist.ghost.themes.some((t) => t.url === url);
 
 export default ({ theme, deleteHook /* react madness */ }) => {
     useNest(persist);
@@ -39,7 +39,7 @@ export default ({ theme, deleteHook /* react madness */ }) => {
                         {theme.name}
                     </FormTitle>
 
-                    {themeIsInstalled(theme.id) ? (
+                    {themeIsInstalled(theme.url) ? (
                         <ThemeCardDeleteButton
                             theme={theme}
                             onClick={() => {
@@ -52,9 +52,9 @@ export default ({ theme, deleteHook /* react madness */ }) => {
                     )}
 
                     <Switch
-                        checked={themeIsEnabled(theme.id)}
+                        checked={themeIsEnabled(theme.url)}
                         onChange={() =>
-                            themeIsEnabled(theme.id)
+                            themeIsEnabled(theme.url)
                                 ? unloadTheme(theme)
                                 : loadTheme(theme) // not awaiting but this is async
                         }
