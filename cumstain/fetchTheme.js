@@ -1,27 +1,14 @@
-import data from "@cumcord/pluginData";
 import extractMeta from "./bdMetaParser";
-import { cumcache } from "cumcord-tools";
-import { make } from "@cumcord/modules/internal/nests";
-
-let cssCache = new Map();
-let manifestCacheBacking = make({});
-const MANIFEST_CACHE_TIMEOUT = "10m";
-let [manifestCacheCleanup, manifestCacheTimeOut, manifestCacheStore] = cumcache(
-    "repoCache",
-    manifestCacheBacking
-);
-
-data.extraUnpatches
-    ? data.extraUnpatches.push(manifestCacheCleanup)
-    : (data.extraUnpatches = [manifestCacheCleanup]);
+import { state } from "@cumcord/pluginData";
 
 async function getBdTheme(url, repoUrl) {
     const actualUrl = new URL(url, repoUrl).href;
 
     const CSS =
-        cssCache.get(actualUrl) ?? (await (await fetch(actualUrl)).text());
+        state.ghost.caches.css.get(actualUrl) ??
+        (await (await fetch(actualUrl)).text());
 
-    cssCache.set(actualUrl, CSS);
+    state.ghost.caches.css.set(actualUrl, CSS);
 
     return {
         url: actualUrl,
@@ -44,12 +31,12 @@ async function getCcTheme(url, repoUrl) {
         new URL(url, repoUrl).origin
     ).href;
 
-    const manifest =
-        manifestCacheStore[manifestUrl] ??
-        (await (await fetch(manifestUrl)).json());
+    const cachedManifest = state.ghost.caches.manifest.store[manifestUrl];
 
-    if (!manifestCacheStore[manifestUrl])
-        manifestCacheTimeOut(manifestUrl, manifest, MANIFEST_CACHE_TIMEOUT);
+    const manifest =
+        cachedManifest ?? (await (await fetch(manifestUrl)).json());
+
+    if (!cachedManifest) state.ghost.caches.manifest.timeOut(manifestUrl, manifest);
 
     return {
         url: actualUrl,
@@ -58,10 +45,11 @@ async function getCcTheme(url, repoUrl) {
         repoUrl,
 
         CSS: async () => {
-            if (cssCache.has(actualUrl)) return cssCache.get(actualUrl);
+            if (state.ghost.caches.css.has(actualUrl))
+                return state.ghost.caches.css.get(actualUrl);
 
             const css = await (await fetch(actualUrl)).text();
-            cssCache.set(actualUrl, css);
+            state.ghost.caches.css.set(actualUrl, css);
             return css;
         },
     };
