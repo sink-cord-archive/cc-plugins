@@ -34,12 +34,12 @@ import { persist } from "@cumcord/pluginData";
 import { importPlugin, installed } from "@cumcord/plugins";
 import { combinePluginLists } from "../pluginFetcher.js";
 const patch = () => {
-    commandPalette.registerEntry(
-        "Cum Zone",
-        "ysink_cumzone_installPlugin",
-        "Install a plugin from repo",
-        "📦",
-        async () => {
+    commandPalette.registerEntry({
+        source: "Cum Zone",
+        id: "ysink_cumzone_installPlugin",
+        label: "Install a plugin from repo",
+        icon: "📦",
+        action: async () => {
             let repos = persist.ghost.repos;
             let plugins = (await combinePluginLists(repos)).filter(
                 (plugin) =>
@@ -58,8 +58,8 @@ const patch = () => {
                         importPlugin(new URL(entry.url, entry.repo.url).href),
                 }))
             );
-        }
-    );
+        },
+    });
 
     return () => window.commandPalette?.unregisterSource("Cum Zone");
 };
