@@ -11,7 +11,7 @@ const niceFormatName = (raw) => {
         .map((s) => s[0].toUpperCase() + s.slice(1))
         .join(" ");
 
-    return `${processedName} ${split2 === "base16" ? "[BASE16]" : ""}`;
+    return `${processedName} ${split2 ? "[BASE16]" : ""}`;
 };
 
 const processTheme = (t) => ({
@@ -19,7 +19,9 @@ const processTheme = (t) => ({
     name: niceFormatName(t),
 });
 
-const includedThemes = rawThemes.map(processTheme);
+const includedThemes = rawThemes
+    .map(processTheme)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
 export default includedThemes;
 export { processTheme, includedThemes, CDN_URL };
