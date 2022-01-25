@@ -17,6 +17,17 @@ let activeChannel = getChannelId();
 let replyingToMessage = undefined;
 let QRSymbol = Symbol("quickreply_deletePendingReply_int");
 
+function scrollToReplyingMsg() {
+    const messageContainer = document.querySelector(
+        '[data-list-id="chat-messages"]'
+    );
+    const replyingMsg = Array.from(messageContainer.children).find((elem) =>
+        elem.firstChild?.className?.includes("replying-")
+    );
+
+    replyingMsg?.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
 function getCurrentChannel() {
     return getChannel(getChannelId());
 }
@@ -38,6 +49,10 @@ async function createPendingReply(
         shouldMention,
         showMentionToggle,
     });
+
+    setTimeout(() => {
+        scrollToReplyingMsg();
+    }, 100);
 }
 
 async function deletePendingReply(data) {
