@@ -52,21 +52,23 @@ export default ({ codeText, lang }) => {
                     {cooldown ? "Copied!" : "Copy"}
                 </button>
             </div>
-            
-            {persist.ghost.nums ?? true ? (
-                <LineNumbers lines={codeText.split("\n").length} />
-            ) : (
-                []
-            )}
 
-            <pre>
-                <code
-                    ref={codeRef}
-                    className={`hljs ${lang} ${scrollbarClasses}`}
-                >
-                    {codeText}
-                </code>
-            </pre>
+            <div class="ysink_code_prewrap">
+                {persist.ghost.nums ?? true ? (
+                    <LineNumbers lines={codeText.split("\n").length} />
+                ) : (
+                    []
+                )}
+
+                <pre className={scrollbarClasses}>
+                    <code
+                        ref={codeRef}
+                        className={`hljs ${lang} ${scrollbarClasses}`}
+                    >
+                        {codeText}
+                    </code>
+                </pre>
+            </div>
         </div>
     );
 };

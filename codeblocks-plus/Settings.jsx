@@ -2,12 +2,13 @@ import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import includedThemes from "./themeProcessor";
+import useScrollToOption from "./useScrollToOption";
 
 const { SingleSelect } = findByDisplayName("Select", false);
 const Header = findByProps("Sizes", "Tags");
 const TextInput = findByDisplayName("TextInput");
 const Switch = findByDisplayName("Switch");
-import Codeblock from "./components/Codeblock"
+import Codeblock from "./components/Codeblock";
 
 const preview = `const btn = document.getElementById("btn");
 let count = 0;
@@ -20,7 +21,7 @@ btn.addEventListener("click", () => {
         count += 1;
         render();
     }
-});`
+});`;
 
 export default () => {
     useNest(persist);
@@ -34,17 +35,23 @@ export default () => {
         includedThemeOptions
     );
 
+    const wrapperRef = React.useRef();
+
+    useScrollToOption(wrapperRef);
+
     return (
         <>
             <Codeblock lang="js" codeText={preview} />
 
             <Header className="ysink_code_head">Select theme</Header>
-            <SingleSelect
-                options={themeOptions}
-                value={persist.ghost.theme || undefined}
-                onChange={(e) => (persist.store.theme = e)}
-                isDisabled={custom}
-            />
+            <div ref={wrapperRef} style={{ display: "children" }}>
+                <SingleSelect
+                    options={themeOptions}
+                    value={persist.ghost.theme || undefined}
+                    onChange={(e) => (persist.store.theme = e)}
+                    isDisabled={custom}
+                />
+            </div>
 
             <Header className="ysink_code_head">Custom theme url</Header>
             <TextInput

@@ -38,12 +38,12 @@ const patch = () => {
         });
     }
 
-    commandPalette.registerEntry(
-        "HypeSquad Switcher",
-        "ysink_hypesquad_switch",
-        "Switch HypeSquad house",
-        "🏠",
-        async () => {
+    commandPalette.registerEntry({
+        source: "HypeSquad Switcher",
+        id: "ysink_hypesquad_switch",
+        label: "Switch HypeSquad house",
+        icon: "🏠",
+        action: async () => {
             try {
                 const houseChoice = await commandPalette.openPaletteAsync(
                     "Choose a house",
@@ -64,8 +64,8 @@ const patch = () => {
                         break;
                 }
             } catch {}
-        }
-    );
+        },
+    });
 
     return () => window.commandPalette?.unregisterSource("HypeSquad Switcher");
 };
