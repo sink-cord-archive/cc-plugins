@@ -3,6 +3,7 @@
 import { ActionTypes } from "@cumcord/modules/common/constants";
 import { findByProps } from "@cumcord/modules/webpackModules";
 import { FluxDispatcher as Dispatcher } from "@cumcord/modules/common";
+import { before } from "@cumcord/patcher";
 
 const { getChannelId } = findByProps(
     "getChannelId",
@@ -11,6 +12,10 @@ const { getChannelId } = findByProps(
 );
 const { getChannel } = findByProps("getChannel", "getDMUserIds");
 const { getMessages } = findByProps("getRawMessages");
+
+const pendingReplyModule = findByProps("setPendingReplyShouldMention");
+
+const dontReplyStore = new Set();
 
 let messageIndex = -1;
 let activeChannel = getChannelId();
@@ -32,7 +37,7 @@ function getCurrentChannel() {
     return getChannel(getChannelId());
 }
 
-async function createPendingReply(
+function createPendingReply(
     channel,
     message,
     shouldMention,
@@ -55,7 +60,7 @@ async function createPendingReply(
     }, 100);
 }
 
-async function deletePendingReply(data) {
+function deletePendingReply(data) {
     Dispatcher.dirtyDispatch({
         type: ActionTypes.DELETE_PENDING_REPLY,
         channelId: getChannelId(),
@@ -107,8 +112,14 @@ async function keyDown(event) {
     deletePendingReply({
         [QRSymbol]: true,
     });
-    createPendingReply(getCurrentChannel(), message, true);
+    createPendingReply(
+        getCurrentChannel(),
+        message,
+        !dontReplyStore.has(getChannelId())
+    );
 }
+
+let unloadPatch;
 
 export default {
     onLoad() {
@@ -123,6 +134,15 @@ export default {
         );
 
         window.addEventListener("keydown", keyDown);
+
+        unloadPatch = before(
+            "setPendingReplyShouldMention",
+            pendingReplyModule,
+            (args) => {
+                if (args[1]) dontReplyStore.delete(args[0]);
+                else dontReplyStore.add(args[0]);
+            }
+        );
     },
     onUnload() {
         Dispatcher.unsubscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
@@ -135,5 +155,6 @@ export default {
             onDeletePendingReply
         );
         window.removeEventListener("keydown", keyDown);
+        unloadPatch();
     },
 };
