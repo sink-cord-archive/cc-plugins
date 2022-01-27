@@ -1,0 +1,7 @@
+{
+  "name": "DevKit+",
+  "description": "Power up your debugging / development tools for client-side prototyping",
+  "author": "Yellowsink",
+  "file": "index.js",
+  "license": "BSD-3"
+}
