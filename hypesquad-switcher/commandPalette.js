@@ -1,36 +1,13 @@
-/*=====================================*\
-|  boilerplate, no need to change this  |
-\*=====================================*/
-import { loaded } from "@cumcord/plugins";
+import { depend } from "cumcord-tools";
+import { findByProps } from "@cumcord/modules/webpack";
 
 const commandPalettePluginIds = [
     "https://yellowsink.github.io/discord-command-palette/",
     "https://cumcordplugins.github.io/Condom/yellowsink.github.io/discord-command-palette/",
 ];
 
-export default () => {
-    let unpatch;
+const source = "HypeSquad Switcher";
 
-    const listener = (eventType, { path }) => {
-        if (commandPalettePluginIds.includes(path[0])) {
-            unpatch?.();
-            unpatch = patch();
-        }
-    };
-
-    if (window.commandPalette) unpatch = patch();
-    else loaded.on("SET", listener);
-
-    return () => {
-        unpatch?.();
-        loaded.off("SET", listener);
-    };
-};
-
-/*==============================================================*\
-|  the command palette API is available to you in this function  |
-\*==============================================================*/
-import { findByProps } from "@cumcord/modules/webpack";
 const patch = () => {
     function setHouse(house) {
         findByProps("joinHypeSquadOnline").joinHypeSquadOnline({
@@ -39,7 +16,7 @@ const patch = () => {
     }
 
     commandPalette.registerEntry({
-        source: "HypeSquad Switcher",
+        source,
         id: "ysink_hypesquad_switch",
         label: "Switch HypeSquad house",
         icon: "🏠",
@@ -67,5 +44,7 @@ const patch = () => {
         },
     });
 
-    return () => window.commandPalette?.unregisterSource("HypeSquad Switcher");
+    return () => window.commandPalette?.unregisterSource(source);
 };
+
+export default () => depend(commandPalettePluginIds, patch);
