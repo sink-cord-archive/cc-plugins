@@ -1,4 +1,5 @@
 import * as cctools from "cumcord-tools";
+import bestFindMethod from "./bestFindMethod";
 
 import { findAll } from "@cumcord/modules/webpack";
 import { injectCSS } from "@cumcord/patcher";
@@ -28,6 +29,7 @@ const injectSCSS = async (scss, sass = false) => {
 export default () => {
     window.dk = {
         cctools,
+        bestFindMethod: bestFindMethod,
         findClassNameModuleAll,
         findClassNameModule: (className) =>
             findClassNameModuleAll(className)[0],
