@@ -15,21 +15,20 @@ const findClassNameModuleAll = (className) => {
     );
 };
 
-/* const compile = (scss, sass = false) =>
-    new Promise((resolve) => {
-        Sass.compile(scss, { indentedSyntax: sass }, (css) => resolve(css));
-    });
+const autoModuleFind = (selectorOrElement) => {
+    if (typeof selectorOrElement === "string")
+        selectorOrElement = document.querySelector(selectorOrElement);
 
-const injectSCSS = async (scss, sass = false) => {
-    const modifyRaw = injectCSS(await compile(scss, sass));
-    return async (scss) =>
-        scss ? modifyRaw(await compile(scss, sass)) : modifyRaw();
-}; */
+    return bestFindMethod(
+        cctools.findByDomNode(selectorOrElement, false, true)
+    );
+};
 
 export default () => {
     window.dk = {
         cctools,
-        bestFindMethod: bestFindMethod,
+        bestFindMethod,
+        autoModuleFind,
         findClassNameModuleAll,
         findClassNameModule: (className) =>
             findClassNameModuleAll(className)[0],

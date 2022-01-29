@@ -1,4 +1,5 @@
 import { findByPropsAll, findAll } from "@cumcord/modules/webpack";
+import { copyText, logger } from "@cumcord/utils";
 
 const PERMUTATION_LIMIT = 1 << 23;
 
@@ -31,8 +32,8 @@ const getKeys = (obj) => {
 };
 
 const findBest = (toFind) => {
-    console.warn(
-        "!! THIS FUNCTION CAN BE VERY SLOW AND RAM INTENSIVE, FOR TESTING ONLY !!"
+    logger.warn(
+        "!! THIS FUNCTION CAN BE VERY SLOW AND RAM INTENSIVE, FOR DEV ONLY !!"
     );
 
     if (!toFind) return { method: "unfindable" };
@@ -111,34 +112,48 @@ export default (module) => {
     const defaultFromRec = (rec) => (rec ? ".default" : "");
     const argFromParent = (parent) => (parent ? "" : ", false");
 
+    const c = (str) => {
+        logger.log("Copied module find code to clipboard.");
+        copyText(str);
+        return str;
+    };
+
     const best = findBest(module);
     switch (best[0]) {
         case "unfindable":
             return false;
 
         case "props":
-            return `findByProps(${joinArgs(best[1])})${defaultFromRec(
-                best[2]
-            )}`;
+            return c(
+                `findByProps(${joinArgs(best[1])})${defaultFromRec(best[2])}`
+            );
 
         case "propsAll":
-            return `findByPropsAll(${joinArgs(best[1])})[${
-                best[2]
-            }]${defaultFromRec(best[3])}`;
+            return c(
+                `findByPropsAll(${joinArgs(best[1])})[${
+                    best[2]
+                }]${defaultFromRec(best[3])}`
+            );
 
         case "displayName":
-            return `findByDisplayName(${JSON.stringify(best[2])}${argFromParent(
-                best[1]
-            )})`;
-     
+            return c(
+                `findByDisplayName(${JSON.stringify(best[2])}${argFromParent(
+                    best[1]
+                )})`
+            );
+
         case "displayNameAll":
             if (best[1])
-                return `findByDisplayNameAll(${JSON.stringify(best[2])})[${best[3]}]`;
+                return c(
+                    `findByDisplayNameAll(${JSON.stringify(best[2])})[${
+                        best[3]
+                    }]`
+                );
 
-            return `(() => {
+            return c(`(() => {
     const mod = findByDisplayNameAll(${JSON.stringify(best[2])})[${best[3]}];
     return find(m => m?.default === mod);
-})()`
+})()`);
     }
 
     return best;
