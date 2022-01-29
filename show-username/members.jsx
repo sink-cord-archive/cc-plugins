@@ -1,6 +1,7 @@
 import { persist } from "@cumcord/pluginData";
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
+import { findInReactTree } from "@cumcord/utils"
 
 export default () =>
     after(
@@ -9,8 +10,9 @@ export default () =>
         (args, ret) => {
             if (persist.ghost.ml === false) return;
 
-            if (!ret?.props?.children?.props?.children?.props?.rows) return;
-            const rows = ret.props.children.props.children.props.rows;
+            const rows = findInReactTree(ret, e => e?.rows)?.rows;
+            if (!rows) return;
+            
 
             for (let i = 0; i < rows.length; i++) {
                 if (rows[i]?.type !== "MEMBER" || rows[i].YSINK_USERN_PATCHED)
