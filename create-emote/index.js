@@ -8,6 +8,6 @@ export default (data) => {
     let patches = [cssInject(), patchContextMenu(), patchEmotePicker()];
 
     return {
-        onUnload: () => patches.forEach((unpatch) => unpatch()),
+        onUnload: () => _.forEachRight(patches, (p) => p()),
     };
 };
