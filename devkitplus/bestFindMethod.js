@@ -33,51 +33,58 @@ const getKeys = (obj) => {
 export default (toFind) => {
     console.warn("!! THIS FUNCTION CAN BE VERY SLOW AND RAM INTENSIVE !!");
 
-    if (!toFind) return { method: "unfindable" };
+    let find = (toFind, noRec) => {
+        if (!toFind) return { method: "unfindable" };
 
-    if (toFind.displayName || toFind.default?.displayName) {
-        const name = toFind.displayName ?? toFind.default.displayName;
+        if (toFind.displayName || toFind.default?.displayName) {
+            const name = toFind.displayName ?? toFind.default.displayName;
 
-        const modules = findAll(
-            (m) =>
-                (toFind.displayName
-                    ? m?.displayName
-                    : m?.default?.displayName) === name
-        );
+            const modules = findAll(
+                (m) =>
+                    (toFind.displayName
+                        ? m?.displayName
+                        : m?.default?.displayName) === name
+            );
 
-        if (modules[0] === toFind)
-            return ["displayName", !!toFind.displayName, name];
+            if (modules[0] === toFind)
+                return ["displayName", !!toFind.displayName, name];
 
-        return [
-            "displayNameAll",
-            !!toFind.displayName,
-            name,
-            modules.findIndex((m) => m === toFind),
-        ];
-    }
+            return [
+                "displayNameAll",
+                !!toFind.displayName,
+                name,
+                modules.findIndex((m) => m === toFind),
+            ];
+        }
 
-    const keys = getKeys(toFind);
-    const permutations = getPermutations(keys);
-    let props = [];
-    for (let i = 0; i < permutations.length; i++) {
-        if (findByProps(...permutations[i]) !== toFind) continue;
-        props = permutations[i];
-        break;
-    }
+        const keys = getKeys(toFind);
+        const permutations = getPermutations(keys);
+        let props = [];
+        for (let i = 0; i < permutations.length; i++) {
+            if (findByProps(...permutations[i]) !== toFind) continue;
+            props = permutations[i];
+            break;
+        }
 
-    if (props.length !== 0) return ["props", props];
+        if (props.length !== 0) return ["props", props];
 
-    let index = 0;
-    for (let i = 0; i < permutations.length; i++) {
-        const modules = findByPropsAll(...permutations[i]);
-        const mIndex = modules.findIndex((m) => m === toFind);
-        if (mIndex === -1) continue;
-        props = permutations[i];
-        index = mIndex;
-        break;
-    }
+        let index = 0;
+        for (let i = 0; i < permutations.length; i++) {
+            const modules = findByPropsAll(...permutations[i]);
+            const mIndex = modules.findIndex((m) => m === toFind);
+            if (mIndex === -1) continue;
+            props = permutations[i];
+            index = mIndex;
+            break;
+        }
 
-    if (props.length !== 0) return ["propsAll", props, index];
+        if (props.length !== 0) return ["propsAll", props, index];
 
-    return ["unfindable"];
+        if (noRec)
+            return ["unfindable"];
+        
+        return find(findAll(m => m?.default === toFind)[0], true);
+    };
+
+    return find(toFind);
 };
