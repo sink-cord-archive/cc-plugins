@@ -10,7 +10,6 @@ export default () => {
         (emojiContextMenu) => {
             lazyPatcher.registerPatch(
                 after("default", emojiContextMenu, ([{ target }], retVal) => {
-                    debugger;
                     if (!target.firstChild.currentSrc) return retVal;
                     if (!Array.isArray(retVal.props.children.props.children))
                         retVal.props.children.props.children = [
