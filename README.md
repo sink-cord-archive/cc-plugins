@@ -1,5 +1,7 @@
 # Cumcord plugins
 
+[![wakatime](https://wakatime.com/badge/github/yellowsink/cc-plugins.svg)](https://wakatime.com/badge/github/yellowsink/cc-plugins)
+
 This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins, for your Discord app.
 
 ## CC Exclusives

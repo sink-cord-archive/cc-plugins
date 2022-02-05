@@ -1,41 +1,18 @@
-/*=====================================*\
-|  boilerplate, no need to change this  |
-\*=====================================*/
-import { loaded } from "@cumcord/plugins";
+import { depend } from "cumcord-tools";
+import { persist } from "@cumcord/pluginData"
+import { combinePluginLists } from "../pluginFetcher";
+import { installed } from "@cumcord/plugins";
 
 const commandPalettePluginIds = [
     "https://yellowsink.github.io/discord-command-palette/",
     "https://cumcordplugins.github.io/Condom/yellowsink.github.io/discord-command-palette/",
 ];
 
-export default () => {
-    let unpatch;
+const source = "Cum Zone";
 
-    const listener = (eventType, { path }) => {
-        if (commandPalettePluginIds.includes(path[0])) {
-            unpatch?.();
-            unpatch = patch();
-        }
-    };
-
-    if (window.commandPalette) unpatch = patch();
-    else loaded.on("SET", listener);
-
-    return () => {
-        unpatch?.();
-        loaded.off("SET", listener);
-    };
-};
-
-/*==============================================================*\
-|  the command palette API is available to you in this function  |
-\*==============================================================*/
-import { persist } from "@cumcord/pluginData";
-import { importPlugin, installed } from "@cumcord/plugins";
-import { combinePluginLists } from "../pluginFetcher.js";
 const patch = () => {
     commandPalette.registerEntry({
-        source: "Cum Zone",
+        source,
         id: "ysink_cumzone_installPlugin",
         label: "Install a plugin from repo",
         icon: "📦",
@@ -61,5 +38,7 @@ const patch = () => {
         },
     });
 
-    return () => window.commandPalette?.unregisterSource("Cum Zone");
+    return () => window.commandPalette?.unregisterSource(source);
 };
+
+export default () => depend(commandPalettePluginIds, patch);

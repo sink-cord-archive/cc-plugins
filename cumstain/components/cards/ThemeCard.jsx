@@ -9,6 +9,7 @@ import CCBadge from "../badges/CCBadge";
 
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
 import MediaCarousel from "../MediaCarousel";
+import fetchTheme from "../../fetchTheme";
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormSection = findByDisplayName("FormSection");
@@ -53,10 +54,10 @@ export default ({ theme, deleteHook /* react madness */ }) => {
 
                     <Switch
                         checked={themeIsEnabled(theme.url)}
-                        onChange={() =>
+                        onChange={async () =>
                             themeIsEnabled(theme.url)
                                 ? unloadTheme(theme)
-                                : loadTheme(theme) // not awaiting but this is async
+                                : loadTheme(await fetchTheme(theme.url)) // not awaiting but loadTheme is async
                         }
                     />
                 </div>

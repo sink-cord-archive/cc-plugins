@@ -1,10 +1,7 @@
 const usrbg_db_url =
     "https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json";
 
-const getDb = async () => {
-    let resp = await fetch(usrbg_db_url);
-    return await resp.json();
-};
+const getDb = async () => await (await fetch(usrbg_db_url)).json();
 
 const toMap = (rawDb) => {
     let map = new Map();
