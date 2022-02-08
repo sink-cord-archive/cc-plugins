@@ -1,4 +1,4 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
+import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 const UserBanner = findByDisplayName("UserBanner", false);
 
