@@ -17,8 +17,6 @@ export default ({ persist }) => {
         exposeApi(),
     ];
 
-    if (!Array.isArray(persist.ghost.repos)) persist.store.repos = [];
-
     return {
         // iterate in reverse order. This allows patches to depend on previous patches' side effects.
         onUnload: () => _.forEachRight(patches, (p) => p()),

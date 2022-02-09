@@ -36,7 +36,6 @@ async function addRepo(repo) {
     } else if (await verifyRepo(repo)) {
         // copy like this to correctly raise events
         let repos = persist.ghost.repos;
-        const split = repo.split("/");
         repos.push(repo);
         persist.store.repos = repos;
         toast("Added repo");

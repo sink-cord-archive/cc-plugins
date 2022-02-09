@@ -1,12 +1,14 @@
 import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import fetchRepo from "../../fetchRepo";
+import { officialRepos } from "../../defaultRepos";
 const { useEffect } = React;
 
 const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+const Badges = findByProps("BadgeShapes");
 
 export default ({ repo }) => {
     const [fullRepo, setFullRepo] = React.useState(undefined);
@@ -20,6 +22,15 @@ export default ({ repo }) => {
                 <div>
                     <FormTitle tag="p" className="ysink_stain_title">
                         {fullRepo?.manifest.meta.name}
+                        {officialRepos.includes(repo) ? (
+                            <Badges.TextBadge
+                                className="ysink_stain_officialbadge"
+                                text="official repo"
+                                color="var(--info-positive-foreground)"
+                            />
+                        ) : (
+                            []
+                        )}
                     </FormTitle>
 
                     <FormText>{repo}</FormText>

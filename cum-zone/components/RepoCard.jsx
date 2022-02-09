@@ -5,7 +5,7 @@ const FormTitle = findByDisplayName("FormTitle");
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const Badges = cumcord.modules.webpack.findByProps("BadgeShapes");
+const Badges = findByProps("BadgeShapes");
 
 export default ({ repo }) => (
     <div className="ysink_zone_card ysink_zone_repocard">

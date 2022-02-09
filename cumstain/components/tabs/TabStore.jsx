@@ -66,7 +66,10 @@ export default () => {
                 <NoRepos />
             ) : (
                 <div className="ysink_stain_cardcontainer">
-                    {fuzzy(themes ?? [], search)
+                    {fuzzy(
+                        _.uniqBy(themes ?? [], (t) => t.url),
+                        search
+                    )
                         .filter(
                             (t) =>
                                 filterMode === 0 ||
