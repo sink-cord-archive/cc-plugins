@@ -52,7 +52,7 @@
         & > div
             padding: 2px 16px
 
-    .ysink_stain_row
+    .ysink_stain_card_row
         display: flex
         margin-bottom: .5rem
 
@@ -97,9 +97,7 @@
                     opacity: 0.8 // kinda hacky but oh well
 
 .ysink_stain_divide
-    margin: 0 0 1rem 0
-    .ysink_stain_modal &
-        margin: .5rem 0
+    margin: .5rem 0
     .ysink_stain_card &
         margin: .2rem 0
 
@@ -171,15 +169,18 @@
     
     .ysink_stain_button
         margin-top: 2rem
-    
-.ysink_stain_modal .ysink_stain_row
+  
+.ysink_stain_row
     display: flex
     & > *
         flex: 1
     & > :last-child
         flex: unset
         margin-left: 1rem
-  
+
 .ysink_stain_officialbadge
   display: inline
   margin-left: .5rem
+
+.ysink_stain_repocard
+  margin-bottom: .25rem

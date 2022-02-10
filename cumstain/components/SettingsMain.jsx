@@ -1,41 +1,26 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 
-import { ErrorBoundary } from "@cumcord/ui/components";
-import openReposModal from "./ReposModal";
-import TabBar from "./tabs/TabBar";
 import TabInstalled from "./tabs/TabInstalled";
 import TabQuickCSS from "./tabs/TabQuickCSS";
+import TabRepo from "./tabs/TabRepo";
 import TabStore from "./tabs/TabStore";
+
+import { ErrorBoundary } from "@cumcord/ui/components";
+import TabBar from "./tabs/TabBar";
 const FormTitle = findByDisplayName("FormTitle");
 const FormSection = findByDisplayName("FormSection");
-const Flex = findByDisplayName("Flex");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
 export default () => {
     return (
         <ErrorBoundary>
             <FormSection>
-                <Flex
-                    basis="auto"
-                    grow={1}
-                    shrink={1}
-                    className="ysink_stain_row"
-                >
-                    <FormTitle tag="h1">Cumstain Settings</FormTitle>
-                    <Button
-                        className="ysink_stain_button"
-                        color={Button.Colors.GREEN}
-                        sizes={Button.Sizes.LARGE}
-                        onClick={openReposModal}
-                    >
-                        Repo Manager
-                    </Button>
-                </Flex>
+                <FormTitle tag="h1">Cumstain Settings</FormTitle>
 
                 <TabBar
                     items={[
                         { text: "Installed", component: TabInstalled },
                         { text: "Store", component: TabStore },
+                        { text: "Repos", component: TabRepo },
                         { text: "Quick CSS", component: TabQuickCSS },
                     ]}
                 />

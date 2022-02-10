@@ -26,7 +26,7 @@ const arrayEquals = (a, b) =>
     a.length === b.length &&
     a.every((val, index) => val === b[index]);
 
-export default () => {
+export default ({ goTo }) => {
     useNest(persist);
 
     const [search, setSearch] = useState("");
@@ -63,7 +63,7 @@ export default () => {
             </div>
 
             {persist.ghost.repos.length === 0 ? (
-                <NoRepos />
+                <NoRepos goToRepos={() => goTo(2)} />
             ) : (
                 <div className="ysink_stain_cardcontainer">
                     {fuzzy(

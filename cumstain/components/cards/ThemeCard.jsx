@@ -32,7 +32,7 @@ export default ({ theme, deleteHook /* react madness */ }) => {
             <FormSection>
                 <MediaCarousel media={theme.media} />
 
-                <div className="ysink_stain_row">
+                <div className="ysink_stain_card_row">
                     {theme.compat ? <BDBadge /> : <CCBadge />}
 
                     <FormTitle tag="p" className="ysink_stain_title">
