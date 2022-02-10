@@ -1,6 +1,6 @@
 import { persist } from "@cumcord/pluginData";
 import { nests } from "@cumcord/modules/internal";
-import { log } from "@cumcord/utils/logger";
+import { log, error } from "@cumcord/utils/logger";
 
 import {
     loadTheme,
@@ -26,7 +26,8 @@ const importTheme = async (url) => await loadOrReload(await fetchTheme(url));
 const remove = (url) => removeTheme(getTheme(url));
 
 const toggleTheme = async (url) => {
-    if (!getTheme(url)) throw new Error(`Theme with ID ${url} was not installed`);
+    if (!getTheme(url))
+        throw new Error(`Theme with ID ${url} was not installed`);
 
     themeIsEnabled(url)
         ? unloadTheme(getTheme(url))
@@ -34,19 +35,31 @@ const toggleTheme = async (url) => {
 };
 
 const updateNests = async () => {
-    for (const k in window.cumstain.installed.ghost)
-        delete window.cumstain.installed.ghost[k];
+    if (!window.cumstain) {
+        error(
+            "|| CUMSTAIN || API was not found, so nests could not be updated."
+        );
+        return;
+    }
+
+    for (const k in cumstain.installed.ghost) {
+        delete cumstain.installed.ghost[k];
+        cumstain.installed.delete(k);
+    }
 
     for (const theme of persist.ghost.themes)
-        window.cumstain.installed.store[theme.url] = {
+        cumstain.installed.store[theme.url] = {
             enabled: theme.enabled,
             //css: await theme.CSS(),
             manifest: theme,
         };
 
-    for (const [k, v] of Object.entries(window.cumstain.installed.ghost)) {
-        if (v.enabled) window.cumstain.enabled.store[k] = v;
-        else delete window.cumstain.enabled.ghost[k];
+    for (const [k, v] of Object.entries(cumstain.installed.ghost)) {
+        if (v.enabled) cumstain.enabled.store[k] = v;
+        else {
+            delete cumstain.enabled.ghost[k];
+            cumstain.installed.delete(k);
+        }
     }
 };
 

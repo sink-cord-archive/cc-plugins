@@ -4,8 +4,7 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist, state } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../../util/themeLoadUtil";
-import BDBadge from "../badges/BDBadge";
-import CCBadge from "../badges/CCBadge";
+import { BDBadge, CCBadge } from "../badges";
 
 import ThemeCardDeleteButton from "./ThemeCardDeleteButton";
 import MediaCarousel from "../MediaCarousel";
