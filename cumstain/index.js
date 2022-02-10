@@ -3,12 +3,10 @@ import prepareState from "./patches/prepareState";
 import settingsEntry from "./patches/settingsEntry";
 import injectUiStyles from "./styles.sass";
 import quickCSS from "./patches/quickCSS";
-import ver from "./patches/ver";
 import exposeApi from "./patches/exposeApi";
 
 export default ({ persist }) => {
-    let patches = [
-        ver(),
+    const patches = [
         injectUiStyles(),
         prepareState(),
         restoreThemes(),
@@ -18,7 +16,6 @@ export default ({ persist }) => {
     ];
 
     return {
-        // iterate in reverse order. This allows patches to depend on previous patches' side effects.
         onUnload: () => _.forEachRight(patches, (p) => p()),
     };
 };
