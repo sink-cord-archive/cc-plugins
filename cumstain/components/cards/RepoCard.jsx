@@ -1,6 +1,6 @@
 import { persist } from "@cumcord/pluginData";
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-import fetchRepo from "../../fetchRepo";
+import fetchRepo from "../../util/fetchRepo";
 import { officialRepos } from "../../defaultRepos";
 const { useEffect } = React;
 

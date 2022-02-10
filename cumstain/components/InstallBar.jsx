@@ -6,8 +6,8 @@ import { useNest } from "@cumcord/utils";
 const { useState } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
-import fetchTheme from "../fetchTheme";
-import { loadTheme } from "../themeLoadUtil";
+import fetchTheme from "../util/fetchTheme";
+import { loadTheme } from "../util/themeLoadUtil";
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const TextInput = findByDisplayName("TextInput");
 

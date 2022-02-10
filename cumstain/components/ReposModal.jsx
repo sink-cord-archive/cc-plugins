@@ -5,7 +5,7 @@ import { showToast } from "@cumcord/ui/toasts";
 const { useState } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
-import fetchRepo from "../fetchRepo";
+import fetchRepo from "../util/fetchRepo";
 import RepoCard from "./cards/RepoCard";
 const ModalComponents = findByProps("ModalCloseButton");
 const Header = findByProps("Sizes", "Tags");

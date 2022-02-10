@@ -7,8 +7,8 @@ import {
     reloadTheme,
     removeTheme,
     unloadTheme,
-} from "../themeLoadUtil";
-import fetchTheme from "../fetchTheme";
+} from "../util/themeLoadUtil";
+import fetchTheme from "../util/fetchTheme";
 
 const getTheme = (url) => persist.ghost.themes.find((t) => t.url === url);
 

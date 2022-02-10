@@ -1,6 +1,6 @@
 import { persist } from "@cumcord/pluginData";
-import fetchTheme from "../fetchTheme";
-import { loadTheme, unloadAll } from "../themeLoadUtil";
+import fetchTheme from "../util/fetchTheme";
+import { loadTheme, unloadAll } from "../util/themeLoadUtil";
 
 export default () => {
     if (persist.ghost.themes)

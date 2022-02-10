@@ -1,5 +1,5 @@
 import { persist } from "@cumcord/pluginData";
-import fetchRepo from "./fetchRepo";
+import fetchRepo from "./util/fetchRepo";
 
 const defaultRepos = ["https://cumcordthemes.github.io/Cumsock/"];
 

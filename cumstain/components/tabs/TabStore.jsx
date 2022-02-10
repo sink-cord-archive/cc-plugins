@@ -1,13 +1,13 @@
 import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
-import fetchRepo from "../../fetchRepo";
+import fetchRepo from "../../util/fetchRepo";
 
 const { useState, useEffect, useReducer } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "../cards/ThemeCard";
 import SearchBar from "../SearchBar";
-import fuzzy from "../../fuzzy";
+import fuzzy from "../../util/fuzzy";
 import CompatFilterDropdown from "../CompatFilterDropdown";
 import NoRepos from "../splashes/NoRepos";
 

@@ -7,7 +7,7 @@ const { useState, useReducer } = React;
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "../cards/ThemeCard";
 import InstallBar from "../InstallBar";
-import fuzzy from "../../fuzzy";
+import fuzzy from "../../util/fuzzy";
 import SearchBar from "../SearchBar";
 import CompatFilterDropdown from "../CompatFilterDropdown";
 import NoThemes from "../splashes/NoThemes";
