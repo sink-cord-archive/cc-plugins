@@ -4,6 +4,8 @@
 
 This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins, for your Discord app.
 
+![Repobeats](https://repobeats.axiom.co/api/embed/fa9decb1bb7bda3ce9a4e97b8b8f9aa974930a2f.svg "Repobeats analytics image")
+
 ## CC Exclusives
 
 ### The Cum Zone
