@@ -1,6 +1,0 @@
-{
-	"dependencies": {
-		"color-parse": "^1.4.2",
-		"shiki": "^0.9.15"
-	}
-}
