@@ -1,7 +1,0 @@
-{
-  "name": "WPM count",
-  "description": "See how fast you actually type in practice, using Discord as an organic testing environment",
-  "author": "Yellowsink",
-  "file": "index.js",
-  "license": "BSD-3"
-}

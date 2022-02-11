@@ -106,18 +106,6 @@ Make your codeblocks look cooler and function better:tm:
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/codeblocks-plus"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/cumdump_button.png" /></a>
 <!-- </details> -->
 
-### WPM Count
-
-<img height="250" src="https://yellowsink.github.io/cc-plugins/assets/wpm.png" />
-
-No explanation needed here.
-
-<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/wpm-count"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/condom_button.png" /></a>
-
-<details><summary>Install from source</summary> -->
-<a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/wpm-count"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/cumdump_button.png" /></a>
-<!-- </details> -->
-
 ## Plugin Ports
 
 ### [VZ] Channel Activity
