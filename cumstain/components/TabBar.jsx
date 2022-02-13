@@ -1,7 +1,6 @@
 import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 
-const useState = React.useState;
-const createElement = React.createElement;
+const { useState, createElement } = React;
 
 const FormText = findByDisplayName("FormText");
 const FormDivider = findByDisplayName("FormDivider");
