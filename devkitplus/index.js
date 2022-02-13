@@ -4,6 +4,7 @@ import callbacks from "./modules/callbacks";
 import common from "./modules/common";
 import patcher from "./modules/patcher";
 import webpack from "./modules/webpack";
+import dev from "@cumcord/dev";
 
 const unloadApi = api();
 
@@ -26,6 +27,8 @@ let loaded = [];
 
 const toLoad = data.persist.ghost.enabledModules;
 for (const module of toLoad) loaded.push(modules[module]?.[0]());
+
+if (dev && !dev.isEnabled) dev.toggleDevMode();
 
 export default {
     onUnload() {
