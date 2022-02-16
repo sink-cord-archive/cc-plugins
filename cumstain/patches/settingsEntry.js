@@ -1,12 +1,11 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import SettingsMain from "../components/SettingsMain";
+import { patchSettingsView } from "cumcord-tools";
 
 export default () =>
-    after(
-        "getPredicateSections",
-        findByDisplayName("SettingsView").prototype,
-        (_, ret) => {
+    patchSettingsView((SettingsView) =>
+        after("getPredicateSections", SettingsView.prototype, (_, ret) => {
             // don't inject into server settings!!!
             if (ret[1]?.section != "My Account") return;
 
@@ -21,5 +20,5 @@ export default () =>
             });
 
             return ret;
-        }
+        })
     );

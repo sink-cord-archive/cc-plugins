@@ -1,14 +1,13 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import resetReposToDefault from "../defaultRepos.js";
+import { patchSettingsView } from "cumcord-tools";
 
 import CumZone from "../components/CumZone.jsx";
 
 export default () =>
-    after(
-        "getPredicateSections",
-        findByDisplayName("SettingsView").prototype,
-        (_, retVal) => {
+    patchSettingsView((SettingsView) =>
+        after("getPredicateSections", SettingsView.prototype, (_, retVal) => {
             // don't inject into server settings!!!
             if (retVal[1]?.section != "My Account") return;
 
@@ -23,5 +22,5 @@ export default () =>
             });
 
             return retVal;
-        }
+        })
     );

@@ -4,7 +4,6 @@ import "prismjs/components/prism-css";
 
 import { persist, reloadCSS } from "@cumcord/pluginData";
 import { findByProps } from "@cumcord/modules/webpack";
-const contentColumnClass = findByProps("contentColumn").contentColumn;
 
 const { useState, useCallback } = React;
 
@@ -33,7 +32,9 @@ export default () => {
                     href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-atom-dark.css"
                     rel="stylesheet"
                 />
-                <style>{`:root { --background-primary: #1d1f21; } .theme-light .${contentColumnClass} { --text-normal: white; }`}</style>
+                <style>{`:root { --background-primary: #1d1f21; } .theme-light .${
+                    findByProps("contentColumn").contentColumn
+                } { --text-normal: white; }`}</style>
             </div>
         </ErrorBoundary>
     );
