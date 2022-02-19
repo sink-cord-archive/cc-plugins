@@ -1,0 +1,7 @@
+{
+  "name": "Pure chat ivew",
+  "description": "Hide the stuff that isnt the chat on a hotkey.",
+  "author": "Yellowsink",
+  "file": "index.js",
+  "license": "BSD-3"
+}
