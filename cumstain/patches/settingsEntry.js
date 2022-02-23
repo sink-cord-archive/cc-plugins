@@ -1,11 +1,10 @@
-import { findByDisplayName, findAsync } from "@cumcord/modules/webpack";
-import { after } from "@cumcord/patcher";
+import { findByDisplayName } from "@cumcord/modules/webpack";
+import { after, findAndPatch } from "@cumcord/patcher";
 import SettingsMain from "../components/SettingsMain";
-import { dePromisifyPatch } from "cumcord-tools";
 
 export default () =>
-    dePromisifyPatch(
-        findAsync(() => findByDisplayName("SettingsView")),
+    findAndPatch(
+        () => findByDisplayName("SettingsView"),
         (SettingsView) =>
             after("getPredicateSections", SettingsView.prototype, (_, ret) => {
                 // don't inject into server settings!!!
