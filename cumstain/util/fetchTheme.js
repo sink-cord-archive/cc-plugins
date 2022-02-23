@@ -4,11 +4,24 @@ import { state } from "@cumcord/pluginData";
 async function getBdTheme(url, repoUrl) {
     const actualUrl = new URL(url, repoUrl).href;
 
-    const CSS =
-        state.ghost.caches.css.get(actualUrl) ??
-        (await (await fetch(actualUrl)).text());
+    let CSS;
 
-    state.ghost.caches.css.set(actualUrl, CSS);
+    const cached = state.ghost.caches.css[actualUrl];
+
+    if (cached?.[0] === 200) CSS = cached[1];
+    else if (cached)
+        throw new Error(
+            `BD theme existed in cache with non-200 status ${cached[0]}`
+        );
+    else {
+        const req = await fetch(actualUrl);
+        if (req.status !== 200)
+            state.ghost.caches.css[actualUrl] = [req.status, null];
+
+        CSS = await req.text();
+
+        state.ghost.caches.css[actualUrl] = [req.status, CSS];
+    }
 
     return {
         url: actualUrl,
@@ -31,12 +44,23 @@ async function getCcTheme(url, repoUrl) {
         new URL(url, repoUrl).origin
     ).href;
 
+    let manifest;
+
     const cachedManifest = state.ghost.caches.manifest[manifestUrl];
+    if (cachedManifest?.[0] === 200) manifest = cachedManifest[1];
+    else if (cachedManifest)
+        throw new Error(
+            `CC manifest existed in cache with non-200 status ${cachedManifest[0]}`
+        );
+    else {
+        const req = await fetch(manifestUrl);
+        if (req.status !== 200)
+            state.ghost.caches.manifest[manifestUrl] = [req.status, null];
 
-    const manifest =
-        cachedManifest ?? (await (await fetch(manifestUrl)).json());
+        manifest = await req.json();
 
-    if (!cachedManifest) state.ghost.caches.manifest[manifestUrl] = manifest;
+        state.ghost.caches.manifest[manifestUrl] = [req.status, manifest];
+    }
 
     return {
         url: actualUrl,
@@ -45,11 +69,18 @@ async function getCcTheme(url, repoUrl) {
         repoUrl,
 
         CSS: async () => {
-            if (state.ghost.caches.css.has(actualUrl))
-                return state.ghost.caches.css.get(actualUrl);
+            const cached = state.ghost.caches.css[actualUrl];
+            if (cached?.[0] === 200) return cached[1];
+            else if (cached)
+                throw new Error(
+                    `CC CSS existed in cache with non-200 status ${cached[0]}`
+                );
 
-            const css = await (await fetch(actualUrl)).text();
-            state.ghost.caches.css.set(actualUrl, css);
+            const req = await fetch(actualUrl);
+            if (req.status !== 200)
+                state.ghost.caches.css[actualUrl] = [req.status, null];
+            const css = await req.text();
+            state.ghost.caches.css[actualUrl] = [req.status, css];
             return css;
         },
     };
