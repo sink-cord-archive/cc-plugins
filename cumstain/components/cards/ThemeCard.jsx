@@ -22,55 +22,55 @@ const themeIsEnabled = (url) => {
     return false;
 };
 
-const themeIsInstalled = (url) => persist.ghost.themes.some((t) => t.url === url);
+const themeIsInstalled = (url) =>
+    persist.ghost.themes.some((t) => t.url === url);
 
 export default ({ theme, deleteHook /* react madness */ }) => {
     useNest(persist);
 
     return (
         <div className="ysink_stain_card">
-            <FormSection>
-                <MediaCarousel media={theme.media} />
+            <MediaCarousel media={theme.media} />
 
-                <div className="ysink_stain_card_row">
-                    {theme.compat ? <BDBadge /> : <CCBadge />}
+            <div className="ysink_stain_card_row">
+                {theme.compat ? <BDBadge /> : <CCBadge />}
 
-                    <FormTitle tag="p" className="ysink_stain_title">
-                        {theme.name}
-                    </FormTitle>
+                <FormTitle tag="p" className="ysink_stain_title">
+                    {theme.name}
+                </FormTitle>
 
-                    {themeIsInstalled(theme.url) ? (
-                        <ThemeCardDeleteButton
-                            theme={theme}
-                            onClick={() => {
-                                removeTheme(theme);
-                                deleteHook?.();
-                            }}
-                        />
-                    ) : (
-                        []
-                    )}
+                {themeIsInstalled(theme.url) ? (
+                    <ThemeCardDeleteButton
+                        theme={theme}
+                        onClick={() => {
+                            removeTheme(theme);
+                            deleteHook?.();
+                        }}
+                    />
+                ) : (
+                    []
+                )}
 
-                    <Switch
-                        checked={themeIsEnabled(theme.url)}
-                        onChange={async () =>
+                <Switch
+                    checked={themeIsEnabled(theme.url)}
+                    onChange={
+                        async () =>
                             themeIsEnabled(theme.url)
                                 ? unloadTheme(theme)
                                 : loadTheme(await fetchTheme(theme.url)) // not awaiting but loadTheme is async
-                        }
-                    />
-                </div>
+                    }
+                />
+            </div>
 
-                <FormText className="ysink_stain_desc">
-                    {theme.description}
-                </FormText>
+            <FormText className="ysink_stain_desc">
+                {theme.description}
+            </FormText>
 
-                <FormDivider className="ysink_stain_divide" />
-                <FormText className="ysink_stain_author_licence">
-                    {theme.author ? `by ${theme.author} ` : ""}
-                    {theme.license ? `under ${theme.license}` : ""}
-                </FormText>
-            </FormSection>
+            <FormDivider className="ysink_stain_divide" />
+            <FormText className="ysink_stain_author_licence">
+                {theme.author ? `by ${theme.author} ` : ""}
+                {theme.license ? `under ${theme.license}` : ""}
+            </FormText>
         </div>
     );
 };

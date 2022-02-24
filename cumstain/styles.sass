@@ -26,9 +26,12 @@
             margin-right: 0
 
 .ysink_stain_cardcontainer
-    display: grid
-    grid-template-columns: 1fr 1fr
+    display: flex
+    flex-flow: row wrap
     gap: .75rem
+
+    &> *
+        width: 20rem
 
 .ysink_stain_card
     padding: 1rem
