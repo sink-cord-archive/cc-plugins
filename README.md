@@ -27,22 +27,17 @@ The Cum Zone is a plugin store accessed from inside your client, in a similar ve
 Cumstain is the easy to use yet powerful theme manager for your Discord client, bringing endless new looks to Cumcord.
 Comes packaged full of features: integrated QuickCSS, BD compatibility, built in cumzone-like store, and _theme settings are coming soon!_
 
-Cumstain is in prerelease right now, but will be officially launched soon - watch this space!
-
-[2022-01-19 23:25:00] we're nearin' release, we're nearin' release, woo woo woo :tada:
-(waiting on STD acceptance and reducing the amount of network reqs made - cache isnt an excuse, though it helps!)
-
 Loads [Cumcord themes](https://github.com/Cumcord/STD/blob/master/proposals/theme_manifest.md) from [Cumcord theme repos](https://github.com/Cumcord/STD/blob/master/proposals/theme_repo.md).
 
 Also has compatibility with BetterDiscord themes.
 
-<!-- <a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/cumstain"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/condom_button.png" /></a>
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/cumstain"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/condom_button.png" /></a>
 
-<details><summary>Install from source</summary> -->
+<details><summary>Install from source</summary>
 
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/cumstain"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/cumdump_button.png" /></a>
 
-<!-- </details> -->
+</details>
 
 ### Command Palette
 
