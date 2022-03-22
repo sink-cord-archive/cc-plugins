@@ -1,7 +1,13 @@
+# CI dist folder
 .dist
+# sperm dist folder
 dist
 
-# plugins with npm packages - Fusejs is used by Cum Zone
+# F# IDE folder
+.ionide
+
+# npm files & folders
 node_modules
 .pnpm-debug.log
 pnpm-lock.yaml
+package-lock.json

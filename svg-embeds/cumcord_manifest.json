@@ -1,0 +1,7 @@
+{
+  "name": "SVG Embeds",
+  "description": "Show SVGs as image embeds!",
+  "author": "Yellowsink",
+  "file": "build/App.js",
+  "license": "BSD-3"
+}

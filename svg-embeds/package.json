@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "dotnet fable src -o build",
+    "deps": "dotnet femto src",
+    "clean": "rm -rf build node_modules src/bin src/obj dist",
+    "dist": "dotnet tool restore && \"$npm_execpath\" run deps && \"$npm_execpath\" run build && sperm build"
+  },
+  "devDependencies": {
+    "sperm": "^0.0.31"
+  }
+}
