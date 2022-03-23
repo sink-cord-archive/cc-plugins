@@ -4,10 +4,12 @@ open Fable.Cumcord.Modules.Webpack
 open Fable.Cumcord.Patcher
 open Fable.Core.JsInterop
 
-let ConnectedMessageAccessories =
+let private ConnectedMessageAccessories =
     findByDisplayName "ConnectedMessageAccessories" false
 
-let transformUrl (url: string) =
+let mutable private unpatches: (unit -> unit) ResizeArray = ResizeArray()
+
+let private transformUrl (url: string) =
     let testStr =
         "https://media.discordapp.net/attachments/"
 
@@ -19,7 +21,7 @@ let transformUrl (url: string) =
     else
         url
 
-let processAttachment (a: obj) =
+let private processAttachment (a: obj) =
     let contentType: string = a?content_type
 
     if contentType.StartsWith "image/svg+xml" then
@@ -37,14 +39,14 @@ let processAttachment (a: obj) =
 
     a
 
-let unpatch =
-    before
+unpatches.Add
+    (before
         "MessageAccessories"
         ConnectedMessageAccessories
         (fun args ->
             let attachments = args.[0]?message?attachments
             args.[0]?message?attachments <- List.map processAttachment attachments
             Some args)
-        false
+        false)
 
-let onUnload () = printfn "plugin unloaded"
+let onUnload () = unpatches |> Seq.iter (fun f -> f ())

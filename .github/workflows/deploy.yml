@@ -11,15 +11,20 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - name: Prepare environment
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v1
+              with:
+                  dotnet-version: 6.0.x
+
+            - name: Setup Node
               uses: actions/setup-node@v2
               with:
                   node-version: "16"
 
-            - run: npm install --global sperm pnpm
-            
-            - name: Install deps
-              run: pnpm m i
+            - name: Deps
+              run: |
+                  npm install --global sperm pnpm
+                  pnpm m i
 
               # Magic happens here:
               # - finds every folder in repo (which is why dist dir is hidden)
@@ -34,6 +39,12 @@ jobs:
                   do
                     if [ $plugin != "assets/" ]; then
                       cd "$plugin"
+                      if compgen -G "**/*.fsproj" > /dev/null; then
+                        dotnet tool restore
+                        pnpm deps
+                        pnpm build
+                      fi
+
                       sperm build --outdir "../.dist/$plugin"
                       cd ..
                     fi
