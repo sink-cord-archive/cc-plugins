@@ -20,9 +20,7 @@ let private transformUrl (url: string) =
         url
 
 let private processAttachment (a: obj) =
-    let contentType: string = a?content_type
-
-    if contentType.StartsWith "image/svg+xml" then
+    if a?content_type && (a?content_type: string).StartsWith "image/svg+xml" then
         (*
             requirements to show image: (2022-03-22)
             - `width` and `height` > 0
