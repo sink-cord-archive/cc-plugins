@@ -7,8 +7,6 @@ open Fable.Core.JsInterop
 let private ConnectedMessageAccessories =
     findByDisplayName "ConnectedMessageAccessories" false
 
-let mutable private unpatches: (unit -> unit) ResizeArray = ResizeArray()
-
 let private transformUrl (url: string) =
     let testStr =
         "https://media.discordapp.net/attachments/"
@@ -31,7 +29,7 @@ let private processAttachment (a: obj) =
             - `filename` ends in an accepted file ext (checked with regex)
         *)
         // TODO: Parse out the actual size of the svg?
-        a?width <- a?height <- 200
+        a?width <- a?height <- 1000
         a?filename <- a?filename + ".png"
 
         // fix image display url
@@ -39,14 +37,12 @@ let private processAttachment (a: obj) =
 
     a
 
-unpatches.Add
-    (before
-        "MessageAccessories"
+let onUnload =
+    before
+        "default"
         ConnectedMessageAccessories
         (fun args ->
-            let attachments = args.[0]?message?attachments
-            args.[0]?message?attachments <- List.map processAttachment attachments
+            let msg = args.Head?message
+            msg?attachments <- Array.map processAttachment msg?attachments
             Some args)
-        false)
-
-let onUnload () = unpatches |> Seq.iter (fun f -> f ())
+        false
