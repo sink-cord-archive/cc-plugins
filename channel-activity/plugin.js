@@ -1,12 +1,12 @@
-(function(m,a,o){"use strict";function d(e){if(e&&e.__esModule)return e;var i=Object.create(null);return e&&Object.keys(e).forEach(function(t){if(t!=="default"){var n=Object.getOwnPropertyDescriptor(e,t);Object.defineProperty(i,t,n.get?n:{enumerable:!0,get:function(){return e[t]}})}}),i.default=e,Object.freeze(i)}var u=d(m);const{icon:l}=a.findByProps("icon","textRuler"),{children:f}=a.findByProps("nameAndDecorators");var y=()=>o.injectCss(`
+(function(d,a,c){"use strict";function l(e){if(e&&e.__esModule)return e;var t=Object.create(null);return e&&Object.keys(e).forEach(function(r){if(r!=="default"){var i=Object.getOwnPropertyDescriptor(e,r);Object.defineProperty(t,r,i.get?i:{enumerable:!0,get:function(){return e[r]}})}}),t.default=e,Object.freeze(t)}var u=l(d);const{icon:m}=a.findByProps("icon","textRuler"),{children:f}=a.findByProps("nameAndDecorators");var y=()=>c.injectCss(`
 .ysink_activity_image {
     height: 2rem;
     border-radius: .3rem;
 }
 
 /* remove redundant rich presence icon */
-.${l} { display: none; }
+.${m} { display: none; }
 
 /* idk why but this looks nicer */
 .${f} { display: flex; }
-`),h=e=>{let i=null,t=null;return{onLoad(){t=y();let n=a.findByDisplayName("MemberListItem").prototype;i=o.after("render",n,(_,r)=>{if(!r.props?.subText?.props)return;const p=r?.props?.subText?.props?.activities;if(!!p?.length){r.props.children=[];for(const s of p){const c=s?.assets?.large_image||s?.assets?.small_image;if(s.application_id&&c){const g=c.startsWith("mp:")?c.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${s.application_id}/${c}.png`;r.props.children.push(u.createElement("img",{src:g,className:"ysink_activity_image"}))}}return r}})},onUnload(){i&&i(),t&&t()}}};return h})(cumcord.modules.common.React,cumcord.modules.webpack,cumcord.patcher);
+`),h=e=>{let t=null,r=null;return{onLoad(){r=y();let i=a.findByDisplayName("MemberListItem").prototype;t=c.after("render",i,(g,n)=>{if(!n.props?.subText?.props)return;const p=n?.props?.subText?.props?.activities;if(p?.length){n.props.children=[];for(const s of p){const o=s?.assets?.large_image||s?.assets?.small_image;if(s.application_id&&o){const _=o.startsWith("mp:")?o.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${s.application_id}/${o}.png`;n.props.children.push(u.createElement("img",{src:_,className:"ysink_activity_image"}))}}return n}})},onUnload(){t&&t(),r&&r()}}};return h})(cumcord.modules.common.React,cumcord.modules.webpack,cumcord.patcher);
