@@ -6,7 +6,7 @@ export default () =>
     after("render", findByDisplayName("VoiceUsers").prototype, (args, ret) => {
         if (persist.ghost.vc === false) return;
 
-        if (!ret?.props?.children) return;
+        if (!ret?.props?.children?.[0]) return;
         for (let i = 0; i < ret.props.children.length; i++) {
             const child = ret.props.children[0][i];
             if (child?.props?.nick)
