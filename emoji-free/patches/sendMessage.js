@@ -27,7 +27,7 @@ export default () => {
         findByProps("uploadFiles"),
         (args) => {
             // see sendMessage.js
-            if (args[3].content.match(regex)) {
+            if (args[3]?.content.match(regex)) {
                 args[3] = getEmojiLinks(emoteSize, args[3]);
 
                 return args;
