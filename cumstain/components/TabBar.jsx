@@ -1,20 +1,20 @@
 import { FormDivider, FormText } from "../WPMODULES";
 
 export default ({ items }) => {
-    let [selected, setSelected] = React.useState(0);
+    let [current, goTo] = React.useState(0);
 
     return (
         <div className="ysink_stain_tabbar_root">
             <div className="ysink_stain_tabbar">
-                {items.map((item, index) => (
+                {items.map((e, i) => (
                     <button
                         className={
                             "ysink_stain_button" +
-                            (index === selected ? " ysink_stain_selected" : "")
+                            (i === current ? " ysink_stain_selected" : "")
                         }
-                        onClick={() => setSelected(index)}
+                        onClick={() => goTo(i)}
                     >
-                        <FormText>{item.text}</FormText>
+                        <FormText>{e.text}</FormText>
                     </button>
                 ))}
             </div>
@@ -22,7 +22,7 @@ export default ({ items }) => {
             <FormDivider className="ysink_stain_divide" />
 
             <div className="ysink_stain_tabbar_content">
-                {React.createElement(items[selected].component, {goTo: setSelected})}
+                {React.createElement(items[current].component, { goTo })}
             </div>
         </div>
     );
