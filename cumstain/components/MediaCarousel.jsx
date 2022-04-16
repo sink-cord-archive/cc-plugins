@@ -1,6 +1,4 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
-const FormText = findByDisplayName("FormText");
-const SmallMediaCarousel = findByDisplayName("SmallMediaCarousel");
+import { FormText, SmallMediaCarousel } from "../WPMODULES";
 
 export default ({ media }) => (
     <div class="ysink_stain_carousel">

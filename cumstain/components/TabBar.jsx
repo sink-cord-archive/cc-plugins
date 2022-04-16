@@ -1,12 +1,7 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-
-const { useState, createElement } = React;
-
-const FormText = findByDisplayName("FormText");
-const FormDivider = findByDisplayName("FormDivider");
+import { FormDivider, FormText } from "../WPMODULES";
 
 export default ({ items }) => {
-    let [selected, setSelected] = useState(0);
+    let [selected, setSelected] = React.useState(0);
 
     return (
         <div className="ysink_stain_tabbar_root">
@@ -27,7 +22,7 @@ export default ({ items }) => {
             <FormDivider className="ysink_stain_divide" />
 
             <div className="ysink_stain_tabbar_content">
-                {createElement(items[selected].component, {goTo: setSelected})}
+                {React.createElement(items[selected].component, {goTo: setSelected})}
             </div>
         </div>
     );

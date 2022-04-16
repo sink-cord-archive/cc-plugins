@@ -1,5 +1,3 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-
 import TabInstalled from "./tabs/TabInstalled";
 import TabQuickCSS from "./tabs/TabQuickCSS";
 import TabRepo from "./tabs/TabRepo";
@@ -7,8 +5,7 @@ import TabStore from "./tabs/TabStore";
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import TabBar from "./TabBar";
-const FormTitle = findByDisplayName("FormTitle");
-const FormSection = findByDisplayName("FormSection");
+import { FormSection, FormTitle } from "../WPMODULES";
 
 export default () => {
     return (

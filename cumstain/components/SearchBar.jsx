@@ -1,6 +1,4 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
-
-const SearchBar = findByDisplayName("SearchBar");
+import { SearchBar } from "../WPMODULES";
 
 export default ({ query, onChange }) => (
     <SearchBar

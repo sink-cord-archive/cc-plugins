@@ -1,20 +1,18 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist } from "@cumcord/pluginData";
 import { showToast } from "@cumcord/ui/toasts";
 
 import { useNest } from "@cumcord/utils";
-const { useState } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import fetchTheme from "../util/fetchTheme";
 import { loadTheme } from "../util/themeLoadUtil";
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const TextInput = findByDisplayName("TextInput");
+import { Button, TextInput } from "../WPMODULES";
+
 
 export default () => {
     useNest(persist);
 
-    let [urlInput, setUrlInput] = useState("");
+    let [urlInput, setUrlInput] = React.useState("");
 
     return (
         <ErrorBoundary>
@@ -37,6 +35,7 @@ export default () => {
                                     title: `Loaded theme ${t.name}`,
                                     duration: 5000,
                                 });
+                                setUrlInput("");
                             },
                             () =>
                                 showToast({
@@ -44,7 +43,6 @@ export default () => {
                                     duration: 5000,
                                 })
                         );
-                        setUrlInput("");
                     }}
                 >
                     Install

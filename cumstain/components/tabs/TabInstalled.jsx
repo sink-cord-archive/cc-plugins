@@ -1,8 +1,5 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
-
-const { useState, useReducer } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "../cards/ThemeCard";
@@ -10,16 +7,25 @@ import InstallBar from "../InstallBar";
 import fuzzy from "../../util/fuzzy";
 import SearchBar from "../SearchBar";
 import CompatFilterDropdown from "../CompatFilterDropdown";
-import NoThemes from "../splashes/NoThemes";
+import { NoThemes } from "../splashes";
+import useRerender from "../../util/useRerender";
 
-export default ({goTo}) => {
-    useNest(persist /* , false, (type, path) => path?.[0] === "themes" */);
+export default ({ goTo }) => {
+    useNest(persist, false, (_, { path }) => path[0] === "themes");
 
-    const [search, setSearch] = useState("");
-    let [filterMode, setFilterMode] = useState(0);
+    const [search, setSearch] = React.useState("");
+    let [filterMode, setFilterMode] = React.useState(0);
 
-    // React really doesn't like re-rendering when themes are deleted, so here we are
-    const [, rerender] = useReducer((x) => ~x, 0);
+    /*\
+    |*| This is literally a React bug.
+    |*| The component rerenders correctly and returns correct elements
+    |*| but effects just dont run because haha its not like those are meant to run on every rerender
+    |*| pushing to the dom is an effect.
+    |*| your guess for why effects are brokey is as good as mine.
+    |*| This is the only viable workaround. 
+    |*| Hopefully when discord updates from react 17.0.2 to react 18 thisll be fixed?
+    \*/
+    const deleteHook = useRerender();
 
     return (
         <ErrorBoundary>
@@ -42,7 +48,9 @@ export default ({goTo}) => {
                                 (filterMode === 2 && t.compat)
                         )
                         .map((theme) => (
-                            <ThemeCard theme={theme} deleteHook={rerender} />
+                            <ThemeCard
+                                {...{ key: theme.url, theme, deleteHook }}
+                            />
                         ))}
                 </div>
             )}

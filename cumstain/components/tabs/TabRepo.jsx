@@ -2,16 +2,18 @@ import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { showToast } from "@cumcord/ui/toasts";
-const { useState } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import fetchRepo from "../../util/fetchRepo";
 import RepoCard from "../cards/RepoCard";
-const Flex = findByDisplayName("Flex");
-const FormSection = findByDisplayName("FormSection");
-const FormDivider = findByDisplayName("FormDivider");
-const TextInput = findByDisplayName("TextInput");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+
+import {
+    Flex,
+    FormSection,
+    FormDivider,
+    TextInput,
+    Button,
+} from "../../WPMODULES";
 
 async function verifyRepo(repo) {
     try {
@@ -43,8 +45,8 @@ async function addRepo(repo) {
     }
 }
 
-export default ({ goTo }) => {
-    const [url, setUrl] = useState("");
+export default () => {
+    const [url, setUrl] = React.useState("");
     useNest(persist);
 
     return (

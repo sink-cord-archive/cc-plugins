@@ -1,18 +1,12 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import fetchRepo from "../../util/fetchRepo";
 import { officialRepos } from "../../defaultRepos";
-const { useEffect } = React;
 
-const FormTitle = findByDisplayName("FormTitle");
-const FormText = findByDisplayName("FormText");
-const FormDivider = findByDisplayName("FormDivider");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const Badges = findByProps("BadgeShapes");
+import { FormTitle, FormText, Button, Badges } from "../../WPMODULES";
 
 export default ({ repo }) => {
     const [fullRepo, setFullRepo] = React.useState(undefined);
-    useEffect(async () => {
+    React.useEffect(async () => {
         if (!fullRepo) setFullRepo(await fetchRepo(repo));
     });
 

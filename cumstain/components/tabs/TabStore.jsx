@@ -2,23 +2,17 @@ import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import fetchRepo from "../../util/fetchRepo";
 
-const { useState, useEffect, useReducer } = React;
-
 import { ErrorBoundary } from "@cumcord/ui/components";
 import ThemeCard from "../cards/ThemeCard";
 import SearchBar from "../SearchBar";
 import fuzzy from "../../util/fuzzy";
 import CompatFilterDropdown from "../CompatFilterDropdown";
-import NoRepos from "../splashes/NoRepos";
+import { NoRepos } from "../splashes";
+import useRerender from "../../util/useRerender";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
-const getThemes = (repos) => repos.flatMap((r) => r.themes);
-
-async function getAll() {
-    let repos = await getRepos();
-    return { repos, themes: getThemes(repos) };
-}
+const getThemes = async () => (await getRepos()).flatMap((r) => r.themes);
 
 const arrayEquals = (a, b) =>
     Array.isArray(a) &&
@@ -27,33 +21,25 @@ const arrayEquals = (a, b) =>
     a.every((val, index) => val === b[index]);
 
 export default ({ goTo }) => {
-    useNest(persist);
+    useNest(persist, false, (_, { path }) => path[0] === "repos");
 
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = React.useState("");
 
-    const [rawRepos, setRawRepos] = useState([]);
+    // if this state differs from persist.ghost.repos, then a change has occurred, so update
+    const [rawRepos, setRawRepos] = React.useState([]);
 
-    const [repos, setRepos] = useState(undefined);
-    const [themes, setThemes] = useState(undefined);
-    const [filterMode, setFilterMode] = useState(0);
-    useEffect(() => {
-        let update = () =>
-            getAll().then(({ repos, themes }) => {
-                setRepos(repos);
-                setThemes(themes);
-            });
-
-        if (!arrayEquals(rawRepos, persist.ghost.repos)) {
+    const [themes, setThemes] = React.useState(undefined);
+    const [filterMode, setFilterMode] = React.useState(0);
+    React.useEffect(() => {
+        if (!arrayEquals(rawRepos, persist.ghost.repos) || !themes) {
             setRawRepos(persist.ghost.repos);
-            update();
-        }
 
-        if (!repos || !themes) update();
+            getThemes().then(setThemes);
+        }
     });
 
-    // it's more sensible to use () => setThemes(undefined) as the deleteHook
-    // however that makes all the themes disappear briefly as it refetches unnecessarily
-    const [, rerender] = useReducer((x) => ~x, 0);
+    // see the same line in TabInstalled for why I am forced to do this
+    const deleteHook = useRerender();
 
     return (
         <ErrorBoundary>
@@ -77,7 +63,9 @@ export default ({ goTo }) => {
                                 (filterMode === 2 && t.compat)
                         )
                         .map((theme) => (
-                            <ThemeCard theme={theme} deleteHook={rerender} />
+                            <ThemeCard
+                                {...{ key: theme.url, theme, deleteHook }}
+                            />
                         ))}
                 </div>
             )}
