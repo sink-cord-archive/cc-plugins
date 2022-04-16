@@ -1,12 +1,14 @@
 import data from "@cumcord/pluginData";
 import { injectCSS } from "@cumcord/patcher";
 
+const unpatchCache = new Map();
+
 async function loadTheme(theme) {
     if (!theme?.url || !await theme.CSS())
         throw new Error("theme was missing either id or css.");
 
     const unpatch = injectCSS(await theme.CSS());
-    data.state.ghost.unpatchCache.set(theme.url, unpatch);
+    unpatchCache.set(theme.url, unpatch);
 
     const themeCacheIndex = data.persist.ghost.themes.findIndex(
         (t) => t.url === theme.url
@@ -26,10 +28,10 @@ async function loadTheme(theme) {
 function unloadTheme(theme) {
     if (!theme?.url) throw new Error("theme was missing id.");
 
-    const unpatch = data.state.ghost.unpatchCache.get(theme.url);
+    const unpatch = unpatchCache.get(theme.url);
 
     unpatch?.();
-    data.state.ghost.unpatchCache.delete(theme.url);
+    unpatchCache.delete(theme.url);
 
     const themeCacheIndex = data.persist.ghost.themes.findIndex(
         (t) => t.url === theme.url
@@ -56,7 +58,7 @@ function removeTheme(theme) {
 }
 
 async function reloadTheme(theme) {
-    const unpatch = data.state.ghost.unpatchCache.get(theme.url);
+    const unpatch = unpatchCache.get(theme.url);
     unpatch?.(await theme.CSS());
 
     let toPush = { ...theme };
@@ -72,8 +74,8 @@ async function reloadTheme(theme) {
 }
 
 function unloadAll() {
-    data.state.ghost.unpatchCache.forEach((unpatch) => unpatch?.());
-    data.state.ghost.unpatchCache.clear();
+    unpatchCache.forEach((unpatch) => unpatch?.());
+    unpatchCache.clear();
 }
 
 export { loadTheme, unloadTheme, reloadTheme, removeTheme, unloadAll };

@@ -1,8 +1,9 @@
-import { state } from "@cumcord/pluginData";
 import fetchTheme from "./fetchTheme";
 
+const repoCache = {};
+
 async function getRepoManifest(url) {
-    if (state.ghost.caches.repo[url]) return state.ghost.caches.repo[url];
+    if (repoCache[url]) return repoCache[url];
 
     const manifestURL = new URL("repo.json", url).href;
     const manifest = await (await fetch(manifestURL)).json();
@@ -12,7 +13,7 @@ async function getRepoManifest(url) {
     if (!manifest.meta) throw new Error("No repo metadata");
     if (!manifest?.meta.name) throw new Error("Repo did not have a name");
 
-    state.ghost.caches.repo[url] = manifest;
+    repoCache[url] = manifest;
 
     return manifest;
 }

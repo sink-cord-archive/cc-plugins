@@ -48,7 +48,12 @@ export default ({ theme, deleteHook }) => {
                 </FormTitle>
 
                 {themeIsInstalled(theme.url) ? (
-                    <DeleteButton onClick={() => {removeTheme(theme);deleteHook?.()}} />
+                    <DeleteButton
+                        onClick={() => {
+                            removeTheme(theme);
+                            deleteHook?.();
+                        }}
+                    />
                 ) : (
                     []
                 )}

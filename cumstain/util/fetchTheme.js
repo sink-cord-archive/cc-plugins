@@ -1,12 +1,14 @@
 import extractMeta from "./bdMetaParser";
-import { state } from "@cumcord/pluginData";
+
+const cssCache = {};
+const manifestCache = {};
 
 async function getBdTheme(url, repoUrl) {
     const actualUrl = new URL(url, repoUrl).href;
 
     let CSS;
 
-    const cached = state.ghost.caches.css[actualUrl];
+    const cached = cssCache[actualUrl];
 
     if (cached?.[0] === 200) CSS = cached[1];
     else if (cached)
@@ -16,11 +18,11 @@ async function getBdTheme(url, repoUrl) {
     else {
         const req = await fetch(actualUrl);
         if (req.status !== 200)
-            state.ghost.caches.css[actualUrl] = [req.status, null];
+            cssCache[actualUrl] = [req.status, null];
 
         CSS = await req.text();
 
-        state.ghost.caches.css[actualUrl] = [req.status, CSS];
+        cssCache[actualUrl] = [req.status, CSS];
     }
 
     return {
@@ -46,7 +48,7 @@ async function getCcTheme(url, repoUrl) {
 
     let manifest;
 
-    const cachedManifest = state.ghost.caches.manifest[manifestUrl];
+    const cachedManifest = manifestCache[manifestUrl];
     if (cachedManifest?.[0] === 200) manifest = cachedManifest[1];
     else if (cachedManifest)
         throw new Error(
@@ -55,11 +57,11 @@ async function getCcTheme(url, repoUrl) {
     else {
         const req = await fetch(manifestUrl);
         if (req.status !== 200)
-            state.ghost.caches.manifest[manifestUrl] = [req.status, null];
+            manifestCache[manifestUrl] = [req.status, null];
 
         manifest = await req.json();
 
-        state.ghost.caches.manifest[manifestUrl] = [req.status, manifest];
+        manifestCache[manifestUrl] = [req.status, manifest];
     }
 
     return {
@@ -69,7 +71,7 @@ async function getCcTheme(url, repoUrl) {
         repoUrl,
 
         CSS: async () => {
-            const cached = state.ghost.caches.css[actualUrl];
+            const cached = cssCache[actualUrl];
             if (cached?.[0] === 200) return cached[1];
             else if (cached)
                 throw new Error(
@@ -78,9 +80,9 @@ async function getCcTheme(url, repoUrl) {
 
             const req = await fetch(actualUrl);
             if (req.status !== 200)
-                state.ghost.caches.css[actualUrl] = [req.status, null];
+                cssCache[actualUrl] = [req.status, null];
             const css = await req.text();
-            state.ghost.caches.css[actualUrl] = [req.status, css];
+            cssCache[actualUrl] = [req.status, css];
             return css;
         },
     };
