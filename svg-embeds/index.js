@@ -11,7 +11,7 @@ function transformUrl(url) {
 }
 
 function processAttachment(a) {
-    if (a.content_type && a.content_type.startWith("image/svg+xml")) {
+    if (a.content_type?.startsWith("image/svg+xml")) {
         /* 
             requirements to show image: (2022-03-22)
             - `width` and `height` > 0
