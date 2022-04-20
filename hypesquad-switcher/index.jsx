@@ -1,4 +1,4 @@
-import cssInject from "./styles.css";
+import cssInject from "./styles.sass";
 import bannerPatch from "./bannerPatch";
 
 const patches = [cssInject(), bannerPatch];

@@ -1,189 +1,188 @@
 .ysink_stain_tabbar
-    padding: .5rem 1rem
-    display: grid
-    grid-auto-flow: column
-    grid-auto-columns: 7rem
+	padding: .5rem 1rem
+	display: grid
+	grid-auto-flow: column
+	grid-auto-columns: 7rem
 
-    .ysink_stain_button *
-        cursor: pointer
+	.ysink_stain_button *
+		cursor: pointer
 
-    &> *
-        margin-right: 1rem
-        padding: .2rem
-        border-radius: .3rem
-        min-width: 5rem
-        text-align: center
+	&> *
+		margin-right: 1rem
+		padding: .2rem
+		border-radius: .3rem
+		min-width: 5rem
+		text-align: center
 
-        background: none
+		background: none
 
-        &.ysink_stain_selected
-            .theme-dark &
-                background: #fff4
-            .theme-light &
-                background: #0003
+		&.ysink_stain_selected
+			.theme-dark &
+				background: #fff4
+			.theme-light &
+				background: #0003
 
-        &:last-child
-            margin-right: 0
+		&:last-child
+			margin-right: 0
 
 .ysink_stain_cardcontainer
-    display: flex
-    flex-flow: row wrap
-    gap: .75rem
+	display: flex
+	flex-flow: row wrap
+	gap: .75rem
 
-    &> *
-        width: 20rem
+	&> *
+		width: 20rem
 
 .ysink_stain_card
-    padding: 1rem
-    border: 1px solid var(--background-modifier-accent)
-    border-radius: 0.5rem
-    display: flex
-    flex-direction: column
-    z-index: 1
-    background-color: var(--deprecated-card-bg)
+	padding: 1rem
+	border: 1px solid var(--background-modifier-accent)
+	border-radius: 0.5rem
+	display: flex
+	flex-direction: column
+	z-index: 1
+	background-color: var(--deprecated-card-bg)
 
-    .ysink_stain_title
-        font-size: 1rem
-        padding-top: .2rem
-        display: inline
-        flex: 1
-        margin: 0
+	.ysink_stain_title
+		font-size: 1rem
+		padding-top: .2rem
+		display: inline
+		flex: 1
+		margin: 0
 
-    .ysink_stain_button
-        display: inline
-        padding: 0
-        & > div
-            padding: 2px 16px
+	.ysink_stain_button
+		display: inline
+		padding: 0
+		& > div
+			padding: 2px 16px
 
-    .ysink_stain_card_row
-        display: flex
-        margin-bottom: .5rem
+	.ysink_stain_card_row
+		display: flex
+		margin-bottom: .5rem
 
-    .ysink_stain_author_licence
-        font-style: italic
+	.ysink_stain_author_licence
+		font-style: italic
 
-    .ysink_stain_desc
-        flex: 1
+	.ysink_stain_desc
+		flex: 1
 
-    .ysink_stain_carousel
-        // carousels have awful css, partly because i cant assign a class to <SmallMediaCarousel />, so sorry about this :\
-        margin-bottom: 1rem
+		.ysink_stain_carousel
+		// carousels have awful css, partly because i cant assign a class to <SmallMediaCarousel />, so sorry about this :\
+			margin-bottom: 1rem
 
-        &> div:not(.ysink_stain_noimg) > :last-child, .ysink_stain_noimg > div > :last-child
-            height: 2.25rem
+		&> div:not(.ysink_stain_noimg) > :last-child, .ysink_stain_noimg > div > :last-child
+			height: 2.25rem
 
-        &> div
-            border-radius: .5rem
-        
-        &> :not(.ysink_stain_noimg)
-            .theme-dark &
-                background: #0005
-            .theme-light &
-                background: #000d
+		&> div
+			border-radius: .5rem
 
-        .ysink_stain_noimg
-            display: grid
-            div
-                // the grid layer trick!!!
-                grid-area: 1 / 1
+		&> :not(.ysink_stain_noimg)
+			.theme-dark &
+				background: #0005
+				.theme-light &
+					background: #000d
 
-                &:not(.ysink_stain_noimgtxt)
-                    visibility: hidden
-                    z-index: -1
-                
-                &.ysink_stain_noimgtxt
-                    grid-area: 1 / 1
-                    font-size: 1.5rem
-                    text-align: center
-                    padding-top: 35% // close enough ish
-                    text-transform: uppercase
-                    opacity: 0.8 // kinda hacky but oh well
+		.ysink_stain_noimg
+			display: grid
+			div
+				// the grid layer trick!!!
+				grid-area: 1 / 1
+
+				&:not(.ysink_stain_noimgtxt)
+					visibility: hidden
+					z-index: -1
+
+				&.ysink_stain_noimgtxt
+					grid-area: 1 / 1
+					font-size: 1.5rem
+					text-align: center
+					padding-top: 35% // close enough ish
+					text-transform: uppercase
+					opacity: 0.8 // kinda hacky but oh well
 
 .ysink_stain_divide
-    margin: .5rem 0
-    .ysink_stain_card &
-        margin: .2rem 0
+	margin: .5rem 0
+	.ysink_stain_card &
+		margin: .2rem 0
 
 .ysink_stain_delete
-    margin-right: .5rem
-    fill: var(--interactive-normal)
+	margin-right: .5rem
+	fill: var(--interactive-normal)
 
 .ysink_stain_installbar
-    display: flex
-    &> *
-        flex: 1
+	display: flex
+	&> *
+		flex: 1
 
-    &> :last-child
-        flex: unset
-        margin-left: 1rem
+	&> :last-child
+		flex: unset
+		margin-left: 1rem
 
 .ysink_stain_searchbar
-    margin: .75rem 0
+	margin: .75rem 0
 
 .ysink_stain_search_row
-    display: flex
-    gap: .75rem
-    margin: .75rem 0
+	display: flex
+	gap: .75rem
+	margin: .75rem 0
 
-    .ysink_stain_dropdown
-        height: 2.25rem
-        flex-basis: 10rem
-        padding-top: .3rem
+	.ysink_stain_dropdown
+		height: 2.25rem
+		flex-basis: 10rem
+		padding-top: .3rem
 
-    .ysink_stain_searchbar
-        margin: unset
-        flex: 1
+	.ysink_stain_searchbar
+		margin: unset
+		flex: 1
 
 .ysink_stain_editorroot
-    background: tranparent
-    color: #c5c8c6
+	background: tranparent
+	color: #c5c8c6
 
-    font-family: var(--font-code)
-    font-size: .9rem
-    line-height: 1.1rem
+	font-family: var(--font-code)
+	font-size: .9rem
+	line-height: 1.1rem
 
 .ysink_stain_badge
-    width: 1.5rem
-    height: 1.5rem
-    margin-right: .5rem
-    border-radius: 50%
+	width: 1.5rem
+	height: 1.5rem
+	margin-right: .5rem
+	border-radius: 50%
 
-    &.ysink_stain_bd
-        padding: .25rem
-        background: #040405
+	&.ysink_stain_bd
+		padding: .25rem
+		background: #040405
 
-    &.ysink_stain_cc
-        padding: .1rem
-        background: #f8f8f8
-        background: #7289DA
+	&.ysink_stain_cc
+		padding: .1rem
+		background: #f8f8f8
+		background: #7289DA
 
 .ysink_stain_nosplash
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin-top: 15rem
-    gap: .5rem
+	display: flex
+	flex-direction: column
+	align-items: center
+	margin-top: 15rem
+	gap: .5rem
 
-    h2
-        margin-bottom: 0
+	h2
+		margin-bottom: 0
 
-    &> *
-        flex: 0
-    
-    .ysink_stain_button
-        margin-top: 2rem
-  
+	&> *
+		flex: 0
+
+	.ysink_stain_button
+		margin-top: 2rem
+
 .ysink_stain_row
-    display: flex
-    & > *
-        flex: 1
-    & > :last-child
-        flex: unset
-        margin-left: 1rem
+	display: flex
+	& > :not(:last-child)
+		flex: 1
+	& > :last-child
+		margin-left: 1rem
 
 .ysink_stain_officialbadge
-  display: inline
-  margin-left: .5rem
+	display: inline
+	margin-left: .5rem
 
 .ysink_stain_repocard
-  margin-bottom: .25rem
+	margin-bottom: .25rem
