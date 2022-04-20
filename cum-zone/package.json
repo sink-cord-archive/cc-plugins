@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"cumcord-tools": "^6.0.0",
+		"cumcord-tools": "^7.0.2",
 		"fuse.js": "^6.5.3"
 	}
 }

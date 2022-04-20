@@ -1,26 +1,19 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
-
-const FormTitle = findByDisplayName("FormTitle");
-const FormText = findByDisplayName("FormText");
-const FormDivider = findByDisplayName("FormDivider");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const Badges = findByProps("BadgeShapes");
+import { Badges, Button, FormText, FormTitle } from "../WPMODULES";
 
 export default ({ repo }) => (
 	<div className="ysink_zone_card ysink_zone_repocard">
 		<div className="ysink_zone_row">
+			{/* i dont know what this unmarked div is for. probably styling. */}
 			<div>
 				<FormTitle tag="p" className="ysink_zone_title">
 					{repo.name}
-					{repo.official ? (
+					{repo.official && (
 						<Badges.TextBadge
 							className="ysink_zone_badge"
 							text="official repo"
 							color="var(--info-positive-foreground)"
 						/>
-					) : (
-						[]
 					)}
 				</FormTitle>
 
@@ -32,7 +25,7 @@ export default ({ repo }) => (
 				className="ysink_zone_button"
 				onClick={() =>
 					(persist.store.repos = persist.ghost.repos.filter(
-						r => r.url != repo.url
+						(r) => r.url != repo.url
 					))
 				}
 			>

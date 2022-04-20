@@ -10,34 +10,32 @@ const commandPalettePluginIds = [
 
 const source = "Cum Zone";
 
-const patch = () => {
-	commandPalette.registerEntry({
-		source,
-		id: "ysink_cumzone_installPlugin",
-		label: "Install a plugin from repo",
-		icon: "📦",
-		action: async () => {
-			let repos = persist.ghost.repos;
-			let plugins = (await combinePluginLists(repos)).filter(
-				plugin =>
-					Object.values(installed.ghost).find(
-						p => p.manifest.hash == plugin.hash
-					) == undefined
-			);
+export default () =>
+	depend(commandPalettePluginIds, () => {
+		commandPalette.registerEntry({
+			source,
+			id: "ysink_cumzone_installPlugin",
+			label: "Install a plugin from repo",
+			icon: "📦",
+			action: async () => {
+				const plugins = (await combinePluginLists(persist.ghost.repos)).filter(
+					(p) =>
+						!Object.values(installed.ghost).some(
+							(p2) => p2.manifest.hash == p.hash
+						)
+				);
 
-			commandPalette.openPalette(
-				"Which plugin to install?",
-				plugins.map(entry => ({
-					id: entry.url,
-					label: entry.name,
-					source: entry.repo.name,
-					action: () => importPlugin(new URL(entry.url, entry.repo.url).href),
-				}))
-			);
-		},
+				commandPalette.openPalette(
+					"Which plugin to install?",
+					plugins.map((entry) => ({
+						id: entry.url,
+						label: entry.name,
+						source: entry.repo.name,
+						action: () => importPlugin(new URL(entry.url, entry.repo.url).href),
+					}))
+				);
+			},
+		});
+
+		return () => window.commandPalette?.unregisterSource(source);
 	});
-
-	return () => window.commandPalette?.unregisterSource(source);
-};
-
-export default () => depend(commandPalettePluginIds, patch);
