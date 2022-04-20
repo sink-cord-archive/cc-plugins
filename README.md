@@ -107,14 +107,14 @@ Make your codeblocks look cooler and function better:tm:
 
 Embed SVGs nicely like images.
 
-Fun fact: this plugin is also the proof-of-concept for [Fable.Cumcord](https://github.com/Cumglue/cc-fsharp-binds).
-This does mean the bundle size is higher, but hey its neat!
+~~Fun fact: this plugin is also the proof-of-concept for [Fable.Cumcord](https://github.com/Cumglue/cc-fsharp-binds).~~
+_This has since been re-written in JS. The old code is now as example_
 
-<!--<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/svg-embeds"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/condom_button.png" /></a>
+<a target="_blank" href="https://send.cumcord.com/#https://cumcordplugins.github.io/Condom/yellowsink.github.io/cc-plugins/svg-embeds"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/condom_button.png" /></a>
 
-<details><summary>Install from source</summary>-->
+<details><summary>Install from source</summary>
 <a target="_blank" href="https://send.cumcord.com/#https://yellowsink.github.io/cc-plugins/svg-embeds"><img height="50" src="https://raw.githubusercontent.com/Cumcord/assets/main/buttons/cumdump_button.png" /></a>
-<!--</details>-->
+</details>
 
 ## Plugin Ports
 
