@@ -6,7 +6,7 @@ import { ConnectedChannelMembersParent } from "./WPMODULES";
 export default after("default", ConnectedChannelMembersParent, (_, ret) => {
 	if (!persist.ghost.ml) return;
 
-	const rows = findInReactTree(ret, e => e?.rows)?.rows;
+	const rows = findInReactTree(ret, (e) => e?.rows)?.rows;
 	if (!rows) return;
 
 	for (let i = 0; i < rows.length; i++) {

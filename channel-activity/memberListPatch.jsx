@@ -6,7 +6,7 @@ export default after("render", MemberListItem.prototype, (_, ret) => {
 	// get activities
 	const activities = findInReactTree(
 		ret,
-		m => m?.activities?.length
+		(m) => m?.activities?.length
 	)?.activities;
 	if (!activities) return;
 

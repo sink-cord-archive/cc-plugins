@@ -32,7 +32,7 @@ if (dev && !dev.isEnabled) dev.toggleDevMode();
 
 export default {
 	onUnload() {
-		_.forEachRight(loaded, p => p?.());
+		_.forEachRight(loaded, (p) => p?.());
 		unloadApi();
 	},
 };

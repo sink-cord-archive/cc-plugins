@@ -16,7 +16,7 @@ const canShowReactors = ({ reactions }) => {
 
 	if (userThreshold !== 0) {
 		const userCount = persist.ghost.useHighestUserCount
-			? Math.max(...reactions.map(r => r.count))
+			? Math.max(...reactions.map((r) => r.count))
 			: reactions.reduce((acc, r) => acc + r.count, 0);
 
 		if (userCount > userThreshold) return false;
@@ -34,12 +34,12 @@ export default () => {
 		if (canShowReactors(message)) {
 			const renderTooltip = ret.props.children;
 
-			ret.props.children = props => {
+			ret.props.children = (props) => {
 				const tooltip = renderTooltip(props);
 				const popout = tooltip.props.children.props.children;
 
 				const renderReactionInner = popout.props.children;
-				popout.props.children = props => {
+				popout.props.children = (props) => {
 					const reactionInner = renderReactionInner(props);
 
 					reactionInner.props.children.props.children.push(

@@ -15,5 +15,5 @@ export async function onLoad() {
 
 export function onUnload() {
 	cancelPatches = true;
-	_.forEachRight(patches, p => p());
+	_.forEachRight(patches, (p) => p());
 }

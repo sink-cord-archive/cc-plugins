@@ -4,7 +4,7 @@ import { guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
 import showCreateModal from "./CreateModal.jsx";
 import { MenuItem } from "./WPMODULES.js";
 
-const newName = emoteAlt => emoteAlt?.substring(1, emoteAlt.length - 1);
+const newName = (emoteAlt) => emoteAlt?.substring(1, emoteAlt.length - 1);
 
 export default ({ isEmote, emoteAlt, url }) => (
 	<>
@@ -12,7 +12,7 @@ export default ({ isEmote, emoteAlt, url }) => (
 			id="ysink_emoji_msgitem"
 			label={isEmote ? `Clone Emote ${emoteAlt}` : "Create Emote"}
 		>
-			{guildsCanManageEmotes().map(guild => (
+			{guildsCanManageEmotes().map((guild) => (
 				<MenuItem
 					label={guild.name}
 					id={`ysink_emoji_server_${guild.id}`}

@@ -4,7 +4,7 @@ import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { FormText, Slider, Switch, TextInput } from "./WPMODULES";
 
-const getThresholdMarkerLabel = value =>
+const getThresholdMarkerLabel = (value) =>
 	value === 0 ? "Off" : value % 1000 === 0 ? `${value / 1000}k` : value;
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
 				note="The maximum number of users shown per reaction between 0 and 99."
 				value={persist.ghost.maxUsersShown}
 				type="text"
-				onChange={value => {
+				onChange={(value) => {
 					if (!isNaN(value) && value >= 0 && value <= 99)
 						persist.store.maxUsersShown = value;
 				}}
@@ -29,7 +29,7 @@ export default () => {
 				markers={_.range(21)}
 				stickToMarkers={true}
 				initialValue={persist.ghost.reactionThreshold}
-				onValueChange={value => {
+				onValueChange={(value) => {
 					persist.store.reactionThreshold = value;
 				}}
 				onMarkerRender={getThresholdMarkerLabel}
@@ -41,7 +41,7 @@ export default () => {
 				markers={[0, 10, 20, 50, 100, 500, 1000, 2000, 3000, 4000, 5000, 10000]}
 				stickToMarkers={true}
 				initialValue={persist.ghost.userThreshold}
-				onValueChange={value => {
+				onValueChange={(value) => {
 					persist.store.userThreshold = value;
 				}}
 				onMarkerRender={getThresholdMarkerLabel}
@@ -51,7 +51,7 @@ export default () => {
 			<FormText>Use highest user count</FormText>
 			<Switch
 				checked={persist.ghost.useHighestUserCount}
-				onChange={value => {
+				onChange={(value) => {
 					persist.store.useHighestUserCount = value;
 				}}
 			/>

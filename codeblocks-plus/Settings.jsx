@@ -48,7 +48,7 @@ export default () => {
 				<SingleSelect
 					options={themeOptions}
 					value={persist.ghost.theme || undefined}
-					onChange={e => (persist.store.theme = e)}
+					onChange={(e) => (persist.store.theme = e)}
 					isDisabled={custom}
 				/>
 			</div>
@@ -56,7 +56,7 @@ export default () => {
 			<Header className="ysink_code_head">Custom theme url</Header>
 			<TextInput
 				placeholder="Custom theme URL"
-				onChange={e =>
+				onChange={(e) =>
 					setCustom((persist.store.theme = persist.store.custom = e))
 				}
 				value={custom}
@@ -65,7 +65,7 @@ export default () => {
 			<Header className="ysink_code_head">Show line numbers</Header>
 			<Switch
 				checked={persist.ghost.nums ?? true}
-				onChange={e => (persist.store.nums = e)}
+				onChange={(e) => (persist.store.nums = e)}
 				className="ysink_code_mbottom"
 			/>
 		</>

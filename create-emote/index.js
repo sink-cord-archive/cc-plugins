@@ -6,4 +6,4 @@ import patchEmotePicker from "./patchEmotePicker.jsx";
 
 const patches = [cssInject(), patchContextMenu(), patchEmotePicker()];
 
-export const onUnload = () => _.forEachRight(patches, p => p());
+export const onUnload = () => _.forEachRight(patches, (p) => p());

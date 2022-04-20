@@ -23,7 +23,7 @@ export default (joinHypeSquadOnline, getHouseNameFromHouseID) => {
 		<div>
 			<Text className="ysink_hypesquad_text">Or, choose from below:</Text>
 			<div className="ysink_hypesquad_container">
-				{[1, 2, 3].map(n => (
+				{[1, 2, 3].map((n) => (
 					<SwitchButton
 						houseNum={n}
 						{...{ joinHypeSquadOnline, getHouseNameFromHouseID }}

@@ -3,4 +3,4 @@ import bannerPatch from "./bannerPatch";
 
 const patches = [cssInject(), bannerPatch];
 
-export const onUnload = () => _.forEachRight(patches, p => p());
+export const onUnload = () => _.forEachRight(patches, (p) => p());

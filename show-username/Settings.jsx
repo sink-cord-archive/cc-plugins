@@ -6,7 +6,7 @@ const Option = ({ key, children }) => (
 	<div className="ysink_usern_row">
 		<Switch
 			checked={persist.ghost[key]}
-			onChange={v => (persist.store[key] = v)}
+			onChange={(v) => (persist.store[key] = v)}
 		/>
 		<FormText>{children}</FormText>
 	</div>

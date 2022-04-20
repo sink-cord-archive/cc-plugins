@@ -12,7 +12,7 @@ export default after("type", MsgRoot, ([props], ret) => {
 	const member = getMember(guildId, authorId);
 	const user = getUser(authorId);
 
-	const target = findInReactTree(ret, e => e?.childrenHeader)?.childrenHeader
+	const target = findInReactTree(ret, (e) => e?.childrenHeader)?.childrenHeader
 		.props.author;
 
 	if (!target || !member?.nick) return;

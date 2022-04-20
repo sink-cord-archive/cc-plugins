@@ -33,7 +33,7 @@ function processAttachment(a) {
 export const onUnload = before(
 	"default",
 	findByDisplayName("ConnectedMessageAccessories", false),
-	args => {
+	(args) => {
 		const msg = args[0].message;
 		msg.attachments = msg.attachments.map(processAttachment);
 		return args;

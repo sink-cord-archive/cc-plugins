@@ -28,7 +28,7 @@ function scrollToReplyingMsg() {
 	const messageContainer = document.querySelector(
 		'[data-list-id="chat-messages"]'
 	);
-	const replyingMsg = Array.from(messageContainer.children).find(elem =>
+	const replyingMsg = Array.from(messageContainer.children).find((elem) =>
 		elem.firstChild?.className?.includes("replying-")
 	);
 
@@ -86,7 +86,7 @@ async function keyDown(event) {
 	const messages = (await getMessages(getChannelId())).toArray().reverse();
 
 	const lastIndex =
-		messages.findIndex(msg => msg.id === replyingToMessage) || 0;
+		messages.findIndex((msg) => msg.id === replyingToMessage) || 0;
 	if (event.key === "ArrowUp") messageIndex = lastIndex + 1;
 	else if (event.key === "ArrowDown") messageIndex = lastIndex - 1;
 
@@ -122,7 +122,7 @@ export default {
 		unloadPatch = before(
 			"setPendingReplyShouldMention",
 			pendingReplyModule,
-			args => {
+			(args) => {
 				if (args[1]) dontReplyStore.delete(args[0]);
 				else dontReplyStore.add(args[0]);
 			}

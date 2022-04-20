@@ -8,7 +8,7 @@ export default () => {
 	return (
 		<TextInput
 			placeholder="Emote size in pixels, falls back to 64 if invalid"
-			onChange={e => (persist.store.size = e)}
+			onChange={(e) => (persist.store.size = e)}
 			value={persist.ghost.size}
 		/>
 	);

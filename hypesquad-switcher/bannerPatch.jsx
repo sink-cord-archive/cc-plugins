@@ -4,7 +4,7 @@ import getSwitchButtonArray from "./getSwitchButtonArray";
 
 export default findAndPatch(
 	() => findByDisplayName("JoinHypeSquadCTA"),
-	JoinHypeSquadCTA => {
+	(JoinHypeSquadCTA) => {
 		// lazy loading workaround madness
 		const { SwitchButton, SwitchButtonArray } = getSwitchButtonArray(
 			findByProps("joinHypeSquadOnline").joinHypeSquadOnline,
@@ -17,7 +17,10 @@ export default findAndPatch(
 			if (inSquad)
 				ret.props.children.props.children.push(<SwitchButtonArray />);
 			else {
-				const subProps = findInReactTree(ret, n => n.children?.props?.onClick);
+				const subProps = findInReactTree(
+					ret,
+					(n) => n.children?.props?.onClick
+				);
 
 				// change button text from "Join Hypesquad"
 				subProps.children.props.children = "Take HypeSquad test";
@@ -26,7 +29,7 @@ export default findAndPatch(
 
 				subProps.children.push(
 					<div className="ysink_hypesquad_container ysink_new">
-						{[1, 2, 3].map(n => (
+						{[1, 2, 3].map((n) => (
 							<SwitchButton houseNum={n} />
 						))}
 					</div>

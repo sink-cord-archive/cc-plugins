@@ -4,7 +4,7 @@ import { useEffect } from "@cumcord/modules/common/React";
 
 const optionClass = findByProps("selectPositionTop").option;
 
-export default wrapperRef => {
+export default (wrapperRef) => {
 	useEffect(() => {
 		if (wrapperRef?.current?.firstChild?.onclick)
 			wrapperRef.current.firstChild.onclick = scrollSoon;
@@ -21,7 +21,7 @@ export const scrollSoon = () => {
 
 export const scrollNow = () => {
 	const elems = Array.from(document.getElementsByClassName(optionClass));
-	const elemI = elems.findIndex(m => m.ariaSelected === "true");
+	const elemI = elems.findIndex((m) => m.ariaSelected === "true");
 
 	if (elemI === -1) return;
 

@@ -83,4 +83,4 @@ const Component = ({ guildId, emoteUrl, e }) => {
 };
 
 export default (guildId, emoteUrl) =>
-	openModal(e => <Component guildId={guildId} emoteUrl={emoteUrl} e={e} />);
+	openModal((e) => <Component guildId={guildId} emoteUrl={emoteUrl} e={e} />);

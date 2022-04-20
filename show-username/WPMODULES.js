@@ -14,6 +14,6 @@ export const [
 	findByDisplayName("Switch");
 	findByProps("getMember");
 	findByProps("getUser");
-	find(m => m.type?.toString().indexOf("MESSAGE_A11Y_ROLE_DESCRIPTION") > -1);
+	find((m) => m.type?.toString().indexOf("MESSAGE_A11Y_ROLE_DESCRIPTION") > -1);
 	findByDisplayName("ConnectedChannelMembers", false);
 });

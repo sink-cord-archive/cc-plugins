@@ -10,6 +10,6 @@ persist.ghost.useHighestUserCount ??= true;
 
 const patches = [injectCss(), reaction()];
 
-export const onUnload = () => _.forEachRight(patches, p => p?.());
+export const onUnload = () => _.forEachRight(patches, (p) => p?.());
 
 export { settings };

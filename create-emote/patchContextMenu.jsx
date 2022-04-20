@@ -6,7 +6,7 @@ import { MenuSeparator } from "./WPMODULES.js";
 export default () =>
 	findAndPatch(
 		() => findByDisplayName("MessageContextMenu", false),
-		MessageContextMenu =>
+		(MessageContextMenu) =>
 			after("default", MessageContextMenu, ([{ target }], ret) => {
 				const isEmote = target?.classList?.contains("emoji");
 

@@ -6,4 +6,4 @@ const css = `.ysink_activity_image{height:2rem;border-radius:.3rem}.${icon}{disp
 
 const patches = [injectCSS(css), memberListPatch];
 
-export const onUnload = () => _.forEachRight(patches, p => p());
+export const onUnload = () => _.forEachRight(patches, (p) => p());

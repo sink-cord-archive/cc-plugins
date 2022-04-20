@@ -5,7 +5,7 @@ import ContextMenuInjection from "./ContextMenuInjection.jsx";
 export default () =>
 	findAndPatch(
 		() => findByDisplayName("ExpressionPickerContextMenu", false),
-		ExpressionPickerContextMenu =>
+		(ExpressionPickerContextMenu) =>
 			after("default", ExpressionPickerContextMenu, ([{ target }], ret) => {
 				if (!target.firstChild.currentSrc) return;
 

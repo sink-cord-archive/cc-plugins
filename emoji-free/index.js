@@ -4,6 +4,6 @@ import settings from "./Settings";
 
 const patches = [nitroChecks(), sendMessage()];
 
-export const onUnload = () => _.forEachRight(patches, p => p());
+export const onUnload = () => _.forEachRight(patches, (p) => p());
 
 export { settings };

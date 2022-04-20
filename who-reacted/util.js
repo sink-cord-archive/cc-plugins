@@ -5,10 +5,14 @@ import { findByProps } from "@cumcord/modules/webpack";
 
 const reactionClass = findByProps("reaction").reaction;
 
-const findReactionReactElement = node =>
-	findInTree(getReactInstance(node), r => r?.type?.displayName === "Reaction", {
-		walkable: ["return"],
-	});
+const findReactionReactElement = (node) =>
+	findInTree(
+		getReactInstance(node),
+		(r) => r?.type?.displayName === "Reaction",
+		{
+			walkable: ["return"],
+		}
+	);
 
 const forceUpdateAllReactions = () => {
 	for (const elem of document.getElementsByClassName(reactionClass))

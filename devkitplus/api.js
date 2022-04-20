@@ -4,16 +4,18 @@ import bestFindMethod from "./bestFindMethod";
 import { findAll } from "@cumcord/modules/webpack";
 import { injectCSS } from "@cumcord/patcher";
 
-const findClassNameModuleAll = className => {
+const findClassNameModuleAll = (className) => {
 	if (className.startsWith(".")) className = className.substring(1);
 	return findAll(
-		m =>
+		(m) =>
 			typeof m === "object" &&
-			Object.values(m).some(p => typeof p === "string" && p.includes(className))
+			Object.values(m).some(
+				(p) => typeof p === "string" && p.includes(className)
+			)
 	);
 };
 
-const autoModuleFind = selectorOrElement => {
+const autoModuleFind = (selectorOrElement) => {
 	if (typeof selectorOrElement === "string")
 		selectorOrElement = document.querySelector(selectorOrElement);
 
@@ -26,7 +28,7 @@ export default () => {
 		bestFindMethod,
 		autoModuleFind,
 		findClassNameModuleAll,
-		findClassNameModule: className => findClassNameModuleAll(className)[0],
+		findClassNameModule: (className) => findClassNameModuleAll(className)[0],
 		/* injectSCSS: (scss) => injectSCSS(scss),
 		injectSass: (sass) => injectSCSS(sass, true), */
 	};

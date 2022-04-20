@@ -13,4 +13,4 @@ export default (set, search) =>
 		? set
 		: new Fuse(set, fuseOptions)
 				.search(search)
-				.map(searchResult => searchResult.item);
+				.map((searchResult) => searchResult.item);

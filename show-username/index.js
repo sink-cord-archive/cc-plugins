@@ -10,6 +10,6 @@ persist.ghost.msg ??= true;
 
 const unpatches = [styles(), message, voice, members];
 
-export const onUnload = () => _.forEachRight(unpatches, p => p());
+export const onUnload = () => _.forEachRight(unpatches, (p) => p());
 
 export { settings };
