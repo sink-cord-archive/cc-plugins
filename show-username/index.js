@@ -4,11 +4,12 @@ import settings from "./Settings";
 import styles from "./styles.sass";
 import members from "./members";
 
-export default () => {
-	const unpatches = [styles(), message(), voice(), members()];
+persist.ghost.vc ??= true;
+persist.ghost.ml ??= true;
+persist.ghost.msg ??= true;
 
-	return {
-		onUnload: () => _.forEachRight(unpatches, p => p()),
-		settings,
-	};
-};
+const unpatches = [styles(), message, voice, members];
+
+export const onUnload = () => _.forEachRight(unpatches, p => p());
+
+export { settings };

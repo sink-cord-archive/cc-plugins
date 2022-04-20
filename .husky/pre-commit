@@ -2,4 +2,6 @@
 . "$(dirname $0)/_/husky.sh"
 
 npm exec prettier -- --write **/*.js **/*.jsx **/*.json **/*.yml **/*.yaml 
-git add $(git diff --name-only --cached)
+for file in $(git diff --name-only --cached); do
+	git add $file || true
+done

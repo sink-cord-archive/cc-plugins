@@ -1,37 +1,25 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
+import { FormText, Switch } from "./WPMODULES";
 
-const FormText = findByDisplayName("FormText");
-const Switch = findByDisplayName("Switch");
+const Option = ({ key, children }) => (
+	<div className="ysink_usern_row">
+		<Switch
+			checked={persist.ghost[key]}
+			onChange={v => (persist.store[key] = v)}
+		/>
+		<FormText>{children}</FormText>
+	</div>
+);
 
 export default () => {
 	useNest(persist);
+
 	return (
 		<>
-			<div className="ysink_usern_row">
-				<Switch
-					checked={persist.ghost.vc ?? true}
-					onChange={e => (persist.store.vc = e)}
-				/>
-				<FormText>Show usernames in Voice Chat</FormText>
-			</div>
-
-			<div className="ysink_usern_row">
-				<Switch
-					checked={persist.ghost.ml ?? true}
-					onChange={e => (persist.store.ml = e)}
-				/>
-				<FormText>Show usernames in Member List</FormText>
-			</div>
-
-			<div className="ysink_usern_row">
-				<Switch
-					checked={persist.ghost.msg ?? true}
-					onChange={e => (persist.store.msg = e)}
-				/>
-				<FormText>Show usernames in Messages</FormText>
-			</div>
+			<Option key="vc">Show usernames in Voice Chat</Option>
+			<Option key="ml">Show usernames in Member List</Option>
+			<Option key="msg">Show usernames in Member List</Option>
 		</>
 	);
 };

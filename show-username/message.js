@@ -1,32 +1,23 @@
 import { persist } from "@cumcord/pluginData";
-import { find, findByProps } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import { findInReactTree } from "@cumcord/utils";
+import { getMember, getUser, MsgRoot } from "./WPMODULES";
 
-const { getMember } = findByProps("getMember");
-const { getUser } = findByProps("getUser", "getCurrentUser");
+export default after("type", MsgRoot, ([props], ret) => {
+	if (!persist.ghost.msg) return;
 
-// thx Strencher
-const msg = find(
-	m => m.type?.toString().indexOf("MESSAGE_A11Y_ROLE_DESCRIPTION") > -1
-);
+	const guildId = props.channel.guild_id;
+	const authorId = props.message.author.id;
 
-export default () =>
-	after("type", msg, ([props], ret) => {
-		if (persist.ghost.msg === false) return;
+	const member = getMember(guildId, authorId);
+	const user = getUser(authorId);
 
-		const guildId = props.channel.guild_id;
-		const authorId = props.message.author.id;
+	const target = findInReactTree(ret, e => e?.childrenHeader)?.childrenHeader
+		.props.author;
 
-		const member = getMember(guildId, authorId);
-		const user = getUser(authorId);
+	if (!target || !member?.nick) return;
 
-		const target = findInReactTree(ret, e => e?.childrenHeader)?.childrenHeader
-			.props.author;
+	target.nick = `${member.nick} (${user.username})`;
 
-		if (!target || !member?.nick) return;
-
-		target.nick = `${member.nick} (${user.username})`;
-
-		return ret;
-	});
+	return ret;
+});
