@@ -4,10 +4,10 @@ import cssInject from "./styles.sass";
 import patchContextMenu from "./patchContextMenu.jsx";
 import patchEmotePicker from "./patchEmotePicker.jsx";
 
-export default (data) => {
-    let patches = [cssInject(), patchContextMenu(), patchEmotePicker()];
+export default data => {
+	let patches = [cssInject(), patchContextMenu(), patchEmotePicker()];
 
-    return {
-        onUnload: () => _.forEachRight(patches, (p) => p()),
-    };
+	return {
+		onUnload: () => _.forEachRight(patches, p => p()),
+	};
 };

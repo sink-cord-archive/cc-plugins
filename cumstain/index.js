@@ -13,11 +13,11 @@ if (!Array.isArray(persist.ghost.repos)) defaultRepos();
 if (!Array.isArray(persist.ghost.themes)) persist.store.themes = [];
 
 const patches = [
-    quickCSS(),
-    restoreThemes(),
-    exposeApi(),
-    settingsEntry(),
-    injectUiStyles(),
+	quickCSS(),
+	restoreThemes(),
+	exposeApi(),
+	settingsEntry(),
+	injectUiStyles(),
 ];
 
-export const onUnload = () => _.forEachRight(patches, (p) => p());
+export const onUnload = () => _.forEachRight(patches, p => p());

@@ -1,7 +1,7 @@
 {
-  "name": "Hypesquad Switcher",
-  "description": "Switch Hypesquad house with ease. DO NOT SPAM!",
-  "author": "Yellowsink",
-  "file": "index.jsx",
-  "license": "BSD-3"
+	"name": "Hypesquad Switcher",
+	"description": "Switch Hypesquad house with ease. DO NOT SPAM!",
+	"author": "Yellowsink",
+	"file": "index.jsx",
+	"license": "BSD-3"
 }

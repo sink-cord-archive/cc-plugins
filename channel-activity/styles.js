@@ -5,7 +5,7 @@ const { children } = findByProps("nameAndDecorators");
 import { injectCss } from "@cumcord/patcher";
 
 export default () =>
-    injectCss(`
+	injectCss(`
 .ysink_activity_image {
     height: 2rem;
     border-radius: .3rem;

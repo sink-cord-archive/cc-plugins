@@ -4,11 +4,11 @@ import resetReposToDefault from "./defaultRepos.js";
 import commandPalette from "./patches/commandPalette.js";
 
 export default ({ persist }) => {
-    let patches = [injectCss(), commandPalette(), settingsEntryPatch()];
+	let patches = [injectCss(), commandPalette(), settingsEntryPatch()];
 
-    if (!Array.isArray(persist.ghost.repos)) resetReposToDefault(persist.store);
+	if (!Array.isArray(persist.ghost.repos)) resetReposToDefault(persist.store);
 
-    return {
-        onUnload: () => _.forEachRight(patches, (p) => p()),
-    };
+	return {
+		onUnload: () => _.forEachRight(patches, p => p()),
+	};
 };

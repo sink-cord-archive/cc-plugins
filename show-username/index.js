@@ -5,10 +5,10 @@ import styles from "./styles.sass";
 import members from "./members";
 
 export default () => {
-    const unpatches = [styles(), message(), voice(), members()];
+	const unpatches = [styles(), message(), voice(), members()];
 
-    return {
-        onUnload: () => _.forEachRight(unpatches, (p) => p()),
-        settings,
-    };
+	return {
+		onUnload: () => _.forEachRight(unpatches, p => p()),
+		settings,
+	};
 };

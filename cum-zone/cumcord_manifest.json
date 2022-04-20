@@ -1,8 +1,8 @@
 {
-  "name": "The Cum Zone",
-  "description": "An integrated plugin store for Cumcord",
-  "author": "Yellowsink",
-  "file": "index.js",
-  "license": "BSD-3",
-  "media": "https://yellowsink.github.io/cc-plugins/assets/cumzone.png"
+	"name": "The Cum Zone",
+	"description": "An integrated plugin store for Cumcord",
+	"author": "Yellowsink",
+	"file": "index.js",
+	"license": "BSD-3",
+	"media": "https://yellowsink.github.io/cc-plugins/assets/cumzone.png"
 }

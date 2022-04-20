@@ -12,63 +12,61 @@ import useRerender from "../../util/useRerender";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
-const getThemes = async () => (await getRepos()).flatMap((r) => r.themes);
+const getThemes = async () => (await getRepos()).flatMap(r => r.themes);
 
 const arrayEquals = (a, b) =>
-    Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index]);
+	Array.isArray(a) &&
+	Array.isArray(b) &&
+	a.length === b.length &&
+	a.every((val, index) => val === b[index]);
 
 export default ({ goTo }) => {
-    useNest(persist, false, (_, { path }) => path[0] === "repos");
+	useNest(persist, false, (_, { path }) => path[0] === "repos");
 
-    const [search, setSearch] = React.useState("");
+	const [search, setSearch] = React.useState("");
 
-    // if this state differs from persist.ghost.repos, then a change has occurred, so update
-    const [rawRepos, setRawRepos] = React.useState([]);
+	// if this state differs from persist.ghost.repos, then a change has occurred, so update
+	const [rawRepos, setRawRepos] = React.useState([]);
 
-    const [themes, setThemes] = React.useState(undefined);
-    const [filterMode, setFilterMode] = React.useState(0);
-    React.useEffect(() => {
-        if (!arrayEquals(rawRepos, persist.ghost.repos) || !themes) {
-            setRawRepos(persist.ghost.repos);
+	const [themes, setThemes] = React.useState(undefined);
+	const [filterMode, setFilterMode] = React.useState(0);
+	React.useEffect(() => {
+		if (!arrayEquals(rawRepos, persist.ghost.repos) || !themes) {
+			setRawRepos(persist.ghost.repos);
 
-            getThemes().then(setThemes);
-        }
-    });
+			getThemes().then(setThemes);
+		}
+	});
 
-    // see the same line in TabInstalled for why I am forced to do this
-    const deleteHook = useRerender();
+	// see the same line in TabInstalled for why I am forced to do this
+	const deleteHook = useRerender();
 
-    return (
-        <ErrorBoundary>
-            <div className="ysink_stain_search_row">
-                <SearchBar query={search} onChange={setSearch} />
-                <CompatFilterDropdown {...{ filterMode, setFilterMode }} />
-            </div>
+	return (
+		<ErrorBoundary>
+			<div className="ysink_stain_search_row">
+				<SearchBar query={search} onChange={setSearch} />
+				<CompatFilterDropdown {...{ filterMode, setFilterMode }} />
+			</div>
 
-            {persist.ghost.repos.length === 0 ? (
-                <NoRepos goToRepos={() => goTo(2)} />
-            ) : (
-                <div className="ysink_stain_cardcontainer">
-                    {fuzzy(
-                        _.uniqBy(themes ?? [], (t) => t.url),
-                        search
-                    )
-                        .filter(
-                            (t) =>
-                                filterMode === 0 ||
-                                (filterMode === 1 && !t.compat) ||
-                                (filterMode === 2 && t.compat)
-                        )
-                        .map((theme) => (
-                            <ThemeCard
-                                {...{ key: theme.url, theme, deleteHook }}
-                            />
-                        ))}
-                </div>
-            )}
-        </ErrorBoundary>
-    );
+			{persist.ghost.repos.length === 0 ? (
+				<NoRepos goToRepos={() => goTo(2)} />
+			) : (
+				<div className="ysink_stain_cardcontainer">
+					{fuzzy(
+						_.uniqBy(themes ?? [], t => t.url),
+						search
+					)
+						.filter(
+							t =>
+								filterMode === 0 ||
+								(filterMode === 1 && !t.compat) ||
+								(filterMode === 2 && t.compat)
+						)
+						.map(theme => (
+							<ThemeCard {...{ key: theme.url, theme, deleteHook }} />
+						))}
+				</div>
+			)}
+		</ErrorBoundary>
+	);
 };

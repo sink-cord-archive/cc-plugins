@@ -3,13 +3,13 @@ import UserBanner from "./patches/UserBanner.jsx";
 import FixAvatarPosition from "./patches/FixAvatarPosition.jsx";
 
 export default () => {
-    let patches;
+	let patches;
 
-    return {
-        onLoad: async () => {
-            const db_cache = await getDb();
-            patches = [UserBanner(db_cache), FixAvatarPosition(db_cache)];
-        },
-        onUnload: () => _.forEachRight(patches, (p) => p()),
-    };
+	return {
+		onLoad: async () => {
+			const db_cache = await getDb();
+			patches = [UserBanner(db_cache), FixAvatarPosition(db_cache)];
+		},
+		onUnload: () => _.forEachRight(patches, p => p()),
+	};
 };

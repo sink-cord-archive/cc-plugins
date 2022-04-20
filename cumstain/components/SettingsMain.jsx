@@ -8,20 +8,20 @@ import TabBar from "./TabBar";
 import { FormSection, FormTitle } from "../WPMODULES";
 
 export default () => {
-    return (
-        <ErrorBoundary>
-            <FormSection>
-                <FormTitle tag="h1">Cumstain Settings</FormTitle>
+	return (
+		<ErrorBoundary>
+			<FormSection>
+				<FormTitle tag="h1">Cumstain Settings</FormTitle>
 
-                <TabBar
-                    items={[
-                        { text: "Installed", component: TabInstalled },
-                        { text: "Store", component: TabStore },
-                        { text: "Repos", component: TabRepo },
-                        { text: "Quick CSS", component: TabQuickCSS },
-                    ]}
-                />
-            </FormSection>
-        </ErrorBoundary>
-    );
+				<TabBar
+					items={[
+						{ text: "Installed", component: TabInstalled },
+						{ text: "Store", component: TabStore },
+						{ text: "Repos", component: TabRepo },
+						{ text: "Quick CSS", component: TabQuickCSS },
+					]}
+				/>
+			</FormSection>
+		</ErrorBoundary>
+	);
 };

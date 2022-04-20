@@ -3,10 +3,10 @@ import sendMessage from "./patches/sendMessage";
 import Settings from "./Settings";
 
 export default () => {
-    const patches = [nitroChecks(), sendMessage()];
+	const patches = [nitroChecks(), sendMessage()];
 
-    return {
-        onUnload: () => _.forEachRight(patches, p => p()),
-        settings: Settings
-    };
+	return {
+		onUnload: () => _.forEachRight(patches, p => p()),
+		settings: Settings,
+	};
 };

@@ -1,7 +1,7 @@
 export default () => {
-    if (window.DiscordNative)
-        DiscordNative.window.setDevtoolsCallbacks(
-            () => {},
-            () => {}
-        );
+	if (window.DiscordNative)
+		DiscordNative.window.setDevtoolsCallbacks(
+			() => {},
+			() => {}
+		);
 };

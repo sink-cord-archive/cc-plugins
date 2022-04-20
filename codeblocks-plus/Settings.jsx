@@ -24,50 +24,50 @@ btn.addEventListener("click", () => {
 });`;
 
 export default () => {
-    useNest(persist);
-    const [custom, setCustom] = React.useState(persist.ghost.custom);
+	useNest(persist);
+	const [custom, setCustom] = React.useState(persist.ghost.custom);
 
-    const includedThemeOptions = includedThemes.map(({ name, url }) => ({
-        value: url,
-        label: name,
-    }));
-    const themeOptions = [{ label: "Discord default" }].concat(
-        includedThemeOptions
-    );
+	const includedThemeOptions = includedThemes.map(({ name, url }) => ({
+		value: url,
+		label: name,
+	}));
+	const themeOptions = [{ label: "Discord default" }].concat(
+		includedThemeOptions
+	);
 
-    const wrapperRef = React.useRef();
+	const wrapperRef = React.useRef();
 
-    useScrollToOption(wrapperRef);
+	useScrollToOption(wrapperRef);
 
-    return (
-        <>
-            <Codeblock lang="js" codeText={preview} />
+	return (
+		<>
+			<Codeblock lang="js" codeText={preview} />
 
-            <Header className="ysink_code_head">Select theme</Header>
-            <div ref={wrapperRef} style={{ display: "children" }}>
-                <SingleSelect
-                    options={themeOptions}
-                    value={persist.ghost.theme || undefined}
-                    onChange={(e) => (persist.store.theme = e)}
-                    isDisabled={custom}
-                />
-            </div>
+			<Header className="ysink_code_head">Select theme</Header>
+			<div ref={wrapperRef} style={{ display: "children" }}>
+				<SingleSelect
+					options={themeOptions}
+					value={persist.ghost.theme || undefined}
+					onChange={e => (persist.store.theme = e)}
+					isDisabled={custom}
+				/>
+			</div>
 
-            <Header className="ysink_code_head">Custom theme url</Header>
-            <TextInput
-                placeholder="Custom theme URL"
-                onChange={(e) =>
-                    setCustom((persist.store.theme = persist.store.custom = e))
-                }
-                value={custom}
-            />
+			<Header className="ysink_code_head">Custom theme url</Header>
+			<TextInput
+				placeholder="Custom theme URL"
+				onChange={e =>
+					setCustom((persist.store.theme = persist.store.custom = e))
+				}
+				value={custom}
+			/>
 
-            <Header className="ysink_code_head">Show line numbers</Header>
-            <Switch
-                checked={persist.ghost.nums ?? true}
-                onChange={(e) => (persist.store.nums = e)}
-                className="ysink_code_mbottom"
-            />
-        </>
-    );
+			<Header className="ysink_code_head">Show line numbers</Header>
+			<Switch
+				checked={persist.ghost.nums ?? true}
+				onChange={e => (persist.store.nums = e)}
+				className="ysink_code_mbottom"
+			/>
+		</>
+	);
 };

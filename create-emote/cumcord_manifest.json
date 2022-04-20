@@ -1,7 +1,7 @@
 {
-  "name": "Create Emote",
-  "description": "Make emotes from images, and steal people's emotes",
-  "author": "Yellowsink",
-  "file": "index.js",
-  "license": "BSD-3"
+	"name": "Create Emote",
+	"description": "Make emotes from images, and steal people's emotes",
+	"author": "Yellowsink",
+	"file": "index.js",
+	"license": "BSD-3"
 }

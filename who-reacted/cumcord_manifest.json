@@ -1,7 +1,7 @@
 {
-  "name": "Who Reacted?",
-  "description": "[PC Port] See who reacted to a message easier!",
-  "author": "Marmota [ported by Yellowsink]",
-  "file": "index.js",
-  "license": "BSD-3"
+	"name": "Who Reacted?",
+	"description": "[PC Port] See who reacted to a message easier!",
+	"author": "Marmota [ported by Yellowsink]",
+	"file": "index.js",
+	"license": "BSD-3"
 }

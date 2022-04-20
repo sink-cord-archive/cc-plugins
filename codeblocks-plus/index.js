@@ -4,10 +4,10 @@ import Settings from "./Settings";
 import theme from "./patches/theme";
 
 export default () => {
-    let patches = [styles(), theme(), patchCodeblocks()];
+	let patches = [styles(), theme(), patchCodeblocks()];
 
-    return {
-        onUnload: () => patches.reduceRight((_, unpatch) => unpatch?.(), null),
-        settings: Settings,
-    };
+	return {
+		onUnload: () => patches.reduceRight((_, unpatch) => unpatch?.(), null),
+		settings: Settings,
+	};
 };

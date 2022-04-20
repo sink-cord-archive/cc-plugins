@@ -1,7 +1,7 @@
 {
-  "name": "SVG Embeds",
-  "description": "Show SVGs as image embeds!",
-  "author": "Yellowsink",
-  "file": "index.js",
-  "license": "BSD-3"
+	"name": "SVG Embeds",
+	"description": "Show SVGs as image embeds!",
+	"author": "Yellowsink",
+	"file": "index.js",
+	"license": "BSD-3"
 }

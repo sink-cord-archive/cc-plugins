@@ -8,36 +8,36 @@ const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 const Badges = findByProps("BadgeShapes");
 
 export default ({ repo }) => (
-    <div className="ysink_zone_card ysink_zone_repocard">
-        <div className="ysink_zone_row">
-            <div>
-                <FormTitle tag="p" className="ysink_zone_title">
-                    {repo.name}
-                    {repo.official ? (
-                        <Badges.TextBadge
-                            className="ysink_zone_badge"
-                            text="official repo"
-                            color="var(--info-positive-foreground)"
-                        />
-                    ) : (
-                        []
-                    )}
-                </FormTitle>
+	<div className="ysink_zone_card ysink_zone_repocard">
+		<div className="ysink_zone_row">
+			<div>
+				<FormTitle tag="p" className="ysink_zone_title">
+					{repo.name}
+					{repo.official ? (
+						<Badges.TextBadge
+							className="ysink_zone_badge"
+							text="official repo"
+							color="var(--info-positive-foreground)"
+						/>
+					) : (
+						[]
+					)}
+				</FormTitle>
 
-                <FormText>{repo.url}</FormText>
-            </div>
+				<FormText>{repo.url}</FormText>
+			</div>
 
-            <Button
-                color={Button.Colors.RED}
-                className="ysink_zone_button"
-                onClick={() =>
-                    (persist.store.repos = persist.ghost.repos.filter(
-                        (r) => r.url != repo.url
-                    ))
-                }
-            >
-                Remove Repo
-            </Button>
-        </div>
-    </div>
+			<Button
+				color={Button.Colors.RED}
+				className="ysink_zone_button"
+				onClick={() =>
+					(persist.store.repos = persist.ghost.repos.filter(
+						r => r.url != repo.url
+					))
+				}
+			>
+				Remove Repo
+			</Button>
+		</div>
+	</div>
 );

@@ -1,7 +1,7 @@
 {
-  "name": "Channel Activity",
-  "description": "Port of https://github.com/vizality-community/channel-members-activity-icons",
-  "author": "Yellowsink",
-  "file": "index.jsx",
-  "license": "BSD-3"
+	"name": "Channel Activity",
+	"description": "Port of https://github.com/vizality-community/channel-members-activity-icons",
+	"author": "Yellowsink",
+	"file": "index.jsx",
+	"license": "BSD-3"
 }
