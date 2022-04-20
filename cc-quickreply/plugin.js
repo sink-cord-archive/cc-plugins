@@ -1,19 +1,21 @@
 // see https://github.com/relative/cumcord-quickreply/pull/2
 
 import { ActionTypes } from "@cumcord/modules/common/constants";
-import { findByProps } from "@cumcord/modules/webpackModules";
+import { batchFind } from "@cumcord/modules/webpack";
 import { FluxDispatcher as Dispatcher } from "@cumcord/modules/common";
 import { before } from "@cumcord/patcher";
 
-const { getChannelId } = findByProps(
-	"getChannelId",
-	"getLastSelectedChannelId",
-	"getVoiceChannelId"
-);
-const { getChannel } = findByProps("getChannel", "getDMUserIds");
-const { getMessages } = findByProps("getRawMessages");
+import { getChannelId } from "@cumcord/modules/common/channels";
 
-const pendingReplyModule = findByProps("setPendingReplyShouldMention");
+const [{ getChannel }, { getMessages }, pendingReplyModule] = batchFind(
+	({ findByProps }) => {
+		findByProps("getDMUserIds");
+		findByProps("getRawMessages");
+		findByProps("setPendingReplyShouldMention");
+	}
+);
+
+const getCurrentChannel = () => getChannel(getChannelId());
 
 const dontReplyStore = new Set();
 
@@ -33,19 +35,14 @@ function scrollToReplyingMsg() {
 	replyingMsg?.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-function getCurrentChannel() {
-	return getChannel(getChannelId());
-}
-
 function createPendingReply(
 	channel,
 	message,
 	shouldMention,
 	showMentionToggle
 ) {
-	if (typeof showMentionToggle === "undefined") {
+	if (typeof showMentionToggle === "undefined")
 		showMentionToggle = channel.guild_id !== null; // DM channel showMentionToggle = false
-	}
 
 	Dispatcher.dirtyDispatch({
 		type: ActionTypes.CREATE_PENDING_REPLY,
@@ -55,9 +52,7 @@ function createPendingReply(
 		showMentionToggle,
 	});
 
-	setTimeout(() => {
-		scrollToReplyingMsg();
-	}, 100);
+	setTimeout(scrollToReplyingMsg, 100);
 }
 
 function deletePendingReply(data) {
@@ -76,44 +71,34 @@ function channelSelect(data) {
 }
 
 function onCreatePendingReply(data) {
-	if (replyingToMessage !== data.message.id) {
-		replyingToMessage = data.message.id;
-	}
+	replyingToMessage = data.message.id;
 }
 
 function onDeletePendingReply(data) {
 	replyingToMessage = undefined;
-	if (!data[QRSymbol]) {
-		messageIndex = -1;
-	}
+	if (!data[QRSymbol]) messageIndex = -1;
 }
 
 async function keyDown(event) {
 	if (!event.ctrlKey) return;
 	if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
 
-	let messages = await getMessages(getChannelId());
-	let msgArray = messages.toArray().reverse();
+	const messages = (await getMessages(getChannelId())).toArray().reverse();
 
-	let lastIndex = msgArray.findIndex(msg => msg.id === replyingToMessage) || 0;
-	if (event.key === "ArrowUp") {
-		messageIndex = lastIndex + 1;
-	} else if (event.key === "ArrowDown") {
-		messageIndex = lastIndex - 1;
-	}
+	const lastIndex =
+		messages.findIndex(msg => msg.id === replyingToMessage) || 0;
+	if (event.key === "ArrowUp") messageIndex = lastIndex + 1;
+	else if (event.key === "ArrowDown") messageIndex = lastIndex - 1;
 
-	if (messageIndex > msgArray.length) messageIndex = msgArray.length;
-	if (messageIndex < 0) {
-		return deletePendingReply();
-	}
+	if (messageIndex > messages.length) messageIndex = messages.length;
+	if (messageIndex < 0) return deletePendingReply();
 
-	let message = msgArray[messageIndex];
 	deletePendingReply({
 		[QRSymbol]: true,
 	});
 	createPendingReply(
 		getCurrentChannel(),
-		message,
+		messages[messageIndex],
 		!dontReplyStore.has(getChannelId())
 	);
 }
@@ -154,6 +139,6 @@ export default {
 			onDeletePendingReply
 		);
 		window.removeEventListener("keydown", keyDown);
-		unloadPatch();
+		unloadPatch?.();
 	},
 };

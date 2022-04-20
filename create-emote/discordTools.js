@@ -1,9 +1,4 @@
-import { findByProps } from "@cumcord/modules/webpack";
-
-const discordEmoteTools = findByProps("uploadEmoji");
-const { getGuildPermissions } = findByProps("getGuildPermissions");
-
-const { getGuilds } = findByProps("getGuilds");
+import { discordEmoteTools, getGuildPermissions, getGuilds } from "./WPMODULES";
 
 const MANAGE_EMOTES_PERMISSION = BigInt(1073741824);
 

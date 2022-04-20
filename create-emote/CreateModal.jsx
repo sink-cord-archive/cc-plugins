@@ -1,39 +1,43 @@
-import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { ErrorBoundary } from "@cumcord/ui/components";
 import { showToast } from "@cumcord/ui/toasts";
 import { uploadEmoji } from "./discordTools";
-const { openModal } = findByProps("openModalLazy");
 
-const ModalComponents = findByProps("ModalCloseButton");
-const Flex = findByDisplayName("Flex");
-const Header = findByProps("Sizes", "Tags");
-const FormSection = findByDisplayName("FormSection");
-const FormText = findByDisplayName("FormText");
-const TextInput = findByDisplayName("TextInput");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+import {
+	openModal,
+	ModalRoot,
+	ModalHeader,
+	ModalContent,
+	ModalCloseButton,
+	Flex,
+	Header,
+	FormSection,
+	FormText,
+	TextInput,
+	Button,
+} from "./WPMODULES";
 
 const Component = ({ guildId, emoteUrl, e }) => {
 	const [input, setInput] = React.useState("");
 
 	return (
 		<ErrorBoundary>
-			<ModalComponents.ModalRoot
+			<ModalRoot
 				transitionState={e.transitionState}
 				size="small"
 				className="ysink_emote_modal"
 			>
-				<ModalComponents.ModalHeader separator={false}>
+				<ModalHeader separator={false}>
 					<Flex.Child basis="auto" grow={1} shrink={1} wrap={false}>
 						<Header tag="h2" size={Header.Sizes.SIZE_20}>
 							Create Emote
 						</Header>
 					</Flex.Child>
 					<Flex.Child basis="auto" grow={0} shrink={1} wrap={false}>
-						<ModalComponents.ModalCloseButton onClick={e.onClose} />
+						<ModalCloseButton onClick={e.onClose} />
 					</Flex.Child>
-				</ModalComponents.ModalHeader>
+				</ModalHeader>
 
-				<ModalComponents.ModalContent>
+				<ModalContent>
 					<FormSection>
 						<div className="ysink_emote_row">
 							<FormText>
@@ -55,7 +59,7 @@ const Component = ({ guildId, emoteUrl, e }) => {
 								placeholder="myamazingemote"
 								type="text"
 								value={input}
-								onChange={e => setInput(e)}
+								onChange={setInput}
 							/>
 							<Button
 								className="ysink_emote_button"
@@ -72,8 +76,8 @@ const Component = ({ guildId, emoteUrl, e }) => {
 							</Button>
 						</Flex>
 					</FormSection>
-				</ModalComponents.ModalContent>
-			</ModalComponents.ModalRoot>
+				</ModalContent>
+			</ModalRoot>
 		</ErrorBoundary>
 	);
 };

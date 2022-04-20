@@ -1,9 +1,6 @@
 // https://github.com/luimu64/nitro-spoof/blob/1bb75a2471c39669d590bfbabeb7b922672929f5/utils.js
 
-import { findByProps } from "@cumcord/modules/webpack";
-
-const { getCustomEmojiById } = findByProps("getCustomEmojiById");
-const { getLastSelectedGuildId } = findByProps("getLastSelectedGuildId");
+import { getCustomEmojiById, getLastSelectedGuildId } from "./WPMODULES";
 
 function extractNonUsableEmojis(messageString, size) {
 	let emojiStrings = messageString.matchAll(/<a?:(\w+):(\d+)>/gi);

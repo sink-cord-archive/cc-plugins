@@ -1,8 +1,6 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
-
-const TextInput = findByDisplayName("TextInput");
+import { TextInput } from "./WPMODULES";
 
 export default () => {
 	useNest(persist);

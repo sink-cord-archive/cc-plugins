@@ -1,21 +1,20 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
-import { after } from "@cumcord/patcher";
+import { after, findAndPatch } from "@cumcord/patcher";
 import ContextMenuInjection from "./ContextMenuInjection.jsx";
 
-import { lazyPatcher } from "cumcord-tools";
-
 export default () =>
-	lazyPatcher.patchContextMenu(
-		"ExpressionPickerContextMenu",
-		emojiContextMenu =>
-			after("default", emojiContextMenu, ([{ target }], retVal) => {
-				if (!target.firstChild.currentSrc) return retVal;
-				if (!Array.isArray(retVal.props.children.props.children))
-					retVal.props.children.props.children = [
-						retVal.props.children.props.children,
-					];
+	findAndPatch(
+		() => findByDisplayName("ExpressionPickerContextMenu", false),
+		ExpressionPickerContextMenu =>
+			after("default", ExpressionPickerContextMenu, ([{ target }], ret) => {
+				if (!target.firstChild.currentSrc) return;
 
-				retVal.props.children.props.children.push(
+				const subProps = ret.props.children.props;
+
+				if (!Array.isArray(subProps.children))
+					subProps.children = [subProps.children];
+
+				subProps.children.push(
 					ContextMenuInjection({
 						isEmote: true,
 						emoteAlt: `:${target.dataset.name}:`,
@@ -23,6 +22,6 @@ export default () =>
 					})
 				);
 
-				return retVal;
+				return ret;
 			})
 	);

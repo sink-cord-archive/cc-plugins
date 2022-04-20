@@ -1,24 +1,24 @@
-import { findByProps } from "@cumcord/modules/webpack";
 import { showToast } from "@cumcord/ui/toasts";
 import { copyText } from "@cumcord/utils";
 import { guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
 import showCreateModal from "./CreateModal.jsx";
+import { MenuItem } from "./WPMODULES.js";
 
-const ContextMenu = findByProps("MenuGroup", "default");
+const newName = emoteAlt => emoteAlt?.substring(1, emoteAlt.length - 1);
 
 export default ({ isEmote, emoteAlt, url }) => (
 	<>
-		<ContextMenu.MenuItem
+		<MenuItem
 			id="ysink_emoji_msgitem"
 			label={isEmote ? `Clone Emote ${emoteAlt}` : "Create Emote"}
 		>
 			{guildsCanManageEmotes().map(guild => (
-				<ContextMenu.MenuItem
+				<MenuItem
 					label={guild.name}
 					id={`ysink_emoji_server_${guild.id}`}
 					action={() => {
-						let emoteNewName = emoteAlt?.substring(1, emoteAlt.length - 1);
 						if (isEmote) {
+							const emoteNewName = newName(emoteAlt);
 							uploadEmoji(guild.id, url, emoteNewName);
 							showToast({
 								title: `cloned emote ${emoteNewName}`,
@@ -28,15 +28,14 @@ export default ({ isEmote, emoteAlt, url }) => (
 					}}
 				/>
 			))}
-		</ContextMenu.MenuItem>
-		<ContextMenu.MenuItem
+		</MenuItem>
+		<MenuItem
 			label="Copy URL"
 			id="ysink_emoji_copyitem"
 			action={() => {
-				let emoteNewName = emoteAlt?.substring(1, emoteAlt.length - 1);
 				copyText(url);
 				showToast({
-					title: `Copied url for ${emoteNewName}`,
+					title: `Copied url for ${newName(emoteAlt)}`,
 					duration: 3000,
 				});
 			}}

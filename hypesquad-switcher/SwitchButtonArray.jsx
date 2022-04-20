@@ -1,16 +1,20 @@
-import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const Text = findByDisplayName("Text");
-
-function setHouse(house) {
-	findByProps("joinHypeSquadOnline").joinHypeSquadOnline({
-		houseID: "HOUSE_" + house,
-	});
-}
+import {
+	Button,
+	getHouseNameFromHouseID,
+	joinHypeSquadOnline,
+	Text,
+} from "./WPMODULES";
 
 const SwitchButton = ({ houseNum }) => (
-	<Button color={Button.Colors.GREY} onClick={() => setHouse(houseNum)}>
-		{findByProps("getQuestions").getHouseNameFromHouseID("HOUSE_" + houseNum)}
+	<Button
+		color={Button.Colors.GREY}
+		onClick={() =>
+			joinHypeSquadOnline({
+				houseID: "HOUSE_" + houseNum,
+			})
+		}
+	>
+		{getHouseNameFromHouseID("HOUSE_" + houseNum)}
 	</Button>
 );
 
@@ -25,5 +29,4 @@ const SwitchButtonArray = () => (
 	</div>
 );
 
-export default SwitchButtonArray;
 export { SwitchButtonArray, SwitchButton };

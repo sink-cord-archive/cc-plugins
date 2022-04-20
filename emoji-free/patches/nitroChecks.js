@@ -1,12 +1,9 @@
 import { instead } from "@cumcord/patcher";
-import { findByProps } from "@cumcord/modules/webpack";
+import { nitroInfo } from "../WPMODULES";
 
 export default () => {
-	const cuee = findByProps("canUseEmojisEverywhere");
-
-	const serverCheck = instead("canUseEmojisEverywhere", cuee, () => true);
-
-	const animatedCheck = instead("canUseAnimatedEmojis", cuee, () => true);
+	const serverCheck = instead("canUseEmojisEverywhere", nitroInfo, () => true);
+	const animatedCheck = instead("canUseAnimatedEmojis", nitroInfo, () => true);
 
 	return () => {
 		serverCheck();
