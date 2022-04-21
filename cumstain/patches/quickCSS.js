@@ -1,14 +1,17 @@
-import data from "@cumcord/pluginData";
+import { persist } from "@cumcord/pluginData";
 import { injectCSS } from "@cumcord/patcher";
 
 export default () => {
-	const modify = injectCSS(data.persist.ghost.quickCSS);
+	const modify = injectCSS(persist.ghost.quickCSS);
 
-	data.reloadCSS = v => modify(v ?? data.persist.ghost.quickCSS);
+	const handler = (_type, { path: [topKey] }) => {
+		if (topKey === "quickCSS") modify(persist.ghost.quickCSS);
+	};
+
+	persist.on("SET", handler);
 
 	return () => {
 		modify();
-		data.reloadCSS = undefined;
-		delete data.reloadCSS;
+		persist.off("SET", handler);
 	};
 };
