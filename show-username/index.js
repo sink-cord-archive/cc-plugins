@@ -1,6 +1,5 @@
 import message from "./message";
 import voice from "./voice";
-import settings from "./Settings";
 import styles from "./styles.sass";
 import members from "./members";
 
@@ -12,4 +11,4 @@ const unpatches = [styles(), message, voice, members];
 
 export const onUnload = () => _.forEachRight(unpatches, (p) => p());
 
-export { settings };
+export { default as settings } from "./Settings";

@@ -1,6 +1,5 @@
 import { persist } from "@cumcord/pluginData";
 import injectCss from "./styles.sass";
-import settings from "./Settings";
 import reaction from "./patchReaction";
 
 persist.ghost.maxUsersShown ??= 6;
@@ -12,4 +11,4 @@ const patches = [injectCss(), reaction()];
 
 export const onUnload = () => _.forEachRight(patches, (p) => p?.());
 
-export { settings };
+export { default as settings } from "./Settings";

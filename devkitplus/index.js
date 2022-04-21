@@ -1,6 +1,7 @@
 import { persist } from "@cumcord/pluginData";
 
 persist.ghost.apply ??= true;
+persist.ghost.otp ??= false;
 persist.ghost.startupDev ??= true;
 persist.ghost.disableCallbacks ??= true;
 
@@ -15,3 +16,5 @@ import assign from "./modules/assign";
 const modules = [api, callbacks, assign];
 
 export const onUnload = () => _.forEachRight(modules, (p) => p?.());
+
+export { default as settings } from "./Settings";
