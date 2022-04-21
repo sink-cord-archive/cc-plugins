@@ -6,8 +6,11 @@ export const [
 	{ getGuilds },
 	{ openModal },
 	// react components
-	{ MenuSeparator },
-	{ MenuItem, ModalRoot, ModalHeader, ModalContent, ModalCloseButton },
+	ContextMenu /* 
+	MenuSeparator,
+	MenuItem,
+	MenuGroup, */,
+	{ ModalRoot, ModalHeader, ModalContent, ModalCloseButton },
 	Flex,
 	Header,
 	FormSection,
@@ -20,7 +23,10 @@ export const [
 	findByProps("getGuilds");
 	findByProps("openModalLazy");
 	// react components
-	findByProps("MenuGroup", "default");
+	findByProps("MenuGroup", "default"); /* 
+	findByDisplayName("MenuSeparator");
+	findByDisplayName("MenuItem");
+	findByDisplayName("MenuGroup"); */
 	findByProps("ModalCloseButton");
 	findByDisplayName("Flex");
 	findByProps("Sizes", "Tags");

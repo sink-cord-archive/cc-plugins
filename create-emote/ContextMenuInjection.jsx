@@ -2,13 +2,13 @@ import { showToast } from "@cumcord/ui/toasts";
 import { copyText } from "@cumcord/utils";
 import { guildsCanManageEmotes, uploadEmoji } from "./discordTools.js";
 import showCreateModal from "./CreateModal.jsx";
-import { MenuItem } from "./WPMODULES.js";
+import { ContextMenu } from "./WPMODULES.js";
 
 const newName = (emoteAlt) => emoteAlt?.substring(1, emoteAlt.length - 1);
 
 export default ({ isEmote, emoteAlt, url }) => (
 	<>
-		<MenuItem
+		<ContextMenu.MenuItem
 			id="ysink_emoji_msgitem"
 			label={isEmote ? `Clone Emote ${emoteAlt}` : "Create Emote"}
 		>
@@ -28,8 +28,8 @@ export default ({ isEmote, emoteAlt, url }) => (
 					}}
 				/>
 			))}
-		</MenuItem>
-		<MenuItem
+		</ContextMenu.MenuItem>
+		<ContextMenu.MenuItem
 			label="Copy URL"
 			id="ysink_emoji_copyitem"
 			action={() => {
