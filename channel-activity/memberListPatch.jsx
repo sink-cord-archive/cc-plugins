@@ -5,7 +5,7 @@ import { MemberListItem } from "./WPMODULES";
 export default after("render", MemberListItem.prototype, (_, ret) => {
 	// get activities
 	const activities = findInReactTree(
-		ret,
+		ret?.props?.subText,
 		(m) => m?.activities?.length
 	)?.activities;
 	if (!activities) return;
