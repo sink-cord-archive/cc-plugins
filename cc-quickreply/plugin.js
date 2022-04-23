@@ -1,5 +1,6 @@
 // see https://github.com/relative/cumcord-quickreply/pull/2
 
+import { persist } from "@cumcord/pluginData";
 import { ActionTypes } from "@cumcord/modules/common/constants";
 import { batchFind } from "@cumcord/modules/webpack";
 import { FluxDispatcher as Dispatcher } from "@cumcord/modules/common";
@@ -15,6 +16,9 @@ const [{ getChannel }, { getMessages }, pendingReplyModule] = batchFind(
 	}
 );
 
+persist.ghost.scroll ??= true;
+persist.ghost.scrollSmooth ??= true;
+
 const getCurrentChannel = () => getChannel(getChannelId());
 
 const dontReplyStore = new Set();
@@ -25,6 +29,8 @@ let replyingToMessage = undefined;
 let QRSymbol = Symbol("quickreply_deletePendingReply_int");
 
 function scrollToReplyingMsg() {
+	if (!persist.ghost.scroll) return;
+
 	const messageContainer = document.querySelector(
 		'[data-list-id="chat-messages"]'
 	);
@@ -32,7 +38,10 @@ function scrollToReplyingMsg() {
 		elem.firstChild?.className?.includes("replying-")
 	);
 
-	replyingMsg?.scrollIntoView({ behavior: "smooth", block: "center" });
+	replyingMsg?.scrollIntoView({
+		behavior: persist.ghost.scrollSmooth ? "smooth" : undefined,
+		block: "center",
+	});
 }
 
 function createPendingReply(
@@ -104,41 +113,36 @@ async function keyDown(event) {
 }
 
 let unloadPatch;
+// purely for separation from the top level madness above
+export function onLoad() {
+	Dispatcher.subscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
+	Dispatcher.subscribe(ActionTypes.CREATE_PENDING_REPLY, onCreatePendingReply);
+	Dispatcher.subscribe(ActionTypes.DELETE_PENDING_REPLY, onDeletePendingReply);
 
-export default {
-	onLoad() {
-		Dispatcher.subscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
-		Dispatcher.subscribe(
-			ActionTypes.CREATE_PENDING_REPLY,
-			onCreatePendingReply
-		);
-		Dispatcher.subscribe(
-			ActionTypes.DELETE_PENDING_REPLY,
-			onDeletePendingReply
-		);
+	window.addEventListener("keydown", keyDown);
 
-		window.addEventListener("keydown", keyDown);
+	unloadPatch = before(
+		"setPendingReplyShouldMention",
+		pendingReplyModule,
+		(args) => {
+			if (args[1]) dontReplyStore.delete(args[0]);
+			else dontReplyStore.add(args[0]);
+		}
+	);
+}
 
-		unloadPatch = before(
-			"setPendingReplyShouldMention",
-			pendingReplyModule,
-			(args) => {
-				if (args[1]) dontReplyStore.delete(args[0]);
-				else dontReplyStore.add(args[0]);
-			}
-		);
-	},
-	onUnload() {
-		Dispatcher.unsubscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
-		Dispatcher.unsubscribe(
-			ActionTypes.CREATE_PENDING_REPLY,
-			onCreatePendingReply
-		);
-		Dispatcher.unsubscribe(
-			ActionTypes.DELETE_PENDING_REPLY,
-			onDeletePendingReply
-		);
-		window.removeEventListener("keydown", keyDown);
-		unloadPatch?.();
-	},
-};
+export function onUnload() {
+	Dispatcher.unsubscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
+	Dispatcher.unsubscribe(
+		ActionTypes.CREATE_PENDING_REPLY,
+		onCreatePendingReply
+	);
+	Dispatcher.unsubscribe(
+		ActionTypes.DELETE_PENDING_REPLY,
+		onDeletePendingReply
+	);
+	window.removeEventListener("keydown", keyDown);
+	unloadPatch?.();
+}
+
+export { default as settings } from "./Settings";
