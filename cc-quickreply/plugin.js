@@ -16,9 +16,6 @@ const [{ getChannel }, { getMessages }, pendingReplyModule] = batchFind(
 	}
 );
 
-persist.ghost.scroll ??= true;
-persist.ghost.scrollSmooth ??= true;
-
 const getCurrentChannel = () => getChannel(getChannelId());
 
 const dontReplyStore = new Set();
