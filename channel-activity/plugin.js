@@ -1,12 +1,1 @@
-(function(d,a,c){"use strict";function l(e){if(e&&e.__esModule)return e;var t=Object.create(null);return e&&Object.keys(e).forEach(function(r){if(r!=="default"){var i=Object.getOwnPropertyDescriptor(e,r);Object.defineProperty(t,r,i.get?i:{enumerable:!0,get:function(){return e[r]}})}}),t.default=e,Object.freeze(t)}var u=l(d);const{icon:m}=a.findByProps("icon","textRuler"),{children:f}=a.findByProps("nameAndDecorators");var y=()=>c.injectCss(`
-.ysink_activity_image {
-    height: 2rem;
-    border-radius: .3rem;
-}
-
-/* remove redundant rich presence icon */
-.${m} { display: none; }
-
-/* idk why but this looks nicer */
-.${f} { display: flex; }
-`),h=e=>{let t=null,r=null;return{onLoad(){r=y();let i=a.findByDisplayName("MemberListItem").prototype;t=c.after("render",i,(g,n)=>{if(!n.props?.subText?.props)return;const p=n?.props?.subText?.props?.activities;if(p?.length){n.props.children=[];for(const s of p){const o=s?.assets?.large_image||s?.assets?.small_image;if(s.application_id&&o){const _=o.startsWith("mp:")?o.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${s.application_id}/${o}.png`;n.props.children.push(u.createElement("img",{src:_,className:"ysink_activity_image"}))}}return n}})},onUnload(){t&&t(),r&&r()}}};return h})(cumcord.modules.common.React,cumcord.modules.webpack,cumcord.patcher);
+(function(i,a,s,o,d){"use strict";function p(e){if(e&&e.__esModule)return e;var t=Object.create(null);return e&&Object.keys(e).forEach(function(c){if(c!=="default"){var r=Object.getOwnPropertyDescriptor(e,c);Object.defineProperty(t,c,r.get?r:{enumerable:!0,get:function(){return e[c]}})}}),t.default=e,Object.freeze(t)}var m=p(s);const[{icon:l},{children:u},f]=d.batchFind(({findByProps:e,findByDisplayName:t})=>{e("icon","textRuler"),e("nameAndDecorators","children"),t("MemberListItem")});var h=a.after("render",f.prototype,(e,t)=>{const c=o.findInReactTree(t?.props?.subText,r=>r?.activities?.length)?.activities;if(c){t.props.children=[];for(const r of c){const n=r?.assets?.large_image??r?.assets?.small_image;if(!r.application_id||!n)continue;const v=n.startsWith("mp:")?n.replace("mp:","https://media.discordapp.net/"):`https://cdn.discordapp.com/app-assets/${r.application_id}/${n}.png`;t.props.children.push(m.createElement("img",{src:v,className:"ysink_activity_image"}))}return t}});const y=`.ysink_activity_image{height:2rem;border-radius:.3rem}.${l}{display:none}.${u}{display:flex}`,b=[a.injectCSS(y),h],g=()=>_.forEachRight(b,e=>e());return i.onUnload=g,Object.defineProperty(i,"__esModule",{value:!0}),i})({},cumcord.patcher,cumcord.modules.common.React,cumcord.utils,cumcord.modules.webpack);
