@@ -1,16 +1,14 @@
+import { persist } from "@cumcord/pluginData";
 import injectCss from "./styles.sass";
+import reaction from "./patchReaction";
 
-import Settings from "./Settings";
-import reaction from "./patches/reaction";
+persist.ghost.maxUsersShown ??= 6;
+persist.ghost.reactionThreshold ??= 10;
+persist.ghost.userThreshold ??= 100;
+persist.ghost.useHighestUserCount ??= true;
 
-export default () => {
-	let patches = [];
+const patches = [injectCss(), reaction()];
 
-	return {
-		onLoad: async () => {
-			patches = [injectCss(), await reaction()];
-		},
-		onUnload: () => _.forEachRight(patches, p => p?.()),
-		settings: Settings,
-	};
-};
+export const onUnload = () => _.forEachRight(patches, (p) => p?.());
+
+export { default as settings } from "./Settings";

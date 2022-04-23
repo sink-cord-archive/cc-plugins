@@ -1,6 +1,5 @@
 {
 	"dependencies": {
-		"cumcord-tools": "^3.1.0",
-		"sass.js": "^0.11.1"
+		"cumcord-tools": "^7.0.2"
 	}
 }

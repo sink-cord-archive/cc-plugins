@@ -20,4 +20,4 @@ const patches = [
 	injectUiStyles(),
 ];
 
-export const onUnload = () => _.forEachRight(patches, p => p());
+export const onUnload = () => _.forEachRight(patches, (p) => p());

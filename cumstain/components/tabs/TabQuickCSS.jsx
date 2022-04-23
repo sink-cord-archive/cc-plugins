@@ -2,12 +2,12 @@ import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-css";
 
-import { persist, reloadCSS } from "@cumcord/pluginData";
+import { persist } from "@cumcord/pluginData";
 import { findByProps } from "@cumcord/modules/webpack";
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 
-const saveCss = v => reloadCSS((persist.store.quickCSS = v));
+const saveCss = (v) => (persist.store.quickCSS = v);
 const saveCssDebounced = _.debounce(saveCss, 250);
 
 export default () => {
@@ -19,11 +19,11 @@ export default () => {
 				<Editor
 					className="ysink_stain_editorroot"
 					value={css ?? ""}
-					onValueChange={v => {
+					onValueChange={(v) => {
 						setCss(v);
 						saveCssDebounced(v);
 					}}
-					highlight={code => highlight(code, languages.css)}
+					highlight={(code) => highlight(code, languages.css)}
 					padding={10}
 				/>
 				<link

@@ -11,7 +11,7 @@ export default async () => {
 		persist.ghost.repos = [];
 
 	for (const r of defaultRepos) {
-		if (persist.ghost.repos.find(r1 => r1.url === r.url)) continue;
+		if (persist.ghost.repos.find((r1) => r1.url === r.url)) continue;
 
 		// see verifyRepo in ReposModal.jsx
 		try {

@@ -1,38 +1,20 @@
-import data from "@cumcord/pluginData";
+import { persist } from "@cumcord/pluginData";
+
+persist.ghost.assign ??= true;
+persist.ghost.otp ??= false;
+persist.ghost.startupDev ??= true;
+persist.ghost.disableCallbacks ??= true;
+
+// no exports, these modules just do their thing and they do it in style.
+import "./modules/startupDev";
+
+// modules that unpatch
 import api from "./api";
 import callbacks from "./modules/callbacks";
-import common from "./modules/common";
-import patcher from "./modules/patcher";
-import webpack from "./modules/webpack";
-import dev from "@cumcord/dev";
+import assign from "./modules/assign";
 
-const unloadApi = api();
+const modules = [api, callbacks, assign];
 
-if (!Array.isArray(data.persist.ghost.enabledModules))
-	data.persist.store.enabledModules = [
-		"webpack",
-		"common",
-		"patcher",
-		"callbacks",
-	];
+export const onUnload = () => _.forEachRight(modules, (p) => p?.());
 
-const modules = {
-	webpack: [webpack, "Exposes webpack modules to window"],
-	common: [common, "Exposes common modules (react etc) to window"],
-	patcher: [patcher, "Exposes patcher to window"],
-	callbacks: [callbacks, "Disables spam logs on devtools open"],
-};
-
-let loaded = [];
-
-const toLoad = data.persist.ghost.enabledModules;
-for (const module of toLoad) loaded.push(modules[module]?.[0]());
-
-if (dev && !dev.isEnabled) dev.toggleDevMode();
-
-export default {
-	onUnload() {
-		_.forEachRight(loaded, p => p?.());
-		unloadApi();
-	},
-};
+export { default as settings } from "./Settings";

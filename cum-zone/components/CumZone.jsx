@@ -1,21 +1,20 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
-import { getPlugins, combinePluginLists } from "../pluginFetcher.js";
+import { combinePluginLists } from "../pluginFetcher.js";
 import fuzzySearch from "../fuzzy.js";
-const { useState, useEffect } = React;
 
 import { ErrorBoundary } from "@cumcord/ui/components";
 import Ticker from "./Ticker.jsx";
 import PluginCard from "./PluginCard.jsx";
 import showRepoModal from "./RepoModal.jsx";
 import NoReposSplash from "./NoReposSplash.jsx";
-const FormTitle = findByDisplayName("FormTitle");
-const FormText = findByDisplayName("FormText");
-const FormSection = findByDisplayName("FormSection");
-const FormDivider = findByDisplayName("FormDivider");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
-const TextInput = findByDisplayName("TextInput");
+import {
+	Button,
+	FormDivider,
+	FormSection,
+	FormTitle,
+	TextInput,
+} from "../WPMODULES.js";
 
 const arrayEquals = (a, b) =>
 	Array.isArray(a) &&
@@ -24,26 +23,22 @@ const arrayEquals = (a, b) =>
 	a.every((val, index) => val === b[index]);
 
 export default () => {
-	let [search, setSearch] = useState("");
-	let [repoPlugins, setRepoPlugins] = useState([]);
-	let [repos, setRepos] = useState([]);
+	let [search, setSearch] = React.useState("");
+	let [repoPlugins, setRepoPlugins] = React.useState([]);
+	let [repos, setRepos] = React.useState([]);
 
 	useNest(persist);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		// if the repos have changed, cause a re-render
-		if (!arrayEquals(persist.ghost.repos, repos)) {
+		if (!arrayEquals(persist.ghost.repos, repos))
 			setTimeout(() => {
 				setRepos(persist.ghost.repos);
 				setRepoPlugins([]);
 			});
-		}
 
-		if (repoPlugins.length == 0 && persist.ghost.repos.length !== 0) {
-			combinePluginLists(persist.ghost.repos).then(plugins => {
-				setRepoPlugins(plugins);
-			});
-		}
+		if (repoPlugins.length == 0 && persist.ghost.repos.length !== 0)
+			combinePluginLists(persist.ghost.repos).then(setRepoPlugins);
 	});
 
 	return (
@@ -55,6 +50,7 @@ export default () => {
 						Manage Repos
 					</Button>
 				</div>
+
 				<Ticker />
 
 				<TextInput
@@ -62,19 +58,19 @@ export default () => {
 					placeholder="Search plugins"
 					type="text"
 					value={search}
-					onChange={e => setSearch(e)}
+					onChange={setSearch}
 				/>
 
 				<FormDivider className="ysink_zone_divide" />
 
-				{persist.ghost.repos.length == 0 ? (
+				{persist.ghost.repos.length === 0 ? (
 					<NoReposSplash store={persist.store} />
 				) : (
 					<div className="ysink_zone_card_container">
 						{fuzzySearch(repoPlugins, search)
 							.reverse()
 							.map(p => (
-								<PluginCard plugin={p} />
+								<PluginCard key={p.url} plugin={p} />
 							))}
 					</div>
 				)}

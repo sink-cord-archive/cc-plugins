@@ -1,8 +1,6 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
-
-const TextInput = findByDisplayName("TextInput");
+import { TextInput } from "./WPMODULES";
 
 export default () => {
 	useNest(persist);
@@ -10,7 +8,7 @@ export default () => {
 	return (
 		<TextInput
 			placeholder="Emote size in pixels, falls back to 64 if invalid"
-			onChange={e => (persist.store.size = e)}
+			onChange={(e) => (persist.store.size = e)}
 			value={persist.ghost.size}
 		/>
 	);

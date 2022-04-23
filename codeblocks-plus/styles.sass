@@ -1,72 +1,72 @@
 $SCROLLBAR_COMPENSATION: 8px
-    
+
 .ysink_code_wrapper
-    padding: .5rem
-    padding-top: 0
-    border-radius: 0 
-    padding-bottom: calc(.5rem - $SCROLLBAR_COMPENSATION)
+	padding: .5rem
+	padding-top: 0
+	border-radius: 0
+	padding-bottom: calc(.5rem - $SCROLLBAR_COMPENSATION)
 
-    .ysink_code_lang
-        display: inline
+	.ysink_code_lang
+		display: inline
 
-    pre
-        margin-top: 0
-        overflow-x: auto
-        max-width: unset
+	pre
+		margin-top: 0
+		overflow-x: auto
+		max-width: unset
 
-    code
-        width: max-content
-        background: none
-        border: none
-        font-family: var(--font-code)
-        padding: 0 !important
-        font-size: 0.875rem
-        line-height: 1.125rem
+	code
+		width: max-content
+		background: none
+		border: none
+		font-family: var(--font-code)
+		padding: 0 !important
+		font-size: 0.875rem
+		line-height: 1.125rem
 
-    button
-        color: var(--text-normal)
-        background: var(--background-secondary)
-        font-size: .9rem
-        padding: .1rem .5rem
-        border-radius: .25rem
+	button
+		color: var(--text-normal)
+		background: var(--background-secondary)
+		font-size: .9rem
+		padding: .1rem .5rem
+		border-radius: .25rem
 
-    .ysink_code_row
-        border-bottom: 1px solid var(--text-muted)
-        display: flex
-        padding: .25rem 0
-        margin-bottom: .25rem
+	.ysink_code_row
+		border-bottom: 1px solid var(--text-muted)
+		display: flex
+		padding: .25rem 0
+		margin-bottom: .25rem
 
-        font-size: .95rem // a tiny change but its enough of a difference
-        font-weight: 500
+		font-size: .95rem // a tiny change but its enough of a difference
+		font-weight: 500
 
-        &> :first-child
-          flex: 1
-    
-    .ysink_code_linenumbers
-        margin-right: .5rem
-        padding-right: .5rem
-        border-right: 1px solid var(--text-muted)
-        height: 100%
-        font-family: var(--font-code)
-        font-size: 0.875rem
-        line-height: 1.125rem
-        text-align: right
-        // make border extend up
-        padding-top: .25rem
-        margin-top: -.25rem
-        // pad to make size with scrollbar consistent
-        margin-bottom: $SCROLLBAR_COMPENSATION
+		&> :first-child
+			flex: 1
 
-    .ysink_code_prewrap
-        display: flex
+	.ysink_code_linenumbers
+		margin-right: .5rem
+		padding-right: .5rem
+		border-right: 1px solid var(--text-muted)
+		height: 100%
+		font-family: var(--font-code)
+		font-size: 0.875rem
+		line-height: 1.125rem
+		text-align: right
+		// make border extend up
+		padding-top: .25rem
+		margin-top: -.25rem
+		// pad to make size with scrollbar consistent
+		margin-bottom: $SCROLLBAR_COMPENSATION
+
+	.ysink_code_prewrap
+		display: flex
 
 // intended to be overridden by highlight.js themes - they will be injected after this stylesheet!
 .hljs
-    background: var(--background-secondary)
+	background: var(--background-secondary)
 
 .ysink_code_head
-    margin-top: .5rem
-    margin-bottom: .25rem
+	margin-top: .5rem
+	margin-bottom: .25rem
 
 .ysink_code_mbottom
-    margin-bottom: 1rem
+	margin-bottom: 1rem

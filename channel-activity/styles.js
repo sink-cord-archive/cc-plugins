@@ -14,6 +14,6 @@ export default () =>
 /* remove redundant rich presence icon */
 .${icon} { display: none; }
 
-/* idk why but this looks nicer */
+/* aligns it vertically more pleasingly */
 .${children} { display: flex; }
 `);

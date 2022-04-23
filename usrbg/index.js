@@ -1,15 +1,19 @@
-import getDb from "./usrbg-db.js";
-import UserBanner from "./patches/UserBanner.jsx";
-import FixAvatarPosition from "./patches/FixAvatarPosition.jsx";
+import getDb from "./usrbg-db";
+import UserBanner from "./patches/UserBanner";
+import FixAvatarPosition from "./patches/FixAvatarPosition";
 
-export default () => {
-	let patches;
+// prevents patches from applying if async resolves post-unload
+let cancelPatches = false;
 
-	return {
-		onLoad: async () => {
-			const db_cache = await getDb();
-			patches = [UserBanner(db_cache), FixAvatarPosition(db_cache)];
-		},
-		onUnload: () => _.forEachRight(patches, p => p()),
-	};
-};
+let patches;
+
+export async function onLoad() {
+	const db_cache = await getDb();
+	if (!cancelPatches)
+		patches = [UserBanner(db_cache), FixAvatarPosition(db_cache)];
+}
+
+export function onUnload() {
+	cancelPatches = true;
+	_.forEachRight(patches, (p) => p());
+}

@@ -1,18 +1,13 @@
 import { persist } from "@cumcord/pluginData";
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
+import { VoiceUsers } from "./WPMODULES";
 
-export default () =>
-	after("render", findByDisplayName("VoiceUsers").prototype, (args, ret) => {
-		if (persist.ghost.vc === false) return;
+export default after("render", VoiceUsers.prototype, (_, ret) => {
+	if (!persist.ghost.vc || !ret?.props?.children?.[0]) return;
 
-		if (!ret?.props?.children?.[0]) return;
-		for (let i = 0; i < ret.props.children.length; i++) {
-			const child = ret.props.children[0][i];
-			if (child?.props?.nick)
-				// const not consting moment
-				child.props.nick += ` (${child.props.user.username})`;
-		}
+	for (const child of ret.props.children)
+		if (child?.props?.nick)
+			child.props.nick += ` (${child.props.user.username})`;
 
-		return ret;
-	});
+	return ret;
+});

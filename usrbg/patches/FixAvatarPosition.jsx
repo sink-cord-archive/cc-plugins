@@ -1,15 +1,13 @@
-import { findByDisplayName, findByProps } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import { findInReactTree } from "@cumcord/utils";
+import {
+	avatarPositionPremium,
+	avatarWrapperNormal,
+	Clickable,
+} from "../WPMODULES";
 
-const { avatarPositionPremium, avatarWrapperNormal } = findByProps(
-	"avatarPositionPremium"
-);
-
-const Clickable = findByDisplayName("Clickable").prototype;
-
-export default db_cache =>
-	after("render", Clickable, (args, ret) => {
+export default (db_cache) =>
+	after("render", Clickable.prototype, (_notCollidingWithLodash, ret) => {
 		// anonymous component, so we need to patch the (very heavily used) Clickable component and go from there.
 		const wrapper = ret?.props?.children;
 		if (!wrapper?.props?.className?.includes?.(avatarWrapperNormal)) return;

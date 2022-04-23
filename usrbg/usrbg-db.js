@@ -1,12 +1,9 @@
 const usrbg_db_url =
 	"https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json";
 
-const getDb = async () => await (await fetch(usrbg_db_url)).json();
+// async but who's counting? - oh yeah typescript is but im not using it.
+const getDb = () => fetch(usrbg_db_url).then((r) => r.json());
 
-const toMap = rawDb => {
-	const map = new Map();
-	for (const entry of rawDb) map.set(entry.uid, entry);
-	return map;
-};
+const toMap = (rawDb) => new Map(rawDb.map((e) => [e.uid, e]));
 
 export default async () => toMap(await getDb());

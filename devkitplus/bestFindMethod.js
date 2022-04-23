@@ -3,7 +3,7 @@ import { copyText, logger } from "@cumcord/utils";
 
 const PERMUTATION_LIMIT = 1 << 23;
 
-const getCombinations = arr => {
+const getCombinations = (arr) => {
 	let maxCount = 0;
 	for (let i = 0; i < arr.length; i++) maxCount += 1 << i;
 
@@ -25,13 +25,13 @@ const getCombinations = arr => {
 	return allPermutations.sort((a, b) => a.length - b.length);
 };
 
-const getKeys = obj => {
+const getKeys = (obj) => {
 	let keys = Object.keys(obj);
 	if (obj.__proto__) keys.push(...getKeys(obj.__proto__));
 	return keys;
 };
 
-const findBest = toFind => {
+const findBest = (toFind) => {
 	logger.warn(
 		"!! THIS FUNCTION CAN BE VERY SLOW AND RAM INTENSIVE, FOR DEV ONLY !!"
 	);
@@ -42,7 +42,7 @@ const findBest = toFind => {
 		const name = toFind.displayName ?? toFind.default.displayName;
 
 		const modules = findAll(
-			m =>
+			(m) =>
 				(toFind.displayName ? m?.displayName : m?.default?.displayName) === name
 		);
 
@@ -53,7 +53,7 @@ const findBest = toFind => {
 			"displayNameAll",
 			!!toFind.displayName,
 			name,
-			modules.findIndex(m => m === toFind),
+			modules.findIndex((m) => m === toFind),
 		];
 	}
 
@@ -68,7 +68,7 @@ const findBest = toFind => {
 		// an optimisation we dont have nearly enough cpu time for in the full search
 		let keyIndexes = [];
 		for (const key of keys) {
-			const index = findByPropsAll(key).findIndex(m => m === toFind);
+			const index = findByPropsAll(key).findIndex((m) => m === toFind);
 			if (index !== -1) keyIndexes.push([key, index]);
 		}
 		keyIndexes.sort((a, b) => a[1] - b[1]);
@@ -87,7 +87,7 @@ const findBest = toFind => {
 
 		let index;
 		for (let i = 0; i < combinations.length; i++) {
-			index = findByPropsAll(...combinations[i]).findIndex(m => m === toFind);
+			index = findByPropsAll(...combinations[i]).findIndex((m) => m === toFind);
 			if (index === -1) continue;
 			props = combinations[i];
 			break;
@@ -97,18 +97,18 @@ const findBest = toFind => {
 
 		if (noRec) return ["unfindable"];
 
-		return findViaProps(findAll(m => m?.default === toFind)[0], true);
+		return findViaProps(findAll((m) => m?.default === toFind)[0], true);
 	};
 
 	return findViaProps(toFind, false);
 };
 
-export default module => {
-	const joinArgs = args => args.map(JSON.stringify).join(", ");
-	const defaultFromRec = rec => (rec ? ".default" : "");
-	const argFromParent = parent => (parent ? "" : ", false");
+export default (module) => {
+	const joinArgs = (args) => args.map(JSON.stringify).join(", ");
+	const defaultFromRec = (rec) => (rec ? ".default" : "");
+	const argFromParent = (parent) => (parent ? "" : ", false");
 
-	const c = str => {
+	const c = (str) => {
 		logger.log("Copied module find code to clipboard.");
 		copyText(str);
 		return str;

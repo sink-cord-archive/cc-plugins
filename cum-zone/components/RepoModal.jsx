@@ -1,21 +1,21 @@
 import { persist } from "@cumcord/pluginData";
-import { findByProps, findByDisplayName } from "@cumcord/modules/webpack";
 import { useNest } from "@cumcord/utils";
 import { showToast } from "@cumcord/ui/toasts";
 import getPlugins from "../pluginFetcher.js";
-const useState = React.useState;
 
 import RepoCard from "./RepoCard.jsx";
 import NoReposSplash from "./NoReposSplash.jsx";
 import { ErrorBoundary } from "@cumcord/ui/components";
-const ModalComponents = findByProps("ModalCloseButton");
-const Header = findByProps("Sizes", "Tags");
-const Flex = findByDisplayName("Flex");
-const { openModal } = findByProps("openModalLazy");
-const FormSection = findByDisplayName("FormSection");
-const FormDivider = findByDisplayName("FormDivider");
-const TextInput = findByDisplayName("TextInput");
-const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+import {
+	ModalComponents,
+	Header,
+	Flex,
+	openModal,
+	FormSection,
+	FormDivider,
+	TextInput,
+	Button,
+} from "../WPMODULES";
 
 async function verifyRepo(repo) {
 	try {
@@ -26,40 +26,43 @@ async function verifyRepo(repo) {
 	}
 }
 
-async function addRepo(nest, repo) {
+async function addRepo(nest, repo, onSuccess) {
 	if (!repo.endsWith("/")) repo += "/";
 
-	if (nest.ghost.repos.find(r => r.url == repo) !== undefined) {
+	if (nest.ghost.repos.find((r) => r.url == repo))
 		showToast({
 			title: "You already have this repo!",
 			duration: 5000,
 		});
-	} else if (await verifyRepo(repo)) {
-		// copy like this to correctly raise events
-		let repos = nest.ghost.repos;
+	else if (await verifyRepo(repo)) {
 		const split = repo.split("/");
-		repos.push({
-			url: repo,
-			name: split[split.length - 2],
-			enabled: true,
-		});
-		nest.store.repos = repos;
+
+		nest.store.repos = [
+			...nest.ghost.repos,
+			{
+				url: repo,
+				name: split[split.length - 2],
+				enabled: true,
+			},
+		];
+
 		showToast({
 			title: "Added repo",
 			duration: 5000,
 		});
-	} else {
+		onSuccess();
+	} else
 		showToast({
 			title: "Repo was invalid",
 			duration: 5000,
 		});
-	}
 }
 
 const RepoModalComponent = ({ e }) => {
-	const [input, setInput] = useState("");
+	const [input, setInput] = React.useState("");
 
 	useNest(persist);
+
 	return (
 		<ErrorBoundary>
 			<ModalComponents.ModalRoot
@@ -86,14 +89,11 @@ const RepoModalComponent = ({ e }) => {
 								placeholder="https://example.com/repo"
 								type="text"
 								value={input}
-								onChange={e => setInput(e)}
+								onChange={setInput}
 							/>
 							<Button
 								className="ysink_zone_button"
-								onClick={() => {
-									setInput("");
-									addRepo(persist, input);
-								}}
+								onClick={() => addRepo(persist, input, () => setInput(""))}
 							>
 								Add
 							</Button>
@@ -104,7 +104,9 @@ const RepoModalComponent = ({ e }) => {
 						{persist.ghost.repos.length == 0 ? (
 							<NoReposSplash />
 						) : (
-							persist.ghost.repos.map(repo => <RepoCard repo={repo} />)
+							persist.ghost.repos.map((repo) => (
+								<RepoCard key={repo.url} repo={repo} />
+							))
 						)}
 					</FormSection>
 				</ModalComponents.ModalContent>
@@ -113,4 +115,4 @@ const RepoModalComponent = ({ e }) => {
 	);
 };
 
-export default () => openModal(e => <RepoModalComponent e={e} />);
+export default () => openModal((e) => <RepoModalComponent e={e} />);

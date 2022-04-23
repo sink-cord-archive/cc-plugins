@@ -2,34 +2,36 @@ import * as cctools from "cumcord-tools";
 import bestFindMethod from "./bestFindMethod";
 
 import { findAll } from "@cumcord/modules/webpack";
-import { injectCSS } from "@cumcord/patcher";
 
-const findClassNameModuleAll = className => {
-	if (className.startsWith(".")) className = className.substring(1);
+const findClassNameModuleAll = (className) => {
+	if (className.startsWith(".")) className = className.slice(1);
+
 	return findAll(
-		m =>
+		(m) =>
 			typeof m === "object" &&
-			Object.values(m).some(p => typeof p === "string" && p.includes(className))
+			Object.values(m).some(
+				(p) => typeof p === "string" && p.includes(className)
+			)
 	);
 };
 
-const autoModuleFind = selectorOrElement => {
-	if (typeof selectorOrElement === "string")
-		selectorOrElement = document.querySelector(selectorOrElement);
+const autoModuleFind = (selectorOrElement) =>
+	bestFindMethod(
+		cctools.findByDomNode(
+			typeof selectorOrElement === "string"
+				? document.querySelector(selectorOrElement)
+				: selectorOrElement,
+			false,
+			true
+		)
+	);
 
-	return bestFindMethod(cctools.findByDomNode(selectorOrElement, false, true));
+window.dk = {
+	cctools,
+	bestFindMethod,
+	autoModuleFind,
+	findClassNameModuleAll,
+	findClassNameModule: (className) => findClassNameModuleAll(className)[0],
 };
 
-export default () => {
-	window.dk = {
-		cctools,
-		bestFindMethod,
-		autoModuleFind,
-		findClassNameModuleAll,
-		findClassNameModule: className => findClassNameModuleAll(className)[0],
-		/* injectSCSS: (scss) => injectSCSS(scss),
-		injectSass: (sass) => injectSCSS(sass, true), */
-	};
-
-	return () => delete window.dk;
-};
+export default () => delete window.dk;

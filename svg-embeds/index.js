@@ -17,9 +17,10 @@ function processAttachment(a) {
 				- `width` and `height` > 0
 				- `filename` ends in an accepted file ext (checked with regex)
 		*/
-		// TODO: Parse out the actual size of the svg?
 
+		// TODO: Parse out the actual size of the svg?
 		a.width = a.height = 1000;
+
 		a.filename += ".png";
 
 		// fix image display url
@@ -32,7 +33,7 @@ function processAttachment(a) {
 export const onUnload = before(
 	"default",
 	findByDisplayName("ConnectedMessageAccessories", false),
-	args => {
+	(args) => {
 		const msg = args[0].message;
 		msg.attachments = msg.attachments.map(processAttachment);
 		return args;
