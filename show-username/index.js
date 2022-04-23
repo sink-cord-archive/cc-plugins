@@ -1,3 +1,4 @@
+import { persist } from "@cumcord/pluginData";
 import message from "./message";
 import voice from "./voice";
 import styles from "./styles.sass";

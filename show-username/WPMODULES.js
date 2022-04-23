@@ -13,7 +13,7 @@ export const [
 	findByDisplayName("FormText");
 	findByDisplayName("Switch");
 	findByProps("getMember");
-	findByProps("getUser");
+	findByProps("getUser", "_dispatcher");
 	find((m) => m.type?.toString().indexOf("MESSAGE_A11Y_ROLE_DESCRIPTION") > -1);
 	findByDisplayName("ConnectedChannelMembers", false);
 });

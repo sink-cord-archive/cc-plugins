@@ -9,21 +9,17 @@ export default after("default", ConnectedChannelMembersParent, (_, ret) => {
 	const rows = findInReactTree(ret, (e) => e?.rows)?.rows;
 	if (!rows) return;
 
-	for (let i = 0; i < rows.length; i++) {
+	for (const row of rows) {
 		/*\
-			|*| annoyingly, these objects persist between renders
-			|*| so we need to patch them only once or
-			|*| nick (user) (user) (user) (user) etc.
-			|*| we do this by attaching a custom prop
-			\*/
-		rows[i].YSINK_USERN_PATCHED = true;
+		|*| annoyingly, these objects persist between renders
+		|*| so we need to patch them only once or
+		|*| nick (user) (user) (user) (user) etc.
+		|*| we do this by attaching a custom prop
+		\*/
+		row.YSINK_USERN_PATCHED = true;
 
-		if (
-			rows[i]?.type === "MEMBER" &&
-			!rows[i].YSINK_USERN_PATCHED &&
-			rows[i].nick
-		)
-			rows[i].nick += ` (${rows[i].user.username})`;
+		if (row?.type === "MEMBER" && !row.YSINK_USERN_PATCHED && row.nick)
+			row.nick += ` (${row.user.username})`;
 	}
 
 	return ret;

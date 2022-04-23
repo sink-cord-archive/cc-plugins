@@ -26,7 +26,7 @@ const canShowReactors = ({ reactions }) => {
 };
 
 export default () => {
-	const unpatch = after("render", Reaction.prototype, function (args, ret) {
+	const unpatch = after("render", Reaction.prototype, function (_, ret) {
 		// the this scope is that of the reaction object being patched.
 		// for this reason this cannot be an arrow function as this would always be undefined.
 		const { message, emoji, count } = this.props;
@@ -42,7 +42,7 @@ export default () => {
 				popout.props.children = (props) => {
 					const reactionInner = renderReactionInner(props);
 
-					reactionInner.props.children.props.children.push(
+					reactionInner.props.children.push(
 						<Reactors
 							{...{ message, emoji, count }}
 							max={persist.ghost.maxUsersShown ?? 6}

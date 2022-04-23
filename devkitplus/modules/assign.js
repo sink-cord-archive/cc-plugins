@@ -30,7 +30,6 @@ const patch = () => {
 	return () => Object.keys(toApply).forEach((k) => delete window[k]);
 };
 
-
 // automatic patch and unpatch handler via nests
 let unpatch;
 

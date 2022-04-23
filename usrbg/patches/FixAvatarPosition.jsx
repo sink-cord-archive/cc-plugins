@@ -6,8 +6,8 @@ import {
 	Clickable,
 } from "../WPMODULES";
 
-export default db_cache =>
-	after("render", Clickable.prototype, (_, ret) => {
+export default (db_cache) =>
+	after("render", Clickable.prototype, (_notCollidingWithLodash, ret) => {
 		// anonymous component, so we need to patch the (very heavily used) Clickable component and go from there.
 		const wrapper = ret?.props?.children;
 		if (!wrapper?.props?.className?.includes?.(avatarWrapperNormal)) return;

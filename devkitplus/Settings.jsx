@@ -31,11 +31,11 @@ export default () => {
 
 	return (
 		<>
-			<Option k="apply">Export modules, utils, patcher to window</Option>
+			<Option k="assign">Assign modules, utils, patcher to window</Option>
 			<Option k="otp" depends="apply">
 				Make exported patcher functions one time by default
 			</Option>
-			<Option k="startupDev">Enable Cumcord dev mode on startup</Option>
+			<Option k="startupDev">Enable Cumcord dev mode on plugin load</Option>
 			<Option k="disableCallbacks">Disable DevTools warning logs</Option>
 		</>
 	);

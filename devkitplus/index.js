@@ -1,6 +1,6 @@
 import { persist } from "@cumcord/pluginData";
 
-persist.ghost.apply ??= true;
+persist.ghost.assign ??= true;
 persist.ghost.otp ??= false;
 persist.ghost.startupDev ??= true;
 persist.ghost.disableCallbacks ??= true;

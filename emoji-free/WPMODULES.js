@@ -7,6 +7,7 @@ export const [
 	nitroInfo,
 	messageModule,
 	uploadModule,
+	{ selected },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
 	findByDisplayName("TextInput");
 	findByProps("getCustomEmojiById");
@@ -14,4 +15,5 @@ export const [
 	findByProps("canUseEmojisEverywhere");
 	findByProps("sendMessage");
 	findByProps("uploadFiles");
+	findByProps("childWrapper", "selected");
 });
