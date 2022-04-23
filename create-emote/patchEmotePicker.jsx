@@ -15,6 +15,7 @@ export default () =>
 					subProps.children = [subProps.children];
 
 				subProps.children.push(
+					// must not be createElement-ed
 					ContextMenuInjection({
 						isEmote: true,
 						emoteAlt: `:${target.dataset.name}:`,

@@ -13,7 +13,7 @@ export default ({ isEmote, emoteAlt, url }) => (
 			label={isEmote ? `Clone Emote ${emoteAlt}` : "Create Emote"}
 		>
 			{guildsCanManageEmotes().map((guild) => (
-				<MenuItem
+				<ContextMenu.MenuItem
 					label={guild.name}
 					id={`ysink_emoji_server_${guild.id}`}
 					action={() => {
