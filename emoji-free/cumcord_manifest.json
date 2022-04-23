@@ -1,6 +1,6 @@
 {
 	"name": "Emoji Free",
-	"description": "[GM Port] A plugin to send emojis from other servers, and animated emojis, without paying for Discord Nitro.",
+	"description": "A plugin to send emojis, animated emojis, & stickers from other servers, without paying for Discord Nitro. [NOTE: animated stickers don't work right now]",
 	"author": "Yellowsink",
 	"file": "index.js",
 	"license": "BSD-3"

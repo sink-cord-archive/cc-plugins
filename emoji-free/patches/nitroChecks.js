@@ -1,12 +1,11 @@
 import { instead } from "@cumcord/patcher";
-import { nitroInfo } from "../WPMODULES";
+import { nitroInfo, stickerSendability } from "../WPMODULES";
 
-export default () => {
-	const serverCheck = instead("canUseEmojisEverywhere", nitroInfo, () => true);
-	const animatedCheck = instead("canUseAnimatedEmojis", nitroInfo, () => true);
+// stickers.js wants to have the real sendability check available
+export const actualStickerSendability = stickerSendability.isSendableSticker;
 
-	return () => {
-		serverCheck();
-		animatedCheck();
-	};
-};
+export default [
+	instead("canUseEmojisEverywhere", nitroInfo, () => true),
+	instead("canUseAnimatedEmojis", nitroInfo, () => true),
+	instead("isSendableSticker", stickerSendability, () => true),
+];
