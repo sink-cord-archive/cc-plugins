@@ -1,6 +1,7 @@
 import { after, findAndPatch } from "@cumcord/patcher";
 import { findInReactTree } from "@cumcord/utils";
 import getSwitchButtonArray from "./getSwitchButtonArray";
+import { findByDisplayName } from "@cumcord/modules/webpack";
 
 export default findAndPatch(
 	() => findByDisplayName("JoinHypeSquadCTA"),
