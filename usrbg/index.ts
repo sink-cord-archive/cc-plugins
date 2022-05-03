@@ -1,4 +1,3 @@
-import classicMode from "./patches/classicMode";
 import fixUserObjects from "./patches/fixUserObjects";
 import patchBannerStyles from "./patches/patchBannerStyles";
 import getDb from "./usrbg-db";
@@ -12,16 +11,10 @@ export async function onLoad() {
 	const db_cache = await getDb();
 
 	if (!cancelPatches)
-		patches = [
-			patchBannerStyles(db_cache),
-			fixUserObjects(db_cache),
-			classicMode(db_cache),
-		];
+		patches = [patchBannerStyles(db_cache), fixUserObjects(db_cache)];
 }
 
 export function onUnload() {
 	cancelPatches = true;
 	window._.forEachRight(patches, (p) => p());
 }
-
-export { default as settings } from "./Settings";
