@@ -9,5 +9,14 @@
 	},
 	"scripts": {
 		"prepare": "husky install"
+	},
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"react",
+				"react-dom",
+				"solid-js"
+			]
+		}
 	}
 }
