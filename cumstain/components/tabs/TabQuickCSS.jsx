@@ -14,22 +14,20 @@ export default () => {
 
 	return (
 		<ErrorBoundary>
-			<div class="ysink_stain_quickcss">
-				<Editor
-					className="ysink_stain_editorroot"
-					value={css ?? ""}
-					onValueChange={(v) => {
-						setCss(v);
-						saveCssDebounced(v);
-					}}
-					highlight={(code) => highlight(code, languages.css)}
-					padding={10}
-				/>
-				<link
-					href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-atom-dark.css"
-					rel="stylesheet"
-				/>
-			</div>
+			<Editor
+				className="ysink_stain_cssedit"
+				value={css ?? ""}
+				onValueChange={(v) => {
+					setCss(v);
+					saveCssDebounced(v);
+				}}
+				highlight={(code) => highlight(code, languages.css)}
+				padding={10}
+			/>
+			<link
+				href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-atom-dark.css"
+				rel="stylesheet"
+			/>
 		</ErrorBoundary>
 	);
 };

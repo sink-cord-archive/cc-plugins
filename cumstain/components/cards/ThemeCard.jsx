@@ -3,9 +3,8 @@ import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../../util/themeLoadUtil";
 import { BDBadge, CCBadge } from "../badges";
 
-import { FormTitle, FormText, FormDivider, Switch } from "../../WPMODULES";
+import { Switch } from "../../WPMODULES";
 
-import MediaCarousel from "../MediaCarousel";
 import fetchTheme from "../../util/fetchTheme";
 
 const DeleteButton = ({ onClick }) => (
@@ -23,29 +22,37 @@ const DeleteButton = ({ onClick }) => (
 	</svg>
 );
 
-const themeIsEnabled = url => {
+const themeIsEnabled = (url) => {
 	for (const theme of persist.ghost.themes)
 		if (theme.url === url && theme.enabled) return true;
 
 	return false;
 };
 
-const themeIsInstalled = url => persist.ghost.themes.some(t => t.url === url);
+const themeIsInstalled = (url) =>
+	persist.ghost.themes.some((t) => t.url === url);
 
 export default ({ theme, deleteHook }) => {
 	useNest(persist, false, (_, { path }) => path[0] === "themes");
 
 	return (
-		<div className="ysink_stain_card">
-			<MediaCarousel media={theme.media} />
+		<div className="ysink_stain_card ysink_stain_tcard">
+			<div className="ysink_stain_tsmmed">
+				{theme.media ? (
+					<img src={theme.media[0] ?? theme.media} />
+				) : (
+					<span>NO MEDIA</span>
+				)}
+			</div>
 
-			<div className="ysink_stain_card_row">
+			<div className="ysink_stain_title">
 				{theme.compat ? <BDBadge /> : <CCBadge />}
+				{theme.name}
+			</div>
 
-				<FormTitle tag="p" className="ysink_stain_title">
-					{theme.name}
-				</FormTitle>
+			<div className="ysink_stain_tdesc">{theme.description}</div>
 
+			<div className="ysink_stain_tacts">
 				{themeIsInstalled(theme.url) ? (
 					<DeleteButton
 						onClick={() => {
@@ -68,13 +75,10 @@ export default ({ theme, deleteHook }) => {
 				/>
 			</div>
 
-			<FormText className="ysink_stain_desc">{theme.description}</FormText>
-
-			<FormDivider className="ysink_stain_divide" />
-			<FormText className="ysink_stain_author_licence">
+			<div className="ysink_stain_taulic">
 				{theme.author ? `by ${theme.author} ` : ""}
 				{theme.license ? `under ${theme.license}` : ""}
-			</FormText>
+			</div>
 		</div>
 	);
 };

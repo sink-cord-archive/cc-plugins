@@ -11,35 +11,33 @@ export default ({ repo }) => {
 	});
 
 	return (
-		<div className="ysink_stain_card ysink_stain_repocard">
-			<div className="ysink_stain_row">
-				<div>
-					<FormTitle tag="p" className="ysink_stain_title">
-						{fullRepo?.manifest.meta.name}
-						{officialRepos.includes(repo) ? (
-							<Badges.TextBadge
-								className="ysink_stain_officialbadge"
-								text="official repo"
-								color="var(--info-positive-foreground)"
-							/>
-						) : (
-							[]
-						)}
-					</FormTitle>
-
-					<FormText>{repo}</FormText>
+		<div className="ysink_stain_card ysink_stain_row">
+			<div>
+				<div className="ysink_stain_title">
+					{fullRepo?.manifest.meta.name}
+					{officialRepos.includes(repo) ? (
+						<Badges.TextBadge
+							className="ysink_stain_officialbadge"
+							text="official repo"
+							color="var(--info-positive-foreground)"
+						/>
+					) : (
+						[]
+					)}
 				</div>
 
-				<Button
-					color={Button.Colors.RED}
-					className="ysink_stain_button"
-					onClick={() =>
-						(persist.store.repos = persist.ghost.repos.filter(r => r != repo))
-					}
-				>
-					Remove Repo
-				</Button>
+				<FormText>{repo}</FormText>
 			</div>
+
+			<Button
+				color={Button.Colors.RED}
+				className="ysink_stain_button"
+				onClick={() =>
+					(persist.store.repos = persist.ghost.repos.filter((r) => r != repo))
+				}
+			>
+				Remove Repo
+			</Button>
 		</div>
 	);
 };

@@ -15,7 +15,7 @@ export default () => {
 
 	return (
 		<ErrorBoundary>
-			<div className="ysink_stain_installbar">
+			<div className="ysink_stain_row">
 				<TextInput
 					className="ysink_stain_input"
 					placeholder="Theme import URL"

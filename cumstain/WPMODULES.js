@@ -3,7 +3,6 @@ import { batchFind } from "@cumcord/modules/webpack";
 export const [
 	FormTitle,
 	FormText,
-	FormDivider,
 	FormSection,
 	Button,
 	Switch,
@@ -16,7 +15,6 @@ export const [
 ] = batchFind(({ findByProps, findByDisplayName }) => {
 	findByDisplayName("FormTitle");
 	findByDisplayName("FormText");
-	findByDisplayName("FormDivider");
 	findByDisplayName("FormSection");
 	findByProps("BorderColors");
 	findByDisplayName("Switch");

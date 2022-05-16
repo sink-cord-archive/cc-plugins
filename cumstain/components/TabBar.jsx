@@ -1,4 +1,4 @@
-import { FormDivider, FormText } from "../WPMODULES";
+import { FormText } from "../WPMODULES";
 
 export default ({ items }) => {
 	let [current, goTo] = React.useState(0);
@@ -19,7 +19,7 @@ export default ({ items }) => {
 				))}
 			</div>
 
-			<FormDivider className="ysink_stain_divide" />
+			<div className="ysink_stain_divide" />
 
 			<div className="ysink_stain_tabbar_content">
 				{React.createElement(items[current].component, { goTo })}

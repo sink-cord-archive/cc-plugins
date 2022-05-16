@@ -9,7 +9,6 @@ import RepoCard from "../cards/RepoCard";
 import {
 	Flex,
 	FormSection,
-	FormDivider,
 	TextInput,
 	Button,
 } from "../../WPMODULES";
@@ -23,12 +22,12 @@ async function verifyRepo(repo) {
 	}
 }
 
-const toast = str => showToast({ title: str, duration: 5000 });
+const toast = (str) => showToast({ title: str, duration: 5000 });
 
 async function addRepo(repo) {
 	if (!repo.endsWith("/")) repo += "/";
 
-	if (persist.ghost.repos.find(r => r.url == repo) !== undefined) {
+	if (persist.ghost.repos.find((r) => r.url == repo) !== undefined) {
 		toast("You already have this repo!");
 		return false;
 	} else if (await verifyRepo(repo)) {
@@ -56,7 +55,7 @@ export default () => {
 						placeholder="https://example.com/repo"
 						type="text"
 						value={url}
-						onChange={e => setUrl(e)}
+						onChange={(e) => setUrl(e)}
 					/>
 					<Button
 						className="ysink_stain_button"
@@ -68,11 +67,13 @@ export default () => {
 					</Button>
 				</Flex>
 
-				<FormDivider className="ysink_stain_divide" />
+				<div className="ysink_stain_divide" />
 
-				{persist.ghost.repos.map(repo => (
-					<RepoCard repo={repo} />
-				))}
+				<div class="ysink_stain_cardcontainer">
+					{persist.ghost.repos.map((repo) => (
+						<RepoCard repo={repo} />
+					))}
+				</div>
 			</FormSection>
 		</ErrorBoundary>
 	);

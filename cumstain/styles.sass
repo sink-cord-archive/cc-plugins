@@ -1,3 +1,38 @@
+//  ------------------------
+// |   GENERAL COMPONENTS   |
+//  ------------------------
+
+.ysink_stain_card
+	background: var(--background-secondary-alt)
+	padding: 1rem
+	border: 1px solid var(--background-modifier-accent)
+	border-radius: 0.5rem
+	width: 100% !important
+	color: var(--text-normal)
+
+// Replaces <FormTitle />
+.ysink_stain_title
+	display: flex
+	align-items: center
+	font-size: 1rem
+	color: var(--interactive-active)
+
+.ysink_stain_cardcontainer > *
+	margin-bottom: .5rem
+
+// Replaces <FormDivider />
+.ysink_stain_divide
+	margin: .5rem 0
+	width: 100%
+	height: 1px
+	border-top: thin solid var(--background-modifier-accent)
+
+.ysink_stain_row
+	display: flex
+	gap: 1rem
+	& > :not(:last-child)
+		flex: 1
+
 .ysink_stain_tabbar
 	padding: .5rem 1rem
 	display: grid
@@ -25,99 +60,6 @@
 		&:last-child
 			margin-right: 0
 
-.ysink_stain_cardcontainer
-	display: flex
-	flex-flow: row wrap
-	gap: .75rem
-
-	&> *
-		width: 20rem
-
-.ysink_stain_card
-	padding: 1rem
-	border: 1px solid var(--background-modifier-accent)
-	border-radius: 0.5rem
-	display: flex
-	flex-direction: column
-	z-index: 1
-	background-color: var(--deprecated-card-bg)
-
-	.ysink_stain_title
-		font-size: 1rem
-		padding-top: .2rem
-		display: inline
-		flex: 1
-		margin: 0
-
-	.ysink_stain_button
-		display: inline
-		padding: 0
-		& > div
-			padding: 2px 16px
-
-	.ysink_stain_card_row
-		display: flex
-		margin-bottom: .5rem
-
-	.ysink_stain_author_licence
-		font-style: italic
-
-	.ysink_stain_desc
-		flex: 1
-
-		.ysink_stain_carousel
-			// carousels have awful css, partly because i cant assign a class to <SmallMediaCarousel />, so sorry about this :\
-			margin-bottom: 1rem
-
-		&> div:not(.ysink_stain_noimg) > :last-child, .ysink_stain_noimg > div > :last-child
-			height: 2.25rem
-
-		&> div
-			border-radius: .5rem
-
-		&> :not(.ysink_stain_noimg)
-			.theme-dark &
-				background: #0005
-				.theme-light &
-					background: #000d
-
-		.ysink_stain_noimg
-			display: grid
-			div
-				// the grid layer trick!!!
-				grid-area: 1 / 1
-
-				&:not(.ysink_stain_noimgtxt)
-					visibility: hidden
-					z-index: -1
-
-				&.ysink_stain_noimgtxt
-					grid-area: 1 / 1
-					font-size: 1.5rem
-					text-align: center
-					padding-top: 35% // close enough ish
-					text-transform: uppercase
-					opacity: 0.8 // kinda hacky but oh well
-
-.ysink_stain_divide
-	margin: .5rem 0
-	.ysink_stain_card &
-		margin: .2rem 0
-
-.ysink_stain_delete
-	margin-right: .5rem
-	fill: var(--interactive-normal)
-	cursor: pointer
-
-.ysink_stain_installbar
-	display: flex
-	&> *
-		flex: 1
-
-	&> :last-child
-		flex: unset
-		margin-left: 1rem
-
 .ysink_stain_searchbar
 	margin: .75rem 0
 
@@ -135,17 +77,53 @@
 		margin: unset
 		flex: 1
 
-.ysink_stain_editorroot
-	// atom dark
-	background: #1d1f21
-	color: #c5c8c6
+//  -------------------------
+// |   SPECIFIC COMPONENTS   |
+//  -------------------------
 
-	border-radius: .3rem
+// theme card
+.ysink_stain_tcard
+	display: grid
+	grid-template-columns: auto 1fr min-content
+	grid-template-rows: auto 1fr
+	align-items: center
 
-	font-family: var(--font-code)
-	font-size: .9rem
-	line-height: 1.1rem
+	// small media on left
+	.ysink_stain_tsmmed
+		grid-row: 1 / 3
+		display: flex
+		height: 4rem
+		// i hate that this is needed but <img> is forever painful
+		width: 8.5rem // 4rem * 16/9 = 7.1111, + a bit more
+		justify-content: center
+		span
+			align-self: center
+		img
+			max-width: 100%
 
+	// description
+	.ysink_stain_tdesc
+		grid-area: 2 / 2
+
+	// actions - switch & delete
+	.ysink_stain_tacts
+		grid-column: 3
+		justify-self: right
+		&>*
+			display: inline-block
+
+	// author & license
+	.ysink_stain_taulic
+		text-align: right
+		min-width: 8rem
+
+// theme card delete button
+.ysink_stain_delete
+	margin-right: .5rem
+	fill: var(--interactive-normal)
+	cursor: pointer
+
+// BD & CC badges - used in theme card
 .ysink_stain_badge
 	width: 1.5rem
 	height: 1.5rem
@@ -161,6 +139,19 @@
 		background: #f8f8f8
 		background: #7289DA
 
+// Quick CSS
+.ysink_stain_cssedit
+	// atom dark
+	background: #1d1f21
+	color: #c5c8c6
+
+	border-radius: .3rem
+
+	font-family: var(--font-code)
+	font-size: .9rem
+	line-height: 1.1rem
+
+// no themes splashes
 .ysink_stain_nosplash
 	display: flex
 	flex-direction: column
@@ -177,16 +168,7 @@
 	.ysink_stain_button
 		margin-top: 2rem
 
-.ysink_stain_row
-	display: flex
-	& > :not(:last-child)
-		flex: 1
-	& > :last-child
-		margin-left: 1rem
-
+// repo cards (OFFICIAL) pills
 .ysink_stain_officialbadge
 	display: inline
 	margin-left: .5rem
-
-.ysink_stain_repocard
-	margin-bottom: .25rem
