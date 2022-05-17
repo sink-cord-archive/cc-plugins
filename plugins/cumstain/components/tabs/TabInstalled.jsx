@@ -42,12 +42,12 @@ export default ({ goTo }) => {
 				<div className="ysink_stain_cardcontainer">
 					{fuzzy(persist.ghost.themes, search)
 						.filter(
-							t =>
+							(t) =>
 								filterMode === 0 ||
 								(filterMode === 1 && !t.compat) ||
 								(filterMode === 2 && t.compat)
 						)
-						.map(theme => (
+						.map((theme) => (
 							<ThemeCard {...{ key: theme.url, theme, deleteHook }} />
 						))}
 				</div>

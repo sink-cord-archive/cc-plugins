@@ -10,22 +10,22 @@ import {
 } from "../util/themeLoadUtil";
 import fetchTheme from "../util/fetchTheme";
 
-const getTheme = url => persist.ghost.themes.find(t => t.url === url);
+const getTheme = (url) => persist.ghost.themes.find((t) => t.url === url);
 
-const themeIsEnabled = url => {
+const themeIsEnabled = (url) => {
 	const theme = getTheme(url);
 	return !!theme?.enabled;
 };
 
 // returns a promise
-const loadOrReload = theme =>
+const loadOrReload = (theme) =>
 	themeIsEnabled(theme.url) ? reloadTheme(theme) : loadTheme(theme);
 
-const importTheme = async url => await loadOrReload(await fetchTheme(url));
+const importTheme = async (url) => await loadOrReload(await fetchTheme(url));
 
-const remove = url => removeTheme(getTheme(url));
+const remove = (url) => removeTheme(getTheme(url));
 
-const toggleTheme = async url => {
+const toggleTheme = async (url) => {
 	if (!getTheme(url)) throw new Error(`Theme with ID ${url} was not installed`);
 
 	themeIsEnabled(url)

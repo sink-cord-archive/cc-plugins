@@ -6,12 +6,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 import fetchRepo from "../../util/fetchRepo";
 import RepoCard from "../cards/RepoCard";
 
-import {
-	Flex,
-	FormSection,
-	TextInput,
-	Button,
-} from "../../WPMODULES";
+import { Flex, FormSection, TextInput, Button } from "../../WPMODULES";
 
 async function verifyRepo(repo) {
 	try {

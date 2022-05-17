@@ -11,7 +11,7 @@ async function loadTheme(theme) {
 	unpatchCache.set(theme.url, unpatch);
 
 	const themeCacheIndex = data.persist.ghost.themes.findIndex(
-		t => t.url === theme.url
+		(t) => t.url === theme.url
 	);
 
 	let toPush = { ...theme };
@@ -34,7 +34,7 @@ function unloadTheme(theme) {
 	unpatchCache.delete(theme.url);
 
 	const themeCacheIndex = data.persist.ghost.themes.findIndex(
-		t => t.url === theme.url
+		(t) => t.url === theme.url
 	);
 	let toPush = { ...theme };
 	toPush.enabled = false;
@@ -53,7 +53,7 @@ function removeTheme(theme) {
 	}
 
 	data.persist.store.themes = data.persist.ghost.themes.filter(
-		t => t.url !== theme.url
+		(t) => t.url !== theme.url
 	);
 }
 
@@ -64,7 +64,7 @@ async function reloadTheme(theme) {
 	let toPush = { ...theme };
 	toPush.enabled = true;
 	const themeCacheIndex = data.persist.ghost.themes.findIndex(
-		t => t.url === theme.url
+		(t) => t.url === theme.url
 	);
 	if (themeCacheIndex === -1) return;
 	else data.persist.ghost.themes[themeCacheIndex] = toPush;
@@ -74,7 +74,7 @@ async function reloadTheme(theme) {
 }
 
 function unloadAll() {
-	unpatchCache.forEach(unpatch => unpatch?.());
+	unpatchCache.forEach((unpatch) => unpatch?.());
 	unpatchCache.clear();
 }
 

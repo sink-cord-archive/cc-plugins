@@ -21,14 +21,14 @@ export default () => {
 					placeholder="Theme import URL"
 					type="text"
 					value={urlInput}
-					onChange={e => setUrlInput(e)}
+					onChange={(e) => setUrlInput(e)}
 				/>
 
 				<Button
 					className="ysink_stain_button"
 					onClick={() => {
 						fetchTheme(urlInput).then(
-							async t => {
+							async (t) => {
 								await loadTheme(t);
 								showToast({
 									title: `Loaded theme ${t.name}`,

@@ -15,7 +15,7 @@ import LineNumbers from "./LineNumbers";
 export default ({ codeText, lang }) => {
 	const codeRef = React.useRef();
 
-	const getLang = lang => {
+	const getLang = (lang) => {
 		if (getLanguage) return getLanguage(lang);
 		error(
 			"|| Codeblocks Plus || highlight.js was not found. Please ensure cumcord.modules.common.highlightjs isnt undefined..."

@@ -3,15 +3,16 @@ import { useNest } from "@cumcord/utils";
 import { showToast } from "@cumcord/ui/toasts";
 import { Button } from "../WPMODULES";
 
-const installedPlugins = () => Object.keys(plugins.installed.ghost)
-	.map((key) => [key, plugins.installed.ghost[key].enabled])
-	.filter(([, enabled]) => typeof enabled === "boolean");
+const installedPlugins = () =>
+	Object.keys(plugins.installed.ghost)
+		.map((key) => [key, plugins.installed.ghost[key].enabled])
+		.filter(([, enabled]) => typeof enabled === "boolean");
 
 const findPlugin = (pId) =>
 	installedPlugins().find((p) => p[0] == pId || p[0] == pId + "/");
 
 export default ({ id, name }) => {
-	useNest(plugins.installed)
+	useNest(plugins.installed);
 
 	const importPlugin = () =>
 		plugins.importPlugin(id).then(() =>

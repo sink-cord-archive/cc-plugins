@@ -5,7 +5,7 @@ import { ErrorBoundary } from "@cumcord/ui/components";
 
 const codeblocksModule = findByPropsAll("LazyLibrary")[1];
 
-const flat = html =>
+const flat = (html) =>
 	new DOMParser().parseFromString(html, "text/html").children[0].textContent;
 
 export default () =>

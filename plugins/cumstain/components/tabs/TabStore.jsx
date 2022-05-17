@@ -12,7 +12,7 @@ import useRerender from "../../util/useRerender";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
-const getThemes = async () => (await getRepos()).flatMap(r => r.themes);
+const getThemes = async () => (await getRepos()).flatMap((r) => r.themes);
 
 const arrayEquals = (a, b) =>
 	Array.isArray(a) &&
@@ -53,16 +53,16 @@ export default ({ goTo }) => {
 			) : (
 				<div className="ysink_stain_cardcontainer">
 					{fuzzy(
-						_.uniqBy(themes ?? [], t => t.url),
+						_.uniqBy(themes ?? [], (t) => t.url),
 						search
 					)
 						.filter(
-							t =>
+							(t) =>
 								filterMode === 0 ||
 								(filterMode === 1 && !t.compat) ||
 								(filterMode === 2 && t.compat)
 						)
-						.map(theme => (
+						.map((theme) => (
 							<ThemeCard {...{ key: theme.url, theme, deleteHook }} />
 						))}
 				</div>

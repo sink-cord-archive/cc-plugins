@@ -17,7 +17,7 @@ const patchBrownPaper = () => {
 	};
 };
 
-const loadTheme = async url => {
+const loadTheme = async (url) => {
 	const css = await (await fetch(url)).text();
 	data.unloadTheme?.();
 	data.unloadTheme = injectCSS(css);

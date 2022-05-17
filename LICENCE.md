@@ -34,7 +34,7 @@ Not copying full text here as it's massive.
 
 [Full text](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-# The /assets/ folder and the Github Action are licensed under the Unlicense, as follows:
+# The /static/ folder and the Github Action are licensed under the Unlicense, as follows:
 
 This is free and unencumbered software released into the public domain.
 

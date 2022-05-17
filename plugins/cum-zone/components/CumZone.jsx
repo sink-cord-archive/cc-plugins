@@ -69,7 +69,7 @@ export default () => {
 					<div className="ysink_zone_card_container">
 						{fuzzySearch(repoPlugins, search)
 							.reverse()
-							.map(p => (
+							.map((p) => (
 								<PluginCard key={p.url} plugin={p} />
 							))}
 					</div>

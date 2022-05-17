@@ -4,7 +4,7 @@ export default ({ media }) => (
 	<div class="ysink_stain_carousel">
 		{media ? (
 			<SmallMediaCarousel
-				items={(typeof media === "string" ? [media] : media).map(m => ({
+				items={(typeof media === "string" ? [media] : media).map((m) => ({
 					type: 1,
 					src: m,
 				}))}
