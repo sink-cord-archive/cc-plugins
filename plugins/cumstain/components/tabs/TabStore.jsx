@@ -9,6 +9,7 @@ import fuzzy from "../../util/fuzzy";
 import CompatFilterDropdown from "../CompatFilterDropdown";
 import { NoRepos } from "../splashes";
 import useRerender from "../../util/useRerender";
+import VirtualScroller from "../VirtualScroller";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -51,21 +52,20 @@ export default ({ goTo }) => {
 			{persist.ghost.repos.length === 0 ? (
 				<NoRepos goToRepos={() => goTo(2)} />
 			) : (
-				<div className="ysink_stain_cardcontainer">
-					{fuzzy(
+				<VirtualScroller
+					items={fuzzy(
 						_.uniqBy(themes ?? [], (t) => t.url),
 						search
-					)
-						.filter(
-							(t) =>
-								filterMode === 0 ||
-								(filterMode === 1 && !t.compat) ||
-								(filterMode === 2 && t.compat)
-						)
-						.map((theme) => (
-							<ThemeCard {...{ key: theme.url, theme, deleteHook }} />
-						))}
-				</div>
+					).filter(
+						(t) =>
+							filterMode === 0 ||
+							(filterMode === 1 && !t.compat) ||
+							(filterMode === 2 && t.compat)
+					)}
+					keySel={(t) => t.url}
+				>
+					{(t) => <ThemeCard {...{ theme, deleteHook }} />}
+				</VirtualScroller>
 			)}
 		</ErrorBoundary>
 	);

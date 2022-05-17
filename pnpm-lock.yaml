@@ -40,10 +40,12 @@ importers:
       fuse.js: ^6.5.3
       prismjs: ^1.26.0
       react-simple-code-editor: ^0.11.0
+      react-virtual: ^2.10.4
     dependencies:
       fuse.js: 6.6.2
       prismjs: 1.28.0
       react-simple-code-editor: 0.11.0
+      react-virtual: 2.10.4
 
   plugins/devkitplus:
     specifiers:
@@ -73,6 +75,13 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.9
     dev: true
+
+  /@reach/observe-rect/1.2.0:
+    resolution:
+      {
+        integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==,
+      }
+    dev: false
 
   /@types/fbemitter/2.0.32:
     resolution:
@@ -287,6 +296,20 @@ packages:
         optional: true
       react-dom:
         optional: true
+    dev: false
+
+  /react-virtual/2.10.4:
+    resolution:
+      {
+        integrity: sha512-Ir6+oPQZTVHfa6+JL9M7cvMILstFZH/H3jqeYeKI4MSUX+rIruVwFC6nGVXw9wqAw8L0Kg2KvfXxI85OvYQdpQ==,
+      }
+    peerDependencies:
+      react: ^16.6.3 || ^17.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      "@reach/observe-rect": 1.2.0
     dev: false
 
   /redux/4.2.0:
