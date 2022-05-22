@@ -30,6 +30,7 @@
 .ysink_stain_row
 	display: flex
 	gap: 1rem
+
 	& > :not(:last-child)
 		flex: 1
 
@@ -42,7 +43,7 @@
 	.ysink_stain_button *
 		cursor: pointer
 
-	&> *
+	& > *
 		margin-right: 1rem
 		padding: .2rem
 		border-radius: .3rem
@@ -54,6 +55,7 @@
 		&.ysink_stain_selected
 			.theme-dark &
 				background: #fff4
+
 			.theme-light &
 				background: #0003
 
@@ -94,10 +96,13 @@
 		display: flex
 		height: 4rem
 		// i hate that this is needed but <img> is forever painful
-		width: 8.5rem // 4rem * 16/9 = 7.1111, + a bit more
+		// 4rem * 16/9 = 7.1111, + a bit more
+		width: 8.5rem
 		justify-content: center
+
 		span
 			align-self: center
+
 		img
 			max-width: 100%
 
@@ -109,7 +114,8 @@
 	.ysink_stain_tacts
 		grid-column: 3
 		justify-self: right
-		&>*
+
+		& > *
 			display: inline-block
 
 	// author & license
@@ -136,7 +142,6 @@
 
 	&.ysink_stain_cc
 		padding: .1rem
-		background: #f8f8f8
 		background: #7289DA
 
 // Quick CSS
@@ -162,7 +167,7 @@
 	h2
 		margin-bottom: 0
 
-	&> *
+	& > *
 		flex: 0
 
 	.ysink_stain_button
@@ -172,3 +177,10 @@
 .ysink_stain_officialbadge
 	display: inline
 	margin-left: .5rem
+
+
+// allows the virtual scroller to use up plenty of space
+// without this, the whole settings page will scroll
+// unless we leave a phat gap at the bottom (quite annoying!)
+#ysink_stain_cumstain-tab
+	padding-bottom: 0

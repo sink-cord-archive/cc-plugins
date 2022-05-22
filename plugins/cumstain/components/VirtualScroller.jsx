@@ -3,11 +3,6 @@ import { useVirtual } from "react-virtual";
 export default ({ items, children, keySel, height, className }) => {
 	const parentRef = React.useRef();
 
-	if (!height && items.length > 100)
-		console.warn(
-			"|| ys VirtualScroller || >100 items & no height, react err likely"
-		);
-
 	const rowVirtualiser = useVirtual({
 		parentRef,
 		size: items.length,
