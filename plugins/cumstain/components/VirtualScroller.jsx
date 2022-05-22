@@ -1,43 +1,44 @@
 import { useVirtual } from "react-virtual";
 
-export default ({
-	items = [],
-	children,
-	className = "",
-	keySel = (e) => e,
-	style = {},
-} = {}) => {
+export default ({ items, children, keySel, height, className }) => {
 	const parentRef = React.useRef();
+
+	if (!height && items.length > 100)
+		console.warn(
+			"|| ys VirtualScroller || >100 items & no height, react err likely"
+		);
 
 	const rowVirtualiser = useVirtual({
 		parentRef,
 		size: items.length,
-		keyExtractor: keySel,
+		keyExtractor: (i) => keySel(items[i]),
 	});
 
 	return (
+		/* OUTER */
 		<div
-			className={`List ${className}`}
 			ref={parentRef}
-			style={{ ...style, overflow: "auto" }}
+			style={{ overflow: "auto", height }}
+			className={className}
 		>
+			{/* INNER */}
 			<div
-				className="ListInner"
 				style={{
-					height: `${rowVirtualiser.totalSize}px`,
+					height: rowVirtualiser.totalSize,
 					width: "100%",
 					position: "relative",
 				}}
 			>
 				{rowVirtualiser.virtualItems.map((vrow) => (
 					<div
+						ref={vrow.measureRef}
 						key={vrow.key}
 						style={{
 							position: "absolute",
 							top: 0,
 							left: 0,
 							width: "100%",
-							height: `${vrow.height}px`,
+							height: vrow.height,
 							transform: `translateY(${vrow.start}px)`,
 						}}
 					>

@@ -22,24 +22,29 @@ const DeleteButton = ({ onClick }) => (
 	</svg>
 );
 
-const themeIsEnabled = (url) => {
+function themeIsEnabled(url) {
 	for (const theme of persist.ghost.themes)
 		if (theme.url === url && theme.enabled) return true;
 
 	return false;
-};
+}
 
 const themeIsInstalled = (url) =>
 	persist.ghost.themes.some((t) => t.url === url);
 
-export default ({ theme, deleteHook }) => {
+export default ({ theme, deleteHook, gap }) => {
 	useNest(persist, false, (_, { path }) => path[0] === "themes");
 
 	return (
-		<div className="ysink_stain_card ysink_stain_tcard">
+		<div
+			className="ysink_stain_card ysink_stain_tcard"
+			style={{ marginBottom: gap }}
+		>
 			<div className="ysink_stain_tsmmed">
 				{theme.media ? (
-					<img src={theme.media[0] ?? theme.media} />
+					<img
+						src={Array.isArray(theme.media) ? theme.media[0] : theme.media}
+					/>
 				) : (
 					<span>NO MEDIA</span>
 				)}

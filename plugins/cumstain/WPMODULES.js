@@ -12,6 +12,7 @@ export const [
 	TextInput,
 	SmallMediaCarousel,
 	SearchBar,
+	{ thin: scrollBarThin },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
 	findByDisplayName("FormTitle");
 	findByDisplayName("FormText");
@@ -24,4 +25,5 @@ export const [
 	findByDisplayName("TextInput");
 	findByDisplayName("SmallMediaCarousel");
 	findByDisplayName("SearchBar");
+	findByProps("scrollerBase", "thin");
 });

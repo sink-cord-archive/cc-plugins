@@ -10,6 +10,7 @@ import CompatFilterDropdown from "../CompatFilterDropdown";
 import { NoRepos } from "../splashes";
 import useRerender from "../../util/useRerender";
 import VirtualScroller from "../VirtualScroller";
+import { scrollBarThin } from "../../WPMODULES";
 
 const getRepos = () => Promise.all(persist.ghost.repos.map(fetchRepo));
 
@@ -53,6 +54,9 @@ export default ({ goTo }) => {
 				<NoRepos goToRepos={() => goTo(2)} />
 			) : (
 				<VirtualScroller
+					className={scrollBarThin}
+					height="50rem"
+					keySel={(t) => t.url}
 					items={fuzzy(
 						_.uniqBy(themes ?? [], (t) => t.url),
 						search
@@ -62,9 +66,8 @@ export default ({ goTo }) => {
 							(filterMode === 1 && !t.compat) ||
 							(filterMode === 2 && t.compat)
 					)}
-					keySel={(t) => t.url}
 				>
-					{(t) => <ThemeCard {...{ theme, deleteHook }} />}
+					{(theme) => <ThemeCard {...{ theme, deleteHook }} gap=".5rem" />}
 				</VirtualScroller>
 			)}
 		</ErrorBoundary>
