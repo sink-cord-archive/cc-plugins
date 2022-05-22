@@ -2,10 +2,9 @@ import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../../util/themeLoadUtil";
 import { BDBadge, CCBadge } from "../badges";
-
 import { Switch } from "../../WPMODULES";
-
 import fetchTheme from "../../util/fetchTheme";
+import showCarouselModal from "../CarouselModal";
 
 const DeleteButton = ({ onClick }) => (
 	<svg
@@ -40,13 +39,19 @@ export default ({ theme, deleteHook, gap }) => {
 			className="ysink_stain_card ysink_stain_tcard"
 			style={{ marginBottom: gap }}
 		>
-			<div className="ysink_stain_tsmmed">
+			<div
+				className="ysink_stain_tmedia"
+				style={{
+					backgroundImage:
+						theme.media &&
+						`url(${Array.isArray(theme.media) ? theme.media[0] : theme.media})`,
+				}}
+				onClick={() => theme.media && showCarouselModal(theme.media)}
+			>
 				{theme.media ? (
-					<img
-						src={Array.isArray(theme.media) ? theme.media[0] : theme.media}
-					/>
+					<div className="ysink_stain_tview">VIEW MEDIA</div>
 				) : (
-					<span>NO MEDIA</span>
+					<div>NO MEDIA</div>
 				)}
 			</div>
 

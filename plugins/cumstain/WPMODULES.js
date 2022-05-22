@@ -13,6 +13,8 @@ export const [
 	SmallMediaCarousel,
 	SearchBar,
 	{ thin: scrollBarThin },
+	ModalComponents,
+	{ openModal },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
 	findByDisplayName("FormTitle");
 	findByDisplayName("FormText");
@@ -26,4 +28,6 @@ export const [
 	findByDisplayName("SmallMediaCarousel");
 	findByDisplayName("SearchBar");
 	findByProps("scrollerBase", "thin");
+	findByProps("ModalCloseButton");
+	findByProps("openModalLazy");
 });
