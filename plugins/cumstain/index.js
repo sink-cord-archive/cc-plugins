@@ -2,6 +2,7 @@ import restoreThemes from "./patches/restoreThemes";
 import settingsEntry from "./patches/settingsEntry";
 import quickCSS from "./patches/quickCSS";
 import exposeApi from "./patches/exposeApi";
+import exposeWs from "./patches/exposeWs";
 
 import injectUiStyles from "./styles.sass";
 
@@ -16,6 +17,7 @@ const patches = [
 	quickCSS(),
 	restoreThemes(),
 	exposeApi(),
+	...exposeWs(),
 	settingsEntry(),
 	injectUiStyles(),
 ];
