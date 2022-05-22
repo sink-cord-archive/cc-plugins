@@ -32,11 +32,12 @@ export async function addRepo(repo, ok, err) {
 	return true;
 }
 
+const themeExists = (url) => persist.ghost.themes.some((t) => t.url === url);
+
 export async function addTheme(url, ok, err) {
+	if (themeExists(url)) return err("Theme is already installed!");
 	const theme = await fetchTheme(url).catch(err);
 	if (!theme) return;
-
-	if (theme.enabled) return err("Theme is already loaded!");
 
 	loadTheme(theme).then(ok, err);
 }
