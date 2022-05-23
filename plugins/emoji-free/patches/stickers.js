@@ -22,6 +22,8 @@ const unpatch = before(
 	"render",
 	ChannelTextAreaContainerModule.type,
 	([arg]) => {
+		if (arg.onSubmit.YSINK_EMOJI_PATCHED) return;
+
 		const isSendable = (sticker) =>
 			actualStickerSendability(sticker, getCurrentUser(), arg.channel);
 
@@ -45,6 +47,8 @@ const unpatch = before(
 
 			return oldSubmit.apply(this, args);
 		};
+
+		arg.onSubmit.YSINK_EMOJI_PATCHED = true;
 	}
 );
 
