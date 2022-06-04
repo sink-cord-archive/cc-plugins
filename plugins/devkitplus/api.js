@@ -2,7 +2,8 @@ import * as cctools from "cumcord-tools";
 import bestFindMethod from "./bestFindMethod";
 
 import { findAll } from "@cumcord/modules/webpack";
-import { after } from "@cumcord/patcher";
+import { after, injectCSS } from "@cumcord/patcher";
+import grass from "./grass";
 
 const findClassNameModuleAll = (className) => {
 	if (className.startsWith(".")) className = className.slice(1);
@@ -40,6 +41,12 @@ const recon = (funcName, parent, oneTime = false) => {
 	return unrecon;
 };
 
+const injectSCSS = (scss, pretty = false) => {
+	const ret = injectCSS(grass(scss, pretty));
+	return (scss, pretty = false) =>
+		ret(scss === undefined ? undefined : grass(scss, pretty));
+};
+
 window.dk = {
 	cctools,
 	bestFindMethod,
@@ -51,6 +58,7 @@ window.dk = {
 		recons.forEach((p) => p());
 		recons = [];
 	},
+	injectSCSS,
 };
 
 export default () => delete window.dk;
