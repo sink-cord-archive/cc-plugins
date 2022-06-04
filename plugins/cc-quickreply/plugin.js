@@ -86,7 +86,7 @@ function onDeletePendingReply(data) {
 }
 
 async function keyDown(event) {
-	if (!event.ctrlKey) return;
+	if (!event.ctrlKey && !event.metaKey) return;
 	if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
 
 	const messages = (await getMessages(getChannelId())).toArray().reverse();

@@ -10,7 +10,7 @@ setDefaults({
 export default dependPersist(() => (
 	<>
 		<SSwitch k="assign">Assign modules, utils, patcher to window</SSwitch>
-		<SSwitch k="otp" depends="apply">
+		<SSwitch k="otp" depends="assign">
 			Make exported patcher functions one time by default
 		</SSwitch>
 		<SSwitch k="startupDev">Enable Cumcord dev mode on start</SSwitch>
