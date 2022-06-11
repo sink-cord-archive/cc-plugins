@@ -1,1 +1,0 @@
-(function(e,n,t){"use strict";const o=n.before("dispatch",t.FluxDispatcher,([c])=>{c.type==="MESSAGE_CREATE"&&(c.message.content=c.message.content.replaceAll(/ \/.*?(?: |$)/g,""))});return e.onUnload=o,Object.defineProperty(e,"__esModule",{value:!0}),e})({},cumcord.patcher,cumcord.modules.common);
