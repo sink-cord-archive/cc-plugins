@@ -1,7 +1,7 @@
 import { persist } from "@cumcord/pluginData";
 
 import injectCss from "./styles.sass";
-import settingsEntryPatch from "./patches/settingsEntry.jsx";
+import settingsEntryPatch from "./patches/settingsEntry.js";
 import resetReposToDefault from "./defaultRepos.js";
 import commandPalette from "./patches/commandPalette.js";
 
