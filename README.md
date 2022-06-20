@@ -48,11 +48,11 @@ Power up your debugging / development tools for client-side prototyping.
 
 ### Command Palette
 
+*Command palette is kil. Sry.*
+
 <img height="50" src="https://yellowsink.github.io/discord-command-palette/assets/icon.png" />
 
 A port of VS Code's command palette feature to Discord. Read more over at [its website](https://yellowsink.github.io/discord-command-palette)
-
-**HEAVY WIP, but keep watching its website for updates :)**
 
 ### Hypesquad Switcher
 
