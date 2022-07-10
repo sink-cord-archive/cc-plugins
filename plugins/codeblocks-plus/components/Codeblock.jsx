@@ -6,11 +6,9 @@ import {
 	highlightBlock,
 } from "@cumcord/modules/common/highlightjs";
 import { error } from "@cumcord/utils/logger";
-const { useState, useEffect } = React;
+import LineNumbers from "./LineNumbers";
 
 const scrollbarClasses = findByProps("thin").thin;
-
-import LineNumbers from "./LineNumbers";
 
 export default ({ codeText, lang }) => {
 	const codeRef = React.useRef();
@@ -25,8 +23,8 @@ export default ({ codeText, lang }) => {
 	// >0: need to wait this amount next render
 	// 0: no cooldown
 	// -1: currently waiting for cooldown
-	let [cooldown, setCooldown] = useState(0);
-	useEffect(() => {
+	let [cooldown, setCooldown] = React.useState(0);
+	React.useEffect(() => {
 		if (cooldown > 0) {
 			setCooldown(-1);
 			setTimeout(() => setCooldown(0), cooldown);
@@ -43,21 +41,17 @@ export default ({ codeText, lang }) => {
 					className="dark"
 					disabled={cooldown}
 					onClick={() => {
-						if (cooldown) return;
-
 						copyText(codeText);
-						setCooldown(2000);
+						if (!cooldown) setCooldown(2000);
 					}}
 				>
 					{cooldown ? "Copied!" : "Copy"}
 				</button>
 			</div>
 
-			<div class="ysink_code_prewrap">
-				{persist.ghost.nums ?? true ? (
-					<LineNumbers lines={codeText.split("\n").length} />
-				) : (
-					[]
+			<div className="ysink_code_prewrap">
+				{(persist.ghost.nums ?? true) && (
+					<LineNumbers lines={codeText.split?.("\n").length} />
 				)}
 
 				<pre className={scrollbarClasses}>

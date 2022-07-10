@@ -1,17 +1,16 @@
 import data from "@cumcord/pluginData";
 import { injectCSS } from "@cumcord/patcher";
 import { log, warn } from "@cumcord/utils/logger";
-import { findByProps } from "@cumcord/modules/webpack";
 import { CDN_URL } from "../themeProcessor";
 
-const markupClass = findByProps("markup").markup;
+let unloadTheme;
 
 const patchBrownPaper = () => {
 	let unpatch = injectCSS(
 		`.hljs {background: url(${new URL("brown-papersq.png", CDN_URL).href})}`
 	);
-	let unload = data.unloadTheme;
-	data.unloadTheme = () => {
+	const unload = unloadTheme;
+	unloadTheme = () => {
 		unpatch();
 		unload?.();
 	};
@@ -19,8 +18,8 @@ const patchBrownPaper = () => {
 
 const loadTheme = async (url) => {
 	const css = await (await fetch(url)).text();
-	data.unloadTheme?.();
-	data.unloadTheme = injectCSS(css);
+	unloadTheme?.();
+	unloadTheme = injectCSS(css);
 	if (url.includes("brown-paper")) patchBrownPaper();
 	log("|| codeblocks plus || Loaded hljs theme successfully ");
 };
@@ -28,7 +27,7 @@ const loadTheme = async (url) => {
 const tryLoadFromNest = async () => {
 	if (data.persist.ghost.theme) await loadTheme(data.persist.ghost.theme);
 	else {
-		data.unloadTheme?.();
+		unloadTheme?.();
 		warn("|| codeblocks plus || No theme set in nest");
 	}
 };
@@ -46,6 +45,6 @@ export default () => {
 	return () => {
 		data.persist.off("SET", nestHandler);
 		data.persist.off("DELETE", nestHandler);
-		data.unloadTheme?.();
+		unloadTheme?.();
 	};
 };

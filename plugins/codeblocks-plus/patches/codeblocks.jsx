@@ -2,6 +2,7 @@ import { findByPropsAll } from "@cumcord/modules/webpack";
 import { after } from "@cumcord/patcher";
 import Codeblock from "../components/Codeblock";
 import { ErrorBoundary } from "@cumcord/ui/components";
+import { findInReactTree } from "@cumcord/utils";
 
 const codeblocksModule = findByPropsAll("LazyLibrary")[1];
 
@@ -10,16 +11,13 @@ const flat = (html) =>
 
 export default () =>
 	after("LazyLibrary", codeblocksModule, (args, ret) => {
-		// <pre> element containing <code>
-		const pre = ret?.props?.children;
-		// <code> element, which we care about
-		const code = pre?.props?.children;
+		const codeProps = findInReactTree(ret, (n) => n.type === "code")?.props;
 
-		if (!code?.props) return;
+		if (!codeProps) return;
 
-		const codeHtml = code.props.dangerouslySetInnerHTML?.__html;
-		const codeTextRaw = code.props.children;
-		const lang = _.last(code.props.className.split(" "));
+		const codeHtml = codeProps.dangerouslySetInnerHTML?.__html;
+		const codeTextRaw = codeProps.children;
+		const lang = _.last(codeProps.className.split(" "));
 
 		const codeText = codeTextRaw ?? flat(codeHtml);
 
