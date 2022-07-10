@@ -1,34 +1,26 @@
 import { discordEmoteTools, getGuildPermissions, getGuilds } from "./WPMODULES";
 
-const MANAGE_EMOTES_PERMISSION = BigInt(1073741824);
+const MANAGE_EMOTES_PERMISSION = 1073741824n;
 
 const canManageEmotes = (guildId) => {
-	let guildperms = getGuildPermissions({ id: guildId });
-	if (guildperms && (guildperms & MANAGE_EMOTES_PERMISSION) !== 0n) {
-		return true;
-	} else {
-		return false;
-	}
+	const gPerms = getGuildPermissions({ id: guildId });
+	return gPerms && (gPerms & MANAGE_EMOTES_PERMISSION) !== 0n;
 };
 
 const guildsCanManageEmotes = () =>
 	Object.values(getGuilds()).filter((guild) => canManageEmotes(guild.id));
 
-// many many many tabs of stackoverflow and MDN, and about 30 mins later
-const promisifiedFileReader = (blob) =>
-	new Promise((resolve, reject) => {
-		let filereader = new FileReader();
-		filereader.onloadend = () => resolve(filereader.result);
-		filereader.readAsDataURL(blob);
+const downloadToB64 = (link) =>
+	new Promise(async (resolve) => {
+		const blob = await (await fetch(link)).blob();
+		const fr = new FileReader();
+		fr.onloadend = () => resolve(fr.result);
+		fr.readAsDataURL(blob);
 	});
 
-const imageUrlToBase64 = async (link) =>
-	await promisifiedFileReader(await (await fetch(link)).blob());
+const uploadEmoji = (guildId, imageURL, name) =>
+	downloadToB64(
+		imageURL.replace("media.discordapp.net", "cdn.discordapp.com")
+	).then((image) => discordEmoteTools.uploadEmoji({ guildId, image, name }));
 
-const uploadEmoji = (guildId, imageURL, name) => {
-	imageUrlToBase64(imageURL).then((b64) =>
-		discordEmoteTools.uploadEmoji(guildId, b64, name)
-	);
-};
-
-export { getGuilds, canManageEmotes, uploadEmoji, guildsCanManageEmotes };
+export { canManageEmotes, uploadEmoji, guildsCanManageEmotes };
