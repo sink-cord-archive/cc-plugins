@@ -123,6 +123,9 @@
 		grid-column: 3
 		justify-self: right
 
+		&> :last-child
+			margin-left: .25rem
+
 		& > *
 			display: inline-block
 
@@ -132,10 +135,12 @@
 		min-width: 8rem
 
 // theme card delete button
-.ysink_stain_delete
-	margin-right: .5rem
+.ysink_stain_iconbtn
+	margin-right: .25rem
 	fill: var(--interactive-normal)
 	cursor: pointer
+	height: 22px
+	width: 22px
 
 // BD & CC badges - used in theme card
 .ysink_stain_badge

@@ -30,3 +30,6 @@ export async function fetchJson(url) {
 	const [status, txt] = await fetchText(url);
 	return [status, txt ? JSON.parse(txt) : undefined];
 }
+
+export const clearCache = () =>
+	Object.keys(cache).forEach((k) => delete cache[k]);

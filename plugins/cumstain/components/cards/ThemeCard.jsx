@@ -1,25 +1,13 @@
 import { persist } from "@cumcord/pluginData";
-import { useNest } from "@cumcord/utils";
+import { useNest, copyText } from "@cumcord/utils";
 import { loadTheme, removeTheme, unloadTheme } from "../../util/themeLoadUtil";
 import { BDBadge, CCBadge } from "../badges";
 import { Switch } from "../../WPMODULES";
 import fetchTheme from "../../util/fetchTheme";
 import showCarouselModal from "../CarouselModal";
 
-const DeleteButton = ({ onClick }) => (
-	<svg
-		onClick={onClick}
-		className="ysink_stain_delete"
-		xmlns="http://www.w3.org/2000/svg"
-		height="24px"
-		viewBox="0 0 24 24"
-		width="24px"
-	>
-		<path d="M0 0h24v24H0z" fill="none" />
-		<path d="M0 0h24v24H0V0z" fill="none" />
-		<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" />
-	</svg>
-);
+import Delete from "../../assets/Delete";
+import Copy from "../../assets/Copy";
 
 function themeIsEnabled(url) {
 	for (const theme of persist.ghost.themes)
@@ -63,8 +51,14 @@ export default ({ theme, deleteHook, gap }) => {
 			<div className="ysink_stain_tdesc">{theme.description}</div>
 
 			<div className="ysink_stain_tacts">
+				<Copy
+					className="ysink_stain_iconbtn"
+					onClick={() => copyText(theme.url)}
+				/>
+
 				{themeIsInstalled(theme.url) ? (
-					<DeleteButton
+					<Delete
+						className="ysink_stain_iconbtn"
 						onClick={() => {
 							removeTheme(theme);
 							deleteHook?.();
