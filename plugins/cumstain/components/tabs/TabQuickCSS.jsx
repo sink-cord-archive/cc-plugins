@@ -1,6 +1,4 @@
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-css";
+import Monaco from "simple-react-monaco";
 
 import { persist } from "@cumcord/pluginData";
 
@@ -14,20 +12,22 @@ export default () => {
 
 	return (
 		<ErrorBoundary>
-			<Editor
-				className="ysink_stain_cssedit"
-				value={css ?? ""}
-				onValueChange={(v) => {
-					setCss(v);
-					saveCssDebounced(v);
-				}}
-				highlight={(code) => highlight(code, languages.css)}
-				padding={10}
-			/>
-			<link
-				href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-atom-dark.css"
-				rel="stylesheet"
-			/>
+			<div style={{ maxWidth: "60vw" }}>
+				<Monaco
+					value={css ?? ""}
+					valOut={(v) => {
+						setCss(v);
+						saveCssDebounced(v);
+					}}
+					lang="css"
+					theme="Dracula"
+					width=""
+					height="20rem"
+					otherCfg={{
+						automaticLayout: true,
+					}}
+				/>
+			</div>
 		</ErrorBoundary>
 	);
 };
