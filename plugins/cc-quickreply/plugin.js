@@ -50,7 +50,7 @@ function createPendingReply(
 	if (typeof showMentionToggle === "undefined")
 		showMentionToggle = channel.guild_id !== null; // DM channel showMentionToggle = false
 
-	Dispatcher.dirtyDispatch({
+	Dispatcher._dispatch({
 		type: ActionTypes.CREATE_PENDING_REPLY,
 		channel,
 		message,
@@ -62,7 +62,7 @@ function createPendingReply(
 }
 
 function deletePendingReply(data) {
-	Dispatcher.dirtyDispatch({
+	Dispatcher._dispatch({
 		type: ActionTypes.DELETE_PENDING_REPLY,
 		channelId: getChannelId(),
 		...data,
