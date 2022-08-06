@@ -1,7 +1,7 @@
 // see https://github.com/relative/cumcord-quickreply/pull/2
 
 import { persist } from "@cumcord/pluginData";
-import { ActionTypes } from "@cumcord/modules/common/constants";
+//import { ActionTypes } from "@cumcord/modules/common/constants"
 import { batchFind } from "@cumcord/modules/webpack";
 import { FluxDispatcher as Dispatcher } from "@cumcord/modules/common";
 import { before } from "@cumcord/patcher";
@@ -51,7 +51,7 @@ function createPendingReply(
 		showMentionToggle = channel.guild_id !== null; // DM channel showMentionToggle = false
 
 	Dispatcher._dispatch({
-		type: ActionTypes.CREATE_PENDING_REPLY,
+		type: "CREATE_PENDING_REPLY",
 		channel,
 		message,
 		shouldMention,
@@ -63,7 +63,7 @@ function createPendingReply(
 
 function deletePendingReply(data) {
 	Dispatcher._dispatch({
-		type: ActionTypes.DELETE_PENDING_REPLY,
+		type: "DELETE_PENDING_REPLY",
 		channelId: getChannelId(),
 		...data,
 	});
@@ -112,9 +112,9 @@ async function keyDown(event) {
 let unloadPatch;
 // purely for separation from the top level madness above
 export function onLoad() {
-	Dispatcher.subscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
-	Dispatcher.subscribe(ActionTypes.CREATE_PENDING_REPLY, onCreatePendingReply);
-	Dispatcher.subscribe(ActionTypes.DELETE_PENDING_REPLY, onDeletePendingReply);
+	Dispatcher.subscribe("CHANNEL_SELECT", channelSelect);
+	Dispatcher.subscribe("CREATE_PENDING_REPLY", onCreatePendingReply);
+	Dispatcher.subscribe("DELETE_PENDING_REPLY", onDeletePendingReply);
 
 	window.addEventListener("keydown", keyDown);
 
@@ -129,15 +129,9 @@ export function onLoad() {
 }
 
 export function onUnload() {
-	Dispatcher.unsubscribe(ActionTypes.CHANNEL_SELECT, channelSelect);
-	Dispatcher.unsubscribe(
-		ActionTypes.CREATE_PENDING_REPLY,
-		onCreatePendingReply
-	);
-	Dispatcher.unsubscribe(
-		ActionTypes.DELETE_PENDING_REPLY,
-		onDeletePendingReply
-	);
+	Dispatcher.unsubscribe("CHANNEL_SELECT", channelSelect);
+	Dispatcher.unsubscribe("CREATE_PENDING_REPLY", onCreatePendingReply);
+	Dispatcher.unsubscribe("DELETE_PENDING_REPLY", onDeletePendingReply);
 	window.removeEventListener("keydown", keyDown);
 	unloadPatch?.();
 }
