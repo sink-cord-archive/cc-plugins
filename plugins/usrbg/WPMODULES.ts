@@ -3,6 +3,7 @@ import { batchFind } from "@cumcord/modules/webpack";
 export const [
 	UserBannerParent,
 	UserPopoutContainerMemo,
+	AccountProfilePopoutContainerParent,
 	{ premiumIconWrapper },
 	{ footer },
 	{ bodyInnerWrapper },
@@ -11,6 +12,7 @@ export const [
 ] = batchFind(({ findByProps, findByDisplayName, find }) => {
 	findByDisplayName("UserBanner", false);
 	find((m: any) => m.type?.displayName === "UserPopoutContainer");
+	findByDisplayName("AccountProfilePopoutContainer", false)
 	findByProps("premiumIconWrapper");
 	findByProps("wumpusWrapper");
 	findByProps("bodyInnerWrapper");

@@ -5,13 +5,21 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after, findAndPatch } from "@cumcord/patcher";
 import { UsrbgDb } from "../usrbg-db";
-import { UserPopoutContainerMemo } from "../WPMODULES";
+import { UserPopoutContainerMemo, AccountProfilePopoutContainerParent } from "../WPMODULES";
 
 export default (db: UsrbgDb) => {
 	// if the user is in the DB, set user.banner to make discord apply premium styles
-	const unpatchContainer = after(
+	const unpatchContainer1 = after(
 		"type",
 		UserPopoutContainerMemo,
+		(_, { props: { user } }) => {
+			if (db.has(user.id)) user.banner ??= "_";
+		}
+	);
+
+	const unpatchContainer2 = after(
+		"default",
+		AccountProfilePopoutContainerParent,
 		(_, { props: { user } }) => {
 			if (db.has(user.id)) user.banner ??= "_";
 		}
@@ -27,7 +35,8 @@ export default (db: UsrbgDb) => {
 	);
 
 	return () => {
-		unpatchContainer();
+		unpatchContainer1();
+		unpatchContainer2();
 		unpatchProfileModal();
 	};
 };
