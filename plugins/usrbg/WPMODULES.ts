@@ -5,7 +5,7 @@ export const [
 	UserPopoutAvatarParent,
 	{ premiumIconWrapper },
 	{ TextBadge },
-] = batchFind(({ findByProps, findByDisplayName, find }) => {
+] = batchFind(({ findByProps, findByDisplayName }) => {
 	findByDisplayName("UserBanner", false);
 	findByProps("UserPopoutAvatar");
 	findByProps("premiumIconWrapper");
