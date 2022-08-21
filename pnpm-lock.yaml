@@ -66,6 +66,12 @@ importers:
     dependencies:
       cumcord-tools: 8.0.2
 
+  plugins/usrbg:
+    specifiers:
+      cumcord-tools: ^8.0.2
+    dependencies:
+      cumcord-tools: 8.0.2
+
 packages:
   /@babel/runtime/7.18.9:
     resolution:
