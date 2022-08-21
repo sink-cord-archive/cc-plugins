@@ -8,7 +8,7 @@ export default (db: UsrbgDb) => {
 			const img = db.get(props.user.id)?.img;
 
 			props.bannerSrc = img;
-			instead("getBannerURL", props.displayProfile, () => img, false);
+			if (props.displayProfile) instead("getBannerURL", props.displayProfile, () => img, false);
 		}
 	});
 
