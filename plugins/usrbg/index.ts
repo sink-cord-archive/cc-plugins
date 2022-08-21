@@ -17,3 +17,5 @@ export function onUnload() {
 	cancelPatches = true;
 	unpatchBanner?.();
 }
+
+export { default as settings } from "./Settings";
