@@ -18,6 +18,7 @@ export default () => {
 					height: "40rem",
 					resize: "vertical",
 					overflow: "hidden",
+					paddingBottom: ".5rem",
 				}}
 			>
 				<Monaco
