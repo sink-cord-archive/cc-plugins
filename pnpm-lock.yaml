@@ -1,40 +1,6 @@
 lockfileVersion: 5.4
 
 importers:
-  .:
-    specifiers:
-      "@types/lodash-es": ^4.17.6
-      cumcord-types: ^1.1.0
-      husky: ^7.0.4
-      prettier: ^2.6.2
-      typescript: ^4.6.4
-    devDependencies:
-      "@types/lodash-es": 4.17.6
-      cumcord-types: 1.3.0
-      husky: 7.0.4
-      prettier: 2.7.1
-      typescript: 4.7.4
-
-  plugins/cc-quickreply:
-    specifiers:
-      cumcord-tools: ^8.0.2
-    dependencies:
-      cumcord-tools: 8.0.2
-
-  plugins/create-emote:
-    specifiers:
-      cumcord-tools: 4.0.0
-    dependencies:
-      cumcord-tools: 4.0.0
-
-  plugins/cum-zone:
-    specifiers:
-      cumcord-tools: ^7.0.2
-      fuse.js: ^6.5.3
-    dependencies:
-      cumcord-tools: 7.0.2
-      fuse.js: 6.6.2
-
   plugins/cumstain:
     specifiers:
       fuse.js: ^6.6.2
@@ -45,44 +11,7 @@ importers:
       react-virtual: 2.10.4
       simple-react-monaco: 1.1.0
 
-  plugins/devkitplus:
-    specifiers:
-      "@wemap/rollup-plugin-arraybuffer": ^0.1.2
-      cumcord-tools: ^8.0.2
-    dependencies:
-      cumcord-tools: 8.0.2
-    devDependencies:
-      "@wemap/rollup-plugin-arraybuffer": 0.1.2
-
-  plugins/hypesquad-switcher:
-    specifiers:
-      cumcord-tools: ^7.0.2
-    dependencies:
-      cumcord-tools: 7.0.2
-
-  plugins/show-username:
-    specifiers:
-      cumcord-tools: ^8.0.2
-    dependencies:
-      cumcord-tools: 8.0.2
-
-  plugins/usrbg:
-    specifiers:
-      cumcord-tools: " ^8.0.2"
-    dependencies:
-      cumcord-tools: 8.0.2
-
 packages:
-  /@babel/runtime/7.18.9:
-    resolution:
-      {
-        integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==,
-      }
-    engines: { node: ">=6.9.0" }
-    dependencies:
-      regenerator-runtime: 0.13.9
-    dev: true
-
   /@monaco-editor/loader/1.3.2_monaco-editor@0.33.0:
     resolution:
       {
@@ -102,74 +31,12 @@ packages:
       }
     dev: false
 
-  /@rollup/pluginutils/4.2.1:
-    resolution:
-      {
-        integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==,
-      }
-    engines: { node: ">= 8.0.0" }
-    dependencies:
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-    dev: true
-
-  /@types/fbemitter/2.0.32:
-    resolution:
-      {
-        integrity: sha512-Hwq28bBlbmfCgLnNJvjl5ssTrbZCTSblI4vqPpqZrbbEL8vn5l2UivxhlMYfUY7a4SR8UB6RKoLjOZfljqAa6g==,
-      }
-    dev: true
-
-  /@types/flux/3.1.11:
-    resolution:
-      {
-        integrity: sha512-Aq4UB1ZqAKcPbhB0GpgMw2sntvOh71he9tjz53TLKrI7rw3Y3LxCW5pTYY9IV455hQapm4pmxFjpqlWOs308Yg==,
-      }
-    dependencies:
-      "@types/fbemitter": 2.0.32
-      "@types/react": 18.0.15
-    dev: true
-
-  /@types/lodash-es/4.17.6:
-    resolution:
-      {
-        integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==,
-      }
-    dependencies:
-      "@types/lodash": 4.14.182
-    dev: true
-
-  /@types/lodash/4.14.182:
-    resolution:
-      {
-        integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==,
-      }
-    dev: true
-
   /@types/prop-types/15.7.5:
     resolution:
       {
         integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==,
       }
-
-  /@types/react-dom/18.0.6:
-    resolution:
-      {
-        integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==,
-      }
-    dependencies:
-      "@types/react": 18.0.15
-    dev: true
-
-  /@types/react/17.0.2:
-    resolution:
-      {
-        integrity: sha512-Xt40xQsrkdvjn1EyWe1Bc0dJLcil/9x2vAuW7ya+PuQip4UYUaXyhzWmAbwRsdMgwOFHpfp7/FFZebDU6Y8VHA==,
-      }
-    dependencies:
-      "@types/prop-types": 15.7.5
-      csstype: 3.1.0
-    dev: true
+    dev: false
 
   /@types/react/18.0.15:
     resolution:
@@ -180,86 +47,21 @@ packages:
       "@types/prop-types": 15.7.5
       "@types/scheduler": 0.16.2
       csstype: 3.1.0
+    dev: false
 
   /@types/scheduler/0.16.2:
     resolution:
       {
         integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==,
       }
-
-  /@wemap/rollup-plugin-arraybuffer/0.1.2:
-    resolution:
-      {
-        integrity: sha512-YFOFF+wrtPmIeIA2BC+PTMP8JkfxIErQ4fe+ebbyKS8FgNAvYk9IklcOTWMRaeMBGC97lQs4689HSXaoQGgLnA==,
-      }
-    dependencies:
-      "@rollup/pluginutils": 4.2.1
-    dev: true
+    dev: false
 
   /csstype/3.1.0:
     resolution:
       {
         integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==,
       }
-
-  /cumcord-tools/4.0.0:
-    resolution:
-      {
-        integrity: sha512-suWGJ0qDfF4Ycqb94B3x71r+zNg9+yLT8ealUHB/TaygUYdbvlXrwioTnA5c5dMlSkOzloYMwwzJx4ovkHomJw==,
-      }
     dev: false
-
-  /cumcord-tools/7.0.2:
-    resolution:
-      {
-        integrity: sha512-NingKzxr/Or8ecuOjX6yRb+Z6Yuyrqj+QXjlKmuj1b3S2MZ51/8ylhfovbBCQdg4PXxaWPH8B8esK5lgwLSD5Q==,
-      }
-    dev: false
-
-  /cumcord-tools/8.0.2:
-    resolution:
-      {
-        integrity: sha512-EqPpo1lEbZeA5sY+FGoC9/Yb4uTSlYGmVWKNvnQJr09mH+AUW+PzTD5+IOBa+mbqtebNYnfrLBmNzfym2U3KPA==,
-      }
-    dev: false
-
-  /cumcord-types/1.3.0:
-    resolution:
-      {
-        integrity: sha512-luyw7VzCIIZJjit8ycn4HUJP70b14qb0KF/ILZu62i0CFOdTBRR/sAB/zGMoocx00pv3+oXhT9olZVSk19tzKg==,
-      }
-    dependencies:
-      "@types/flux": 3.1.11
-      "@types/react": 18.0.15
-      "@types/react-dom": 18.0.6
-      discord-types: 1.3.26
-      highlight.js: 11.6.0
-      nests: 2.3.1
-      redux: 4.2.0
-      spitroast: 1.4.2
-      zustand: 4.0.0
-    transitivePeerDependencies:
-      - immer
-      - react
-      - solid-js
-    dev: true
-
-  /discord-types/1.3.26:
-    resolution:
-      {
-        integrity: sha512-ToG51AOCH+JTQf7b+8vuYQe5Iqwz7nZ7StpECAZ/VZcI1ZhQk13pvt9KkRTfRv1xNvwJ2qib4e3+RifQlo8VPQ==,
-      }
-    dependencies:
-      "@types/react": 17.0.2
-      moment: 2.29.4
-    dev: true
-
-  /estree-walker/2.0.2:
-    resolution:
-      {
-        integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==,
-      }
-    dev: true
 
   /fuse.js/6.6.2:
     resolution:
@@ -269,68 +71,12 @@ packages:
     engines: { node: ">=10" }
     dev: false
 
-  /highlight.js/11.6.0:
-    resolution:
-      {
-        integrity: sha512-ig1eqDzJaB0pqEvlPVIpSSyMaO92bH1N2rJpLMN/nX396wTpDA4Eq0uK+7I/2XG17pFaaKE0kjV/XPeGt7Evjw==,
-      }
-    engines: { node: ">=12.0.0" }
-    dev: true
-
-  /husky/7.0.4:
-    resolution:
-      {
-        integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==,
-      }
-    engines: { node: ">=12" }
-    hasBin: true
-    dev: true
-
-  /moment/2.29.4:
-    resolution:
-      {
-        integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==,
-      }
-    dev: true
-
   /monaco-editor/0.33.0:
     resolution:
       {
         integrity: sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==,
       }
     dev: false
-
-  /nests/2.3.1:
-    resolution:
-      {
-        integrity: sha512-mq9g10tzsaGbS/c5RUJVwiJVqo89JA/KIYPpBDQlKnyviJ7EDUaboIWsuWx0Abe49nys8MjnB6vK53KF1m6MUQ==,
-      }
-    peerDependencies:
-      react: ">=16.8"
-      solid-js: ">=1.0.0"
-    peerDependenciesMeta:
-      react:
-        optional: true
-      solid-js:
-        optional: true
-    dev: true
-
-  /picomatch/2.3.1:
-    resolution:
-      {
-        integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==,
-      }
-    engines: { node: ">=8.6" }
-    dev: true
-
-  /prettier/2.7.1:
-    resolution:
-      {
-        integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==,
-      }
-    engines: { node: ">=10.13.0" }
-    hasBin: true
-    dev: true
 
   /react-virtual/2.10.4:
     resolution:
@@ -345,22 +91,6 @@ packages:
     dependencies:
       "@reach/observe-rect": 1.2.0
     dev: false
-
-  /redux/4.2.0:
-    resolution:
-      {
-        integrity: sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==,
-      }
-    dependencies:
-      "@babel/runtime": 7.18.9
-    dev: true
-
-  /regenerator-runtime/0.13.9:
-    resolution:
-      {
-        integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==,
-      }
-    dev: true
 
   /simple-react-monaco/1.1.0:
     resolution:
@@ -378,55 +108,9 @@ packages:
       monaco-editor: 0.33.0
     dev: false
 
-  /spitroast/1.4.2:
-    resolution:
-      {
-        integrity: sha512-iEBsKg3EXTQj2nikYIMtOE5YSqbI5CtRxVYI+Gh+9HeQxf4u86UWF5yC5eTVAoReZSogbD2M37JYG8TYGBnFTg==,
-      }
-    dev: true
-
   /state-local/1.0.7:
     resolution:
       {
         integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==,
       }
     dev: false
-
-  /typescript/4.7.4:
-    resolution:
-      {
-        integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==,
-      }
-    engines: { node: ">=4.2.0" }
-    hasBin: true
-    dev: true
-
-  /use-sync-external-store/1.2.0:
-    resolution:
-      {
-        integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==,
-      }
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dev: true
-
-  /zustand/4.0.0:
-    resolution:
-      {
-        integrity: sha512-OrsfQTnRXF1LZ9/vR/IqN9ws5EXUhb149xmPjErZnUrkgxS/gAHGy2dPNIVkVvoxrVe1sIydn4JjF0dYHmGeeQ==,
-      }
-    engines: { node: ">=12.7.0" }
-    peerDependencies:
-      immer: ">=9.0"
-      react: ">=16.8"
-    peerDependenciesMeta:
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      use-sync-external-store: 1.2.0
-    dev: true

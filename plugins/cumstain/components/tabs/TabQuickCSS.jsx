@@ -12,7 +12,14 @@ export default () => {
 
 	return (
 		<ErrorBoundary>
-			<div style={{ maxWidth: "60vw" }}>
+			<div
+				style={{
+					maxWidth: "60vw",
+					height: "40rem",
+					resize: "vertical",
+					overflow: "hidden",
+				}}
+			>
 				<Monaco
 					value={css ?? ""}
 					valOut={(v) => {
@@ -21,8 +28,8 @@ export default () => {
 					}}
 					lang="css"
 					theme="Dracula"
-					width=""
-					height="20rem"
+					width="100%"
+					height="100%"
 					otherCfg={{
 						automaticLayout: true,
 					}}
