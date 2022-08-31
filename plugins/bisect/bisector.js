@@ -24,10 +24,15 @@ const recursiveTreeGenerator = (flatNodes) => {
 
 const treeFlattener = (tree) => [
 	...(Array.isArray(tree[0]) ? treeFlattener(tree[0]) : [tree[0]]),
-	...(tree[1] ? (Array.isArray(tree[1]) ? treeFlattener(tree[1]) : [tree[1]]) : [])
+	...(tree[1]
+		? Array.isArray(tree[1])
+			? treeFlattener(tree[1])
+			: [tree[1]]
+		: []),
 ];
 
 export function startBisect() {
+	if (persist.ghost.bisecting) return;
 	persist.store.bisectTargets = Object.keys(loaded.ghost);
 	persist.store.tree = recursiveTreeGenerator(persist.ghost.bisectTargets);
 	persist.store.rightNode = true;
@@ -35,18 +40,19 @@ export function startBisect() {
 }
 
 export function startBatch() {
-
+	if (!persist.ghost.bisecting) return;
 }
 
 export function thisBatchOkay() {
-
+	if (!persist.ghost.bisecting) return;
 }
 
 export function thisBatchBad() {
-
+	if (!persist.ghost.bisecting) return;
 }
 
 export function finishBisect() {
+	if (!persist.ghost.bisecting) return;
 	treeFlattener(persist.ghost.tree).forEach(enablePlugin);
 	persist.store.bisecting = false;
 	persist.store.tree = null;
