@@ -7,7 +7,9 @@ export default after("render", VoiceUsers.prototype, (_, ret) => {
 
 	for (const child of ret.props.children)
 		if (child?.props?.nick)
-			child.props.nick += ` (${child.props.user.username})`;
+			child.props.nick = persist.ghost.paren
+				? `${child.props.nick} (${child.props.user.username})`
+				: child.props.user.username;
 
 	return ret;
 });

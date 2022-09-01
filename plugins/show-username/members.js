@@ -10,16 +10,19 @@ export default after("default", ConnectedChannelMembersParent, (_, ret) => {
 	if (!rows) return;
 
 	for (const row of rows) {
+		if (!row) continue;
 		/*\
 		|*| annoyingly, these objects persist between renders
 		|*| so we need to patch them only once or
 		|*| nick (user) (user) (user) (user) etc.
 		|*| we do this by attaching a custom prop
 		\*/
-		row.YSINK_USERN_PATCHED = true;
+		row.YS_UN = 1;
 
-		if (row?.type === "MEMBER" && !row.YSINK_USERN_PATCHED && row.nick)
-			row.nick += ` (${row.user.username})`;
+		if (row?.type === "MEMBER" && !row.YS_UN && row.nick)
+			row.nick = persist.ghost.paren
+				? `${row.nick} (${row.user.username})`
+				: row.user.username;
 	}
 
 	return ret;

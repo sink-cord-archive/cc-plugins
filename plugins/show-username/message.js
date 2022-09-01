@@ -14,7 +14,10 @@ export default after("type", MsgRoot, ([{ channel, message }], ret) => {
 	const member = getMember(channel.guild_id, message.author.id);
 	const user = getUser(message.author.id);
 
-	if (member?.nick) target.nick = `${member.nick} (${user.username})`;
+	if (member?.nick)
+		target.nick = persist.ghost.paren
+			? `${member.nick} (${user.username})`
+			: user.username;
 
 	return ret;
 });
