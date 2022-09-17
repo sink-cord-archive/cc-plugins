@@ -54,7 +54,7 @@ function createPendingReply(
 		type: "CREATE_PENDING_REPLY",
 		channel,
 		message,
-		shouldMention,
+		shouldMention: shouldMention && !persist.ghost.noPing,
 		showMentionToggle,
 	});
 
