@@ -1,6 +1,13 @@
 # Cumcord plugins
 
+> **Warning** |
+> This repo depends, directly or indirectly, on [Cumcord](https://github.com/Cumcord).
+> Cumcord [has reached end of life](https://cumcord.com/an-exercise-in-futility) and is not supported.  
+> As such, this project is now discontinued.  
+> **EVERYTHING HERE IS NOW LICENSED UNDER THE [UNLICENSE](https://unlicense.org) AS OF 2022-10-19**
+
 [![wakatime](https://wakatime.com/badge/github/yellowsink/cc-plugins.svg)](https://wakatime.com/badge/github/yellowsink/cc-plugins)
+(this is an undercount btw :p )
 
 This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins, for your Discord app.
 
